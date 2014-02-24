@@ -1,0 +1,47 @@
+﻿<#+
+// <copyright file="EntityTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityTemplateNonGen : Template
+{
+    public string EntityName;
+    
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM
+{
+    public partial class <#=  EntityName #>
+    {
+
+        // TODO_ModelGeneration<#= EntityName #> - Add all properties required for this entity
+
+/*
+        private string name;
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                this.name = value;
+            }
+        }
+*/
+
+        // TODO_ModelGeneration<#= EntityName #> - Copy all details to the entity
+        partial void CopyDetails(<#=  EntityName #> details)
+        {
+            // this.Name = details.Name;
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

@@ -1,0 +1,37 @@
+﻿<#+
+// <copyright file="EntityMappingConfigurationTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EfEntityMappingConfigurationTemplate : Template
+{
+    public string EntityName;
+    
+    public override string TransformText()
+    {
+    #>
+namespace EnergyTrading.MDM.Data.EF.Configuration
+{
+    using System.Data.Entity.ModelConfiguration;
+
+    using RWEST.Nexus.MDM;
+
+    public class <#= EntityName #>MappingConfiguration : EntityTypeConfiguration<<#= EntityName #>Mapping>
+    {
+        public <#= EntityName #>MappingConfiguration()
+        {
+            this.ToTable("<#= EntityName #>Mapping");
+
+            this.Property(x => x.Id).HasColumnName("<#= EntityName #>MappingId");
+            this.HasRequired(x => x.System).WithMany().Map(x => x.MapKey("SourceSystemId"));
+            this.HasRequired(x => x.<#= EntityName #>).WithMany(y => y.Mappings).Map(x => x.MapKey("<#= EntityName #>Id"));
+            this.Property(x => x.Validity.Start).HasColumnName("Start");
+            this.Property(x => x.Validity.Finish).HasColumnName("Finish");
+            this.Property(x => x.Version).IsRowVersion();
+        }
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

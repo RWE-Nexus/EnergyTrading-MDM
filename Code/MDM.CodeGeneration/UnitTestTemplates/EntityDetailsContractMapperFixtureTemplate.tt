@@ -1,0 +1,46 @@
+﻿<#+
+// <copyright file="EntityDetailsMapperFixtureTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityDetailsContractMapperFixtureTemplate : Template
+{
+    public string EntityName;
+
+    public override string TransformText()
+    {
+        #>
+namespace EnergyTrading.MDM.Test.Contracts.Mappers
+{
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class <#= EntityName #>DetailsMapperFixture : Fixture
+    {
+        [TestMethod]
+        public void Map()
+        {
+            // Arrange
+            var source = new RWEST.Nexus.MDM.Contracts.<#= EntityName #>Details
+                {
+                    // TODO_UnitTestGeneration_<#=EntityName #> - populate properties of entity
+                    // Name = "test"
+                };
+
+            var mapper = new EnergyTrading.MDM.Contracts.Mappers.<#= EntityName #>DetailsMapper();
+
+            // Act
+            var result = mapper.Map(source);
+
+            // Assert
+            Assert.IsNotNull(result);
+            // TODO_UnitTestGeneration_<#=EntityName #> - assert properties are mapped correctly
+            // Assert.AreEqual(source.Name, result.Name);
+        }
+    }
+}
+        <#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

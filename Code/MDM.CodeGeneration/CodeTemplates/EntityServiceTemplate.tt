@@ -1,0 +1,71 @@
+﻿<#+
+// <copyright file="EntityServiceTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityServiceTemplate : Template
+{
+    public string EntityName;
+    public string MappingName;
+    public bool IsTemporal;
+    
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM.Services
+{
+    using System.Collections.Generic;
+
+    using EnergyTrading.Search;
+    using EnergyTrading.Data;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.Validation;
+
+    <#+
+    if(IsTemporal)
+    {
+    #>
+        public class <#= EntityName #>Service : MdmService<RWEST.Nexus.MDM.Contracts.<#= EntityName #>, <#= EntityName #>, <#= MappingName #>, <#= EntityName #>Details, RWEST.Nexus.MDM.Contracts.<#= EntityName #>Details>
+    <#+
+    }
+    else
+    {
+    #>
+        public class <#= EntityName #>Service : MdmService<RWEST.Nexus.MDM.Contracts.<#= EntityName #>, <#= EntityName #>, <#= MappingName #>, <#= IsTemporal ? EntityName + "Details" : EntityName #>, RWEST.Nexus.MDM.Contracts.<#= EntityName #>Details>
+    <#+
+    }
+    #>
+    {
+
+    public <#= EntityName #>Service(IValidatorEngine validatorFactory, IMappingEngine mappingEngine, IRepository repository, ISearchCache searchCache) : base(validatorFactory, mappingEngine, repository, searchCache)
+    {
+    }
+
+        protected override IEnumerable<<#= IsTemporal ? EntityName + "Details" : EntityName #>> Details(<#= EntityName #> entity)
+        {
+    <#+
+    if(IsTemporal)
+    {
+    #>
+        return entity.Details;
+    <#+
+    }
+    else
+    {
+    #>
+        return new List<<#= EntityName #>> { entity };
+    <#+
+    }
+    #>
+        }
+
+        protected override IEnumerable<<#= MappingName #>> Mappings(<#= EntityName #> entity)
+        {
+            return entity.Mappings;
+        }
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

@@ -1,0 +1,75 @@
+<#@ include file="..\UnitTestTemplates\ContractCheckerTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\ContractDetailsCheckerTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityCheckerTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityMappingCheckerTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityValidatorFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityRepositoryFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityCreateFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityCrossMapFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\TemporalEntityCrossMapFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityMapFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityUpdateFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\TemporalEntityUpdateFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityDetailsContractMapperFixtureTemplate.tt" #>
+<#@ include file="..\UnitTestTemplates\EntityDetailsMapperFixtureTemplate.tt" #>
+
+<#+
+// <copyright file="TestGenerator.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class PartyRoleUnitTestGenerator : Generator
+{
+    public bool preserveFiles;
+    public string EntityName;
+    public string MappingName;
+    public bool IsTemporal;
+
+    protected override void RunCore()
+    {		
+        var project = @"..\..\UnitTest\MDM.UnitTest.csproj";
+        var rootFolder = @"..\UnitTest\";
+
+        if(IsTemporal)
+        {
+            CreateTemplates(new TemporalEntityUpdateFixtureTemplate() { EntityName = EntityName, MappingName = MappingName },
+                preserveFiles, rootFolder + @"Services\" + EntityName + "UpdateFixture.cs", project);
+            CreateTemplates(new TemporalEntityCrossMapFixtureTemplate() { EntityName = EntityName, MappingName = MappingName },
+                preserveFiles, rootFolder + @"Services\" + EntityName + "CrossMapFixture.cs", project);
+        }
+        else
+        {
+            CreateTemplates(new EntityUpdateFixtureTemplate() { EntityName = EntityName, MappingName = MappingName },
+                preserveFiles, rootFolder + @"Services\" + EntityName + "UpdateFixture.cs", project);
+            CreateTemplates(new EntityCrossMapFixtureTemplate() { EntityName = EntityName, MappingName = MappingName },
+                preserveFiles, rootFolder + @"Services\" + EntityName + "CrossMapFixture.cs", project);
+        }
+
+        CreateTemplates(new EntityCreateFixtureTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Services\" + EntityName + "CreateFixture.cs", project);
+        CreateTemplates(new EntityRepositoryFixtureTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Data\EF\" + EntityName + "RepositoryFixture.cs", project);
+        CreateTemplates(new EntityValidatorFixtureTemplate() { EntityName = EntityName, MappingName = MappingName },
+            preserveFiles, rootFolder + @"Contracts\Validators\" + EntityName + "ValidatorFixture.cs", project);
+        CreateTemplates(new ContractCheckerTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Checkers\Contracts\" + EntityName + "Checker.cs", project);
+        CreateTemplates(new ContractDetailsCheckerTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Checkers\Contracts\" + EntityName + "DetailsChecker.cs", project);
+        CreateTemplates(new EntityCheckerTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Checkers\Mapping\" + EntityName + "Checker.cs", project);
+        CreateTemplates(new EntityDetailsContractMapperFixtureTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Contracts\Mappers\" + EntityName + "DetailsMapperFixture.cs", project);
+        CreateTemplates(new EntityDetailsMapperFixtureTemplate() { EntityName = EntityName, IsTemporal = IsTemporal },
+            preserveFiles, rootFolder + @"Mappers\" + EntityName + "DetailsMapperFixture.cs", project);
+    }
+    
+    private void CreateTemplates(Template template, bool preserve, string file, string project)
+    {
+        template.Output.PreserveExistingFile = preserve;
+        template.Output.File = file;
+        template.Output.Project = project;
+        template.Render();
+    }
+}
+#>
+

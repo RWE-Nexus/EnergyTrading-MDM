@@ -1,0 +1,30 @@
+﻿<#+
+// <copyright file="EntityMappingChecker.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityMappingCheckerTemplate : Template
+{
+    public string EntityName;
+        
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM.Test.Checkers.Mapping
+{
+    using RWEST.Nexus.MDM;
+    using EnergyTrading.Test;
+
+    public class <#= EntityName #>MappingChecker : Checker<<#= EntityName #>Mapping>
+    {
+        public <#= EntityName #>MappingChecker()
+        {
+            Compare(x => x.<#= EntityName #>).Id();
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

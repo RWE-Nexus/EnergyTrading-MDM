@@ -1,0 +1,73 @@
+﻿<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="..\CodeTemplates\EntityTemplate.tt" #>
+<#@ include file="..\CodeTemplates\TemporalEntityTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityDetailsTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityTemplateNonGen.tt" #>
+<#@ include file="..\CodeTemplates\ContractTemplate.tt" #>
+<#@ include file="..\CodeTemplates\ContractListTemplate.tt" #>
+<#@ include file="..\CodeTemplates\ContractDetailsTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityMappingTemplate.tt" #>
+
+<#+
+// <copyright file="CodeGenerator.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class ModelGenerator : Generator
+{
+    public bool preserveFiles;
+    public string ModelName;
+    public string MappingName;
+    public bool IsTemporal;
+    
+    protected override void RunCore()
+    {
+        var projectRootFolder = @"..\..\";
+        var rootFolder = @"..\";
+        
+        CreateTemplates(new EntityTemplateNonGen() { EntityName = ModelName },
+            true, rootFolder + @"MDM.Core\" + ModelName + ".cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+      
+        /*  This needs to be moved to MDM.Contracts.sln
+        
+        CreateTemplates(new ContractTemplate() { EntityName = ModelName },
+            preserveFiles, rootFolder + @"MDM.Contracts\" + ModelName + ".cs", projectRootFolder + @"MDM.Contracts\MDM.Contracts.csproj");
+        
+        CreateTemplates(new ContractListTemplate() { EntityName = ModelName },
+            preserveFiles, rootFolder + @"MDM.Contracts\" + ModelName + "List.cs", projectRootFolder + @"MDM.Contracts\MDM.Contracts.csproj");
+        
+        CreateTemplates(new ContractDetailsTemplate() { EntityName = ModelName },
+            preserveFiles, rootFolder + @"MDM.Contracts\" + ModelName + "Details.cs", projectRootFolder + @"MDM.Contracts\MDM.Contracts.csproj");
+       */ 
+        
+        if(MappingName == string.Empty || ModelName != MappingName)
+        {
+            CreateTemplates(new EntityMappingTemplate() { EntityName = ModelName },
+                preserveFiles, rootFolder + @"MDM.Core\" + ModelName + "Mapping.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        }
+
+        if (IsTemporal)
+        {
+            CreateTemplates(new EntityDetailsTemplate() { EntityName = ModelName },
+                true, rootFolder + @"MDM.Core\" + ModelName + "Details.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+            
+            CreateTemplates(new TemporalEntityTemplate() { EntityName = ModelName, MappingName = MappingName},
+                preserveFiles, rootFolder + @"MDM.Core\" + ModelName + ".gen.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        }
+        else
+        {
+            CreateTemplates(new EntityTemplate() { EntityName = ModelName, MappingName = MappingName },
+                preserveFiles, rootFolder + @"MDM.Core\" + ModelName + ".gen.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        
+        }
+    }
+    
+    private void CreateTemplates(Template template, bool preserve, string file, string project)
+    {
+        template.Output.PreserveExistingFile = preserve;
+        template.Output.File = file;
+        template.Output.Project = project;
+        template.Render();
+    }
+}
+#>

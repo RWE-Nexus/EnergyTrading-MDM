@@ -1,0 +1,42 @@
+﻿<#@ include file="..\CodeTemplates\AuditTableScriptTemplate.tt" #>
+
+<#@ import namespace="System.Collections.Generic" #>
+
+<#+
+// <copyright file="CodeGenerator.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class AuditTablesScriptGenerator : Generator
+{
+    public List<Tuple<string, string, string, string, string, string, bool>> auditTrails;
+    public bool preserveFiles;
+    
+    protected override void RunCore()
+    {
+        var rootFolder = @"..\";
+        
+        foreach(Tuple<string, string, string, string, string, string, bool> aduitTrailInfo in auditTrails)
+        {
+            CreateTemplates(new AuditTableScriptTemplate() {
+                dbServer = aduitTrailInfo.Item1,
+                owner = aduitTrailInfo.Item2,
+                dbName = aduitTrailInfo.Item3,
+                auditDbName = aduitTrailInfo.Item4,
+                tableName = aduitTrailInfo.Item5,
+                auditNameExtension = aduitTrailInfo.Item6,
+                dropAuditTableIfExists = aduitTrailInfo.Item7
+                },
+                preserveFiles, rootFolder + @"Database\AuditScripts\" + aduitTrailInfo.Item5 + "AuditScript.sql", string.Empty);
+        }
+    }
+    
+    private void CreateTemplates(Template template, bool preserve, string file, string project)
+    {
+        template.Output.PreserveExistingFile = preserve;
+        template.Output.File = file;
+        template.Output.Project = project;
+        template.Render();
+    }
+}
+#>

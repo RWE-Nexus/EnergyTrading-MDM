@@ -1,0 +1,27 @@
+﻿<#@ assembly name="$(SolutionDir)MDM.Core\bin\debug\MDM.Contracts.dll" #>
+<#@ assembly name="$(SolutionDir)MDM.Core\bin\debug\MDM.Core.dll" #>
+<#@ assembly name="$(SolutionDir)MDM.Core\bin\debug\Nexus.Core.dll" #>
+
+<#@ import namespace="RWEST.Nexus.Data" #>
+<#@ import namespace="RWEST.Nexus.MDM" #>
+<#@ import namespace="RWEST.Nexus.MDM.Contracts" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+	var entityNames = new List<Tuple<string, bool, Type, Type>>()
+    {
+        Tuple.Create("Product", false, typeof(RWEST.Nexus.MDM.Product), typeof(RWEST.Nexus.MDM.Contracts.ProductDetails))
+    };
+	
+	var auditTrails = new List<Tuple<string, string, string, string, string, string, bool>>()
+    {
+		//dbServer,	owner, dbName,	auditDbName, tableName, auditNameExtension, dropAuditTableIfExists
+		Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "Product", "Audit", true),
+        	Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "ProductMapping", "Audit", true),
+		Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "DeliveryPeriod", "Audit", true),
+		Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "ProductDelivery", "Audit", true),
+		Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "ProductDeliveryMapping", "Audit", true),
+		Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "PartyProductDelivery", "Audit", true),
+		Tuple.Create(@"C009A8120", "dbo", "MDM_Test", "MDM_Test", "PartyProductDeliveryMapping", "Audit", true)
+    };
+	
+	#>

@@ -1,0 +1,34 @@
+﻿<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\IntegrationTestTemplates\EntityDataTemplate.tt" #>
+<#@ include file="..\IntegrationTestTemplates\EntityDataCheckerTemplate.tt" #>
+
+<#+
+
+public class DataAndCheckerGenerator : Generator
+{
+    public List<Tuple<string, bool, Type, Type, string>> entities;
+    public bool preserveFiles;
+
+    protected override void RunCore()
+    {
+        var project = @"..\..\IntegrationTest\MDM.IntegrationTest.csproj";
+
+        foreach (var e in entities)
+        {
+            var rootFolder = @"..\IntegrationTest\" + e.Item1 + @"\";
+            CreateTemplates(new EntityDataTemplate() { EntityName = e.Item1, IsTemporal = e.Item2, EntityDetailsType = e.Item3, ContractDetailsType = e.Item4, MappingName = e.Item5 }, rootFolder + e.Item1 + "Data.cs", project);
+
+            CreateTemplates(new EntityDataCheckerTemplate() { EntityName = e.Item1, IsTemporal = e.Item2, EntityDetailsType = e.Item3, ContractDetailsType = e.Item4 }, rootFolder + e.Item1 + "DataChecker.cs", project);
+        }
+    }
+
+    private void CreateTemplates(Template template, string file, string project)
+    {
+        template.Output.PreserveExistingFile = preserveFiles;
+        template.Output.File = file;
+        template.Output.Project = project;
+        template.Render();
+    }
+}
+#>

@@ -1,0 +1,72 @@
+﻿<#+
+// <copyright file="UpdateEntitySuccessTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class UpdateEntitySuccessTemplate : Template
+{
+    public string EntityName;
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM.Test
+{
+    using System.Net;
+    using System.Runtime.Serialization;
+
+    using Microsoft.Http;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    [TestClass]
+    public class when_a_request_is_made_to_update_a_<#= EntityName.ToLower() #>_entity : IntegrationTestBase
+    {
+        private static HttpResponseMessage response;
+        private static HttpContent content;
+        private static RWEST.Nexus.MDM.Contracts.<#= EntityName #> <#= EntityName.ToLower() #>DataContract;
+        private static HttpClient client;
+        private static MDM.<#= EntityName #> entity;
+
+        private static RWEST.Nexus.MDM.Contracts.<#= EntityName #> updatedContract;
+
+        [ClassInitialize]
+        public static void ClassInit(TestContext context)
+        {
+            Establish_context();
+            Because_of();
+        }
+
+        protected static void Establish_context()
+        {
+            client = new HttpClient();
+            entity = <#= EntityName #>Data.CreateBasicEntity();
+            var getResponse = client.Get(ServiceUrl["<#= EntityName #>"] + entity.Id);
+
+            updatedContract = getResponse.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.<#= EntityName #>>();
+            content = HttpContentExtensions.CreateDataContract(<#= EntityName #>Data.MakeChangeToContract(updatedContract));
+        }
+
+        protected static void Because_of()
+        {
+            client.DefaultHeaders.Add("If-Match", entity.Version.ToString());
+            response = client.Post(ServiceUrl["<#= EntityName #>"] + entity.Id, content);
+            response.AssertStatusCodeIs(HttpStatusCode.NoContent);
+        }
+
+        [TestMethod]
+        public void should_update_the_<#= EntityName.ToLower() #>_in_the_database_with_the_correct_details()
+        {
+            <#= EntityName #>DataChecker.ConfirmEntitySaved(entity.Id, updatedContract);
+        }
+
+        [TestMethod]
+        public void should_return_a_no_content_status_code()
+        {
+            Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

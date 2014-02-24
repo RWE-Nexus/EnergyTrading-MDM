@@ -1,0 +1,38 @@
+﻿<#+
+// <copyright file="EntityMappingRepositoryFixtureTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityMappingRepositoryFixtureTemplate : Template
+{
+    public string EntityName;
+    
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM.Test.Data.EF
+{
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using RWEST.Nexus.MDM;
+
+    [TestClass]
+    public class <#= EntityName #>MappingRepositoryFixture : DbSetRepositoryFixture<<#= EntityName #>Mapping>
+    {
+        protected override <#= EntityName #>Mapping Default()
+        {
+            var entity = base.Default();
+            entity.<#= EntityName #> = ObjectMother.Create<<#= EntityName #>>();
+            entity.System = new SourceSystem { Name = Guid.NewGuid().ToString() };
+            entity.MappingValue = "Test";
+
+            return entity;
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

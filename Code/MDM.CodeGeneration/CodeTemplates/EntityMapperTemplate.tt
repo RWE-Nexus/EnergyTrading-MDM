@@ -1,0 +1,30 @@
+﻿<#+
+// <copyright file="EntityMapperTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityMapperTemplate : Template
+{
+    public string EntityName;
+    
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM.Mappers
+{
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Extensions;
+
+    public class <#= EntityName #>Mapper : Mapper<EnergyTrading.MDM.<#= EntityName #>, RWEST.Nexus.MDM.Contracts.<#= EntityName #>>
+    {
+        public override void Map(EnergyTrading.MDM.<#= EntityName #> source, RWEST.Nexus.MDM.Contracts.<#= EntityName #> destination)
+        {
+            // TODO_CodeGeneration - this needs to be completed if we need to map any top level entity attributes. An example can be found on PartyRole
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

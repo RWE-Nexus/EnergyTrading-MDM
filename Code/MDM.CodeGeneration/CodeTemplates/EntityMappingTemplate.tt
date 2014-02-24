@@ -1,0 +1,32 @@
+﻿<#+
+// <copyright file="EntityMappingTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityMappingTemplate : Template
+{
+    public string EntityName;
+    
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM
+{
+    /// <summary>
+    /// Maps a <see cref="EntityMapping" /> to a <see cref="<#= EntityName #>" />
+    /// </summary>
+    public class <#= EntityName #>Mapping : EntityMapping
+    {
+        public virtual <#= EntityName #> <#= EntityName #> { get; set; }
+
+        protected override IEntity Entity
+        {
+            get { return this.<#= EntityName #>; }
+            set { this.<#= EntityName #> = value as <#= EntityName #>; }
+        }
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

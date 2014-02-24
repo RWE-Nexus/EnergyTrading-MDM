@@ -1,0 +1,113 @@
+﻿<#+
+// <copyright file="TemporalTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class TemporalEntityTemplate : Template
+{
+    public string EntityName;
+    public string MappingName;
+    
+    public override string TransformText()
+    {
+        if(MappingName == string.Empty) MappingName = EntityName + "Mapping";
+#>
+namespace EnergyTrading.MDM
+{
+    using System.Collections.Generic;
+
+    using EnergyTrading;
+    using EnergyTrading.Data;
+    using EnergyTrading.MDM.Extensions;
+
+    public partial class <#= EntityName #> : IIdentifiable, IEntity
+    {
+        public <#= EntityName #>()
+        {
+            this.Mappings = new List<<#= MappingName #>>();
+            this.Details = new List<<#= EntityName #>Details>();
+        }
+
+        public int Id { get; set; }
+
+        object IIdentifiable.Id
+        {
+            get { return this.Id; }
+        }
+
+        public virtual IList<<#= MappingName #>> Mappings { get; private set; }
+
+        public virtual IList<<#= EntityName #>Details> Details { get; private set; }
+
+        public <#= EntityName #>Details LatestDetails
+        {
+            get { return this.Details.Latest(); }
+        }
+
+        public DateRange Validity
+        {
+            get { return this.Details.GetEntityValidity(); }
+        }
+
+        /// <remarks>
+        /// Should test for equality rather than > since entity.Version can be a large negative number
+        /// and version will default to 0 if not provided.
+        /// </remarks>
+        public long Version
+        {
+            get
+            {
+                var version = this.Details.LatestVersion(this.Mappings.LatestVersion());
+                return version;
+            }
+        }
+
+        /// <summary>
+        /// Add a details to the <#= EntityName.ToLower() #> checking its validity 
+        /// </summary>
+        /// <param name="details"></param>
+        public void AddDetails(<#= EntityName #>Details details)
+        {
+            if (this.ShouldUpdateLatestDetail(this.Details, details))
+            {
+                this.CopyDetails(details);
+            }
+            else
+            {
+                this.AddDetails(this.Details, details);
+            }
+
+            // Trim all the mappings that extend past the end of the entity.
+            this.Mappings.TrimMappings(this.Validity.Finish);
+        }
+
+        /// <summary>
+        /// Perform the field by field copy operation
+        /// </summary>
+        partial void CopyDetails(<#= EntityName #>Details details);
+
+        /// <summary>
+        /// Add or update a mapping, checking that it exists and that the details are compatible.
+        /// </summary>
+        /// <param name="mapping"></param>
+        public void ProcessMapping(<#= MappingName #> mapping)
+        {
+            this.ProcessMapping(this.Mappings, mapping, this.Validity.Finish);
+        }
+
+        void IEntity.AddDetails(IEntityDetail details)
+        {
+            this.AddDetails(details as <#= EntityName #>Details);
+        }
+
+        void IEntity.ProcessMapping(IEntityMapping mapping)
+        {
+            this.ProcessMapping(mapping as <#= MappingName #>);
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

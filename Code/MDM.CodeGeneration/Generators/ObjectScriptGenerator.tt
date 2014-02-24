@@ -1,0 +1,30 @@
+﻿<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\IntegrationTests\ObjectScriptTemplate.tt" #>
+<#+
+// <copyright file="ObjectScriptGenerator.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class ObjectScriptGenerator : Generator
+{
+	public List<string> entities;
+	public bool preserveFiles;
+
+	protected override void RunCore()
+	{
+		var project = @"..\IntegrationTest\MDM.IntegrationTest.csproj";
+		var rootFolder = @"..\IntegrationTest\";
+
+		CreateTemplates(new ObjectScriptTemplate() { EntityNames = entities}, false, rootFolder + "ObjectScript.cs", project);
+	}
+
+	private void CreateTemplates(Template template, bool preserve, string file, string project)
+	{
+		template.Output.PreserveExistingFile = preserveFiles;
+		template.Output.File = file;
+		template.Output.Project = project;
+		template.Render();
+	}
+}
+#>

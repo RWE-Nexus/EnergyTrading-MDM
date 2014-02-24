@@ -1,0 +1,47 @@
+﻿<#+
+// <copyright file="EntityDetailsMapperFixtureTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityDetailsMapperFixtureTemplate : Template
+{
+    public string EntityName;
+    public bool IsTemporal;
+
+    public override string TransformText()
+    {
+    #>
+namespace EnergyTrading.MDM.Test.Mappers
+{
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using EnergyTrading.MDM.Test;
+
+    [TestClass]
+    public class <#= EntityName #>DetailsMapperFixture : Fixture
+    {
+        [TestMethod]
+        public void Map()
+        {
+            // Arrange
+            var source = ObjectMother.Create<<#= IsTemporal ? EntityName + "Details" : EntityName #>>();
+
+            var mapper = new MDM.Mappers.<#= EntityName #>DetailsMapper();
+
+            // Act
+            var result = mapper.Map(source);
+
+            // Assert
+            // TODO_UnitTestGeneration_<#=EntityName #>
+            // Assert.AreEqual(source.Name, result.Name);
+            throw new NotImplementedException();
+        }
+    }
+}
+
+    <#+
+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

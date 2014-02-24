@@ -1,0 +1,262 @@
+﻿<#@ include file="T4Toolbox.tt" #>
+<#@ assembly name="Microsoft.SqlServer.ConnectionInfo" #>
+<#@ assembly name="Microsoft.SqlServer.Management.Sdk.Sfc" #>
+<#@ assembly name="Microsoft.SqlServer.Smo" #>
+<#@ assembly name="System.Xml" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System" #>
+
+<#+
+// <copyright file="AuditTableScriptTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class AuditTableScriptTemplate : Template
+{
+    // Inputs
+    public string dbServer;
+    public string owner;
+    public string dbName;
+    public string auditDbName;
+    public string tableName;
+    public string auditNameExtension;
+    public bool dropAuditTableIfExists;
+    
+    //Locals
+    Table sourceTable;
+    Table auditTable;
+    StringBuilder listOfFields = new StringBuilder();
+    
+    public override string TransformText()
+    {
+        string auditTableName = tableName + auditNameExtension;
+        
+        //Source table
+        var server = new Server(dbServer);
+        var db = new Database(server, dbName);
+        db.Refresh();
+        var tablesCount = db.Tables.Count; // Hack to refresh the tablecollection, for some reason, it's not getting populated.
+        sourceTable = db.Tables[tableName];
+        
+        if (sourceTable == null)
+        { 
+            WriteLine("-- Table {0} doesn't exists.", tableName);
+        }
+        else
+        {
+            sourceTable.Refresh();
+
+            if (string.IsNullOrWhiteSpace(auditNameExtension))
+            {
+                WriteLine("-- Audit name extension is not valid.");
+            }
+            else
+            {
+                //Audit db
+                var auditServer = new Server(dbServer);
+                var auditDb = new Database(auditServer, auditDbName);
+                auditDb.Refresh();
+
+                tablesCount = auditDb.Tables.Count;
+                auditTable = auditDb.Tables[auditTableName];
+
+                if (auditTable == null)
+                {
+                    WriteLine("-- Audit table doen't exists.");
+                }
+                else
+                {
+                    WriteLine("-- Audit table exists.");
+                    if (dropAuditTableIfExists)
+                    {
+                WriteLine("-- Dropping audit table [{0}].[{1}]", owner, auditTableName);
+                        WriteLine(string.Empty);
+                        WriteLine("DROP TABLE [{0}].[{1}]", owner, auditTableName);
+                        WriteLine(string.Empty);
+                    }
+                    else
+                    {
+                WriteLine("-- Audit Table already exists. Only triggers will be updated.");
+                    }
+                }
+                
+            //GenerateCreateTableScript
+            if(auditTable == null || (auditTable != null && dropAuditTableIfExists))
+            {
+                var createTableScript = new StringBuilder();
+                    createTableScript.AppendLine(string.Format("CREATE TABLE [{0}].[{1}]", owner, auditTableName));
+                    createTableScript.AppendLine("( [AuditId] [int] IDENTITY (1, 1) NOT NULL, ");
+
+                    var sourceTableCoulmnsCount = sourceTable.Columns.Count;
+                    //-- Source table columns count: sourceTableCoulmnsCount
+                    
+                    foreach (Column column in sourceTable.Columns)
+                    {
+                        if(column.DataType.SqlDataType == SqlDataType.Timestamp)
+                        {
+                            listOfFields.AppendFormat("{0},", column.Name);
+                            
+                            if(column.Nullable)
+                            {
+                                createTableScript.AppendFormat("[{0}] [{1}] (8) NULL,", column.Name, "varbinary");
+                            }
+                            else
+                            {
+                                createTableScript.AppendFormat("[{0}] [{1}] (8) NOT NULL,", column.Name, "binary");
+                            }
+                            
+                            createTableScript.AppendLine();
+                            continue;
+                        }
+                        
+                        if (column.DataType.SqlDataType != SqlDataType.Text &&
+                            column.DataType.SqlDataType != SqlDataType.NText &&
+                            column.DataType.SqlDataType != SqlDataType.Image )
+                        {
+                            listOfFields.AppendFormat("{0},", column.Name);
+                            createTableScript.AppendFormat("[{0}] [{1}] ", column.Name, column.DataType);
+
+                            if (column.DataType.SqlDataType == SqlDataType.Binary ||
+                                column.DataType.SqlDataType == SqlDataType.Char ||
+                                column.DataType.SqlDataType == SqlDataType.NVarChar ||
+                                column.DataType.SqlDataType == SqlDataType.NChar ||
+                                column.DataType.SqlDataType == SqlDataType.VarBinary ||
+                                column.DataType.SqlDataType == SqlDataType.VarChar ||
+                                column.DataType.SqlDataType == SqlDataType.NVarCharMax ||
+                                column.DataType.SqlDataType == SqlDataType.VarCharMax)
+                            {
+                                if (column.DataType.MaximumLength == -1)
+                                    createTableScript.Append("(max) ");
+                                else 
+                                    createTableScript.AppendFormat("({0}) ", column.DataType.MaximumLength);
+                            }
+                            else if(column.DataType.SqlDataType == SqlDataType.Decimal ||
+                                column.DataType.SqlDataType == SqlDataType.Numeric)
+                            {
+                                createTableScript.AppendFormat("({0},{1}) ", column.DataType.NumericPrecision, column.DataType.NumericScale);
+                            }
+
+                            if (column.DataType.SqlDataType == SqlDataType.Char ||
+                                column.DataType.SqlDataType == SqlDataType.NChar ||
+                                column.DataType.SqlDataType == SqlDataType.NVarChar ||
+                                column.DataType.SqlDataType == SqlDataType.VarChar ||
+                                column.DataType.SqlDataType == SqlDataType.Text ||
+                                column.DataType.SqlDataType == SqlDataType.NText ||
+                                column.DataType.SqlDataType == SqlDataType.NVarCharMax ||
+                                column.DataType.SqlDataType == SqlDataType.VarCharMax)
+                            {
+                                createTableScript.AppendFormat(" COLLATE {0} ", column.Collation);
+                            }
+
+                            //if (!column.Nullable) createTableScript.Append(" NOT ");
+
+                            createTableScript.Append(" NULL, ");
+                            createTableScript.AppendLine();
+                        }
+                    }
+
+                    createTableScript.AppendLine("[AuditAction] [char] (1) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,");
+                    createTableScript.AppendLine("[AuditDate] [datetime] NOT NULL ,");
+                    createTableScript.AppendLine("[AuditUser] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,");
+                    createTableScript.AppendLine("[AuditApp] [varchar](128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL)");
+
+                    // Create Audit table
+                WriteLine("-- Creating audit table [{0}].[{1}]", owner, auditTableName);
+                    WriteLine(string.Empty);
+                    WriteLine(createTableScript.ToString());
+                    WriteLine(string.Empty);
+
+                    // Set primary key and default values
+
+                    createTableScript = new StringBuilder();
+                    createTableScript.AppendFormat("ALTER TABLE [{0}].[{1}] ADD ", owner, auditTableName);
+                    createTableScript.AppendLine(string.Format("CONSTRAINT [DF_{0}_AuditDate] DEFAULT (getdate()) FOR [AuditDate], ", auditTableName));
+                    createTableScript.AppendLine(string.Format("CONSTRAINT [DF_{0}_AuditUser] DEFAULT (suser_sname()) FOR [AuditUser], ", auditTableName));
+                    createTableScript.AppendLine(string.Format("CONSTRAINT [DF_{0}_AuditApp] DEFAULT ('App=(' + rtrim(isnull(app_name(),'')) + ') ') FOR [AuditApp], ", auditTableName));
+                    createTableScript.AppendLine(string.Format("CONSTRAINT [PK_{0}] PRIMARY KEY  CLUSTERED ([AuditId])  ON [PRIMARY] ", auditTableName));
+                    
+                WriteLine("-- Set primary key and default values for [{0}].[{1}]", owner, auditTableName);
+                    WriteLine(string.Empty);
+                    WriteLine(createTableScript.ToString());
+                    WriteLine("GO");
+                    WriteLine(string.Empty);
+                }
+                
+                //GenerateCreateTriggerScript
+                var insertTriggerName = string.Format("tr_{0}_Insert", tableName);
+                var updateTriggerName = string.Format("tr_{0}_Update", tableName);
+                var deleteTriggerName = string.Format("tr_{0}_Delete", tableName);
+
+                if(sourceTable.Triggers.Count > 0)
+                {
+                    if (sourceTable.Triggers[insertTriggerName] != null)
+                    {
+                        WriteLine("-- Dropping trigger {0}.", insertTriggerName);
+                        WriteLine("DROP TRIGGER [{0}].[{1}]", owner, insertTriggerName);
+                        WriteLine(string.Empty);
+                    }
+
+                    if (sourceTable.Triggers[updateTriggerName] != null)
+                    {
+                        WriteLine("-- Dropping trigger {0}.", updateTriggerName);
+                        WriteLine("DROP TRIGGER [{0}].[{1}]", owner, updateTriggerName);
+                        WriteLine(string.Empty);
+                    }
+
+                    if (sourceTable.Triggers[deleteTriggerName] != null)
+                    {
+                        WriteLine("-- Dropping trigger {0}.", deleteTriggerName);
+                        WriteLine("DROP TRIGGER [{0}].[{1}]", owner, deleteTriggerName);
+                        WriteLine(string.Empty);
+                    }
+                }
+                
+                WriteLine("-- Creating triggers");
+                
+                var insertTriggerScript =
+                    string.Format(
+                        "CREATE TRIGGER {0} ON [{1}].[{2}] FOR INSERT AS INSERT INTO [{3}].[{4}] ({5} AuditAction, AuditUser) SELECT {5} 'I', dbo.fnGetContextData() FROM Inserted",
+                        insertTriggerName,
+                        owner,
+                        tableName,
+                        owner,
+                        auditTableName,
+                        listOfFields);
+
+                var updateTriggerScript =
+                    string.Format(
+                        "CREATE TRIGGER {0} ON [{1}].[{2}] FOR UPDATE AS INSERT INTO [{3}].[{4}] ({5} AuditAction, AuditUser) SELECT {5} 'U', dbo.fnGetContextData() FROM Inserted",
+                        updateTriggerName,
+                        owner,
+                        tableName,
+                        owner,
+                        auditTableName,
+                        listOfFields);
+
+                var deleteTriggerScript =
+                    string.Format(
+                        "CREATE TRIGGER {0} ON [{1}].[{2}] FOR DELETE AS INSERT INTO [{3}].[{4}] ({5} AuditAction, AuditUser) SELECT {5} 'D', dbo.fnGetContextData() FROM Deleted",
+                        deleteTriggerName,
+                        owner,
+                        tableName,
+                        owner,
+                        auditTableName,
+                        listOfFields);
+                
+                WriteLine("GO");
+                WriteLine(string.Empty);
+
+                WriteLine(insertTriggerScript);
+                WriteLine("GO");
+                WriteLine(updateTriggerScript);
+                WriteLine("GO");
+                WriteLine(deleteTriggerScript);
+                WriteLine("GO");
+            }
+        }	
+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

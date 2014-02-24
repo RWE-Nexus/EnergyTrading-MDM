@@ -1,0 +1,12 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="../Generators/IntegrationTestGenerator.tt" #>
+<#@ include file="Metadata.tt" #>
+<#
+	IntegrationTestGenerator integrationTestGenerator = new IntegrationTestGenerator();
+	integrationTestGenerator.entities = entityNames;
+	integrationTestGenerator.preserveFiles = false;
+
+    integrationTestGenerator.Run();
+	
+#>

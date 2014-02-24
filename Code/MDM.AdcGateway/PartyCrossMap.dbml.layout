@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="PartyCrossMap">
+  <DataContextMoniker Name="/PartyCrossMapDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9a59089a-c503-499f-a3ca-a4e1c2477ad4" absoluteBounds="2, 1.125, 2.75, 1.9178898111979166">
+      <DataClassMoniker Name="/PartyCrossMapDataContext/PartyCrossMap" />
+      <nestedChildShapes>
+        <elementListCompartment Id="72d4cfe0-7918-4aaf-887c-da1839e926eb" absoluteBounds="2.015, 1.585, 2.7199999999999998, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

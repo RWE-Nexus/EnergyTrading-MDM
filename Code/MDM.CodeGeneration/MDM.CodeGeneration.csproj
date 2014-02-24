@@ -1,0 +1,3328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48465E40-67BD-420D-A643-C44BE088FA2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnergyTrading.MDM.CodeGeneration</RootNamespace>
+    <AssemblyName>MDM.CodeGeneration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Code\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\Libs\SqlServer\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\Libs\SqlServer\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\Libs\SqlServer\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="T4Toolbox.10.0, Version=10.3.7.1, Culture=neutral, PublicKeyToken=7e313accbcce84dc, processorArchitecture=x86" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeTemplates\AuditTableScriptTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScriptTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generators\AuditTablesScriptGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTablesScriptGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IntegrationTestTemplates\search\SuccessSearchResultsPagedTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuccessSearchResultsPagedTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Agreement\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Book\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BrokerRate\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\2_PartyRoleCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_PartyRoleCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\3_PartyRoleCreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_PartyRoleCreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\5_DataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_DataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\6_CreateIntegrationTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Broker\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_BusinessUnit\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Calendar\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Calendar\CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Calendar\CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Calendar\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityFeeType\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityFeeType\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_CommodityInstrumentType\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Commodity\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Commodity\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\2_PartyRoleCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_PartyRoleCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\3_PartyRoleCreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_PartyRoleCreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\5_DataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_DataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\6_CreateIntegrationTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Counterparty\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Curve\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_DefaultPortfolio\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Dimension\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Exchange\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_FeeType\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Hierarchy\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentTypeOverride\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentType\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_InstrumentType\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LegalEntity\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LocationRole\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_LocationRole\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Location\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Location\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Market\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Market\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyAccountability\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyCommodity\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyOverride\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PartyRole\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Party\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Party\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Person\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Person\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_PortfolioHierarchy\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Portfolio\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductCurve\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductScota\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTenorType\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTypeInstance\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductTypeInstance\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductType\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ProductType\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Product\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Product\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ReferenceData\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ReferenceData\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\2_PartyRoleCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_PartyRoleCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\3_PartyRoleCreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_PartyRoleCreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\5_DataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_DataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\6_CreateIntegrationTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SettlementContact\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeDay\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShapeElement\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Shape\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShipperCode\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_ShipperCode\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SourceSystem\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_SourceSystem\CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_TenorType\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Tenor\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="_Unit\MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MetaData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__NonTemporalEntity\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\1_CreateModelScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\2_PartyRoleCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_PartyRoleCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\3_PartyRoleCreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_PartyRoleCreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\5_DataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_DataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\6_CreateIntegrationTests.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__PartyRole\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__TemporalEntity\2_CreateCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__TemporalEntity\3_CreateUnitTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__TemporalEntity\4_CreateRestServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__TemporalEntity\5_CreateDataAndCheckerScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__TemporalEntity\6_CreateIntegrationTestScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="__TemporalEntity\AuditTableScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Compile>
+    <None Include="CodeTemplates\EntityMapperTemplate.tt" />
+    <None Include="_Agreement\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Agreement\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>.\1_CreateModelScript.txt</LastOutputs>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\Data.EF\Configuration\BookConfiguration.cs
+..\..\Data.EF\Configuration\BookMappingConfiguration.cs
+..\..\MDM.Core\Configuration\BookConfiguration.cs
+..\..\MDM.Core\Contracts\Mappers\BookDetailsMapper.cs
+..\..\MDM.Core\Contracts\Mappers\BookMapper.cs
+..\..\MDM.Core\Contracts\Validators\BookValidator.cs
+..\..\MDM.Core\Mappers\BookDetailsMapper.cs
+..\..\MDM.Core\Mappers\BookMapper.cs
+..\..\MDM.Core\Mappers\BookMappingMapper.cs
+..\..\MDM.Core\Services\BookService.cs
+.\2_CreateCodeScript.txt
+</LastOutputs>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>.\3_CreateUnitTestScript.txt</LastOutputs>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\BookService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\Book\BookData.cs
+..\..\IntegrationTest\Book\BookDataChecker.cs
+.\5_CreateDataAndCheckerScript.txt
+</LastOutputs>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\Book\create_entity_instance\successful.cs
+..\..\IntegrationTest\Book\create_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\Book\create_mapping\conflict.cs
+..\..\IntegrationTest\Book\create_mapping\successful.cs
+..\..\IntegrationTest\Book\create_mapping\xml_data_invalid.cs
+..\..\IntegrationTest\Book\crossmap\destination_system_mapping_unkown.cs
+..\..\IntegrationTest\Book\crossmap\source_system_mapping_unkown.cs
+..\..\IntegrationTest\Book\crossmap\successful.cs
+..\..\IntegrationTest\Book\delete_mapping\success.cs
+..\..\IntegrationTest\Book\get_entities\successful.cs
+..\..\IntegrationTest\Book\get_entity\entity_not_found.cs
+..\..\IntegrationTest\Book\get_entity\successful.cs
+..\..\IntegrationTest\Book\get_mapping_for_entity\mapping_not_found.cs
+..\..\IntegrationTest\Book\get_mapping_for_entity\successful.cs
+..\..\IntegrationTest\Book\map\mapping_string_unkown.cs
+..\..\IntegrationTest\Book\map\successful.cs
+..\..\IntegrationTest\Book\search\invalid_search.cs
+..\..\IntegrationTest\Book\search\no_results_search.cs
+..\..\IntegrationTest\Book\search\success_search.cs
+..\..\IntegrationTest\Book\search\success_search_results.cs
+..\..\IntegrationTest\Book\search\success_search_results_by_mapping.cs
+..\..\IntegrationTest\Book\search\success_search_results_paged.cs
+..\..\IntegrationTest\Book\update_entity_instance\entity_not_found.cs
+..\..\IntegrationTest\Book\update_entity_instance\success.cs
+..\..\IntegrationTest\Book\update_entity_instance\version_conflict.cs
+..\..\IntegrationTest\Book\update_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\Book\update_mapping\entity_not_found.cs
+..\..\IntegrationTest\Book\update_mapping\success.cs
+..\..\IntegrationTest\Book\update_mapping\version_conflict.cs
+..\..\IntegrationTest\Book\update_mapping\xml_data_invalid.cs
+.\6_CreateIntegrationTestScript.txt
+</LastOutputs>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\Database\AuditScripts\BookAuditScript.sql
+..\Database\AuditScripts\BookMappingAuditScript.sql
+.\AuditTableScript.SQL
+</LastOutputs>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Book\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>.\1_CreateModelScript.txt</LastOutputs>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\Data.EF\Configuration\DefaultPortfolioConfiguration.cs
+..\..\Data.EF\Configuration\DefaultPortfolioMappingConfiguration.cs
+..\..\MDM.Core\Configuration\DefaultPortfolioConfiguration.cs
+..\..\MDM.Core\Contracts\Mappers\DefaultPortfolioDetailsMapper.cs
+..\..\MDM.Core\Contracts\Mappers\DefaultPortfolioMapper.cs
+..\..\MDM.Core\Contracts\Validators\DefaultPortfolioValidator.cs
+..\..\MDM.Core\Mappers\DefaultPortfolioDetailsMapper.cs
+..\..\MDM.Core\Mappers\DefaultPortfolioMapper.cs
+..\..\MDM.Core\Mappers\DefaultPortfolioMappingMapper.cs
+..\..\MDM.Core\Services\DefaultPortfolioService.cs
+.\2_CreateCodeScript.txt
+</LastOutputs>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>.\3_CreateUnitTestScript.txt</LastOutputs>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\DefaultPortfolioService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\DefaultPortfolio\DefaultPortfolioData.cs
+..\..\IntegrationTest\DefaultPortfolio\DefaultPortfolioDataChecker.cs
+.\5_CreateDataAndCheckerScript.txt
+</LastOutputs>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\DefaultPortfolio\create_entity_instance\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\create_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\DefaultPortfolio\create_mapping\conflict.cs
+..\..\IntegrationTest\DefaultPortfolio\create_mapping\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\create_mapping\xml_data_invalid.cs
+..\..\IntegrationTest\DefaultPortfolio\crossmap\destination_system_mapping_unkown.cs
+..\..\IntegrationTest\DefaultPortfolio\crossmap\source_system_mapping_unkown.cs
+..\..\IntegrationTest\DefaultPortfolio\crossmap\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\delete_mapping\success.cs
+..\..\IntegrationTest\DefaultPortfolio\get_entities\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\get_entity\entity_not_found.cs
+..\..\IntegrationTest\DefaultPortfolio\get_entity\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\get_mapping_for_entity\mapping_not_found.cs
+..\..\IntegrationTest\DefaultPortfolio\get_mapping_for_entity\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\map\mapping_string_unkown.cs
+..\..\IntegrationTest\DefaultPortfolio\map\successful.cs
+..\..\IntegrationTest\DefaultPortfolio\search\invalid_search.cs
+..\..\IntegrationTest\DefaultPortfolio\search\no_results_search.cs
+..\..\IntegrationTest\DefaultPortfolio\search\success_search.cs
+..\..\IntegrationTest\DefaultPortfolio\search\success_search_results.cs
+..\..\IntegrationTest\DefaultPortfolio\search\success_search_results_by_mapping.cs
+..\..\IntegrationTest\DefaultPortfolio\search\success_search_results_paged.cs
+..\..\IntegrationTest\DefaultPortfolio\update_entity_instance\entity_not_found.cs
+..\..\IntegrationTest\DefaultPortfolio\update_entity_instance\success.cs
+..\..\IntegrationTest\DefaultPortfolio\update_entity_instance\version_conflict.cs
+..\..\IntegrationTest\DefaultPortfolio\update_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\DefaultPortfolio\update_mapping\entity_not_found.cs
+..\..\IntegrationTest\DefaultPortfolio\update_mapping\success.cs
+..\..\IntegrationTest\DefaultPortfolio\update_mapping\version_conflict.cs
+..\..\IntegrationTest\DefaultPortfolio\update_mapping\xml_data_invalid.cs
+.\6_CreateIntegrationTestScript.txt
+</LastOutputs>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\Database\AuditScripts\DefaultPortfolioAuditScript.sql
+..\Database\AuditScripts\DefaultPortfolioMappingAuditScript.sql
+.\AuditTableScript.SQL
+</LastOutputs>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_DefaultPortfolio\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\DimensionService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Dimension\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_LegalEntity\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+      <LastOutputs>.\1_CreateModelScript.txt</LastOutputs>
+    </None>
+    <None Include="_LegalEntity\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+      <LastOutputs>
+..\..\Data.EF\Configuration\LegalEntityConfiguration.cs
+..\..\Data.EF\Configuration\LegalEntityMappingConfiguration.cs
+..\..\MDM.Core\Configuration\LegalEntityConfiguration.cs
+..\..\MDM.Core\Contracts\Mappers\LegalEntityDetailsMapper.cs
+..\..\MDM.Core\Contracts\Mappers\LegalEntityMapper.cs
+..\..\MDM.Core\Contracts\Validators\LegalEntityValidator.cs
+..\..\MDM.Core\Mappers\LegalEntityDetailsMapper.cs
+..\..\MDM.Core\Mappers\LegalEntityMapper.cs
+..\..\MDM.Core\Mappers\LegalEntityMappingMapper.cs
+..\..\MDM.Core\Services\LegalEntityService.cs
+.\2_CreateCodeScript.txt
+</LastOutputs>
+    </None>
+    <None Include="_LegalEntity\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+      <LastOutputs>.\3_CreateUnitTestScript.txt</LastOutputs>
+    </None>
+    <None Include="_LegalEntity\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\LegalEntityService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_LegalEntity\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+      <LastOutputs>
+..\..\IntegrationTest\LegalEntity\LegalEntityData.cs
+..\..\IntegrationTest\LegalEntity\LegalEntityDataChecker.cs
+.\5_CreateDataAndCheckerScript.txt
+</LastOutputs>
+    </None>
+    <None Include="_LegalEntity\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+      <LastOutputs>
+..\..\IntegrationTest\LegalEntity\create_entity_instance\successful.cs
+..\..\IntegrationTest\LegalEntity\create_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\LegalEntity\create_mapping\conflict.cs
+..\..\IntegrationTest\LegalEntity\create_mapping\successful.cs
+..\..\IntegrationTest\LegalEntity\create_mapping\xml_data_invalid.cs
+..\..\IntegrationTest\LegalEntity\crossmap\destination_system_mapping_unkown.cs
+..\..\IntegrationTest\LegalEntity\crossmap\source_system_mapping_unkown.cs
+..\..\IntegrationTest\LegalEntity\crossmap\successful.cs
+..\..\IntegrationTest\LegalEntity\delete_mapping\success.cs
+..\..\IntegrationTest\LegalEntity\get_entities\successful.cs
+..\..\IntegrationTest\LegalEntity\get_entity\entity_not_found.cs
+..\..\IntegrationTest\LegalEntity\get_entity\successful.cs
+..\..\IntegrationTest\LegalEntity\get_mapping_for_entity\mapping_not_found.cs
+..\..\IntegrationTest\LegalEntity\get_mapping_for_entity\successful.cs
+..\..\IntegrationTest\LegalEntity\map\mapping_string_unkown.cs
+..\..\IntegrationTest\LegalEntity\map\successful.cs
+..\..\IntegrationTest\LegalEntity\search\invalid_search.cs
+..\..\IntegrationTest\LegalEntity\search\no_results_search.cs
+..\..\IntegrationTest\LegalEntity\search\success_search.cs
+..\..\IntegrationTest\LegalEntity\search\success_search_results.cs
+..\..\IntegrationTest\LegalEntity\search\success_search_results_by_mapping.cs
+..\..\IntegrationTest\LegalEntity\search\success_search_results_paged.cs
+..\..\IntegrationTest\LegalEntity\update_entity_instance\entity_not_found.cs
+..\..\IntegrationTest\LegalEntity\update_entity_instance\success.cs
+..\..\IntegrationTest\LegalEntity\update_entity_instance\version_conflict.cs
+..\..\IntegrationTest\LegalEntity\update_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\LegalEntity\update_mapping\entity_not_found.cs
+..\..\IntegrationTest\LegalEntity\update_mapping\success.cs
+..\..\IntegrationTest\LegalEntity\update_mapping\version_conflict.cs
+..\..\IntegrationTest\LegalEntity\update_mapping\xml_data_invalid.cs
+.\6_CreateIntegrationTestScript.txt
+</LastOutputs>
+    </None>
+    <None Include="_LegalEntity\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+      <LastOutputs>
+..\Database\AuditScripts\PartyRoleDetailsAuditScript.sql
+.\AuditTableScript.SQL
+</LastOutputs>
+    </None>
+    <None Include="_LegalEntity\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+      <LastOutputs>.\1_CreateModelScript.txt</LastOutputs>
+    </None>
+    <None Include="_ProductTenorType\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ProductTenorTypeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTenorType\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\TenorTypeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_TenorType\MetaData.tt">
+    </None>
+    <None Include="_Tenor\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\TenorService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Tenor\MetaData.tt">
+    </None>
+    <None Include="_CommodityFeeType\1_CreateModelScript.tt">
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\2_CreateCodeScript.tt">
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\3_CreateUnitTestScript.tt">
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\CommodityFeeTypeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\5_CreateDataAndCheckerScript.tt">
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\6_CreateIntegrationTestScript.tt">
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\AuditTableScript.tt">
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityFeeType\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\1_CreateModelScript.tt">
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\2_CreateCodeScript.tt">
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\3_CreateUnitTestScript.tt">
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\FeeTypeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\5_CreateDataAndCheckerScript.tt">
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\6_CreateIntegrationTestScript.tt">
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\AuditTableScript.tt">
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_FeeType\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ProductScotaService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductScota\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ShapeDayService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeDay\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ShapeElementService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShapeElement\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ShapeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Shape\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\UnitService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Unit\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Vessel\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.txt</LastGenOutput>
+    </None>
+    <None Include="_Vessel\1_CreateModelScript.tt.log">
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.txt</LastGenOutput>
+    </None>
+    <None Include="_Vessel\2_CreateCodeScript.tt.log">
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.txt</LastGenOutput>
+    </None>
+    <None Include="_Vessel\3_CreateUnitTestScript.tt.log">
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>4_CreateRestServices.txt</LastGenOutput>
+    </None>
+    <None Include="_Vessel\4_CreateRestServices.tt.log">
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.txt</LastGenOutput>
+    </None>
+    <None Include="_Vessel\5_CreateDataAndCheckerScript.tt.log">
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.txt</LastGenOutput>
+    </None>
+    <None Include="_Vessel\6_CreateIntegrationTestScript.tt.log">
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.SQL</LastGenOutput>
+    </None>
+    <None Include="_Vessel\AuditTableScript.tt.log">
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </None>
+    <None Include="_Vessel\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\BrokerRateService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\BrokerRate\create_entity_instance\successful.cs
+..\..\IntegrationTest\BrokerRate\create_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\BrokerRate\create_mapping\conflict.cs
+..\..\IntegrationTest\BrokerRate\create_mapping\successful.cs
+..\..\IntegrationTest\BrokerRate\create_mapping\xml_data_invalid.cs
+..\..\IntegrationTest\BrokerRate\crossmap\destination_system_mapping_unkown.cs
+..\..\IntegrationTest\BrokerRate\crossmap\source_system_mapping_unkown.cs
+..\..\IntegrationTest\BrokerRate\crossmap\successful.cs
+..\..\IntegrationTest\BrokerRate\delete_mapping\success.cs
+..\..\IntegrationTest\BrokerRate\get_entities\successful.cs
+..\..\IntegrationTest\BrokerRate\get_entity\entity_not_found.cs
+..\..\IntegrationTest\BrokerRate\get_entity\successful.cs
+..\..\IntegrationTest\BrokerRate\get_mapping_for_entity\mapping_not_found.cs
+..\..\IntegrationTest\BrokerRate\get_mapping_for_entity\successful.cs
+..\..\IntegrationTest\BrokerRate\map\mapping_string_unkown.cs
+..\..\IntegrationTest\BrokerRate\map\successful.cs
+..\..\IntegrationTest\BrokerRate\search\invalid_search.cs
+..\..\IntegrationTest\BrokerRate\search\no_results_search.cs
+..\..\IntegrationTest\BrokerRate\search\success_search.cs
+..\..\IntegrationTest\BrokerRate\search\success_search_results.cs
+..\..\IntegrationTest\BrokerRate\search\success_search_results_by_mapping.cs
+..\..\IntegrationTest\BrokerRate\search\success_search_results_paged.cs
+..\..\IntegrationTest\BrokerRate\update_entity_instance\entity_not_found.cs
+..\..\IntegrationTest\BrokerRate\update_entity_instance\success.cs
+..\..\IntegrationTest\BrokerRate\update_entity_instance\version_conflict.cs
+..\..\IntegrationTest\BrokerRate\update_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\BrokerRate\update_mapping\entity_not_found.cs
+..\..\IntegrationTest\BrokerRate\update_mapping\success.cs
+..\..\IntegrationTest\BrokerRate\update_mapping\version_conflict.cs
+..\..\IntegrationTest\BrokerRate\update_mapping\xml_data_invalid.cs
+.\6_CreateIntegrationTestScript.txt
+</LastOutputs>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BrokerRate\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\InstrumentTypeOverrideService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentTypeOverride\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PartyOverrideService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyOverride\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ProductCurveService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductCurve\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\BusinessUnitService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_BusinessUnit\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\2_PartyRoleCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_PartyRoleCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\3_PartyRoleCreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_PartyRoleCreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\5_DataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_DataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\6_CreateIntegrationTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTests.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_SettlementContact\MetaData.tt" />
+    <None Include="_PartyAccountability\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PartyAccountabilityService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyAccountability\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\2_PartyRoleCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_PartyRoleCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\3_PartyRoleCreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_PartyRoleCreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\CounterpartyService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\5_DataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_DataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\6_CreateIntegrationTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTests.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Counterparty\MetaData.tt" />
+    <None Include="__PartyRole\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\2_PartyRoleCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_PartyRoleCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\3_PartyRoleCreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_PartyRoleCreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\BrokerService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\5_DataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_DataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\6_CreateIntegrationTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTests.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="__PartyRole\MetaData.tt" />
+    <None Include="__NonTemporalEntity\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="__NonTemporalEntity\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="Generators\PartyRoleUnitTestGenerator.tt">
+      <LastGenOutput>PartyRoleUnitTestGenerator.txt</LastGenOutput>
+    </None>
+    <None Include="UnitTestTemplates\TemporalEntityCrossMapFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\TemporalEntityUpdateFixtureTemplate.tt" />
+    <None Include="_Broker\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="CodeTemplates\AuditTableScriptTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScriptTemplate.cs</LastGenOutput>
+      <LastOutputs>.\AuditTableScriptTemplate.cs</LastOutputs>
+    </None>
+    <None Include="CodeTemplates\ContractDetailsTemplate.tt" />
+    <None Include="CodeTemplates\ContractListTemplate.tt" />
+    <None Include="CodeTemplates\EntityDetailsTemplate.tt" />
+    <None Include="CodeTemplates\EntityTemplateNonGen.tt" />
+    <None Include="Generators\PartyRoleCodeGenerator.tt" />
+    <None Include="_Broker\2_PartyRoleCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_PartyRoleCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Broker\3_PartyRoleCreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_PartyRoleCreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Broker\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\BrokerService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Broker\5_DataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_DataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Broker\6_CreateIntegrationTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTests.cs</LastGenOutput>
+    </None>
+    <None Include="_Broker\6_CreateIntegrationTests.tt.log">
+      <DependentUpon>6_CreateIntegrationTests.tt</DependentUpon>
+    </None>
+    <None Include="_Broker\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Broker\MetaData.tt" />
+    <None Include="_Curve\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\CurveService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Curve\MetaData.tt" />
+    <None Include="_Exchange\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ExchangeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Exchange\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PartyRoleService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyRole\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\CommodityInstrumentTypeService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_CommodityInstrumentType\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="Generators\AuditTablesScriptGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTablesScriptGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="_Calendar\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Commodity\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentType\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_LocationRole\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Location\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Market\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PartyCommodity\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Party\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Person\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PortfolioHierarchyService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\6_CreateIntegrationTestScript.tt.log">
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </None>
+    <None Include="_PortfolioHierarchy\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_PortfolioHierarchy\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\HierarchyService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Hierarchy\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="Generators\ModelGenerator.tt" />
+    <None Include="CodeTemplates\TemporalEntityTemplate.tt" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="_Portfolio\1_CreateModelScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>1_CreateModelScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Portfolio\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Portfolio\5_CreateDataAndCheckerScript.tt">
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="_Portfolio\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Portfolio\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PortfolioService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Portfolio\3_CreateUnitTestScript.tt">
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Include="_Portfolio\6_CreateIntegrationTestScript.tt.log">
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </None>
+    <None Include="_Portfolio\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Portfolio\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTypeInstance\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductType\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Product\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ReferenceData\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ReferenceData\MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_ShipperCode\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_ShipperCode\CreateCodeScript.tt" />
+    <None Include="_ShipperCode\CreateDataAndCheckerScript.tt" />
+    <None Include="_ShipperCode\CreateIntegrationTestScript.tt" />
+    <None Include="_ShipperCode\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ShipperCodeService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ShipperCode\CreateUnitTestScript.tt" />
+    <None Include="_ShipperCode\MetaData.tt" />
+    <None Include="_SourceSystem\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="_SourceSystem\CreateCodeScript.tt" />
+    <None Include="_SourceSystem\CreateDataAndCheckerScript.tt" />
+    <None Include="_SourceSystem\CreateIntegrationTestScript.tt" />
+    <None Include="_SourceSystem\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\SourceSystemService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_SourceSystem\CreateUnitTestScript.tt" />
+    <None Include="_SourceSystem\MetaData.tt" />
+    <None Include="__TemporalEntity\1_CreateModelScript.tt">
+      <LastGenOutput>1_CreateModelScript.txt</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\2_CreateCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>2_CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\3_CreateUnitTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>3_CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PersonService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\5_CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>5_CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\6_CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>6_CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\AuditTableScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuditTableScript.cs</LastGenOutput>
+    </None>
+    <None Include="__TemporalEntity\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeTemplates\ContractTemplate.tt" />
+    <None Include="Generators\CodeGenerator.tt" />
+    <None Include="CodeTemplates\EfEntityConfigurationTemplate.tt" />
+    <None Include="CodeTemplates\EntityConfigurationTemplate.tt" />
+    <None Include="CodeTemplates\ContractDetailsMapperTemplate.tt" />
+    <None Include="CodeTemplates\ContractMapperTemplate.tt" />
+    <None Include="CodeTemplates\EntityDetailsMapperTemplate.tt" />
+    <None Include="CodeTemplates\EfEntityMappingConfigurationTemplate.tt" />
+    <None Include="CodeTemplates\EntityMappingMapperTemplate.tt" />
+    <None Include="CodeTemplates\EntityMappingTemplate.tt" />
+    <None Include="CodeTemplates\EntityRESTServiceTemplate.tt" />
+    <None Include="CodeTemplates\EntityServiceTemplate.tt" />
+    <None Include="CodeTemplates\EntityTemplate.tt" />
+    <None Include="Generators\RestServiceGenerator.tt" />
+    <None Include="Generators\IntegrationTestGenerator.tt" />
+    <None Include="Generators\DataAndCheckerGenerator.tt" />
+    <None Include="Generators\ObjectScriptGenerator.tt" />
+    <None Include="Generators\UnitTestGenerator.tt" />
+    <None Include="IntegrationTestTemplates\create_entity_instance\CreateEntitySuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\create_entity_instance\CreateEntityXmlDataInvalidTemplate.tt" />
+    <None Include="IntegrationTestTemplates\create_mapping\CreateMappingConflictTemplate.tt" />
+    <None Include="IntegrationTestTemplates\create_mapping\CreateMappingSuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\create_mapping\CreateMappingXmlDataInvalidTemplate.tt" />
+    <None Include="IntegrationTestTemplates\crossmap\CrossmapDestinationSystemMappingUnkownTemplate.tt" />
+    <None Include="IntegrationTestTemplates\crossmap\CrossmapSourceSystemMappingUnkownTemplate.tt" />
+    <None Include="IntegrationTestTemplates\crossmap\CrossmapSuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\delete_mapping\DeleteMappingSuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\EntityDataTemplate.tt" />
+    <None Include="IntegrationTestTemplates\EntityDataCheckerTemplate.tt" />
+    <None Include="IntegrationTestTemplates\get_entities\GetEntitiesSuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\get_entity\GetEntityNotFoundTemplate.tt" />
+    <None Include="IntegrationTestTemplates\get_entity\GetEntitySuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\get_mapping_for_entity\GetEntityMappingNotFoundTemplate.tt" />
+    <None Include="IntegrationTestTemplates\get_mapping_for_entity\GetEntityMappingSuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\map\MapMappingStringUnkownTemplate.tt" />
+    <None Include="IntegrationTestTemplates\map\MapSuccessfulTemplate.tt" />
+    <None Include="IntegrationTestTemplates\map\SourceSystemUnkownTemplate.tt">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="IntegrationTestTemplates\ObjectScriptTemplate.tt" />
+    <None Include="IntegrationTestTemplates\search\InvalidSearchTemplate.tt" />
+    <None Include="IntegrationTestTemplates\search\NoSearchResultsTemplate.tt" />
+    <None Include="IntegrationTestTemplates\search\SuccessSearchResultsPagedTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SuccessSearchResultsPagedTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="IntegrationTestTemplates\search\SuccessSearchTemplate.tt" />
+    <None Include="IntegrationTestTemplates\search\SuccessSearchResultsByMappingTemplate.tt" />
+    <None Include="IntegrationTestTemplates\search\SuccessSearchResultsTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_entity_instance\UpdateEntityNotFoundTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_entity_instance\UpdateEntitySuccessTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_entity_instance\UpdateEntityVersionConflictTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_entity_instance\UpdateEntityXmlDataInvalidTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_mapping\UpdateMappingNotFoundTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_mapping\UpdateMappingSuccessTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_mapping\UpdateMappingVersionConflictTemplate.tt" />
+    <None Include="IntegrationTestTemplates\update_mapping\UpdateMappingXmlDataInvalidTemplate.tt" />
+    <None Include="_Calendar\CreateCodeScript.tt">
+      <LastGenOutput>CreateCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Calendar\CreateDataAndCheckerScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\Calendar\CalendarData.cs
+..\..\IntegrationTest\Calendar\CalendarDataChecker.cs
+.\CreateDataAndCheckerScript.txt
+</LastOutputs>
+      <LastGenOutput>CreateDataAndCheckerScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Calendar\CreateIntegrationTestScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\IntegrationTest\Calendar\create_entity_instance\successful.cs
+..\..\IntegrationTest\Calendar\create_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\Calendar\create_mapping\conflict.cs
+..\..\IntegrationTest\Calendar\create_mapping\successful.cs
+..\..\IntegrationTest\Calendar\create_mapping\xml_data_invalid.cs
+..\..\IntegrationTest\Calendar\crossmap\destination_system_mapping_unkown.cs
+..\..\IntegrationTest\Calendar\crossmap\source_system_mapping_unkown.cs
+..\..\IntegrationTest\Calendar\crossmap\successful.cs
+..\..\IntegrationTest\Calendar\delete_mapping\success.cs
+..\..\IntegrationTest\Calendar\get_entities\successful.cs
+..\..\IntegrationTest\Calendar\get_entity\entity_not_found.cs
+..\..\IntegrationTest\Calendar\get_entity\successful.cs
+..\..\IntegrationTest\Calendar\get_mapping_for_entity\mapping_not_found.cs
+..\..\IntegrationTest\Calendar\get_mapping_for_entity\successful.cs
+..\..\IntegrationTest\Calendar\map\mapping_string_unkown.cs
+..\..\IntegrationTest\Calendar\map\successful.cs
+..\..\IntegrationTest\Calendar\search\invalid_search.cs
+..\..\IntegrationTest\Calendar\search\no_results_search.cs
+..\..\IntegrationTest\Calendar\search\success_search.cs
+..\..\IntegrationTest\Calendar\search\success_search_results.cs
+..\..\IntegrationTest\Calendar\search\success_search_results_by_mapping.cs
+..\..\IntegrationTest\Calendar\search\success_search_results_paged.cs
+..\..\IntegrationTest\Calendar\update_entity_instance\entity_not_found.cs
+..\..\IntegrationTest\Calendar\update_entity_instance\success.cs
+..\..\IntegrationTest\Calendar\update_entity_instance\version_conflict.cs
+..\..\IntegrationTest\Calendar\update_entity_instance\xml_data_invalid.cs
+..\..\IntegrationTest\Calendar\update_mapping\entity_not_found.cs
+..\..\IntegrationTest\Calendar\update_mapping\success.cs
+..\..\IntegrationTest\Calendar\update_mapping\version_conflict.cs
+..\..\IntegrationTest\Calendar\update_mapping\xml_data_invalid.cs
+.\CreateIntegrationTestScript.txt
+</LastOutputs>
+      <LastGenOutput>CreateIntegrationTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Calendar\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\CalendarService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Calendar\CreateUnitTestScript.tt">
+      <LastGenOutput>CreateUnitTestScript.cs</LastGenOutput>
+    </None>
+    <None Include="_Calendar\MetaData.tt">
+      <LastGenOutput>MetaData.cs</LastGenOutput>
+    </None>
+    <None Include="_Commodity\CreateCodeScript.tt" />
+    <None Include="_Commodity\CreateDataAndCheckerScript.tt" />
+    <None Include="_Commodity\CreateIntegrationTestScript.tt" />
+    <None Include="_Commodity\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\CommodityService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Commodity\CreateUnitTestScript.tt" />
+    <None Include="_Commodity\MetaData.tt" />
+    <None Include="_InstrumentType\CreateCodeScript.tt" />
+    <None Include="_InstrumentType\CreateDataAndCheckerScript.tt" />
+    <None Include="_InstrumentType\CreateIntegrationTestScript.tt" />
+    <None Include="_InstrumentType\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\InstrumentTypeService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_InstrumentType\CreateUnitTestScript.tt" />
+    <None Include="_InstrumentType\MetaData.tt" />
+    <None Include="_LocationRole\CreateCodeScript.tt" />
+    <None Include="_LocationRole\CreateDataAndCheckerScript.tt" />
+    <None Include="_LocationRole\CreateIntegrationTestScript.tt" />
+    <None Include="_LocationRole\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\LocationRoleService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_LocationRole\CreateUnitTestScript.tt" />
+    <None Include="_LocationRole\MetaData.tt" />
+    <None Include="_Location\CreateCodeScript.tt" />
+    <None Include="_Location\CreateDataAndCheckerScript.tt" />
+    <None Include="_Location\CreateIntegrationTestScript.tt" />
+    <None Include="_Location\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\LocationService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Location\CreateUnitTestScript.tt" />
+    <None Include="_Location\MetaData.tt" />
+    <None Include="_Market\2_CreateCodeScript.tt" />
+    <None Include="_Market\5_CreateDataAndCheckerScript.tt" />
+    <None Include="_Market\6_CreateIntegrationTestScript.tt" />
+    <None Include="_Market\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\MarketService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Market\3_CreateUnitTestScript.tt" />
+    <None Include="_Market\MetaData.tt" />
+    <None Include="_Party\CreateCodeScript.tt" />
+    <None Include="_Party\CreateDataAndCheckerScript.tt" />
+    <None Include="_Party\CreateIntegrationTestScript.tt" />
+    <None Include="_Party\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PartyService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Party\CreateUnitTestScript.tt" />
+    <None Include="_Party\MetaData.tt" />
+    <None Include="_Person\CreateCodeScript.tt" />
+    <None Include="_Person\CreateDataAndCheckerScript.tt" />
+    <None Include="_Person\CreateIntegrationTestScript.tt" />
+    <None Include="_Person\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\PersonService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Person\CreateUnitTestScript.tt" />
+    <None Include="_Person\MetaData.tt" />
+    <None Include="_ProductTypeInstance\CreateCodeScript.tt" />
+    <None Include="_ProductTypeInstance\CreateDataAndCheckerScript.tt" />
+    <None Include="_ProductTypeInstance\CreateIntegrationTestScript.tt" />
+    <None Include="_ProductTypeInstance\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ProductTypeInstanceService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductTypeInstance\CreateUnitTestScript.tt" />
+    <None Include="_ProductTypeInstance\MetaData.tt" />
+    <None Include="_ProductType\CreateCodeScript.tt" />
+    <None Include="_ProductType\CreateDataAndCheckerScript.tt" />
+    <None Include="_ProductType\CreateIntegrationTestScript.tt" />
+    <None Include="_ProductType\CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ProductTypeService.cs
+.\CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_ProductType\CreateUnitTestScript.tt" />
+    <None Include="_ProductType\MetaData.tt" />
+    <None Include="_Product\2_CreateCodeScript.tt" />
+    <None Include="_Product\5_CreateDataAndCheckerScript.tt" />
+    <None Include="_Product\6_CreateIntegrationTestScript.tt" />
+    <None Include="_Product\4_CreateRestServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>
+..\..\MappingService\ProductService.cs
+.\4_CreateRestServices.txt
+</LastOutputs>
+      <LastGenOutput>4_CreateRestServices.cs</LastGenOutput>
+    </None>
+    <None Include="_Product\3_CreateUnitTestScript.tt" />
+    <None Include="_Product\MetaData.tt" />
+    <None Include="UnitTestTemplates\ContractCheckerTemplate.tt" />
+    <None Include="UnitTestTemplates\ContractDetailsCheckerTemplate.tt">
+      <LastGenOutput>ContractCheckerTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="UnitTestTemplates\EntityCheckerTemplate.tt" />
+    <None Include="CodeTemplates\ValidatorTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityCreateFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityCreateMappingFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityCrossMapFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityDetailsContractMapperFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityDetailsMapperFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityMapFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityMappingCheckerTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityMapperFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityMappingRepositoryFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityRepositoryFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityUpdateFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityUpdateMappingFixtureTemplate.tt" />
+    <None Include="UnitTestTemplates\EntityValidatorFixtureTemplate.tt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\AuditScripts\PartyRoleDetailsAuditScript.sql" />
+    <Content Include="ReadMe.txt" />
+    <Content Include="_Vessel\1_CreateModelScript.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>1_CreateModelScript.tt</DependentUpon>
+    </Content>
+    <Content Include="_Vessel\2_CreateCodeScript.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>2_CreateCodeScript.tt</DependentUpon>
+    </Content>
+    <Content Include="_Vessel\3_CreateUnitTestScript.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>3_CreateUnitTestScript.tt</DependentUpon>
+    </Content>
+    <Content Include="_Vessel\4_CreateRestServices.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>4_CreateRestServices.tt</DependentUpon>
+    </Content>
+    <Content Include="_Vessel\5_CreateDataAndCheckerScript.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>5_CreateDataAndCheckerScript.tt</DependentUpon>
+    </Content>
+    <Content Include="_Vessel\6_CreateIntegrationTestScript.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>6_CreateIntegrationTestScript.tt</DependentUpon>
+    </Content>
+    <Content Include="_Vessel\AuditTableScript.SQL">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditTableScript.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

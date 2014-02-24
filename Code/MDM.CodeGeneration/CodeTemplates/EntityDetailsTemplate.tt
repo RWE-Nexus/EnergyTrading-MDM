@@ -1,0 +1,61 @@
+﻿<#+
+// <copyright file="EntityDetailsTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityDetailsTemplate : Template
+{
+    public string EntityName;
+    
+    public override string TransformText()
+    {
+    #>
+namespace EnergyTrading.MDM
+{
+    using System;
+
+    using EnergyTrading.MDM.Data;
+    using EnergyTrading;
+    using EnergyTrading.Data;
+
+    public class <#= EntityName #>Details : IIdentifiable, IEntityDetail
+    {
+        public <#= EntityName #>Details()
+        {
+            this.Validity = new DateRange();
+            this.Timestamp = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        }
+
+        public int Id { get; set; }
+
+        object IIdentifiable.Id
+        {
+            get { return this.Id; }
+        }
+
+        public virtual <#= EntityName #> <#= EntityName #> { get; set; }
+
+        IEntity IRangedChild.Entity
+        {
+            get { return this.<#= EntityName #>; }
+            set { this.<#= EntityName #> = value as <#= EntityName #>; }
+        }
+
+        // TODO_ModelGeneration Add the properties for the detail here
+        // public string Name { get; set; }
+
+        public DateRange Validity { get; set; }
+
+        public byte[] Timestamp { get; set; }
+
+        public long Version
+        {
+            get { return BitConverter.ToInt64(this.Timestamp, 0); }
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

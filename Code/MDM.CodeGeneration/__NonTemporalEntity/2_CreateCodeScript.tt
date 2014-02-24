@@ -1,0 +1,16 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ output extension="txt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ include file="../Generators/CodeGenerator.tt" #>
+<#@ include file="Metadata.tt" #>
+<#
+	CodeGenerator codeGenerator = new CodeGenerator();
+	codeGenerator.EntityName = entityNames[0].Item1;
+	codeGenerator.MappingName = entityNames[0].Item5;
+	codeGenerator.IsTemporal = entityNames[0].Item2; 
+	codeGenerator.preserveFiles = false;
+
+	codeGenerator.Run();
+#>

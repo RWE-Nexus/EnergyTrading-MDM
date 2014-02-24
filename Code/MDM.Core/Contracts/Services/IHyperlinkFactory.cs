@@ -1,0 +1,15 @@
+﻿namespace EnergyTrading.MDM.Contracts.Services
+{
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Provides link enrichment for contracts
+    /// </summary>
+    /// <typeparam name="TContract"></typeparam>
+    public interface IHyperlinkFactory<TContract>
+    {
+        void AddLinks(int mdmId, TContract contract);
+
+        void AddLinks(int mdmId, IEnumerable<RWEST.Nexus.MDM.Contracts.NexusId> identifiers);
+    }
+}

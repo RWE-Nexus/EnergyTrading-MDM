@@ -1,0 +1,13 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ include file="../Generators/RestServiceGenerator.tt" #>
+<#@ include file="Metadata.tt" #>
+<#
+	RestServiceGenerator restServiceGenerator = new RestServiceGenerator();
+	restServiceGenerator.entities = entityNames.Select(x => x.Item1).ToList();
+	restServiceGenerator.preserveFiles = false;
+
+	restServiceGenerator.Run();
+#>

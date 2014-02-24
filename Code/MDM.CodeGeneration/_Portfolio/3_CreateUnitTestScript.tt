@@ -1,0 +1,14 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ include file="../Generators/UnitTestGenerator.tt" #>
+<#@ include file="Metadata.tt" #>
+<#
+	UnitTestGenerator testGenerator = new UnitTestGenerator();
+	testGenerator.entities = entityNames.Select(x => x.Item1).ToList();
+	testGenerator.preserveFiles = true;
+    
+	testGenerator.Run();
+#>

@@ -1,0 +1,24 @@
+﻿<#@ assembly name="$(SolutionDir)MDM.Core\bin\debug\MDM.Contracts.dll" #>
+<#@ assembly name="$(SolutionDir)MDM.Core\bin\debug\MDM.Core.dll" #>
+<#@ assembly name="$(SolutionDir)MDM.Core\bin\debug\Nexus.Core.dll" #>
+
+<#@ import namespace="RWEST.Nexus.Data" #>
+<#@ import namespace="RWEST.Nexus.MDM" #>
+<#@ import namespace="RWEST.Nexus.MDM.Contracts" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+	// Remove the comment once after copying the templates to new folder
+	
+	var entityNames = new List<Tuple<string, bool, Type, Type, string>>()
+    {
+	    Tuple.Create("ProductCurve", false, typeof(RWEST.Nexus.MDM.ProductCurve), typeof(RWEST.Nexus.MDM.Contracts.ProductCurveDetails), "ProductCurveMapping")
+    };
+	
+	var auditTrails = new List<Tuple<string, string, string, string, string, string, bool>>()
+    {
+		//dbServer,	owner, dbName,	auditDbName, tableName, auditNameExtension, dropAuditTableIfExists
+        Tuple.Create(@"(local)\SQLEXPRESS2008_K", "dbo", "MDM_WD", "MDM_WD", "ProductCurve", "Audit", true),
+		Tuple.Create(@"(local)\SQLEXPRESS2008_K", "dbo", "MDM_WD", "MDM_WD", "ProductCurveMapping", "Audit", true)
+    };	
+	
+	#>

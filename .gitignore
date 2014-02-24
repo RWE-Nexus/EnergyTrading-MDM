@@ -1,0 +1,130 @@
+
+# /
+/*.suo
+/MDM.5.0.ReSharper.user
+/*.user
+
+# /Build/
+/Build/Builds
+/Build/WebServiceBuild
+
+# /Build/Database/
+
+# /Code/
+/Code/Admin.NavigationModule
+/Code/_ReSharper.MDM
+/Code/_ReSharper.MDM.Admin
+/Code/_ReSharper.MDM.Loader
+/Code/MDM.sln.docstates.suo
+/Code/MDM.sln.DotSettings.user
+/Code/MDM.suo
+/Code/*.suo
+/Code/TestResults
+
+# /Code/Data.EF/
+/Code/Data.EF/bin
+/Code/Data.EF/obj
+
+# /Code/IntegrationTest/
+/Code/IntegrationTest/[Bb]in
+/Code/IntegrationTest/obj
+/Code/IntegrationTest/[Dd]ebug
+/Code/IntegrationTest/[Rr]elease
+/Code/IntegrationTest/*.user
+/Code/IntegrationTest/*.aps
+/Code/IntegrationTest/*.eto
+/Code/IntegrationTest/TempApp.config
+
+# /Code/IntegrationTest/SelfHost/
+/Code/IntegrationTest/SelfHost/[Bb]in
+/Code/IntegrationTest/SelfHost/obj
+/Code/IntegrationTest/SelfHost/[Dd]ebug
+/Code/IntegrationTest/SelfHost/[Rr]elease
+/Code/IntegrationTest/SelfHost/*.user
+/Code/IntegrationTest/SelfHost/*.aps
+/Code/IntegrationTest/SelfHost/*.eto
+
+# /Code/MDM.CodeGeneration/
+/Code/MDM.CodeGeneration/*.aps
+/Code/MDM.CodeGeneration/*.eto
+/Code/MDM.CodeGeneration/*.user
+/Code/MDM.CodeGeneration/Database
+/Code/MDM.CodeGeneration/[Bb]in
+/Code/MDM.CodeGeneration/[Dd]ebug
+/Code/MDM.CodeGeneration/[Rr]elease
+/Code/MDM.CodeGeneration/obj
+
+# /Code/MDM.CodeGeneration/_ReferenceData/
+
+# /Code/MDM.Core/
+/Code/MDM.Core/[Bb]in
+/Code/MDM.Core/obj
+/Code/MDM.Core/[Dd]ebug
+/Code/MDM.Core/[Rr]elease
+/Code/MDM.Core/*.user
+/Code/MDM.Core/*.aps
+/Code/MDM.Core/*.eto
+
+# /Code/MDM.Service.Unity/
+/Code/MDM.Service.Unity/[Bb]in
+/Code/MDM.Service.Unity/obj
+/Code/MDM.Service.Unity/[Dd]ebug
+/Code/MDM.Service.Unity/[Rr]elease
+/Code/MDM.Service.Unity/*.user
+/Code/MDM.Service.Unity/*.aps
+/Code/MDM.Service.Unity/*.eto
+/Code/MDM.Service.Unity/ClientBin
+/Code/MDM.Service.Unity/GeneratedArtifacts
+/Code/MDM.Service.Unity/_Pvt_Extensions
+
+# /Code/MDM.UI/
+/Code/MDM.UI/[Bb]in
+/Code/MDM.UI/obj
+/Code/MDM.UI/[Dd]ebug
+/Code/MDM.UI/[Rr]elease
+/Code/MDM.UI/*.user
+/Code/MDM.UI/*.aps
+/Code/MDM.UI/*.eto
+
+# /Code/MappingService/
+/Code/MappingService/[Bb]in
+/Code/MappingService/obj
+/Code/MappingService/[Dd]ebug
+/Code/MappingService/[Rr]elease
+/Code/MappingService/*.user
+/Code/MappingService/*.aps
+/Code/MappingService/*.eto
+/Code/MappingService/TempWeb.config
+/Code/MappingService/*.log
+/Code/MappingService/*.svclog
+
+# /Code/MappingService2/
+/Code/MappingService2/[Bb]in
+/Code/MappingService2/obj
+/Code/MappingService2/[Dd]ebug
+/Code/MappingService2/[Rr]elease
+/Code/MappingService2/*.user
+/Code/MappingService2/*.aps
+/Code/MappingService2/*.eto
+/Code/MappingService2/TempWeb.config
+/Code/MappingService2/*.log
+/Code/MappingService2/*.svclog
+
+# /Code/UnitTest/
+/Code/UnitTest/[Bb]in
+/Code/UnitTest/obj
+/Code/UnitTest/[Dd]ebug
+/Code/UnitTest/[Rr]elease
+/Code/UnitTest/*.user
+/Code/UnitTest/*.aps
+/Code/UnitTest/*.eto
+/Code/UnitTest/TempApp.config
+
+# /Code/packages/
+/Code/packages/*
+
+# /Libs/
+
+# /Libs/SharpTestsEx/
+
+# /Libs/SqlServer/

@@ -1,0 +1,15 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ output extension="txt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ include file="../Generators/ModelGenerator.tt" #>
+<#
+	ModelGenerator modelGenerator = new ModelGenerator();
+	modelGenerator.preserveFiles = true;
+    modelGenerator.ModelName = "ShapeDay";
+	modelGenerator.IsTemporal = false;
+    modelGenerator.MappingName = "ShapeDayMapping";
+
+	modelGenerator.Run();
+#>

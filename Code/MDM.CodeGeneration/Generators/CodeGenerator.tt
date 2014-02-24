@@ -1,0 +1,60 @@
+﻿<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="..\CodeTemplates\ValidatorTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityServiceTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityConfigurationTemplate.tt" #>
+<#@ include file="..\CodeTemplates\ContractDetailsMapperTemplate.tt" #>
+<#@ include file="..\CodeTemplates\ContractMapperTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityDetailsMapperTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityMappingMapperTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EfEntityConfigurationTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EfEntityMappingConfigurationTemplate.tt" #>
+<#@ include file="..\CodeTemplates\EntityMapperTemplate.tt" #>
+
+<#+
+// <copyright file="CodeGenerator.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class CodeGenerator : Generator
+{
+    public string EntityName;
+    public string MappingName;
+    public bool IsTemporal;
+    public bool preserveFiles;
+    
+    protected override void RunCore()
+    {
+        var projectRootFolder = @"..\..\";
+        var rootFolder = @"..\";
+
+        CreateTemplates(new EfEntityMappingConfigurationTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Data.EF\Configuration\" + EntityName + "MappingConfiguration.cs", projectRootFolder + @"Data.EF\MDM.Data.EF.csproj");
+       CreateTemplates(new EfEntityConfigurationTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"Data.EF\Configuration\" + EntityName + "Configuration.cs", projectRootFolder + @"Data.EF\MDM.Data.EF.csproj");
+       CreateTemplates(new EntityDetailsMapperTemplate() { EntityName = EntityName, IsTemporal = IsTemporal },
+            preserveFiles, rootFolder + @"MDM.Core\Mappers\" + EntityName + "DetailsMapper.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new EntityMappingMapperTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"MDM.Core\Mappers\" + EntityName + "MappingMapper.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new ContractMapperTemplate() { EntityName = EntityName, MappingName = MappingName, IsTemporal = IsTemporal},
+            preserveFiles, rootFolder + @"MDM.Core\Contracts\Mappers\" + EntityName + "Mapper.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new ContractDetailsMapperTemplate() { EntityName = EntityName, IsTemporal = IsTemporal},
+            preserveFiles, rootFolder + @"MDM.Core\Contracts\Mappers\" + EntityName + "DetailsMapper.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new EntityConfigurationTemplate() { EntityName = EntityName, MappingName = MappingName, IsTemporal = IsTemporal},
+            preserveFiles, rootFolder + @"MDM.Core\Configuration\" + EntityName + "Configuration.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new EntityServiceTemplate() { EntityName = EntityName, MappingName = MappingName, IsTemporal = IsTemporal},
+            preserveFiles, rootFolder + @"MDM.Core\Services\" + EntityName + "Service.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new ValidatorTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"MDM.Core\Contracts\Validators\" + EntityName + "Validator.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+        CreateTemplates(new EntityMapperTemplate() { EntityName = EntityName },
+            preserveFiles, rootFolder + @"MDM.Core\Mappers\" + EntityName + "Mapper.cs", projectRootFolder + @"MDM.Core\MDM.Core.csproj");
+    }
+    
+    private void CreateTemplates(Template template, bool preserve, string file, string project)
+    {
+        template.Output.PreserveExistingFile = preserve;
+        template.Output.File = file;
+        template.Output.Project = project;
+        template.Render();
+    }
+}
+#>

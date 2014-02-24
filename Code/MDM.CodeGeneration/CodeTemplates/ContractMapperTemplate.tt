@@ -1,0 +1,49 @@
+﻿<#+
+// <copyright file="EntityMapperTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class ContractMapperTemplate : Template
+{
+    public string EntityName;
+    public string MappingName;
+    public bool IsTemporal;
+    
+    public override string TransformText()
+    {
+        #>
+namespace EnergyTrading.MDM.Contracts.Mappers
+{
+    using System.Collections.Generic;
+
+    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mapping;
+    
+    /// <summary>
+    /// Maps a <see cref="SourceSystem" /> to a <see cref="<#= EntityName #>" />
+    /// </summary>
+    public class <#= EntityName #>Mapper : ContractMapper<<#= EntityName #>, MDM.<#= EntityName #>, <#= EntityName #>Details, MDM.<#= IsTemporal ? EntityName + "Details" : EntityName #>, <#= MappingName #>>
+    {
+        public <#= EntityName #>Mapper(IMappingEngine mappingEngine) : base(mappingEngine)
+        {
+        }
+
+        protected override <#= EntityName #>Details ContractDetails(<#= EntityName #> contract)
+        {
+            return contract.Details;
+        }
+
+        protected override EnergyTrading.DateRange ContractDetailsValidity(<#= EntityName #> contract)
+        {
+            return this.SystemDataValidity(contract.Nexus);
+        }
+
+        protected override IEnumerable<RWEST.Nexus.MDM.Contracts.NexusId> Identifiers(<#= EntityName #> contract)
+        {
+            return contract.Identifiers;
+        }
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}#>

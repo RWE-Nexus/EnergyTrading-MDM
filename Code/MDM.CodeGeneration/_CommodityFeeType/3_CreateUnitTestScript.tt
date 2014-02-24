@@ -1,0 +1,16 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ include file="../Generators/UnitTestGenerator.tt" #>
+<#@ include file="Metadata.tt" #>
+<#
+	UnitTestGenerator testGenerator = new UnitTestGenerator();
+	testGenerator.EntityName = entityNames[0].Item1;
+	testGenerator.MappingName = entityNames[0].Item5;
+	testGenerator.IsTemporal = entityNames[0].Item2;
+	testGenerator.preserveFiles = true;
+    
+	testGenerator.Run();
+#>

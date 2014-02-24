@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EnergyTrading.EntityFramework</name>
+    </assembly>
+    <members>
+        <member name="T:EnergyTrading.Data.EntityFramework.DbContextProvider">
+            <summary>
+            Provides a <see cref="T:System.Data.Entity.DbContext"/>
+            </summary>
+        </member>
+        <member name="T:EnergyTrading.Data.EntityFramework.IDbContextProvider">
+            <summary>
+            Delivers a <see cref="T:System.Data.Entity.DbContext"/> to consumers.
+            </summary>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.IDbContextProvider.CurrentContext">
+            <summary>
+            Return the current context
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.IDbContextProvider.Close">
+            <summary>
+            Release the current context
+            </summary>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbContextProvider.#ctor(System.Func{System.Data.Entity.DbContext})">
+            <summary>
+            Creates a new instance of the <see cref="T:EnergyTrading.Data.EntityFramework.DbContextProvider"/> class.
+            </summary>
+            <param name="func"></param>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbContextProvider.CurrentContext">
+            <copydocfrom cref="M:EnergyTrading.Data.EntityFramework.IDbContextProvider.CurrentContext"/>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbContextProvider.Close">
+            <copydocfrom cref="M:EnergyTrading.Data.EntityFramework.IDbContextProvider.Close"/>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbSetExtensions.RemoveLocals``1(System.Data.Entity.IDbSet{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Removes entities from a DbSet according to a predicate
+            </summary>
+            <remarks>
+            One use of this is to clear out deleted members of child collections.
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="dbSet"></param>
+            <param name="predicate"></param>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbSetExtensions.FindEx``1(System.Data.Entity.IDbSet{``0},System.Object)">
+            <summary>
+            Get entity by primary Key.
+            If EF raises any materialized exceptions, then it catches and return null. Otherwise this behave exactly same as EF DbSet Find method.
+            </summary>
+            <typeparam name="T">Type of entity</typeparam>
+            <param name="dbSet"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EnergyTrading.Data.EntityFramework.IDbSetRepository">
+            <summary>
+            Expose the underlying <see cref="T:System.Data.Entity.IDbSet`1"/> for a repository.
+            </summary>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.IDbSetRepository.DbSet``1">
+            <summary>
+            Gets the DbSet for an entity.
+            </summary>
+            <typeparam name="T">Type of entity.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbSetRepository.EnergyTrading#Data#IDao#ExecuteNonQuery(System.String,System.Int32)">
+            <summary>
+            Executes a non-query SQL command.
+            <para>
+            This is deliberately not on the public interface to discourage usage.
+            </para>
+            </summary>
+            <param name="sql"></param>
+            <param name="timeout"></param>
+        </member>
+        <member name="M:EnergyTrading.Data.EntityFramework.DbSetRepository`1.EnergyTrading#Data#IDao#ExecuteNonQuery(System.String,System.Int32)">
+            <summary>
+            Executes a non-query SQL command.
+            <para>
+            This is deliberately not on the public interface to discourage usage.
+            </para>
+            </summary>
+            <param name="sql"></param>
+            <param name="timeout"></param>
+        </member>
+        <member name="T:EnergyTrading.Data.EntityFramework.NullDatabaseInitializer`1">
+            <summary>
+            Database initialize that does nothing
+            </summary>
+            <remarks>
+            Don't want EF to try and 'fix' my production database unless I want to
+            </remarks>
+            <typeparam name="TContext"></typeparam>
+        </member>
+    </members>
+</doc>

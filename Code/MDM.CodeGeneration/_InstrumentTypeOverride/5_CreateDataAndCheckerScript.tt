@@ -1,0 +1,12 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="../Generators/DataAndCheckerGenerator.tt" #>
+<#@ include file="Metadata.tt" #>
+<#       
+	DataAndCheckerGenerator dataAndCheckerGenerator = new DataAndCheckerGenerator();
+	dataAndCheckerGenerator.entities = entityNames;
+    dataAndCheckerGenerator.preserveFiles = false;
+
+    dataAndCheckerGenerator.Run();
+	
+#>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdcSync_Test" Class="PartyCrossMapDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=S060a9263\DSKD1S;Initial Catalog=AdcSync_Test;Integrated Security=True" SettingsObjectName="MDM.AdcGateway.Properties.Settings" SettingsPropertyName="AdcSync_TestConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PartyCrossMap" Member="PartyCrossMaps">
+    <Type Name="PartyCrossMap">
+      <Column Name="MapId1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="System1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MapValue1" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MapId2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="System2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MapValue2" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Commodity" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

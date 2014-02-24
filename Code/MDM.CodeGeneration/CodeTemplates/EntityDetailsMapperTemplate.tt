@@ -1,0 +1,37 @@
+﻿<#+
+// <copyright file="EntityDetailsMapper.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityDetailsMapperTemplate : Template
+{
+    public string EntityName;
+    public bool IsTemporal;
+    
+    public override string TransformText()
+    {
+        #>
+namespace EnergyTrading.MDM.Mappers
+{
+    using System;
+
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Extensions;
+
+    /// <summary>
+    /// Maps a <see cref="<#= EntityName #>" /> to a <see cref="Contracts.<#= EntityName #>Details" />
+    /// </summary>
+    public class <#= EntityName #>DetailsMapper : Mapper<RWEST.Nexus.MDM.Contracts.<#= IsTemporal ? EntityName + "Details" : EntityName #>, RWEST.Nexus.MDM.Contracts.<#= EntityName #>Details>
+    {
+        public override void Map(EnergyTrading.MDM.<#= IsTemporal ? EntityName + "Details" : EntityName #> source, RWEST.Nexus.MDM.Contracts.<#= EntityName #>Details destination)
+        {
+            // TODO_CodeGeneration_<#=EntityName #>
+
+            throw new NotImplementedException();
+        }
+    }
+}<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>

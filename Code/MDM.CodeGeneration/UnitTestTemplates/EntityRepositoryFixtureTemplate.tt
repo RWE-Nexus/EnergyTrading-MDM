@@ -1,0 +1,34 @@
+﻿<#+
+// <copyright file="EntityRepositoryFixtureTemplate.tt" company="RWE">
+//  Copyright © RWE. All Rights Reserved.
+// </copyright>
+
+public class EntityRepositoryFixtureTemplate : Template
+{
+    public string EntityName;
+
+    public override string TransformText()
+    {
+#>
+namespace EnergyTrading.MDM.Test.Data.EF
+{
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using RWEST.Nexus.MDM;
+
+    [TestClass]
+    public class <#= EntityName #>RepositoryFixture : DbSetRepositoryFixture<<#= EntityName #>>
+    {
+        protected override <#= EntityName #> Default()
+        {
+            var entity = ObjectMother.Create<<#= EntityName #>>();
+
+            return entity;
+        }
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+    }
+}
+#>
