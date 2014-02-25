@@ -98,17 +98,17 @@
 /Code/MappingService/*.log
 /Code/MappingService/*.svclog
 
-# /Code/MappingService2/
-/Code/MappingService2/[Bb]in
-/Code/MappingService2/obj
-/Code/MappingService2/[Dd]ebug
-/Code/MappingService2/[Rr]elease
-/Code/MappingService2/*.user
-/Code/MappingService2/*.aps
-/Code/MappingService2/*.eto
-/Code/MappingService2/TempWeb.config
-/Code/MappingService2/*.log
-/Code/MappingService2/*.svclog
+# /Code/MDM.MappingService2/
+/Code/MDM.MappingService2/[Bb]in
+/Code/MDM.MappingService2/obj
+/Code/MDM.MappingService2/[Dd]ebug
+/Code/MDM.MappingService2/[Rr]elease
+/Code/MDM.MappingService2/*.user
+/Code/MDM.MappingService2/*.aps
+/Code/MDM.MappingService2/*.eto
+/Code/MDM.MappingService2/TempWeb.config
+/Code/MDM.MappingService2/*.log
+/Code/MDM.MappingService2/*.svclog
 
 # /Code/UnitTest/
 /Code/UnitTest/[Bb]in
