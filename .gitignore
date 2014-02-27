@@ -25,6 +25,10 @@
 /Code/Data.EF/bin
 /Code/Data.EF/obj
 
+# /Code/MDM.Data.EF.Nexus/
+/Code/MDM.Data.EF.Nexus/bin
+/Code/MDM.Data.EF.Nexus/obj
+
 # /Code/IntegrationTest/
 /Code/IntegrationTest/[Bb]in
 /Code/IntegrationTest/obj
@@ -34,6 +38,16 @@
 /Code/IntegrationTest/*.aps
 /Code/IntegrationTest/*.eto
 /Code/IntegrationTest/TempApp.config
+
+# /Code/MDM.IntegrationTest.Nexus/
+/Code/MDM.IntegrationTest.Nexus/[Bb]in
+/Code/MDM.IntegrationTest.Nexus/obj
+/Code/MDM.IntegrationTest.Nexus/[Dd]ebug
+/Code/MDM.IntegrationTest.Nexus/[Rr]elease
+/Code/MDM.IntegrationTest.Nexus/*.user
+/Code/MDM.IntegrationTest.Nexus/*.aps
+/Code/MDM.IntegrationTest.Nexus/*.eto
+/Code/MDM.IntegrationTest.Nexus/TempApp.config
 
 # /Code/IntegrationTest/SelfHost/
 /Code/IntegrationTest/SelfHost/[Bb]in
@@ -65,6 +79,15 @@
 /Code/MDM.Core/*.aps
 /Code/MDM.Core/*.eto
 
+# /Code/MDM.Core.Nexus/
+/Code/MDM.Core.Nexus/[Bb]in
+/Code/MDM.Core.Nexus/obj
+/Code/MDM.Core.Nexus/[Dd]ebug
+/Code/MDM.Core.Nexus/[Rr]elease
+/Code/MDM.Core.Nexus/*.user
+/Code/MDM.Core.Nexus/*.aps
+/Code/MDM.Core.Nexus/*.eto
+
 # /Code/MDM.Service.Unity/
 /Code/MDM.Service.Unity/[Bb]in
 /Code/MDM.Service.Unity/obj
@@ -77,38 +100,65 @@
 /Code/MDM.Service.Unity/GeneratedArtifacts
 /Code/MDM.Service.Unity/_Pvt_Extensions
 
-# /Code/MDM.UI/
-/Code/MDM.UI/[Bb]in
-/Code/MDM.UI/obj
-/Code/MDM.UI/[Dd]ebug
-/Code/MDM.UI/[Rr]elease
-/Code/MDM.UI/*.user
-/Code/MDM.UI/*.aps
-/Code/MDM.UI/*.eto
+# /Code/MDM.ServiceHost.Wcf/
+/Code/MDM.ServiceHost.Wcf/[Bb]in
+/Code/MDM.ServiceHost.Wcf/obj
+/Code/MDM.ServiceHost.Wcf/[Dd]ebug
+/Code/MDM.ServiceHost.Wcf/[Rr]elease
+/Code/MDM.ServiceHost.Wcf/*.user
+/Code/MDM.ServiceHost.Wcf/*.aps
+/Code/MDM.ServiceHost.Wcf/*.eto
+/Code/MDM.ServiceHost.Wcf/TempWeb.config
+/Code/MDM.ServiceHost.Wcf/*.log
+/Code/MDM.ServiceHost.Wcf/*.svclog
 
-# /Code/MappingService/
-/Code/MappingService/[Bb]in
-/Code/MappingService/obj
-/Code/MappingService/[Dd]ebug
-/Code/MappingService/[Rr]elease
-/Code/MappingService/*.user
-/Code/MappingService/*.aps
-/Code/MappingService/*.eto
-/Code/MappingService/TempWeb.config
-/Code/MappingService/*.log
-/Code/MappingService/*.svclog
+# /Code/MDM.ServiceHost.WebApi/
+/Code/MDM.ServiceHost.WebApi/[Bb]in
+/Code/MDM.ServiceHost.WebApi/obj
+/Code/MDM.ServiceHost.WebApi/[Dd]ebug
+/Code/MDM.ServiceHost.WebApi/[Rr]elease
+/Code/MDM.ServiceHost.WebApi/*.user
+/Code/MDM.ServiceHost.WebApi/*.aps
+/Code/MDM.ServiceHost.WebApi/*.eto
+/Code/MDM.ServiceHost.WebApi/TempWeb.config
+/Code/MDM.ServiceHost.WebApi/*.log
+/Code/MDM.ServiceHost.WebApi/*.svclog
 
-# /Code/MDM.MappingService2/
-/Code/MDM.MappingService2/[Bb]in
-/Code/MDM.MappingService2/obj
-/Code/MDM.MappingService2/[Dd]ebug
-/Code/MDM.MappingService2/[Rr]elease
-/Code/MDM.MappingService2/*.user
-/Code/MDM.MappingService2/*.aps
-/Code/MDM.MappingService2/*.eto
-/Code/MDM.MappingService2/TempWeb.config
-/Code/MDM.MappingService2/*.log
-/Code/MDM.MappingService2/*.svclog
+# /Code/MDM.ServiceHost.Unity.Nexus/
+/Code/MDM.ServiceHost.Unity.Nexus/[Bb]in
+/Code/MDM.ServiceHost.Unity.Nexus/obj
+/Code/MDM.ServiceHost.Unity.Nexus/[Dd]ebug
+/Code/MDM.ServiceHost.Unity.Nexus/[Rr]elease
+/Code/MDM.ServiceHost.Unity.Nexus/*.user
+/Code/MDM.ServiceHost.Unity.Nexus/*.aps
+/Code/MDM.ServiceHost.Unity.Nexus/*.eto
+/Code/MDM.ServiceHost.Unity.Nexus/TempWeb.config
+/Code/MDM.ServiceHost.Unity.Nexus/*.log
+/Code/MDM.ServiceHost.Unity.Nexus/*.svclog
+
+# /Code/MDM.ServiceHost.Wcf.Nexus/
+/Code/MDM.ServiceHost.Wcf.Nexus/[Bb]in
+/Code/MDM.ServiceHost.Wcf.Nexus/obj
+/Code/MDM.ServiceHost.Wcf.Nexus/[Dd]ebug
+/Code/MDM.ServiceHost.Wcf.Nexus/[Rr]elease
+/Code/MDM.ServiceHost.Wcf.Nexus/*.user
+/Code/MDM.ServiceHost.Wcf.Nexus/*.aps
+/Code/MDM.ServiceHost.Wcf.Nexus/*.eto
+/Code/MDM.ServiceHost.Wcf.Nexus/TempWeb.config
+/Code/MDM.ServiceHost.Wcf.Nexus/*.log
+/Code/MDM.ServiceHost.Wcf.Nexus/*.svclog
+
+# /Code/MDM.ServiceHost.WebApi.Nexus/
+/Code/MDM.ServiceHost.WebApi.Nexus/[Bb]in
+/Code/MDM.ServiceHost.WebApi.Nexus/obj
+/Code/MDM.ServiceHost.WebApi.Nexus/[Dd]ebug
+/Code/MDM.ServiceHost.WebApi.Nexus/[Rr]elease
+/Code/MDM.ServiceHost.WebApi.Nexus/*.user
+/Code/MDM.ServiceHost.WebApi.Nexus/*.aps
+/Code/MDM.ServiceHost.WebApi.Nexus/*.eto
+/Code/MDM.ServiceHost.WebApi.Nexus/TempWeb.config
+/Code/MDM.ServiceHost.WebApi.Nexus/*.log
+/Code/MDM.ServiceHost.WebApi.Nexus/*.svclog
 
 # /Code/UnitTest/
 /Code/UnitTest/[Bb]in
@@ -119,6 +169,16 @@
 /Code/UnitTest/*.aps
 /Code/UnitTest/*.eto
 /Code/UnitTest/TempApp.config
+
+# /Code/MDM.UnitTest.Nexus/
+/Code/MDM.UnitTest.Nexus/[Bb]in
+/Code/MDM.UnitTest.Nexus/obj
+/Code/MDM.UnitTest.Nexus/[Dd]ebug
+/Code/MDM.UnitTest.Nexus/[Rr]elease
+/Code/MDM.UnitTest.Nexus/*.user
+/Code/MDM.UnitTest.Nexus/*.aps
+/Code/MDM.UnitTest.Nexus/*.eto
+/Code/MDM.UnitTest.Nexus/TempApp.config
 
 # /Code/packages/
 /Code/packages/*

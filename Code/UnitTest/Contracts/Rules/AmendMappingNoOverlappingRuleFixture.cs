@@ -24,10 +24,10 @@
             var finish = new DateTime(2020, 12, 31);
             var validity = new DateRange(start, finish);
             var system = new SourceSystem { Name = "Test" };
-            var expected = new PersonMapping { System = system, MappingValue = "1", Validity = validity };
-            var list = new System.Collections.Generic.List<PersonMapping> { expected };
+            var expected = new SourceSystemMapping { System = system, MappingValue = "1", Validity = validity };
+            var list = new System.Collections.Generic.List<SourceSystemMapping> { expected };
             var repository = new Mock<IRepository>();
-            repository.Setup(x => x.Queryable<PersonMapping>()).Returns(list.AsQueryable());
+            repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
             var identifier = new RWEST.Nexus.MDM.Contracts.NexusId
             {
@@ -39,13 +39,13 @@
 
             var request = new AmendMappingRequest(){EntityId = 1, Mapping = identifier, MappingId = 1};
 
-            var rule = new AmendMappingNoOverlappingRule<PersonMapping>(repository.Object);
+            var rule = new AmendMappingNoOverlappingRule<SourceSystemMapping>(repository.Object);
 
             // Act
             var result = rule.IsValid(request);
 
             // Assert
-            repository.Verify(x => x.Queryable<PersonMapping>());
+            repository.Verify(x => x.Queryable<SourceSystemMapping>());
             Assert.IsTrue(result, "Rule failed");
         }
 
@@ -57,10 +57,10 @@
             var finish = new DateTime(2020, 12, 31);
             var validity = new DateRange(start, finish);
             var system = new SourceSystem { Name = "Test" };
-            var expected = new PersonMapping { System = system, MappingValue = "1", Validity = validity };
-            var list = new System.Collections.Generic.List<PersonMapping> { expected };
+            var expected = new SourceSystemMapping { System = system, MappingValue = "1", Validity = validity };
+            var list = new System.Collections.Generic.List<SourceSystemMapping> { expected };
             var repository = new Mock<IRepository>();
-            repository.Setup(x => x.Queryable<PersonMapping>()).Returns(list.AsQueryable());
+            repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
             var identifier = new RWEST.Nexus.MDM.Contracts.NexusId
             {
@@ -72,13 +72,13 @@
 
             var request = new AmendMappingRequest() { EntityId = 1, Mapping = identifier, MappingId = 1 };
 
-            var rule = new AmendMappingNoOverlappingRule<PersonMapping>(repository.Object);
+            var rule = new AmendMappingNoOverlappingRule<SourceSystemMapping>(repository.Object);
 
             // Act
             var result = rule.IsValid(request);
 
             // Assert
-            repository.Verify(x => x.Queryable<PersonMapping>());
+            repository.Verify(x => x.Queryable<SourceSystemMapping>());
             Assert.IsFalse(result, "Rule failed");
         } 
     }

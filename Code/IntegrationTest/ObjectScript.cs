@@ -10,50 +10,6 @@ namespace EnergyTrading.MDM.Test
 
     public class ObjectScript
     {
-        public CalendarData CalendarData;
-
-        public CalendarDataChecker CalendarDataChecker;
-
-        public CommodityData CommodityData;
-
-        public CommodityDataChecker CommodityDataChecker;
-
-        public InstrumentTypeData InsturmentDataChecker;
-
-
-        public LocationData LocationData;
-
-        public LocationDataChecker LocationDataChecker;
-
-        public LocationRoleData LocationRoleData;
-
-        public LocationRoleDataChecker LocationRoleDataChecker;
-
-        public MarketData MarketData;
-
-        public MarketDataChecker MarketDataChecker;
-        public PartyData PartyData;
-
-        public PartyDataChecker PartyDataChecker;
-        public PersonData PersonData;
-
-        public PersonDataChecker PersonDataChecker;
-
-        public ProductData ProductData;
-
-        public ProductDataChecker ProductDataChecker;
-
-        public ProductTypeData ProductTypeData;
-
-        public ProductTypeDataChecker ProductTypeDataChecker;
-
-        public ProductTypeInstanceData ProductTypeInstanceData;
-
-        public ProductTypeInstanceDataChecker ProductTypeInstanceDataChecker;
-
-        public ShipperCodeData ShipperCodeData;
-
-        public ShipperCodeDataChecker ShipperCodeDataChecker;
         public SourceSystemData SourceSystemData;
 
         public SourceSystemDataChecker SourceSystemDataChecker;
@@ -65,13 +21,6 @@ namespace EnergyTrading.MDM.Test
         private SourceSystem gastar;
 
         private SourceSystem trayport;
-        public InstrumentTypeData InstrumentTypeData;
-
-        public FeeTypeData FeeTypeData;
-
-        public FeeTypeDataChecker FeeTypeDataChecker;
-
-        public InstrumentTypeDataChecker InstrumentTypeDataChecker;
 
         public static DbSetRepository Repository;
 
@@ -85,39 +34,8 @@ namespace EnergyTrading.MDM.Test
 
             using (var t = new TransactionScope(TransactionScopeOption.Required))
             {
-                this.PersonData = new PersonData(Repository);
-                this.PersonDataChecker = new PersonDataChecker();
-                this.PartyData = new PartyData(Repository);
-                this.PartyDataChecker = new PartyDataChecker();
-		            this.CalendarData = new CalendarData(Repository);
-            this.CalendarDataChecker = new CalendarDataChecker();
-		            this.CommodityData = new CommodityData(Repository);
-            this.CommodityDataChecker = new CommodityDataChecker();
-
-
-		    this.LocationData = new LocationData(Repository);
-            this.LocationDataChecker = new LocationDataChecker();
-
-
-                this.InstrumentTypeData = new InstrumentTypeData(Repository);
-                this.InstrumentTypeDataChecker = new InstrumentTypeDataChecker();
-
-		            this.LocationRoleData = new LocationRoleData(Repository);
-            this.LocationRoleDataChecker = new LocationRoleDataChecker();
-		            this.MarketData = new MarketData(Repository);
-            this.MarketDataChecker = new MarketDataChecker();
-		            this.ProductData = new ProductData(Repository);
-            this.ProductDataChecker = new ProductDataChecker();
-		            this.ProductTypeData = new ProductTypeData(Repository);
-            this.ProductTypeDataChecker = new ProductTypeDataChecker();
-		            this.ProductTypeInstanceData = new ProductTypeInstanceData(Repository);
-            this.ProductTypeInstanceDataChecker = new ProductTypeInstanceDataChecker();
 		            this.SourceSystemData = new SourceSystemData(Repository);
             this.SourceSystemDataChecker = new SourceSystemDataChecker();
-		            this.ShipperCodeData = new ShipperCodeData(Repository);
-            this.ShipperCodeDataChecker = new ShipperCodeDataChecker();
-            this.FeeTypeData = new FeeTypeData(Repository);
-            this.FeeTypeDataChecker = new FeeTypeDataChecker(); 
             
             var z = new Zapper(Repository);
             z.Zap();

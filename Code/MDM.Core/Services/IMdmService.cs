@@ -10,8 +10,6 @@
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.Search;
-    using Person = EnergyTrading.MDM.Person;
-    using PersonDetails = EnergyTrading.MDM.PersonDetails;
 
     /// <summary>
     /// Create and map a type of MDM entity.
