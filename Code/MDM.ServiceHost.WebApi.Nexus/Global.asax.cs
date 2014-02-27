@@ -1,11 +1,8 @@
-﻿using System.Net.Http.Formatting;
-using System.Web;
+﻿using System.Web;
 using System.Web.Http;
-using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
 
 namespace EnergyTrading.MDM.MappingService2
 {
