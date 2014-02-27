@@ -6,7 +6,6 @@ using EnergyTrading.MDM.Configuration;
 using EnergyTrading.MDM.Data.EF.Configuration;
 using EnergyTrading.MDM.MappingService2.Configuration;
 using Microsoft.Practices.Unity;
-using log4net;
 
 namespace EnergyTrading.MDM.MappingService2
 {
