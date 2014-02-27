@@ -2,7 +2,6 @@
 using System.Web.Http.Dispatcher;
 using EnergyTrading.MDM.MappingService2.Filters;
 using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using log4net;
 
 namespace EnergyTrading.MDM.MappingService2
 {
