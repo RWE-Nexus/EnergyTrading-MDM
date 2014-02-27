@@ -92,7 +92,9 @@
     <Compile Include="Registrars\ObjectCacheRegistrar.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="EnergyTrading.MDM.ServiceHost.Unity.nuspec" />
+    <None Include="EnergyTrading.MDM.ServiceHost.Unity.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
