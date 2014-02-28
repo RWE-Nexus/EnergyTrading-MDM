@@ -21,9 +21,9 @@
 /Code/*.suo
 /Code/TestResults
 
-# /Code/Data.EF/
-/Code/Data.EF/bin
-/Code/Data.EF/obj
+# /Code/MDM.Data.EF/
+/Code/MDM.Data.EF/bin
+/Code/MDM.Data.EF/obj
 
 # /Code/MDM.Data.EF.Nexus/
 /Code/MDM.Data.EF.Nexus/bin
@@ -88,17 +88,17 @@
 /Code/MDM.Core.Nexus/*.aps
 /Code/MDM.Core.Nexus/*.eto
 
-# /Code/MDM.Service.Unity/
-/Code/MDM.Service.Unity/[Bb]in
-/Code/MDM.Service.Unity/obj
-/Code/MDM.Service.Unity/[Dd]ebug
-/Code/MDM.Service.Unity/[Rr]elease
-/Code/MDM.Service.Unity/*.user
-/Code/MDM.Service.Unity/*.aps
-/Code/MDM.Service.Unity/*.eto
-/Code/MDM.Service.Unity/ClientBin
-/Code/MDM.Service.Unity/GeneratedArtifacts
-/Code/MDM.Service.Unity/_Pvt_Extensions
+# /Code/MDM.ServiceHost.Unity/
+/Code/MDM.ServiceHost.Unity/[Bb]in
+/Code/MDM.ServiceHost.Unity/obj
+/Code/MDM.ServiceHost.Unity/[Dd]ebug
+/Code/MDM.ServiceHost.Unity/[Rr]elease
+/Code/MDM.ServiceHost.Unity/*.user
+/Code/MDM.ServiceHost.Unity/*.aps
+/Code/MDM.ServiceHost.Unity/*.eto
+/Code/MDM.ServiceHost.Unity/ClientBin
+/Code/MDM.ServiceHost.Unity/GeneratedArtifacts
+/Code/MDM.ServiceHost.Unity/_Pvt_Extensions
 
 # /Code/MDM.ServiceHost.Wcf/
 /Code/MDM.ServiceHost.Wcf/[Bb]in
