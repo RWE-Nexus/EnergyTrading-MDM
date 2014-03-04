@@ -1,1 +1,1 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="EnergyTrading.MDM.MappingService.Global" Language="C#" %>
+<%@ Application Codebehind="Global.asax.cs" Inherits="EnergyTrading.MDM.ServiceHost.Wcf.Nexus.Global" Language="C#" %>

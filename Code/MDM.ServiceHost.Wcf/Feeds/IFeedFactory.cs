@@ -1,7 +1,8 @@
-﻿namespace EnergyTrading.MDM.MappingService.Feeds
+﻿namespace MDM.ServiceHost.Wcf.Feeds
 {
     using System;
     using System.ServiceModel.Channels;
+
     using EnergyTrading.Search;
 
     public interface IFeedFactory

@@ -5,6 +5,8 @@ namespace EnergyTrading.MDM.Test.Web
     using System.Net;
     using System.ServiceModel.Web;
 
+    using global::MDM.ServiceHost.Wcf.Feeds;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,9 +14,10 @@ namespace EnergyTrading.MDM.Test.Web
 
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Web;
-    using EnergyTrading.MDM.MappingService.Feeds;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
+
+    using PartyService = EnergyTrading.MDM.ServiceHost.Wcf.Nexus.PartyService;
 
     [TestClass]
     public class PartyRequestFixture : ContractRequestFixture<Party, MDM.Party>
@@ -45,7 +48,7 @@ namespace EnergyTrading.MDM.Test.Web
             };
             service.Setup(x => x.Request(It.IsAny<GetRequest>())).Returns(contract);
 
-            var wcfService = new MappingService.PartyService();
+            var wcfService = new PartyService();
 
             // Act
             try

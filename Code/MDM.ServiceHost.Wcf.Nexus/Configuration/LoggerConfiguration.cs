@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.MappingService.Configuration
+namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus.Configuration
 {
     using System;
     using System.Collections.Generic;

@@ -6,9 +6,9 @@
     using System.ServiceModel.Web;
     using System.Collections.Generic;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
 
-    using EnergyTrading.MDM.MappingService;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public abstract class IntegrationTestBase

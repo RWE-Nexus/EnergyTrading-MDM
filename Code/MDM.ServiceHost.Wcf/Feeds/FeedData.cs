@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.MappingService.Feeds
+namespace MDM.ServiceHost.Wcf.Feeds
 {
     public static class FeedData
     {

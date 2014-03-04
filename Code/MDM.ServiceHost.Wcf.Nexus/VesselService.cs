@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.MappingService
+namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus
 {
     using System.Collections.Generic;
     using System.ServiceModel;
@@ -6,7 +6,7 @@ namespace EnergyTrading.MDM.MappingService
     using System.ServiceModel.Channels;
     using System.ServiceModel.Web;
 
-    using RWEST.Nexus.Contracts.Search;
+    using global::MDM.ServiceHost.Wcf;
 
     using RWEST.Nexus.Contracts.Search;
     using RWEST.Nexus.MDM.Contracts;

@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.MappingService
+﻿namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus
 {
     using System.Collections.Generic;
     using System.Net;
@@ -7,11 +7,12 @@
     using System.ServiceModel.Channels;
     using System.ServiceModel.Web;
 
-    using RWEST.Nexus.Contracts.Search;
+    using EnergyTrading.MDM.Data.Search;
+
+    using global::MDM.ServiceHost.Wcf;
 
     using RWEST.Nexus.Contracts.Search;
     using RWEST.Nexus.MDM.Contracts;
-    using EnergyTrading.MDM.Data.Search;
 
     [ServiceContract]
     // [XmlSerializerFormat]

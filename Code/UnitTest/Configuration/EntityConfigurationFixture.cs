@@ -1,11 +1,12 @@
 ﻿namespace EnergyTrading.MDM.Test.Configuration
 {
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;

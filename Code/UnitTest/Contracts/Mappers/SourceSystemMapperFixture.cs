@@ -2,12 +2,13 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
 {
     using System;
 
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading;
     using EnergyTrading.Mapping;

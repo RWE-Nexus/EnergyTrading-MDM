@@ -1,9 +1,9 @@
-﻿namespace EnergyTrading.MDM.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 {
     using System;
     using System.Configuration;
 
-    using global::MDM.Service.Unity.Registrars;
+    using EnergyTrading.MDM.ServiceHost.Unity.Registrars;
 
     using Microsoft.Practices.Unity;
 

@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.MappingService
+﻿namespace MDM.ServiceHost.Wcf
 {
     using System;
     using System.Collections.Generic;
@@ -15,9 +15,9 @@
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.Extensions;
     using EnergyTrading.Logging;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Extensions;
-    using EnergyTrading.MDM.MappingService.Feeds;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Search;
@@ -25,6 +25,8 @@
     using EnergyTrading.Validation;
     using EnergyTrading.Web;
     using EnergyTrading.Xml.Serialization;
+
+    using MDM.ServiceHost.Wcf.Feeds;
 
     using Microsoft.Practices.ServiceLocation;
 
@@ -43,7 +45,7 @@
 
         protected EntityService()
         {
-            MdmContentType = ConfigurationManager.AppSettings["Mdm.ContentType"];
+            this.MdmContentType = ConfigurationManager.AppSettings["Mdm.ContentType"];
 
             this.service = ServiceLocator.Current.GetInstance<IMdmService<TContract, TEntity>>();
             this.contextWrapper = ServiceLocator.Current.GetInstance<IWebOperationContextWrapper>();
@@ -98,14 +100,14 @@
                         scope.Complete();
                     }
 
-                    OutgoingResponse.Location = string.Format(
+                    this.OutgoingResponse.Location = string.Format(
                         "{0}/{1}?" + QueryConstants.ValidAt + "={2}",
-                        OutgoingResponse.InboundAbsoloutePath,
+                        this.OutgoingResponse.InboundAbsoloutePath,
                         entity.Id,
                         entity.Validity.Start.ToString(QueryConstants.DateFormatString));
-                    OutgoingResponse.StatusCode = HttpStatusCode.Created;
+                    this.OutgoingResponse.StatusCode = HttpStatusCode.Created;
 
-                    Logger.DebugFormat("{0} created. EntityId: {1}, Location: {2}", typeof(TContract).Name, entity.Id, OutgoingResponse.Location);
+                    Logger.DebugFormat("{0} created. EntityId: {1}, Location: {2}", typeof(TContract).Name, entity.Id, this.OutgoingResponse.Location);
                 });
         }
 
@@ -132,10 +134,10 @@
                         scope.Complete();
                     }
 
-                    OutgoingResponse.Location = string.Format("{0}/{1}/mapping/{2}", OutgoingResponse.InboundAbsoloutePath, id, entityMapping.Id);
-                    OutgoingResponse.StatusCode = HttpStatusCode.Created;
+                    this.OutgoingResponse.Location = string.Format("{0}/{1}/mapping/{2}", this.OutgoingResponse.InboundAbsoloutePath, id, entityMapping.Id);
+                    this.OutgoingResponse.StatusCode = HttpStatusCode.Created;
 
-                    Logger.DebugFormat("Mappings created for {0}-{1}. EntityMappingId: {2}, Location: {3}", typeof(TContract).Name, id, entityMapping.Id, OutgoingResponse.Location);
+                    Logger.DebugFormat("Mappings created for {0}-{1}. EntityMappingId: {2}, Location: {3}", typeof(TContract).Name, id, entityMapping.Id, this.OutgoingResponse.Location);
                 });
         }
 
@@ -145,7 +147,7 @@
                 {
                     Logger.DebugFormat("Deleting mapping for {0}-{1}: MappingId: {2}", typeof(TContract).Name, entityId, mappingId);
 
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
 
                     var request = new DeleteMappingRequest
                     {
@@ -158,7 +160,7 @@
                         scope.Complete();
                     }
 
-                    OutgoingResponse.StatusCode = HttpStatusCode.OK;
+                    this.OutgoingResponse.StatusCode = HttpStatusCode.OK;
 
                     Logger.DebugFormat("Mapping deleted for {0}-{1}: MappingId: {2}", typeof(TContract).Name, entityId, mappingId);
                 });
@@ -170,10 +172,10 @@
                 delegate
                 {
                     Logger.DebugFormat("CrossMap requested for {0}.", typeof(TContract).Name);
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
 
-                    var request = MessageFactory.CrossMappingRequest(QueryParameters);
-                    request.Version = ReadVersion();
+                    var request = MessageFactory.CrossMappingRequest(this.QueryParameters);
+                    request.Version = this.ReadVersion();
 
                     ContractResponse<MappingResponse> response;
                     using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
@@ -187,7 +189,7 @@
                         return response;
                     }
 
-                    throw FaultFactory.Exception(EntityName, response, request);
+                    throw FaultFactory.Exception(this.EntityName, response, request);
                 });
         }
 
@@ -203,10 +205,10 @@
                 {
                     Logger.DebugFormat("Feed requested for {0}.", typeof(TContract).Name);
 
-                    IList<TContract> response = GetList();
+                    IList<TContract> response = this.GetList();
 
                     var feed = new SyndicationFeed();
-                    feed.Id = string.Format("urn:uuid:{0}:{1}", BaseUrl, "list");
+                    feed.Id = string.Format("urn:uuid:{0}:{1}", this.BaseUrl, "list");
                     feed.Title = new TextSyndicationContent("All");
                     feed.Generator = "Nexus Mapping Service";
                     feed.Authors.Add(new SyndicationPerson { Name = "Nexus Mapping Service" });
@@ -214,8 +216,8 @@
 
                     feed.Items = response.Select(x => new SyndicationItem
                     {
-                        Title = new TextSyndicationContent(BaseUrl),
-                        Content = new XmlSyndicationContent(MdmContentType, new SyndicationElementExtension(x))
+                        Title = new TextSyndicationContent(this.BaseUrl),
+                        Content = new XmlSyndicationContent(this.MdmContentType, new SyndicationElementExtension(x))
                     });
 
                     var formatter = new Atom10FeedFormatter(feed);
@@ -231,8 +233,8 @@
                 {
                     Logger.DebugFormat("Get {0} entity: EntityId: {1}.", typeof(TContract).Name, id);
 
-                    OutgoingResponse.ContentType = MdmContentType;
-                    var request = MessageFactory.GetRequest(QueryParameters);
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
+                    var request = MessageFactory.GetRequest(this.QueryParameters);
                     request.EntityId = int.Parse(id);
                     request.Version = this.ReadVersion();
 
@@ -248,7 +250,7 @@
                         return response;
                     }
 
-                    throw FaultFactory.Exception(EntityName, response, request);
+                    throw FaultFactory.Exception(this.EntityName, response, request);
                 });
         }
 
@@ -259,9 +261,9 @@
                 {
                     Logger.DebugFormat("Get entity list for {0} entity: EntityId: {1}.", typeof(TContract).Name, id);
 
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
                     
-                    var request = MessageFactory.GetRequest(QueryParameters);
+                    var request = MessageFactory.GetRequest(this.QueryParameters);
                     request.EntityId = int.Parse(id);
 
                     IEnumerable<TContract> result;
@@ -278,7 +280,7 @@
                     }
 
                     var error = new ContractError { Reason = ErrorReason.Identifier, Type = ErrorType.NotFound };
-                    throw FaultFactory.NotFoundException<TContract>(EntityName, error, request);
+                    throw FaultFactory.NotFoundException<TContract>(this.EntityName, error, request);
                 });
         }
 
@@ -289,9 +291,9 @@
                 {
                     Logger.DebugFormat("Get {0} list.", typeof(TContract).Name);
 
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
 
-                    return GetList();
+                    return this.GetList();
                 });
         }
 
@@ -302,10 +304,10 @@
                 {
                     Logger.DebugFormat("Map requested for {0}.", typeof(TContract).Name);
 
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
 
-                    var request = MessageFactory.MappingRequest(QueryParameters);
-                    request.Version = ReadVersion();
+                    var request = MessageFactory.MappingRequest(this.QueryParameters);
+                    request.Version = this.ReadVersion();
 
                     ContractResponse<TContract> response;
                     using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
@@ -319,7 +321,7 @@
                         return response;
                     }
 
-                    throw FaultFactory.Exception(EntityName, response, request);
+                    throw FaultFactory.Exception(this.EntityName, response, request);
                 });
         }
 
@@ -330,7 +332,7 @@
                 {
                     Logger.DebugFormat("Get mapping for {0}-{1}: MappingId: {2}.", typeof(TContract).Name, id, mappingId);
 
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
 
                     var request = new GetMappingRequest
                     {
@@ -350,7 +352,7 @@
                         return response;
                     }
 
-                    throw FaultFactory.Exception(EntityName, response, request);
+                    throw FaultFactory.Exception(this.EntityName, response, request);
                 });
         }
 
@@ -404,8 +406,8 @@
 
         private SearchResultPage<TContract> CreateSearchAndGetPage(string key, int pageNumber)
         {
-            Service.CreateSearch(key.ToSearch<TContract>());
-            return Service.GetSearchResults(key, pageNumber);
+            this.Service.CreateSearch(key.ToSearch<TContract>());
+            return this.Service.GetSearchResults(key, pageNumber);
         }
 
         public Message SearchResultsHandler(string searchKey, string pageNumber)
@@ -430,7 +432,7 @@
                 {
                     Logger.DebugFormat("Get mappings for {0}: {1}", typeof(TContract).Name, id);
 
-                    var request = MessageFactory.GetRequest(QueryParameters);
+                    var request = MessageFactory.GetRequest(this.QueryParameters);
                     request.EntityId = int.Parse(id);
                     request.Version = this.ReadVersion();
 
@@ -443,12 +445,12 @@
 
                     if (!response.IsValid)
                     {
-                        throw FaultFactory.Exception(EntityName, response, request);
+                        throw FaultFactory.Exception(this.EntityName, response, request);
                     }
 
                     var feed = new SyndicationFeed();
-                    feed.Id = string.Format("urn:uuid:{0}:{1}", BaseUrl, id);
-                    feed.Title = new TextSyndicationContent(string.Format("Mappings for {0} {1} ", EntityName, id));
+                    feed.Id = string.Format("urn:uuid:{0}:{1}", this.BaseUrl, id);
+                    feed.Title = new TextSyndicationContent(string.Format("Mappings for {0} {1} ", this.EntityName, id));
                     feed.Generator = "Nexus Mapping Service";
                     feed.Authors.Add(new SyndicationPerson { Name = "Nexus Mapping Service" });
                     //feed.LastUpdatedTime = response.Contract.Audit.LastChangeTimestamp;
@@ -456,7 +458,7 @@
                     feed.Items = response.Contract.Identifiers.Select(mapping => new SyndicationItem
                     {
                         Title = new TextSyndicationContent("mapping"),
-                        Content = new XmlSyndicationContent(MdmContentType, new SyndicationElementExtension(mapping))
+                        Content = new XmlSyndicationContent(this.MdmContentType, new SyndicationElementExtension(mapping))
                     });
 
                     var formatter = new Atom10FeedFormatter(feed);
@@ -477,21 +479,21 @@
 
                     using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
                     {
-                        returnedContract = this.Service.Update(entityId, WriteVersion(), contract);
+                        returnedContract = this.Service.Update(entityId, this.WriteVersion(), contract);
                         scope.Complete();
                     }
 
                     if (returnedContract.Contract != null)
                     {
-                        OutgoingResponse.Location = string.Format("{0}/{1}", this.OutgoingResponse.InboundAbsoloutePath, id);
-                        OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
+                        this.OutgoingResponse.Location = string.Format("{0}/{1}", this.OutgoingResponse.InboundAbsoloutePath, id);
+                        this.OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
 
-                        Logger.DebugFormat("{0} updated. EntityId: {1}, Location: {2}", typeof(TContract).Name, id, OutgoingResponse.Location);
+                        Logger.DebugFormat("{0} updated. EntityId: {1}, Location: {2}", typeof(TContract).Name, id, this.OutgoingResponse.Location);
 
                         return;
                     }
 
-                    OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
+                    this.OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
                     Logger.DebugFormat("{0} not found for update. EntityId: {1}", typeof(TContract).Name, id);
                 });
         }
@@ -510,7 +512,7 @@
                         EntityId = int.Parse(id),
                         MappingId = int.Parse(mappingId),
                         Mapping = mapping,
-                        Version = WriteVersion()
+                        Version = this.WriteVersion()
                     };
 
                     using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
@@ -521,14 +523,14 @@
 
                     if (returnedMapping != null)
                     {
-                        OutgoingResponse.Location = string.Format("{0}/{1}/mapping/{2}", this.OutgoingResponse.InboundAbsoloutePath, id, mappingId);
-                        OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
+                        this.OutgoingResponse.Location = string.Format("{0}/{1}/mapping/{2}", this.OutgoingResponse.InboundAbsoloutePath, id, mappingId);
+                        this.OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
 
-                        Logger.DebugFormat("Mappings updated for {0}-{1}. MappingId: {2}, Location: {3}", typeof(TContract).Name, id, mappingId, OutgoingResponse.Location);
+                        Logger.DebugFormat("Mappings updated for {0}-{1}. MappingId: {2}, Location: {3}", typeof(TContract).Name, id, mappingId, this.OutgoingResponse.Location);
                         return;
                     }
 
-                    OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
+                    this.OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
                     Logger.DebugFormat("{0} mapping not found for update. EntityId: {1}, MappingId: {2}", typeof(TContract).Name, id, mappingId);
                 });
         }
@@ -554,12 +556,12 @@
 
         protected long ReadVersion()
         {
-            return Version("If-None-Match");
+            return this.Version("If-None-Match");
         }
 
         protected long WriteVersion()
         {
-            return Version("If-Match");
+            return this.Version("If-Match");
         }
 
         protected long Version(string header)
@@ -590,8 +592,8 @@
 
                     // Check if we have emitted this one before
                     this.contextWrapper.CheckConditionalRetrieve(response.Version);
-                    OutgoingResponse.SetETag(response.Version);
-                    OutgoingResponse.ContentType = MdmContentType;
+                    this.OutgoingResponse.SetETag(response.Version);
+                    this.OutgoingResponse.ContentType = this.MdmContentType;
 
                     return response.Contract;
                 });

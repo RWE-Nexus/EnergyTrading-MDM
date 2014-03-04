@@ -1,22 +1,20 @@
-﻿namespace MDM.Service.Unity.Registrars
+﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Registrars
 {
     using System;
 
-    using EnergyTrading.MDM;
-    using EnergyTrading.MDM.Configuration;
-
-    using Microsoft.ApplicationServer.Caching;
-    using Microsoft.Practices.Unity;
-
-    using EnergyTrading.Caching.AppFabric.Search;
-
     using EnergyTrading.Caching;
+    using EnergyTrading.Caching.AppFabric.Search;
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
+
+    using Microsoft.ApplicationServer.Caching;
+    using Microsoft.Practices.Unity;
 
     public class DistributedCacheRegistrar : ICacheRegistrar
     {

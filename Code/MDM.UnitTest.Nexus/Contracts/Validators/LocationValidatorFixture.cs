@@ -6,6 +6,8 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
     using System.Collections.Generic;
     using System.Linq;
 
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

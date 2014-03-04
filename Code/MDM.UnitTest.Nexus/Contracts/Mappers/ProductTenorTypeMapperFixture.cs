@@ -2,6 +2,8 @@
 {
     using System;
 
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

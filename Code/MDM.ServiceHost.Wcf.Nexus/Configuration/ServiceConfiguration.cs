@@ -1,13 +1,14 @@
-﻿namespace EnergyTrading.MDM.MappingService.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus.Configuration
 {
     using System;
     using System.Collections.Generic;
 
     using EnergyTrading.Configuration;
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading.MDM.Data.EF.Configuration;
-    using EnergyTrading.MDM.MappingService.Feeds;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
     using EnergyTrading.Web;
+
+    using global::MDM.ServiceHost.Wcf.Feeds;
 
     using Microsoft.Practices.Unity;
 

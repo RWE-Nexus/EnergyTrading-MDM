@@ -1,19 +1,22 @@
-﻿namespace EnergyTrading.MDM.MappingService
+﻿namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using System.Web;
     using System.Web.Routing;
+
+    using EnergyTrading.Configuration;
+    using EnergyTrading.MDM.Configuration;
+    using EnergyTrading.MDM.Data.EF.Configuration;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.MDM.ServiceHost.Wcf.Nexus.Configuration;
+
+    using global::MDM.ServiceHost.Wcf.Configuration;
 
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
 
-    using EnergyTrading.Configuration;
-    using EnergyTrading.Container.Unity.AutoRegistration;
-    using EnergyTrading.MDM.Configuration;
-    using EnergyTrading.MDM.Data.EF.Configuration;
-    using EnergyTrading.MDM.MappingService.Configuration;
+    using SourceSystemConfiguration = EnergyTrading.MDM.ServiceHost.Unity.Configuration.SourceSystemConfiguration;
 
     public class Global : HttpApplication
     {
@@ -81,7 +84,7 @@
             container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.ShapeDayConfiguration>("shapeday");
             container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.ShapeElementConfiguration>("shapeelement");
             container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.ShipperCodeConfiguration>("shippercode");
-            container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.SourceSystemConfiguration>("sourcesystem");
+            container.RegisterType<IGlobalConfigurationTask, SourceSystemConfiguration>("sourcesystem");
             container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.UnitConfiguration>("unit");
             container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.VesselConfiguration>("vessel");
             container.RegisterType<IGlobalConfigurationTask, MDM.Configuration.FeeTypeConfiguration>("feetype");

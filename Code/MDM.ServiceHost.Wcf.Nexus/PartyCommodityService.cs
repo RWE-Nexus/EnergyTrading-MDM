@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.MappingService
+namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus
 {
     using System.Collections.Generic;
     using System.Net;

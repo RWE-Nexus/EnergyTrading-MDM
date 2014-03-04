@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.MappingService.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus.Configuration
 {
     using System;
     using System.Collections.Generic;
@@ -7,30 +7,6 @@
     using System.Web.Routing;
 
     using EnergyTrading.Configuration;
-
-    using AgreementService = EnergyTrading.MDM.MappingService.AgreementService;
-    using BrokerRateService = EnergyTrading.MDM.MappingService.BrokerRateService;
-    using BusinessUnitService = EnergyTrading.MDM.MappingService.BusinessUnitService;
-    using CalendarService = EnergyTrading.MDM.MappingService.CalendarService;
-    using CommodityFeeTypeService = EnergyTrading.MDM.MappingService.CommodityFeeTypeService;
-    using CommodityInstrumentTypeService = EnergyTrading.MDM.MappingService.CommodityInstrumentTypeService;
-    using CommodityService = EnergyTrading.MDM.MappingService.CommodityService;
-    using FeeTypeService = EnergyTrading.MDM.MappingService.FeeTypeService;
-    using InstrumentTypeService = EnergyTrading.MDM.MappingService.InstrumentTypeService;
-    using LocationService = EnergyTrading.MDM.MappingService.LocationService;
-    using MarketService = EnergyTrading.MDM.MappingService.MarketService;
-    using PartyCommodityService = EnergyTrading.MDM.MappingService.PartyCommodityService;
-    using PartyOverrideService = EnergyTrading.MDM.MappingService.PartyOverrideService;
-    using PartyService = EnergyTrading.MDM.MappingService.PartyService;
-    using PersonService = EnergyTrading.MDM.MappingService.PersonService;
-    using PortfolioHierarchyService = EnergyTrading.MDM.MappingService.PortfolioHierarchyService;
-    using PortfolioService = EnergyTrading.MDM.MappingService.PortfolioService;
-    using ProductService = EnergyTrading.MDM.MappingService.ProductService;
-    using ProductTypeInstanceService = EnergyTrading.MDM.MappingService.ProductTypeInstanceService;
-    using ProductTypeService = EnergyTrading.MDM.MappingService.ProductTypeService;
-    using ShipperCodeService = EnergyTrading.MDM.MappingService.ShipperCodeService;
-    using SourceSystemService = EnergyTrading.MDM.MappingService.SourceSystemService;
-    using VesselService = EnergyTrading.MDM.MappingService.VesselService;
 
     public class RouteConfiguration : IGlobalConfigurationTask
     {

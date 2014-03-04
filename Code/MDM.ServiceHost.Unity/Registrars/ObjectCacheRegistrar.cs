@@ -1,18 +1,17 @@
-﻿namespace MDM.Service.Unity.Registrars
+﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Registrars
 {
     using System;
-
-    using EnergyTrading.MDM;
-    using EnergyTrading.MDM.Configuration;
-
-    using Microsoft.Practices.Unity;
 
     using EnergyTrading.Caching;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
+
+    using Microsoft.Practices.Unity;
 
     public class ObjectCacheRegistrar : ICacheRegistrar
     {
@@ -28,9 +27,9 @@
 
         public void RegisterCache()
         {
-            container.RegisterAbsoluteCacheItemPolicyFactory(CacheKey);
+            this.container.RegisterAbsoluteCacheItemPolicyFactory(CacheKey);
 
-            container.RegisterType<ISearchCache, SearchCache>(
+            this.container.RegisterType<ISearchCache, SearchCache>(
                 new PerResolveLifetimeManager(),
                 new InjectionConstructor(
                     new ResolvedParameter<ICacheItemPolicyFactory>(CacheKey)));
@@ -38,7 +37,7 @@
 
         public void RegisterCachedMdmService<TContract, TEntity, TMdmService>(string entityName) where TContract : class where TEntity : class, IIdentifiable, IEntity where TMdmService : IMdmService<TContract, TEntity>
         {
-            container.RegisterType<IMdmService<TContract, TEntity>, TMdmService>(
+            this.container.RegisterType<IMdmService<TContract, TEntity>, TMdmService>(
                 new InjectionConstructor(
                     new ResolvedParameter<IValidatorEngine>(entityName),
                     new ResolvedParameter<IMappingEngine>(),

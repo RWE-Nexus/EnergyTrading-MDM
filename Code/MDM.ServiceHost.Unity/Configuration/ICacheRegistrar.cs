@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 {
     using EnergyTrading.Data;
     using EnergyTrading.MDM.Services;

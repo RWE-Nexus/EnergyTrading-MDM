@@ -3,6 +3,9 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+
     using RWEST.Nexus.MDM.Contracts;
     using MDM.Data;
     using Microsoft.Practices.Unity;
@@ -10,7 +13,6 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.Data;
     using EnergyTrading.Validation;

@@ -5,6 +5,7 @@
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Messages.Validators;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Validation;
 

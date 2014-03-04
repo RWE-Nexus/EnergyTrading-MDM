@@ -1,14 +1,16 @@
-﻿namespace EnergyTrading.MDM.MappingService
+﻿namespace MDM.ServiceHost.Wcf
 {
     using System;
     using System.Net;
     using System.ServiceModel.Web;
+
     using EnergyTrading.Extensions;
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Messages.Services;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Validation;
+
+    using RWEST.Nexus.MDM.Contracts;
 
     public static class FaultFactory
     {

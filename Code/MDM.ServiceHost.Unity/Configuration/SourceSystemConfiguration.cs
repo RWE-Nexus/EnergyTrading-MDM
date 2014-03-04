@@ -1,16 +1,15 @@
-namespace EnergyTrading.MDM.Configuration
+namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 {
     using System.Collections.Generic;
+
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Contracts.Mappers;
+    using EnergyTrading.MDM.Contracts.Validators;
+    using EnergyTrading.MDM.Mappers;
 
     using Microsoft.Practices.Unity;
 
     using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Mappers;
 
     public class SourceSystemConfiguration : EntityConfiguration<Services.SourceSystemService, MDM.SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystem, 
 		SourceSystemMapping, SourceSystemValidator>
@@ -33,8 +32,8 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.SourceSystemDetailsMapper());
-            MappingEngine.RegisterMap(new SourceSystemMappingMapper());      
+            this.MappingEngine.RegisterMap(new Mappers.SourceSystemDetailsMapper());
+            this.MappingEngine.RegisterMap(new SourceSystemMappingMapper());      
             this.Container.RegisterType<IMapper<MDM.SourceSystem, List<Link>>, NullLinksMapper>();
             this.Container.RegisterType<IMapper<MDM.SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystem>, MDM.Mappers.SourceSystemMapper>();
         }

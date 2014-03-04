@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.MappingService
+﻿namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus
 {
     using System;
     using System.Collections.Generic;
@@ -10,12 +10,14 @@
     using System.ServiceModel.Web;
     using System.Transactions;
 
-    using EnergyTrading.Logging;
-
     using EnergyTrading.Data;
     using EnergyTrading.Extensions;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Logging;
     using EnergyTrading.Web;
+
+    using global::MDM.ServiceHost.Wcf;
+
+    using RWEST.Nexus.MDM.Contracts;
 
     [ServiceContract]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
@@ -38,11 +40,11 @@
         {
             if (key == "{}")
             {
-                return GetHandler(
+                return this.GetHandler(
                     key, 
                     () =>
                     {
-                        var entries = repository.Queryable<MDM.ReferenceData>().OrderBy(x => x.Key + "|" + x.Value);
+                        var entries = this.repository.Queryable<MDM.ReferenceData>().OrderBy(x => x.Key + "|" + x.Value);
 
                         var list = new ReferenceDataList();
                         list.AddRange(entries.Select(entry => new ReferenceData {ReferenceKey = entry.Key, Value = entry.Value }));
@@ -52,11 +54,11 @@
             }
             else
             {
-                return GetHandler(
+                return this.GetHandler(
                     key, 
                     () =>
                     {
-                        var entries = repository.Queryable<MDM.ReferenceData>().Where(x => x.Key == key).OrderBy(x => x.Value);
+                        var entries = this.repository.Queryable<MDM.ReferenceData>().Where(x => x.Key == key).OrderBy(x => x.Value);
 
                         var list = new ReferenceDataList();
                         list.AddRange(entries.Select(entry => new ReferenceData {ReferenceKey = entry.Key,  Value = entry.Value }));
@@ -75,36 +77,36 @@
                 {
                     using (var scope = new TransactionScope())
                     {
-                        var entities = repository.Queryable<MDM.ReferenceData>().Where(x => x.Key == key);
+                        var entities = this.repository.Queryable<MDM.ReferenceData>().Where(x => x.Key == key);
                         foreach (MDM.ReferenceData entity in entities)
                         {
-                            repository.Delete(entity);
+                            this.repository.Delete(entity);
                         }
 
-                        repository.Flush();
+                        this.repository.Flush();
 
                         foreach (var entry in entries.Select(x => x.Value.Trim()).Distinct())
                         {
-                            if (!repository.Queryable<MDM.ReferenceData>().Any(x => x.Key == key && x.Value.ToUpper() == entry.ToUpper()))
+                            if (!this.repository.Queryable<MDM.ReferenceData>().Any(x => x.Key == key && x.Value.ToUpper() == entry.ToUpper()))
                             {
-                                repository.Add(new MDM.ReferenceData() { Key = key, Value = entry });
-                                repository.Flush();
+                                this.repository.Add(new MDM.ReferenceData() { Key = key, Value = entry });
+                                this.repository.Flush();
                             }
                         }
 
-                        if (!repository.Queryable<MDM.ReferenceData>().Any(x => x.Key == key && x.Value == string.Empty))
+                        if (!this.repository.Queryable<MDM.ReferenceData>().Any(x => x.Key == key && x.Value == string.Empty))
                         {
-                            repository.Add(new MDM.ReferenceData() { Key = key, Value = string.Empty });
+                            this.repository.Add(new MDM.ReferenceData() { Key = key, Value = string.Empty });
                         }
 
-                        repository.Flush();
+                        this.repository.Flush();
                         scope.Complete();
                     }
 
-                    contextWrapper.StatusCode = HttpStatusCode.Created;
-                    contextWrapper.Location = string.Format("{0}/list/{1}", contextWrapper.InboundAbsoloutePath, key);
+                    this.contextWrapper.StatusCode = HttpStatusCode.Created;
+                    this.contextWrapper.Location = string.Format("{0}/list/{1}", this.contextWrapper.InboundAbsoloutePath, key);
 
-                    Logger.DebugFormat("ReferenceData list created. Key: {0}, Location: {1}", key, contextWrapper.Location);
+                    Logger.DebugFormat("ReferenceData list created. Key: {0}, Location: {1}", key, this.contextWrapper.Location);
                 });
         }
 
@@ -119,18 +121,18 @@
                     {
                         foreach (var entry in entries.Select(x => x.Value).Distinct())
                         {
-                            var entity = repository.Queryable<MDM.ReferenceData>().FirstOrDefault(x => x.Key == key && x.Value == entry);
+                            var entity = this.repository.Queryable<MDM.ReferenceData>().FirstOrDefault(x => x.Key == key && x.Value == entry);
                             if (entity != null)
                             {
-                                repository.Delete(entity);
+                                this.repository.Delete(entity);
                             }
                         }
 
-                        repository.Flush();
+                        this.repository.Flush();
                         scope.Complete();
                     }
 
-                    contextWrapper.StatusCode = HttpStatusCode.OK;
+                    this.contextWrapper.StatusCode = HttpStatusCode.OK;
 
                     Logger.DebugFormat("ReferenceData list deleted. Key: {0}", key);
                 });

@@ -5,6 +5,8 @@
     using System.Net;
     using System.ServiceModel.Web;
 
+    using global::MDM.ServiceHost.Wcf.Feeds;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,9 +14,10 @@
 
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Web;
-    using EnergyTrading.MDM.MappingService.Feeds;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
+
+    using PersonService = EnergyTrading.MDM.ServiceHost.Wcf.Nexus.PersonService;
 
     [TestClass]
     public class PersonRequestFixture : ContractRequestFixture<Person, MDM.Person>
@@ -45,7 +48,7 @@
             };
             service.Setup(x => x.Request(It.IsAny<GetRequest>())).Returns(contract);
 
-            var wcfService = new MappingService.PersonService();
+            var wcfService = new PersonService();
 
             // Act
             try

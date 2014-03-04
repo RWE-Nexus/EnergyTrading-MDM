@@ -1,26 +1,24 @@
-﻿namespace EnergyTrading.MDM.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 {
     using System;
     using System.Collections.Generic;
     using System.Configuration;
 
-    using Microsoft.ApplicationServer.Caching;
-    using Microsoft.Practices.ServiceLocation;
-    using Microsoft.Practices.Unity;
-
-    using global::EnergyTrading.Caching.AppFabric.Search;
-
     using EnergyTrading.Caching;
+    using EnergyTrading.Caching.AppFabric.Search;
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Messages.Validators;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
+
+    using Microsoft.ApplicationServer.Caching;
+    using Microsoft.Practices.ServiceLocation;
+    using Microsoft.Practices.Unity;
 
     public abstract class EntityConfiguration<TMdmService, TEntity, TContract, TMapping, TContractValidator> : IGlobalConfigurationTask
         where TMdmService : IMdmService<TContract, TEntity>
@@ -49,13 +47,13 @@
         {
             get
             {
-                if (mappingEngine == null)
+                if (this.mappingEngine == null)
                 {
-                    this.mappingEngine = Container.Resolve<IMappingEngine>();
+                    this.mappingEngine = this.Container.Resolve<IMappingEngine>();
                 }
-                return mappingEngine;
+                return this.mappingEngine;
             }
-            set { mappingEngine = value; }
+            set { this.mappingEngine = value; }
         }
 
         public void Configure()
@@ -74,13 +72,13 @@
         {
             // MDM layer
             var registrar = new CacheRegistrar(this.Container); // TODO this is awful
-            CacheRegistrar.Instance.RegisterCachedMdmService<TContract, TEntity, TMdmService>(Name);
+            CacheRegistrar.Instance.RegisterCachedMdmService<TContract, TEntity, TMdmService>(this.Name);
         }
 
         protected void ConfigureMapping()
         {
-            ContractDomainMapping();
-            DomainContractMapping();
+            this.ContractDomainMapping();
+            this.DomainContractMapping();
         }
 
         protected abstract void ContractDomainMapping();
@@ -92,38 +90,38 @@
             var configuredCacheName = ConfigurationManager.AppSettings["DistributedCacheName"] ?? "NexusMdmSearchCache";
 
             this.Container.RegisterType<ISearchCache, RegionedAppFabricSearchCache>(
-                Name,
+                this.Name,
                 new PerResolveLifetimeManager(),
                 new InjectionConstructor(
                     new ResolvedParameter<DataCache>(configuredCacheName),
                     new ResolvedParameter<ICacheItemPolicyFactory>(configuredCacheName),
-                    Name));
+                    this.Name));
         }
 
         protected virtual void ConfigureValidation()
         {
             this.Container.RegisterType<IValidator<CreateMappingRequest>, CreateMappingRequestValidator>(
-            Name,
-            new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(Name)));
+            this.Name,
+            new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(this.Name)));
 
-            this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, NexusIdValidator<TMapping>>(Name);
+            this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, NexusIdValidator<TMapping>>(this.Name);
                 
             this.Container.RegisterType<IValidator<AmendMappingRequest>, AmendMappingRequestValidator<TMapping>>(
-            Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));
+            this.Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));
 
-            this.Container.RegisterType<IValidator<MappingRequest>, MappingRequestValidator>(Name,
+            this.Container.RegisterType<IValidator<MappingRequest>, MappingRequestValidator>(this.Name,
                 new InjectionConstructor(
-                    new ResolvedParameter<IValidatorEngine>(Name),
+                    new ResolvedParameter<IValidatorEngine>(this.Name),
                     new ResolvedParameter<IRepository>()));
 
             // Factory
             // Do it this way as it's too nasty to inject string parameters at r/t with Unity
-            var engine = new NamedLocatorValidatorEngine(Name, Container.Resolve<IServiceLocator>());
-            this.Container.RegisterInstance(typeof(IValidatorEngine), Name, engine);
+            var engine = new NamedLocatorValidatorEngine(this.Name, this.Container.Resolve<IServiceLocator>());
+            this.Container.RegisterInstance(typeof(IValidatorEngine), this.Name, engine);
 
-            this.Container.RegisterType<IValidator<TContract>, TContractValidator>(Name,
+            this.Container.RegisterType<IValidator<TContract>, TContractValidator>(this.Name,
                 new InjectionConstructor(
-                    new ResolvedParameter<IValidatorEngine>(Name),
+                    new ResolvedParameter<IValidatorEngine>(this.Name),
                     new ResolvedParameter<IRepository>()));
         }
     }

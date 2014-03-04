@@ -6,8 +6,11 @@ namespace EnergyTrading.MDM.Test.Feeds
     using System.ServiceModel.Channels;
     using System.ServiceModel.Syndication;
     using System.Xml;
+
+    using global::MDM.ServiceHost.Wcf.Feeds;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using EnergyTrading.MDM.MappingService.Feeds;
+
     using EnergyTrading.Search;
     using EnergyTrading.Test;
 

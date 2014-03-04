@@ -1,11 +1,11 @@
-﻿namespace EnergyTrading.MDM.MappingService.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.Wcf.Nexus.Configuration
 {
     using System;
     using System.Collections.Generic;
 
-    using HibernatingRhinos.Profiler.Appender.EntityFramework;
-
     using EnergyTrading.Configuration;
+
+    using HibernatingRhinos.Profiler.Appender.EntityFramework;
 
     public class ProfilingConfiguration : IGlobalConfigurationTask
     {
