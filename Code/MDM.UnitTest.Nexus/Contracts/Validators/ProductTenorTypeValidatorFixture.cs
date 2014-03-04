@@ -6,12 +6,13 @@
 
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
 
+    using global::MDM.ServiceHost.Unity.Nexus.Configuration;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.Data;

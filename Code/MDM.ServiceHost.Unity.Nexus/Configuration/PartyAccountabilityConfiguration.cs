@@ -1,18 +1,21 @@
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
     using System.Collections.Generic;
+
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Contracts.Mappers;
+    using EnergyTrading.MDM.Contracts.Validators;
+    using EnergyTrading.MDM.Mappers;
+    using EnergyTrading.MDM.Services;
 
     using Microsoft.Practices.Unity;
 
     using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Mappers;
 
-    public class PartyAccountabilityConfiguration : NexusEntityConfiguration<Services.PartyAccountabilityService, MDM.PartyAccountability, RWEST.Nexus.MDM.Contracts.PartyAccountability, 
+    using PartyAccountability = EnergyTrading.MDM.PartyAccountability;
+
+    public class PartyAccountabilityConfiguration : NexusEntityConfiguration<PartyAccountabilityService, PartyAccountability, RWEST.Nexus.MDM.Contracts.PartyAccountability, 
 		PartyAccountabilityMapping, PartyAccountabilityValidator>
     {
         public PartyAccountabilityConfiguration(IUnityContainer container) : base(container)
@@ -26,17 +29,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.PartyAccountability, MDM.PartyAccountability>, EnergyTrading.MDM.Contracts.Mappers.PartyAccountabilityMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.PartyAccountabilityDetails, MDM.PartyAccountability>, EnergyTrading.MDM.Contracts.Mappers.PartyAccountabilityDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.PartyAccountability, PartyAccountability>, EnergyTrading.MDM.Contracts.Mappers.PartyAccountabilityMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.PartyAccountabilityDetails, PartyAccountability>, EnergyTrading.MDM.Contracts.Mappers.PartyAccountabilityDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, PartyAccountabilityMapping>, MappingMapper<PartyAccountabilityMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.PartyAccountabilityDetailsMapper());
-            MappingEngine.RegisterMap(new PartyAccountabilityMappingMapper());
-            this.Container.RegisterType<IMapper<MDM.PartyAccountability, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.PartyAccountability, RWEST.Nexus.MDM.Contracts.PartyAccountability>, MDM.Mappers.PartyAccountabilityMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.PartyAccountabilityDetailsMapper());
+            this.MappingEngine.RegisterMap(new PartyAccountabilityMappingMapper());
+            this.Container.RegisterType<IMapper<PartyAccountability, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<PartyAccountability, RWEST.Nexus.MDM.Contracts.PartyAccountability>, EnergyTrading.MDM.Mappers.PartyAccountabilityMapper>();
         }
     }
 }

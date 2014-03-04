@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web.Http;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.Messages;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Transactions;
+    using System.Web.Http;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntityEntityListController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity 
@@ -23,7 +27,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var request = MessageFactory.GetRequest(QueryParameters);
+            var request = MessageFactory.GetRequest(this.QueryParameters);
             request.EntityId = id;
 
             IEnumerable<TContract> result;
@@ -37,7 +41,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
 
             if (resultList.Any())
             {
-                return Ok(resultList);
+                return this.Ok(resultList);
             }
 
             // THROW FAULTFACTORY EXCEPTION

@@ -8,7 +8,6 @@
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
 
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading;
     using EnergyTrading.Mapping;
 

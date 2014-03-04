@@ -1,19 +1,23 @@
 
 
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
+    using System.Collections.Generic;
+
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Contracts.Mappers;
+    using EnergyTrading.MDM.Contracts.Validators;
+    using EnergyTrading.MDM.Mappers;
+    using EnergyTrading.MDM.Services;
+
     using Microsoft.Practices.Unity;
 
     using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Mappers;
-    using System.Collections.Generic;
 
-    public class InstrumentTypeOverrideConfiguration : NexusEntityConfiguration<Services.InstrumentTypeOverrideService, MDM.InstrumentTypeOverride, RWEST.Nexus.MDM.Contracts.InstrumentTypeOverride, 
+    using InstrumentTypeOverride = EnergyTrading.MDM.InstrumentTypeOverride;
+
+    public class InstrumentTypeOverrideConfiguration : NexusEntityConfiguration<InstrumentTypeOverrideService, InstrumentTypeOverride, RWEST.Nexus.MDM.Contracts.InstrumentTypeOverride, 
 		InstrumentTypeOverrideMapping, InstrumentTypeOverrideValidator>
     {
         public InstrumentTypeOverrideConfiguration(IUnityContainer container) : base(container)
@@ -27,17 +31,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.InstrumentTypeOverride, MDM.InstrumentTypeOverride>, EnergyTrading.MDM.Contracts.Mappers.InstrumentTypeOverrideMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.InstrumentTypeOverrideDetails, MDM.InstrumentTypeOverride>, EnergyTrading.MDM.Contracts.Mappers.InstrumentTypeOverrideDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.InstrumentTypeOverride, InstrumentTypeOverride>, EnergyTrading.MDM.Contracts.Mappers.InstrumentTypeOverrideMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.InstrumentTypeOverrideDetails, InstrumentTypeOverride>, EnergyTrading.MDM.Contracts.Mappers.InstrumentTypeOverrideDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, InstrumentTypeOverrideMapping>, MappingMapper<InstrumentTypeOverrideMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.InstrumentTypeOverrideDetailsMapper());
-            MappingEngine.RegisterMap(new InstrumentTypeOverrideMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.InstrumentTypeOverride, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.InstrumentTypeOverride, RWEST.Nexus.MDM.Contracts.InstrumentTypeOverride>, MDM.Mappers.InstrumentTypeOverrideMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.InstrumentTypeOverrideDetailsMapper());
+            this.MappingEngine.RegisterMap(new InstrumentTypeOverrideMappingMapper());      
+            this.Container.RegisterType<IMapper<InstrumentTypeOverride, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<InstrumentTypeOverride, RWEST.Nexus.MDM.Contracts.InstrumentTypeOverride>, EnergyTrading.MDM.Mappers.InstrumentTypeOverrideMapper>();
         }
     }
 }

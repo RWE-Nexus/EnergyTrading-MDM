@@ -1,9 +1,9 @@
-﻿using System.Web.Mvc;
+﻿//using EnergyTrading.MDM.MappingService2.Filters;
 
-//using EnergyTrading.MDM.MappingService2.Filters;
-
-namespace EnergyTrading.MDM.MappingService2
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus
 {
+    using System.Web.Mvc;
+
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

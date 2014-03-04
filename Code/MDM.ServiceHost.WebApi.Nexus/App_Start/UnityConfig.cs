@@ -1,14 +1,45 @@
-using System.Linq;
-using System.Web.Http;
-using System.Web.Routing;
-using EnergyTrading.Configuration;
-using EnergyTrading.MDM.Configuration;
-using EnergyTrading.MDM.Data.EF.Configuration;
-using EnergyTrading.MDM.MappingService2.Configuration;
-using Microsoft.Practices.Unity;
-
-namespace EnergyTrading.MDM.MappingService2
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus
 {
+    using System.Linq;
+    using System.Web.Http;
+    using System.Web.Routing;
+
+    using EnergyTrading.Configuration;
+    using EnergyTrading.MDM.Data.EF.Configuration;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Configuration;
+
+    using global::MDM.ServiceHost.Unity.Nexus.Configuration;
+    using global::MDM.ServiceHost.WebApi.Configuration;
+
+    using Microsoft.Practices.Unity;
+
+    using CalendarConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.CalendarConfiguration;
+    using CommodityConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.CommodityConfiguration;
+    using CommodityInstrumentTypeConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.CommodityInstrumentTypeConfiguration;
+    using CurveConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.CurveConfiguration;
+    using DimensionConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.DimensionConfiguration;
+    using HierarchyConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.HierarchyConfiguration;
+    using InstrumentTypeConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.InstrumentTypeConfiguration;
+    using InstrumentTypeOverrideConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.InstrumentTypeOverrideConfiguration;
+    using LocationConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.LocationConfiguration;
+    using LocationRoleConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.LocationRoleConfiguration;
+    using MarketConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.MarketConfiguration;
+    using PartyAccountabilityConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PartyAccountabilityConfiguration;
+    using PartyConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PartyConfiguration;
+    using PartyRoleAccountabilityConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PartyRoleAccountabilityConfiguration;
+    using PartyRoleConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PartyRoleConfiguration;
+    using PersonConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PersonConfiguration;
+    using PortfolioConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PortfolioConfiguration;
+    using PortfolioHierarchyConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.PortfolioHierarchyConfiguration;
+    using ProductConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.ProductConfiguration;
+    using ProductCurveConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.ProductCurveConfiguration;
+    using ProductTypeConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.ProductTypeConfiguration;
+    using ProductTypeInstanceConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.ProductTypeInstanceConfiguration;
+    using SettlementContactConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.SettlementContactConfiguration;
+    using ShipperCodeConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.ShipperCodeConfiguration;
+    using UnitConfiguration = global::MDM.ServiceHost.Unity.Nexus.Configuration.UnitConfiguration;
+
     public static class UnityConfig
     {
         public static void RegisterComponents()
@@ -35,49 +66,49 @@ namespace EnergyTrading.MDM.MappingService2
 
             // Per-entity configurations
             // TODO_CodeGeneration - Add entity configuration
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.AgreementConfiguration>("agreement");
+            container.RegisterType<IGlobalConfigurationTask, AgreementConfiguration>("agreement");
             container.RegisterType<IGlobalConfigurationTask, BookConfiguration>("book");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.BrokerCommodityConfiguration>("brokercommodity");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.BrokerRateConfiguration>("brokerrate");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.BusinessUnitConfiguration>("businessunit");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.BrokerConfiguration>("broker");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.CalendarConfiguration>("calendar");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.CurveConfiguration>("curve");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.CommodityConfiguration>("commodity");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.CommodityInstrumentTypeConfiguration>("commodityinstrumenttype");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.CounterpartyConfiguration>("counterparty");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.BookDefaultConfiguration>("bookdefault");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.DimensionConfiguration>("dimension");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ExchangeConfiguration>("exchange");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.HierarchyConfiguration>("hierarchy");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.InstrumentTypeConfiguration>("instrumenttype");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.InstrumentTypeOverrideConfiguration>("instrumenttypeoverride");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.LocationConfiguration>("location");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.LocationRoleConfiguration>("locationrole");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.MarketConfiguration>("market");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PartyConfiguration>("party");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PartyAccountabilityConfiguration>("partyaccountability");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PartyRoleConfiguration>("partyrole");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PartyRoleAccountabilityConfiguration>("partyroleaccountability");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PartyOverrideConfiguration>("partyoverride");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PersonConfiguration>("person");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ProductConfiguration>("product");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ProductCurveConfiguration>("productcurve");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ProductTypeConfiguration>("producttype");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ProductTypeInstanceConfiguration>("producttypeinstance");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ProductScotaConfiguration>("productscota");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PortfolioConfiguration>("portfolio");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.PortfolioHierarchyConfiguration>("portfoliohierarchy");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.SettlementContactConfiguration>("settlementcontact");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ShapeConfiguration>("shape");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ShapeDayConfiguration>("shapeday");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ShapeElementConfiguration>("shapeelement");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.ShipperCodeConfiguration>("shippercode");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.SourceSystemConfiguration>("sourcesystem");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.UnitConfiguration>("unit");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.VesselConfiguration>("vessel");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.FeeTypeConfiguration>("feetype");
-            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.Configuration.CommodityFeeTypeConfiguration>("commodityfeetype");
+            container.RegisterType<IGlobalConfigurationTask, BrokerCommodityConfiguration>("brokercommodity");
+            container.RegisterType<IGlobalConfigurationTask, BrokerRateConfiguration>("brokerrate");
+            container.RegisterType<IGlobalConfigurationTask, BusinessUnitConfiguration>("businessunit");
+            container.RegisterType<IGlobalConfigurationTask, BrokerConfiguration>("broker");
+            container.RegisterType<IGlobalConfigurationTask, CalendarConfiguration>("calendar");
+            container.RegisterType<IGlobalConfigurationTask, CurveConfiguration>("curve");
+            container.RegisterType<IGlobalConfigurationTask, CommodityConfiguration>("commodity");
+            container.RegisterType<IGlobalConfigurationTask, CommodityInstrumentTypeConfiguration>("commodityinstrumenttype");
+            container.RegisterType<IGlobalConfigurationTask, CounterpartyConfiguration>("counterparty");
+            container.RegisterType<IGlobalConfigurationTask, BookDefaultConfiguration>("bookdefault");
+            container.RegisterType<IGlobalConfigurationTask, DimensionConfiguration>("dimension");
+            container.RegisterType<IGlobalConfigurationTask, ExchangeConfiguration>("exchange");
+            container.RegisterType<IGlobalConfigurationTask, HierarchyConfiguration>("hierarchy");
+            container.RegisterType<IGlobalConfigurationTask, InstrumentTypeConfiguration>("instrumenttype");
+            container.RegisterType<IGlobalConfigurationTask, InstrumentTypeOverrideConfiguration>("instrumenttypeoverride");
+            container.RegisterType<IGlobalConfigurationTask, LocationConfiguration>("location");
+            container.RegisterType<IGlobalConfigurationTask, LocationRoleConfiguration>("locationrole");
+            container.RegisterType<IGlobalConfigurationTask, MarketConfiguration>("market");
+            container.RegisterType<IGlobalConfigurationTask, PartyConfiguration>("party");
+            container.RegisterType<IGlobalConfigurationTask, PartyAccountabilityConfiguration>("partyaccountability");
+            container.RegisterType<IGlobalConfigurationTask, PartyRoleConfiguration>("partyrole");
+            container.RegisterType<IGlobalConfigurationTask, PartyRoleAccountabilityConfiguration>("partyroleaccountability");
+            container.RegisterType<IGlobalConfigurationTask, PartyOverrideConfiguration>("partyoverride");
+            container.RegisterType<IGlobalConfigurationTask, PersonConfiguration>("person");
+            container.RegisterType<IGlobalConfigurationTask, ProductConfiguration>("product");
+            container.RegisterType<IGlobalConfigurationTask, ProductCurveConfiguration>("productcurve");
+            container.RegisterType<IGlobalConfigurationTask, ProductTypeConfiguration>("producttype");
+            container.RegisterType<IGlobalConfigurationTask, ProductTypeInstanceConfiguration>("producttypeinstance");
+            container.RegisterType<IGlobalConfigurationTask, ProductScotaConfiguration>("productscota");
+            container.RegisterType<IGlobalConfigurationTask, PortfolioConfiguration>("portfolio");
+            container.RegisterType<IGlobalConfigurationTask, PortfolioHierarchyConfiguration>("portfoliohierarchy");
+            container.RegisterType<IGlobalConfigurationTask, SettlementContactConfiguration>("settlementcontact");
+            container.RegisterType<IGlobalConfigurationTask, ShapeConfiguration>("shape");
+            container.RegisterType<IGlobalConfigurationTask, ShapeDayConfiguration>("shapeday");
+            container.RegisterType<IGlobalConfigurationTask, ShapeElementConfiguration>("shapeelement");
+            container.RegisterType<IGlobalConfigurationTask, ShipperCodeConfiguration>("shippercode");
+            container.RegisterType<IGlobalConfigurationTask, EnergyTrading.MDM.ServiceHost.Unity.Configuration.SourceSystemConfiguration>("sourcesystem");
+            container.RegisterType<IGlobalConfigurationTask, UnitConfiguration>("unit");
+            container.RegisterType<IGlobalConfigurationTask, VesselConfiguration>("vessel");
+            container.RegisterType<IGlobalConfigurationTask, FeeTypeConfiguration>("feetype");
+            container.RegisterType<IGlobalConfigurationTask, CommodityFeeTypeConfiguration>("commodityfeetype");
             container.RegisterType<IGlobalConfigurationTask, TenorConfiguration>("tenor");
             container.RegisterType<IGlobalConfigurationTask, TenorTypeConfiguration>("tenortype");
             container.RegisterType<IGlobalConfigurationTask, ProductTenorTypeConfiguration>("producttenortype");
@@ -92,7 +123,7 @@ namespace EnergyTrading.MDM.MappingService2
 
             ConfigurationBootStrapper.Initialize(tasks);
 
-            GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new global::Unity.WebApi.UnityDependencyResolver(container);
         }
     }
 }

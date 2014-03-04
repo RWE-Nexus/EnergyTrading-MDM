@@ -1,16 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Description;
-using EnergyTrading.MDM.MappingService2.Areas.HelpPage.Models;
-
-namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+
+    using EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.Models;
+    using EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.SampleGeneration;
+
     public static class HelpPageConfigurationExtensions
     {
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";

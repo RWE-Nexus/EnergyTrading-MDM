@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using EnergyTrading.MDM.MappingService2.Infrastructure.ETags;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure
 {
+    using System;
+
+    using MDM.ServiceHost.WebApi.Infrastructure.ETags;
+
     public static class Extensions
     {
         public static long ToVersion(this ETag etag)

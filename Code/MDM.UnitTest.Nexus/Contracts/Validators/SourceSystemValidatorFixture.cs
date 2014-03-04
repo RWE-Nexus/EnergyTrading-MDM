@@ -13,7 +13,6 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.Data;
     using EnergyTrading.Validation;

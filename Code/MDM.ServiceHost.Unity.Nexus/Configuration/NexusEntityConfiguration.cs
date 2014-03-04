@@ -1,7 +1,8 @@
-﻿namespace EnergyTrading.MDM.Configuration
+﻿namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Messages.Validators;
@@ -30,43 +31,43 @@
             var entityType = typeof(TEntity);
 
             // Basic bits
-            if (entityType == typeof(MDM.PartyRole) || (entityType.BaseType == typeof(MDM.PartyRole)))
+            if (entityType == typeof(EnergyTrading.MDM.PartyRole) || (entityType.BaseType == typeof(EnergyTrading.MDM.PartyRole)))
             {
                 this.Container.RegisterType<IValidator<CreateMappingRequest>, PartyRoleCreateMappingRequestValidator<TEntity, TMapping>>(
-                Name,
-                new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(Name), 
+                this.Name,
+                new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(this.Name), 
                     new ResolvedParameter<IRepository>()));
 
-                this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, PartyRoleNexusIdValidator<TMapping>>(Name);
+                this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, PartyRoleNexusIdValidator<TMapping>>(this.Name);
                 
                 this.Container.RegisterType<IValidator<AmendMappingRequest>, PartyRoleAmendMappingRequestValidator<TEntity, TMapping>>(
-               Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));
+               this.Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));
             }
             else
             {
                 this.Container.RegisterType<IValidator<CreateMappingRequest>, CreateMappingRequestValidator>(
-                Name,
-                new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(Name)));
+                this.Name,
+                new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(this.Name)));
 
-                this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, NexusIdValidator<TMapping>>(Name);
+                this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, NexusIdValidator<TMapping>>(this.Name);
                 
                 this.Container.RegisterType<IValidator<AmendMappingRequest>, AmendMappingRequestValidator<TMapping>>(
-               Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));
+               this.Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));
             }
 
-            this.Container.RegisterType<IValidator<MappingRequest>, MappingRequestValidator>(Name,
+            this.Container.RegisterType<IValidator<MappingRequest>, MappingRequestValidator>(this.Name,
                 new InjectionConstructor(
-                    new ResolvedParameter<IValidatorEngine>(Name),
+                    new ResolvedParameter<IValidatorEngine>(this.Name),
                     new ResolvedParameter<IRepository>()));
 
             // Factory
             // Do it this way as it's too nasty to inject string parameters at r/t with Unity
-            var engine = new NamedLocatorValidatorEngine(Name, Container.Resolve<IServiceLocator>());
-            this.Container.RegisterInstance(typeof(IValidatorEngine), Name, engine);
+            var engine = new NamedLocatorValidatorEngine(this.Name, this.Container.Resolve<IServiceLocator>());
+            this.Container.RegisterInstance(typeof(IValidatorEngine), this.Name, engine);
 
-            this.Container.RegisterType<IValidator<TContract>, TContractValidator>(Name,
+            this.Container.RegisterType<IValidator<TContract>, TContractValidator>(this.Name,
                 new InjectionConstructor(
-                    new ResolvedParameter<IValidatorEngine>(Name),
+                    new ResolvedParameter<IValidatorEngine>(this.Name),
                     new ResolvedParameter<IRepository>()));
         }
     }

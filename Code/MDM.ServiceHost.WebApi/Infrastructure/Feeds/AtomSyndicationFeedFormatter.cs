@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Net.Http.Formatting;
-using System.ServiceModel.Syndication;
-using System.Threading.Tasks;
-using System.Xml;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure.Feeds
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Feeds
 {
+    using System;
+    using System.IO;
+    using System.Net.Http.Formatting;
+    using System.ServiceModel.Syndication;
+    using System.Threading.Tasks;
+    using System.Xml;
+
     public class AtomSyndicationFeedFormatter : MediaTypeFormatter
     {
         public override bool CanReadType(Type type)

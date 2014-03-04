@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.MappingService2.Infrastructure.ETags
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure.ETags
 {
     public class ETag
     {

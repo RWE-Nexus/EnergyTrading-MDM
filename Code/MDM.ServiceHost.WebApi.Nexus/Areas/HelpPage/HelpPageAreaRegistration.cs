@@ -1,8 +1,10 @@
-using System.Web.Http;
-using System.Web.Mvc;
-
-namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage
 {
+    using System.Web.Http;
+    using System.Web.Mvc;
+
+    using EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.App_Start;
+
     public class HelpPageAreaRegistration : AreaRegistration
     {
         public override string AreaName

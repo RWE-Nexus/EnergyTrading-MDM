@@ -1,18 +1,21 @@
-﻿namespace EnergyTrading.MDM.Configuration
+﻿namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
-    using Microsoft.Practices.Unity;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-    using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
     using EnergyTrading.MDM.Mappers;
-	
+    using EnergyTrading.MDM.Services;
 
-    public class TenorConfiguration : NexusEntityConfiguration<Services.TenorService, MDM.Tenor, RWEST.Nexus.MDM.Contracts.Tenor, 
+    using Microsoft.Practices.Unity;
+
+    using RWEST.Nexus.Contracts.Atom;
+
+    using Tenor = EnergyTrading.MDM.Tenor;
+
+    public class TenorConfiguration : NexusEntityConfiguration<TenorService, Tenor, RWEST.Nexus.MDM.Contracts.Tenor, 
 		TenorMapping, TenorValidator>
     {
         public TenorConfiguration(IUnityContainer container) : base(container)
@@ -26,17 +29,17 @@
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.Tenor, MDM.Tenor>, EnergyTrading.MDM.Contracts.Mappers.TenorMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.TenorDetails, MDM.Tenor>, EnergyTrading.MDM.Contracts.Mappers.TenorDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.Tenor, Tenor>, EnergyTrading.MDM.Contracts.Mappers.TenorMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.TenorDetails, Tenor>, EnergyTrading.MDM.Contracts.Mappers.TenorDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, TenorMapping>, MappingMapper<TenorMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.TenorDetailsMapper());
-            MappingEngine.RegisterMap(new TenorMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.Tenor, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.Tenor, RWEST.Nexus.MDM.Contracts.Tenor>, MDM.Mappers.TenorMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.TenorDetailsMapper());
+            this.MappingEngine.RegisterMap(new TenorMappingMapper());      
+            this.Container.RegisterType<IMapper<Tenor, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<Tenor, RWEST.Nexus.MDM.Contracts.Tenor>, EnergyTrading.MDM.Mappers.TenorMapper>();
         }
     }
 }

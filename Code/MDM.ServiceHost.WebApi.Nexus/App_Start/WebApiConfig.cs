@@ -1,10 +1,13 @@
-﻿using System.Web.Http;
-using System.Web.Http.Dispatcher;
-using EnergyTrading.MDM.MappingService2.Filters;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-
-namespace EnergyTrading.MDM.MappingService2
+﻿namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus
 {
+    using System.Web.Http;
+    using System.Web.Http.Dispatcher;
+
+    using EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Filters;
+
+    using global::MDM.ServiceHost.WebApi.Filters;
+    using global::MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

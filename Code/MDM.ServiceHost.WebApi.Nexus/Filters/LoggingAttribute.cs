@@ -1,9 +1,10 @@
-﻿using System.Web.Http.Filters;
-using log4net;
-using log4net.Config;
-
-namespace EnergyTrading.MDM.MappingService2.Filters
+﻿namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Filters
 {
+    using System.Web.Http.Filters;
+
+    using log4net;
+    using log4net.Config;
+
     public class LoggingAttribute : ActionFilterAttribute
     {
         public LoggingAttribute()

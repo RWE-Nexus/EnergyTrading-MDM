@@ -1,18 +1,21 @@
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
-    using Microsoft.Practices.Unity;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-    using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
     using EnergyTrading.MDM.Mappers;
-	
+    using EnergyTrading.MDM.Services;
 
-    public class ProductScotaConfiguration : NexusEntityConfiguration<Services.ProductScotaService, MDM.ProductScota, RWEST.Nexus.MDM.Contracts.ProductScota, 
+    using Microsoft.Practices.Unity;
+
+    using RWEST.Nexus.Contracts.Atom;
+
+    using ProductScota = EnergyTrading.MDM.ProductScota;
+
+    public class ProductScotaConfiguration : NexusEntityConfiguration<ProductScotaService, ProductScota, RWEST.Nexus.MDM.Contracts.ProductScota, 
 		ProductScotaMapping, ProductScotaValidator>
     {
         public ProductScotaConfiguration(IUnityContainer container) : base(container)
@@ -26,17 +29,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.ProductScota, MDM.ProductScota>, EnergyTrading.MDM.Contracts.Mappers.ProductScotaMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.ProductScotaDetails, MDM.ProductScota>, EnergyTrading.MDM.Contracts.Mappers.ProductScotaDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.ProductScota, ProductScota>, EnergyTrading.MDM.Contracts.Mappers.ProductScotaMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.ProductScotaDetails, ProductScota>, EnergyTrading.MDM.Contracts.Mappers.ProductScotaDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, ProductScotaMapping>, MappingMapper<ProductScotaMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.ProductScotaDetailsMapper());
-            MappingEngine.RegisterMap(new ProductScotaMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.ProductScota, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.ProductScota, RWEST.Nexus.MDM.Contracts.ProductScota>, MDM.Mappers.ProductScotaMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.ProductScotaDetailsMapper());
+            this.MappingEngine.RegisterMap(new ProductScotaMappingMapper());      
+            this.Container.RegisterType<IMapper<ProductScota, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<ProductScota, RWEST.Nexus.MDM.Contracts.ProductScota>, EnergyTrading.MDM.Mappers.ProductScotaMapper>();
         }
     }
 }

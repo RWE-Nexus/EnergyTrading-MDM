@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Transactions;
-using System.Web.Http;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System.Collections.Generic;
+    using System.Transactions;
+    using System.Web.Http;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntityListController<TContract, TEntity, TListContract> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity 
@@ -32,7 +36,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
                 scope.Complete();
             }
 
-            return Ok(list);
+            return this.Ok(list);
         }
     }
 }

@@ -1,19 +1,21 @@
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
     using System.Collections.Generic;
+
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Contracts.Mappers;
+    using EnergyTrading.MDM.Contracts.Validators;
+    using EnergyTrading.MDM.Mappers;
+    using EnergyTrading.MDM.Services;
 
     using Microsoft.Practices.Unity;
 
     using RWEST.Nexus.Contracts.Atom;
-    using EnergyTrading.Mapping;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.MDM.Mappers;
-    
 
-    public class AgreementConfiguration : NexusEntityConfiguration<Services.AgreementService, MDM.Agreement, RWEST.Nexus.MDM.Contracts.Agreement, 
+    using Agreement = EnergyTrading.MDM.Agreement;
+
+    public class AgreementConfiguration : NexusEntityConfiguration<AgreementService, Agreement, RWEST.Nexus.MDM.Contracts.Agreement, 
         AgreementMapping, AgreementValidator>
     {
         public AgreementConfiguration(IUnityContainer container) : base(container)
@@ -27,17 +29,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.Agreement, MDM.Agreement>, EnergyTrading.MDM.Contracts.Mappers.AgreementMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.AgreementDetails, MDM.Agreement>, EnergyTrading.MDM.Contracts.Mappers.AgreementDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.Agreement, Agreement>, EnergyTrading.MDM.Contracts.Mappers.AgreementMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.AgreementDetails, Agreement>, EnergyTrading.MDM.Contracts.Mappers.AgreementDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, AgreementMapping>, MappingMapper<AgreementMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.AgreementDetailsMapper());
-            MappingEngine.RegisterMap(new AgreementMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.Agreement, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.Agreement, RWEST.Nexus.MDM.Contracts.Agreement>, MDM.Mappers.AgreementMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.AgreementDetailsMapper());
+            this.MappingEngine.RegisterMap(new AgreementMappingMapper());      
+            this.Container.RegisterType<IMapper<Agreement, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<Agreement, RWEST.Nexus.MDM.Contracts.Agreement>, EnergyTrading.MDM.Mappers.AgreementMapper>();
         }
     }
 }

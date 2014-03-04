@@ -7,7 +7,6 @@
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;

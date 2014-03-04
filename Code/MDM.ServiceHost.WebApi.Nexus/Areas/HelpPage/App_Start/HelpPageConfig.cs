@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
-using System.Web;
-using System.Web.Http;
-
-namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.App_Start
 {
+    using System.Web;
+    using System.Web.Http;
+
     /// <summary>
     /// Use this class to customize the Help Page.
     /// For example you can set a custom <see cref="System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation

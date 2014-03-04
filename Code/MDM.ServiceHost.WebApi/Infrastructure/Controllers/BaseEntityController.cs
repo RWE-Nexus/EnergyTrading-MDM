@@ -1,10 +1,10 @@
-﻿using System.Collections.Specialized;
-using System.Net.Http;
-using System.Transactions;
-using System.Web.Http;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 {
+    using System.Collections.Specialized;
+    using System.Net.Http;
+    using System.Transactions;
+    using System.Web.Http;
+
     public class BaseEntityController : ApiController
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.Controllers
         protected NameValueCollection QueryParameters
         {
             // HACK
-            get { return Request.RequestUri.ParseQueryString(); }
+            get { return this.Request.RequestUri.ParseQueryString(); }
         }
     }
 }

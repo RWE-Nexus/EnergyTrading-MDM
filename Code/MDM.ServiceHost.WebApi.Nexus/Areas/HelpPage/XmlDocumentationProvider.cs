@@ -1,13 +1,13 @@
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using System.Xml.XPath;
-
-namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+    using System.Xml.XPath;
+
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
     /// </summary>
@@ -28,7 +28,7 @@ namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
                 throw new ArgumentNullException("documentPath");
             }
             XPathDocument xpath = new XPathDocument(documentPath);
-            _documentNavigator = xpath.CreateNavigator();
+            this._documentNavigator = xpath.CreateNavigator();
         }
 
         public string GetDocumentation(HttpControllerDescriptor controllerDescriptor)
@@ -38,7 +38,7 @@ namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
 
         public virtual string GetDocumentation(HttpActionDescriptor actionDescriptor)
         {
-            XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            XPathNavigator methodNode = this.GetMethodNode(actionDescriptor);
             if (methodNode != null)
             {
                 XPathNavigator summaryNode = methodNode.SelectSingleNode("summary");
@@ -56,7 +56,7 @@ namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
             ReflectedHttpParameterDescriptor reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
             if (reflectedParameterDescriptor != null)
             {
-                XPathNavigator methodNode = GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
+                XPathNavigator methodNode = this.GetMethodNode(reflectedParameterDescriptor.ActionDescriptor);
                 if (methodNode != null)
                 {
                     string parameterName = reflectedParameterDescriptor.ParameterInfo.Name;
@@ -82,7 +82,7 @@ namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
             if (reflectedActionDescriptor != null)
             {
                 string selectExpression = String.Format(CultureInfo.InvariantCulture, MethodExpression, GetMemberName(reflectedActionDescriptor.MethodInfo));
-                return _documentNavigator.SelectSingleNode(selectExpression);
+                return this._documentNavigator.SelectSingleNode(selectExpression);
             }
 
             return null;

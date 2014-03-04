@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web.Http.Controllers;
-using System.Web.Http.Metadata;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure.ETags
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure.ETags
 {
+    using System.Linq;
+    using System.Net.Http.Headers;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Metadata;
+
     public class ETagParameterBinding : HttpParameterBinding
     {
         ETagMatch _match;
@@ -14,14 +14,14 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.ETags
         public ETagParameterBinding(HttpParameterDescriptor parameter, ETagMatch match)
             : base(parameter)
         {
-            _match = match;
+            this._match = match;
         }
 
         public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider,
             HttpActionContext actionContext, CancellationToken cancellationToken)
         {
             EntityTagHeaderValue etagHeader = null;
-            switch (_match)
+            switch (this._match)
             {
                 case ETagMatch.IfNoneMatch:
                     etagHeader = actionContext.Request.Headers.IfNoneMatch.FirstOrDefault();
@@ -37,7 +37,7 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.ETags
             {
                 etag = new ETag { Tag = etagHeader.Tag };
             }
-            actionContext.ActionArguments[Descriptor.ParameterName] = etag;
+            actionContext.ActionArguments[this.Descriptor.ParameterName] = etag;
 
             var tsc = new TaskCompletionSource<object>();
             tsc.SetResult(null);

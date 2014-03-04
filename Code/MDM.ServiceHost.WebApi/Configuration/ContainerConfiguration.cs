@@ -1,11 +1,12 @@
-﻿using EnergyTrading.Container.Unity;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.Unity;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
-
-namespace EnergyTrading.MDM.MappingService2.Configuration
+﻿namespace MDM.ServiceHost.WebApi.Configuration
 {
+    using EnergyTrading.Container.Unity;
+
+    using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+    using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.Unity;
+    using Microsoft.Practices.ServiceLocation;
+    using Microsoft.Practices.Unity;
+
     public static class ContainerConfiguration
     {
         public static UnityContainer Create()

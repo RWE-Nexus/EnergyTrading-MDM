@@ -1,18 +1,22 @@
-﻿using System;
-using System.Net;
-using System.Transactions;
-using System.Web.Http;
-using EnergyTrading.MDM.MappingService2.Filters;
-using EnergyTrading.MDM.MappingService2.Infrastructure;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.MappingService2.Infrastructure.ETags;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Results;
-using EnergyTrading.MDM.Messages;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Transactions;
+    using System.Web.Http;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Filters;
+    using MDM.ServiceHost.WebApi.Infrastructure;
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+    using MDM.ServiceHost.WebApi.Infrastructure.ETags;
+    using MDM.ServiceHost.WebApi.Infrastructure.Results;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntityController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity 
@@ -27,7 +31,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
         [ETagChecking]
         public IHttpActionResult Get(int id, [IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.GetRequest(QueryParameters);
+            var request = MessageFactory.GetRequest(this.QueryParameters);
             request.EntityId = id;
             request.Version = etag.ToVersion();
 
@@ -41,7 +45,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
 
             if (response.IsValid)
             {
-                return new ResponseWithETag<TContract>(Request, response.Contract, HttpStatusCode.OK, response.Version);
+                return new ResponseWithETag<TContract>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
 
             // THROW FAULTFACTORY EXCEPTION
@@ -59,12 +63,12 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
             }
             
             var location = String.Format("{0}/{1}?{2}={3}",
-                Request.RequestUri.AbsolutePath.Substring(1),
+                this.Request.RequestUri.AbsolutePath.Substring(1),
                 entity.Id,
                 QueryConstants.ValidAt,
                 entity.Validity.Start.ToString(QueryConstants.DateFormatString));
 
-            return new StatusCodeResultWithLocation(Request, HttpStatusCode.Created, location);
+            return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
         }
 
         [HttpPut, HttpPost]
@@ -81,10 +85,10 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
 
             if (response.Contract != null)
             {
-                return new StatusCodeResultWithLocation(Request, HttpStatusCode.NoContent, Request.RequestUri.AbsolutePath.Substring(1));
+                return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.NoContent, this.Request.RequestUri.AbsolutePath.Substring(1));
             }
 
-            return NotFound();
+            return this.NotFound();
         }
 
         public IHttpActionResult Delete(int id)

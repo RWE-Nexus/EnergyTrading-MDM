@@ -1,7 +1,7 @@
-﻿using System.Web.Optimization;
-
-namespace EnergyTrading.MDM.MappingService2
+﻿namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus
 {
+    using System.Web.Optimization;
+
     public class BundleConfig
     {
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725

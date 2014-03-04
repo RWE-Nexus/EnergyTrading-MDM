@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Net.Http.Headers;
-using System.Web.Http.Description;
-
-namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage.Models
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.Models
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Net.Http.Headers;
+    using System.Web.Http.Description;
+
     /// <summary>
     /// The model that represents an API displayed on the help page.
     /// </summary>
@@ -15,9 +15,9 @@ namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage.Models
         /// </summary>
         public HelpPageApiModel()
         {
-            SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
-            SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
-            ErrorMessages = new Collection<string>();
+            this.SampleRequests = new Dictionary<MediaTypeHeaderValue, object>();
+            this.SampleResponses = new Dictionary<MediaTypeHeaderValue, object>();
+            this.ErrorMessages = new Collection<string>();
         }
 
         /// <summary>

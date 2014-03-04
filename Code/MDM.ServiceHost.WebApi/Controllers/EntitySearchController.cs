@@ -1,16 +1,19 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using EnergyTrading.MDM.Extensions;
-using EnergyTrading.MDM.MappingService2.Infrastructure;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Feeds;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Extensions;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+    using MDM.ServiceHost.WebApi.Infrastructure.Feeds;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntitySearchController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity 
@@ -33,13 +36,13 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
                 throw new Exception("Undefined exception to be fixed");
             }
 
-            return Search(key, FirstPage);
+            return this.Search(key, FirstPage);
         }
 
         public HttpResponseMessage Post([FromBody] EnergyTrading.Contracts.Search.Search search)
         {
             var key = search.ToKey<TContract>();
-            return Search(key, FirstPage);
+            return this.Search(key, FirstPage);
         }
 
         private HttpResponseMessage Search(string key, int page)
@@ -57,19 +60,19 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
             }
 
             var feedBuilder = new FeedBuilder()
-                .WithEntityName(entityName)
+                .WithEntityName(this.entityName)
                 .WithId("search")
                 .WithTitle("Search Results")
-                .WithItemTitle(entityName)
+                .WithItemTitle(this.entityName)
                 .WithItems(searchResults.Contracts);
 
             if (searchResults.NextPage.HasValue)
             {
-                feedBuilder.AddMoreResultsLink(Request.RequestUri, searchResults.SearchResultsKey, searchResults.NextPage);
+                feedBuilder.AddMoreResultsLink(this.Request.RequestUri, searchResults.SearchResultsKey, searchResults.NextPage);
             }
             
             var feed = feedBuilder.Build();
-            return Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
+            return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
         }
     }
 }

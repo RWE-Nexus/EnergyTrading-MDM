@@ -1,14 +1,16 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Web.Http.Filters;
-using EnergyTrading.Extensions;
-using EnergyTrading.MDM.Services;
-using EnergyTrading.Validation;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Filters
+﻿namespace MDM.ServiceHost.WebApi.Filters
 {
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Formatting;
+    using System.Web.Http.Filters;
+
+    using EnergyTrading.Extensions;
+    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Validation;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class ErrorHandlingAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)

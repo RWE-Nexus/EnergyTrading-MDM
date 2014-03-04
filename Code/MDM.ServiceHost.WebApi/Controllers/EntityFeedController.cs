@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Transactions;
-using EnergyTrading.MDM.MappingService2.Infrastructure;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Feeds;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
+    using System.Transactions;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+    using MDM.ServiceHost.WebApi.Infrastructure.Feeds;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntityFeedController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
@@ -42,7 +45,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
                 .WithItems(list)
                 .Build();
             
-            return Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
+            return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
         }
     }
 }

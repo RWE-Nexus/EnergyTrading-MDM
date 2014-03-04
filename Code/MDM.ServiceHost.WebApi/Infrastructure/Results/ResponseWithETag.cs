@@ -1,13 +1,13 @@
-﻿using System.Globalization;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web.Http;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure.Results
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Results
 {
+    using System.Globalization;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+
     public class ResponseWithETag<T> : IHttpActionResult
     {
         private readonly HttpRequestMessage request;
@@ -25,8 +25,8 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.Results
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
-            var response = request.CreateResponse(statusCode, content);
-            var etag = string.Format("\"{0}\"", version.ToString(CultureInfo.InvariantCulture));
+            var response = this.request.CreateResponse(this.statusCode, this.content);
+            var etag = string.Format("\"{0}\"", this.version.ToString(CultureInfo.InvariantCulture));
             response.Headers.ETag = new EntityTagHeaderValue(etag);
             response.Headers.CacheControl = new CacheControlHeaderValue();
             response.Headers.CacheControl.Private = true;

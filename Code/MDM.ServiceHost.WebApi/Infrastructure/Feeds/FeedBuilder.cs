@@ -1,11 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Syndication;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure.Feeds
+namespace MDM.ServiceHost.WebApi.Infrastructure.Feeds
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.ServiceModel.Syndication;
+
+    using EnergyTrading;
+
     public class FeedBuilder
     {
         private string entityName;
@@ -17,7 +19,7 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.Feeds
 
         public FeedBuilder()
         {
-            items = new List<object>();
+            this.items = new List<object>();
         }
 
         public FeedBuilder WithEntityName(string entityName)
@@ -56,7 +58,7 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.Feeds
             
             //TODO: Fix this uri
 
-            moreResultsLink = new SyndicationLink(new Uri(baseUri, moreresultsuri))
+            this.moreResultsLink = new SyndicationLink(new Uri(baseUri, moreresultsuri))
                 {
                     RelationshipType = "next-results"
                 };
@@ -67,22 +69,22 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.Feeds
         public SyndicationFeed Build()
         {
             var feed = new SyndicationFeed();
-            feed.Id = string.Format("urn:uuid:{0}:{1}", entityName, id);
-            feed.Title = new TextSyndicationContent(title);
+            feed.Id = string.Format("urn:uuid:{0}:{1}", this.entityName, this.id);
+            feed.Title = new TextSyndicationContent(this.title);
             feed.Generator = "Nexus Mapping Service";
             feed.Authors.Add(new SyndicationPerson { Name = "Nexus Mapping Service" });
             feed.LastUpdatedTime = SystemTime.UtcNow();
 
-            feed.Items = (from object item in items
+            feed.Items = (from object item in this.items
                           select new SyndicationItem()
                             {
-                                Title = new TextSyndicationContent(itemTitle),
+                                Title = new TextSyndicationContent(this.itemTitle),
                                 Content = new XmlSyndicationContent("application/xml", new SyndicationElementExtension(item))
                             }).ToList();
 
-            if (moreResultsLink != null)
+            if (this.moreResultsLink != null)
             {
-                feed.Links.Add(moreResultsLink);
+                feed.Links.Add(this.moreResultsLink);
             }
 
             return feed;

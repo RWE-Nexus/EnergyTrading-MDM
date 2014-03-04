@@ -1,17 +1,21 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Transactions;
-using EnergyTrading.MDM.MappingService2.Infrastructure;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.MappingService2.Infrastructure.ETags;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Feeds;
-using EnergyTrading.MDM.Messages;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Transactions;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Infrastructure;
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+    using MDM.ServiceHost.WebApi.Infrastructure.ETags;
+    using MDM.ServiceHost.WebApi.Infrastructure.Feeds;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntityMappingsController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
@@ -25,7 +29,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
 
         public HttpResponseMessage Get(int id, [IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.GetRequest(QueryParameters);
+            var request = MessageFactory.GetRequest(this.QueryParameters);
             request.EntityId = id;
             request.Version = etag.ToVersion();
 
@@ -53,7 +57,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
                 .WithItems(response.Contract.Identifiers)
                 .Build();
 
-            return Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
+            return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
         }
     }
 }

@@ -1,18 +1,21 @@
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
-    using Microsoft.Practices.Unity;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-    using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
     using EnergyTrading.MDM.Mappers;
-	
+    using EnergyTrading.MDM.Services;
 
-    public class CommodityFeeTypeConfiguration : NexusEntityConfiguration<Services.CommodityFeeTypeService, MDM.CommodityFeeType, RWEST.Nexus.MDM.Contracts.CommodityFeeType, 
+    using Microsoft.Practices.Unity;
+
+    using RWEST.Nexus.Contracts.Atom;
+
+    using CommodityFeeType = EnergyTrading.MDM.CommodityFeeType;
+
+    public class CommodityFeeTypeConfiguration : NexusEntityConfiguration<CommodityFeeTypeService, CommodityFeeType, RWEST.Nexus.MDM.Contracts.CommodityFeeType, 
 		CommodityFeeTypeMapping, CommodityFeeTypeValidator>
     {
         public CommodityFeeTypeConfiguration(IUnityContainer container) : base(container)
@@ -26,17 +29,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.CommodityFeeType, MDM.CommodityFeeType>, EnergyTrading.MDM.Contracts.Mappers.CommodityFeeTypeMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.CommodityFeeTypeDetails, MDM.CommodityFeeType>, EnergyTrading.MDM.Contracts.Mappers.CommodityFeeTypeDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.CommodityFeeType, CommodityFeeType>, EnergyTrading.MDM.Contracts.Mappers.CommodityFeeTypeMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.CommodityFeeTypeDetails, CommodityFeeType>, EnergyTrading.MDM.Contracts.Mappers.CommodityFeeTypeDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, CommodityFeeTypeMapping>, MappingMapper<CommodityFeeTypeMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.CommodityFeeTypeDetailsMapper());
-            MappingEngine.RegisterMap(new CommodityFeeTypeMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.CommodityFeeType, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.CommodityFeeType, RWEST.Nexus.MDM.Contracts.CommodityFeeType>, MDM.Mappers.CommodityFeeTypeMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.CommodityFeeTypeDetailsMapper());
+            this.MappingEngine.RegisterMap(new CommodityFeeTypeMappingMapper());      
+            this.Container.RegisterType<IMapper<CommodityFeeType, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<CommodityFeeType, RWEST.Nexus.MDM.Contracts.CommodityFeeType>, EnergyTrading.MDM.Mappers.CommodityFeeTypeMapper>();
         }
     }
 }

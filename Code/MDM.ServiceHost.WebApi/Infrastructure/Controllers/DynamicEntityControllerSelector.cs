@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Dispatcher;
-using EnergyTrading.MDM.MappingService2.Controllers;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Infrastructure.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Web.Http;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Dispatcher;
+
+    using EnergyTrading.MDM;
+
+    using MDM.ServiceHost.WebApi.Controllers;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class DynamicEntityControllerSelector : DefaultHttpControllerSelector
     {
         private readonly HttpConfiguration configuration;
@@ -25,24 +29,24 @@ namespace EnergyTrading.MDM.MappingService2.Infrastructure.Controllers
             var coreAssembly = Assembly.Load(new AssemblyName("MDM.Core.Nexus"));
             var contractAssembly = Assembly.Load(new AssemblyName("EnergyTrading.MDM.Contracts"));
 
-            contractTypes = contractAssembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(IMdmEntity)));
-            entityTypes = coreAssembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(IEntity)));
-            listContractTypes = contractAssembly.GetTypes(); // Too broad a net to cast?
+            this.contractTypes = contractAssembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(IMdmEntity)));
+            this.entityTypes = coreAssembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(IEntity)));
+            this.listContractTypes = contractAssembly.GetTypes(); // Too broad a net to cast?
 
             this.configuration = configuration;
         }
 
         public override HttpControllerDescriptor SelectController(HttpRequestMessage request)
         {
-            var entityName = GetControllerName(request);
+            var entityName = this.GetControllerName(request);
 
-            var contractType = contractTypes.First(x => x.Name.Equals(entityName, StringComparison.InvariantCultureIgnoreCase));
-            var entityType = entityTypes.First(x => x.Name.Equals(entityName, StringComparison.InvariantCultureIgnoreCase));
-            var listContractType = listContractTypes.First(x => x.Name.Equals(entityName + "List", StringComparison.InvariantCultureIgnoreCase));
+            var contractType = this.contractTypes.First(x => x.Name.Equals(entityName, StringComparison.InvariantCultureIgnoreCase));
+            var entityType = this.entityTypes.First(x => x.Name.Equals(entityName, StringComparison.InvariantCultureIgnoreCase));
+            var listContractType = this.listContractTypes.First(x => x.Name.Equals(entityName + "List", StringComparison.InvariantCultureIgnoreCase));
 
             var controllerType = GetControllerTypeForRequest(request, contractType, entityType, listContractType);
 
-            return new HttpControllerDescriptor(configuration, "EntityController`2", controllerType);
+            return new HttpControllerDescriptor(this.configuration, "EntityController`2", controllerType);
         }
 
         private static Type GetControllerTypeForRequest(HttpRequestMessage request, Type contractType, Type entityType, Type listContractType)

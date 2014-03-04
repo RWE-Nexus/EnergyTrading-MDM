@@ -1,18 +1,21 @@
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
-    using Microsoft.Practices.Unity;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-    using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
     using EnergyTrading.MDM.Mappers;
-	
+    using EnergyTrading.MDM.Services;
 
-    public class ShapeConfiguration : NexusEntityConfiguration<Services.ShapeService, MDM.Shape, RWEST.Nexus.MDM.Contracts.Shape, 
+    using Microsoft.Practices.Unity;
+
+    using RWEST.Nexus.Contracts.Atom;
+
+    using Shape = EnergyTrading.MDM.Shape;
+
+    public class ShapeConfiguration : NexusEntityConfiguration<ShapeService, Shape, RWEST.Nexus.MDM.Contracts.Shape, 
 		ShapeMapping, ShapeValidator>
     {
         public ShapeConfiguration(IUnityContainer container) : base(container)
@@ -26,17 +29,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.Shape, MDM.Shape>, EnergyTrading.MDM.Contracts.Mappers.ShapeMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.ShapeDetails, MDM.Shape>, EnergyTrading.MDM.Contracts.Mappers.ShapeDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.Shape, Shape>, EnergyTrading.MDM.Contracts.Mappers.ShapeMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.ShapeDetails, Shape>, EnergyTrading.MDM.Contracts.Mappers.ShapeDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, ShapeMapping>, MappingMapper<ShapeMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.ShapeDetailsMapper());
-            MappingEngine.RegisterMap(new ShapeMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.Shape, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.Shape, RWEST.Nexus.MDM.Contracts.Shape>, MDM.Mappers.ShapeMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.ShapeDetailsMapper());
+            this.MappingEngine.RegisterMap(new ShapeMappingMapper());      
+            this.Container.RegisterType<IMapper<Shape, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<Shape, RWEST.Nexus.MDM.Contracts.Shape>, EnergyTrading.MDM.Mappers.ShapeMapper>();
         }
     }
 }

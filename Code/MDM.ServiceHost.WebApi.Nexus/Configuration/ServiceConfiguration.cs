@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using EnergyTrading.Configuration;
-using EnergyTrading.MDM.Configuration;
-using EnergyTrading.MDM.Data.EF.Configuration;
-using EnergyTrading.Web;
-using Microsoft.Practices.Unity;
-
-namespace EnergyTrading.MDM.MappingService2.Configuration
+﻿namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Configuration
 {
+    using System;
+    using System.Collections.Generic;
+
+    using EnergyTrading.Configuration;
+    using EnergyTrading.MDM.Data.EF.Configuration;
+    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Web;
+
+    using Microsoft.Practices.Unity;
+
     public class ServiceConfiguration : IGlobalConfigurationTask
     {
         private readonly IUnityContainer container;

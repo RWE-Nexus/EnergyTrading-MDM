@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Http.Filters;
-
-namespace EnergyTrading.MDM.MappingService2.Filters
+﻿namespace MDM.ServiceHost.WebApi.Filters
 {
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Web.Http.Filters;
+
     public class ETagCheckingAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)

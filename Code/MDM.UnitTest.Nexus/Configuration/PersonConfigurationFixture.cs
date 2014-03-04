@@ -1,9 +1,10 @@
 ﻿namespace EnergyTrading.MDM.Test.Configuration
 {
+    using global::MDM.ServiceHost.Unity.Nexus.Configuration;
+
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading.Configuration;
 
     [TestClass]

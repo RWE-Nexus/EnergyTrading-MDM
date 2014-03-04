@@ -9,7 +9,6 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
 
     using Moq;
 
-    using EnergyTrading.MDM.Configuration;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading;
     using EnergyTrading.Mapping;

@@ -1,18 +1,22 @@
-﻿using System;
-using System.Net;
-using System.Transactions;
-using System.Web.Http;
-using EnergyTrading.MDM.MappingService2.Filters;
-using EnergyTrading.MDM.MappingService2.Infrastructure;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Controllers;
-using EnergyTrading.MDM.MappingService2.Infrastructure.ETags;
-using EnergyTrading.MDM.MappingService2.Infrastructure.Results;
-using EnergyTrading.MDM.Messages;
-using EnergyTrading.MDM.Services;
-using RWEST.Nexus.MDM.Contracts;
-
-namespace EnergyTrading.MDM.MappingService2.Controllers
+﻿namespace MDM.ServiceHost.WebApi.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Transactions;
+    using System.Web.Http;
+
+    using EnergyTrading.MDM;
+    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.MDM.Services;
+
+    using MDM.ServiceHost.WebApi.Filters;
+    using MDM.ServiceHost.WebApi.Infrastructure;
+    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
+    using MDM.ServiceHost.WebApi.Infrastructure.ETags;
+    using MDM.ServiceHost.WebApi.Infrastructure.Results;
+
+    using RWEST.Nexus.MDM.Contracts;
+
     public class EntityCrossMapController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
@@ -27,7 +31,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
         [ETagChecking]
         public IHttpActionResult Get([IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.CrossMappingRequest(QueryParameters);
+            var request = MessageFactory.CrossMappingRequest(this.QueryParameters);
             request.Version = etag.ToVersion();
 
             ContractResponse<MappingResponse> response;
@@ -39,7 +43,7 @@ namespace EnergyTrading.MDM.MappingService2.Controllers
 
             if (response.IsValid)
             {
-                return new ResponseWithETag<MappingResponse>(Request, response.Contract, HttpStatusCode.OK, response.Version);
+                return new ResponseWithETag<MappingResponse>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
             
             // THROW FAULTFACTORY EXCEPTION

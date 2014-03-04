@@ -1,18 +1,21 @@
-namespace EnergyTrading.MDM.Configuration
+namespace MDM.ServiceHost.Unity.Nexus.Configuration
 {
-    using Microsoft.Practices.Unity;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-    using RWEST.Nexus.Contracts.Atom;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Mapping;
     using EnergyTrading.MDM.Mappers;
-	
+    using EnergyTrading.MDM.Services;
 
-    public class FeeTypeConfiguration : NexusEntityConfiguration<Services.FeeTypeService, MDM.FeeType, RWEST.Nexus.MDM.Contracts.FeeType, 
+    using Microsoft.Practices.Unity;
+
+    using RWEST.Nexus.Contracts.Atom;
+
+    using FeeType = EnergyTrading.MDM.FeeType;
+
+    public class FeeTypeConfiguration : NexusEntityConfiguration<FeeTypeService, FeeType, RWEST.Nexus.MDM.Contracts.FeeType, 
 		FeeTypeMapping, FeeTypeValidator>
     {
         public FeeTypeConfiguration(IUnityContainer container) : base(container)
@@ -26,17 +29,17 @@ namespace EnergyTrading.MDM.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.FeeType, MDM.FeeType>, EnergyTrading.MDM.Contracts.Mappers.FeeTypeMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.FeeTypeDetails, MDM.FeeType>, EnergyTrading.MDM.Contracts.Mappers.FeeTypeDetailsMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.FeeType, FeeType>, EnergyTrading.MDM.Contracts.Mappers.FeeTypeMapper>();
+            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.FeeTypeDetails, FeeType>, EnergyTrading.MDM.Contracts.Mappers.FeeTypeDetailsMapper>();
             this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, FeeTypeMapping>, MappingMapper<FeeTypeMapping>>();
         }
 
         protected override void DomainContractMapping()
         {
-            MappingEngine.RegisterMap(new Mappers.FeeTypeDetailsMapper());
-            MappingEngine.RegisterMap(new FeeTypeMappingMapper());      
-            this.Container.RegisterType<IMapper<MDM.FeeType, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.FeeType, RWEST.Nexus.MDM.Contracts.FeeType>, MDM.Mappers.FeeTypeMapper>();
+            this.MappingEngine.RegisterMap(new EnergyTrading.MDM.Mappers.FeeTypeDetailsMapper());
+            this.MappingEngine.RegisterMap(new FeeTypeMappingMapper());      
+            this.Container.RegisterType<IMapper<FeeType, List<Link>>, NullLinksMapper>();
+            this.Container.RegisterType<IMapper<FeeType, RWEST.Nexus.MDM.Contracts.FeeType>, EnergyTrading.MDM.Mappers.FeeTypeMapper>();
         }
     }
 }

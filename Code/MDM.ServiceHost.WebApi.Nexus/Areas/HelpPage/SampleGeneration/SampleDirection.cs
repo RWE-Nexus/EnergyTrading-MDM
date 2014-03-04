@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.MappingService2.Areas.HelpPage
+namespace EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response
