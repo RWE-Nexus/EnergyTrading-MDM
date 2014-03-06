@@ -8,7 +8,7 @@
         {
             if (timestamp.Length != 8)
             {
-                throw new ArgumentOutOfRangeException("timestamp", "must be an 8 byte array for ToVersion");
+                throw new ArgumentOutOfRangeException("timestamp", "must be an 8 byte array for ToUnsignedLongVersion");
             }
             var newArray = new byte[8];
             Array.Copy(timestamp, newArray, 8);
