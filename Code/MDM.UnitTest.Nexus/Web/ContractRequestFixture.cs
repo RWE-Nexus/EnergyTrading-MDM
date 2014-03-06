@@ -23,6 +23,7 @@ namespace EnergyTrading.MDM.Test.Web
             Container.RegisterInstance<IUnityContainer>(Container);
             var locator = new UnityServiceLocator(Container);
             Global.ServiceLocator = locator;
+            ServiceLocator.SetLocatorProvider(() => locator);
         }
     }
 }

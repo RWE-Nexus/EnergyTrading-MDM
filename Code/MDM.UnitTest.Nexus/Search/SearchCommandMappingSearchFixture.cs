@@ -40,7 +40,7 @@
 
         protected override void Initialize()
         {
-            repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
 
             var party1 = ObjectMother.Create<Party>();
             var party2 = ObjectMother.Create<Party>();
@@ -92,7 +92,7 @@
 
         protected override void Initialize()
         {
-            repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
 
             var party1 = ObjectMother.Create<Party>();
             var party2 = ObjectMother.Create<Party>();
@@ -146,7 +146,7 @@
 
         protected override void Initialize()
         {
-            repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
 
             var party1 = ObjectMother.Create<Party>();
             var party2 = ObjectMother.Create<Party>();

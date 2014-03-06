@@ -48,7 +48,7 @@ namespace EnergyTrading.MDM.Test.Search
 
         protected override void Initialize()
         {
-            repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
             var z = new Zapper(repository);
             z.Zap();
 
@@ -96,7 +96,7 @@ namespace EnergyTrading.MDM.Test.Search
 
         protected override void Initialize()
         {
-            repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
             var z = new Zapper(repository);
             z.Zap();
 
