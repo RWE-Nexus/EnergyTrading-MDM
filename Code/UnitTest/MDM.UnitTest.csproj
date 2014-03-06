@@ -104,6 +104,7 @@
     <Compile Include="Checkers\Mapping\ReferenceDataChecker.cs" />
     <Compile Include="Checkers\Mapping\SourceSystemChecker.cs" />
     <Compile Include="Checkers\Mapping\SourceSystemMappingChecker.cs" />
+    <Compile Include="Extensions\RowVersionExtensionsFixture.cs" />
     <Compile Include="Extensions\SearchExtensionsFixture.cs" />
     <Compile Include="Messages\MessageFactoryTests.cs" />
     <Compile Include="Configuration\EntityConfigurationFixture.cs" />
