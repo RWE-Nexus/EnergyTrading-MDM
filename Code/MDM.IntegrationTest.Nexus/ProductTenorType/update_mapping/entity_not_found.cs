@@ -3,6 +3,8 @@
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -63,10 +65,10 @@
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
-            var producttenortypeMapping = new DbSetRepository<MDM.ProductTenorTypeMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
-            return BitConverter.ToInt64(producttenortypeMapping.Version, 0);
+            var producttenortypeMapping = new DbSetRepository<ProductTenorTypeMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            return producttenortypeMapping.Version.ToUnsignedLongVersion();
         }
     }
 }

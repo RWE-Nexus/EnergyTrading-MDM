@@ -43,7 +43,7 @@ namespace EnergyTrading.MDM
         /// Should test for equality rather than > since entity.Version can be a large negative number
         /// and version will default to 0 if not provided.
         /// </remarks>
-        public long Version
+        public ulong Version
         {
             get
             {

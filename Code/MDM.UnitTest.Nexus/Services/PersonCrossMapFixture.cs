@@ -116,7 +116,7 @@
                 Identifier = "A",
                 TargetSystemName = "trayport",
                 ValidAt = SystemTime.UtcNow(),
-                Version = -1
+                Version = 1
             };
 
             // Act

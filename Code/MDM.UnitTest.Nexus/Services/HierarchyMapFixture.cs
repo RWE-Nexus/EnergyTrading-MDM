@@ -107,7 +107,7 @@ namespace EnergyTrading.MDM.Test.Services
             var list = new List<HierarchyMapping> { mapping };
             repository.Setup(x => x.Queryable<HierarchyMapping>()).Returns(list.AsQueryable());
 
-            var request = new MappingRequest { SystemName = "Endur", Identifier = "A", ValidAt = SystemTime.UtcNow(), Version = -1 };
+            var request = new MappingRequest { SystemName = "Endur", Identifier = "A", ValidAt = SystemTime.UtcNow(), Version = 1 };
 
             // Act
             var response = service.Map(request);

@@ -3,6 +3,8 @@
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -63,10 +65,10 @@
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             var tenorMapping = new DbSetRepository<MDM.TenorMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
-            return BitConverter.ToInt64(tenorMapping.Version, 0);
+            return tenorMapping.Version.ToUnsignedLongVersion();
         }
     }
 }

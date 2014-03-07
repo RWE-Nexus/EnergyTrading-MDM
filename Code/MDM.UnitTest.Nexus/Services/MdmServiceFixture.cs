@@ -240,7 +240,7 @@
 
         public DateRange Validity { get; set; }
 
-        public long Version { get; set; }
+        public ulong Version { get; set; }
 
         public IList<AbcEntityDetails> Details { get; private set; }
 
@@ -262,7 +262,7 @@
 
         public IEntity Entity { get; set; }
 
-        public long Version { get; set; }
+        public ulong Version { get; set; }
 
         public int Id { get; set; }
     }
@@ -275,7 +275,7 @@
 
         public IEntity Entity { get; set; }
 
-        public long Version { get; set; }
+        public ulong Version { get; set; }
 
         public int MappingId { get; set; }
 

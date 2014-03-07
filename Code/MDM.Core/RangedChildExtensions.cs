@@ -5,12 +5,12 @@
 
     public static class RangedChildExtensions
     {
-        public static long LatestVersion(this IEnumerable<IRangedChild> list)
+        public static ulong LatestVersion(this IEnumerable<IRangedChild> list)
         {
-            return list.LatestVersion(long.MinValue);
+            return list.LatestVersion(ulong.MinValue);
         }
 
-        public static long LatestVersion(this IEnumerable<IRangedChild> list, long version)
+        public static ulong LatestVersion(this IEnumerable<IRangedChild> list, ulong version)
         {
             return list.Select(rangedChild => rangedChild.Version).Concat(new[] { version }).Max();
         }

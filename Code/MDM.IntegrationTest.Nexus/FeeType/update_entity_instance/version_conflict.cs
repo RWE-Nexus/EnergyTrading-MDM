@@ -14,7 +14,7 @@ namespace EnergyTrading.MDM.Test
         private static HttpResponseMessage response;
         private static HttpContent content;
         private static HttpClient client;
-        private static long startVersion;
+        private static ulong startVersion;
         private static MDM.FeeType entity;
 
         [ClassInitialize]
@@ -51,7 +51,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.FeeType>(new MappingContext()).FindOne(entity.Id).Version;
         }

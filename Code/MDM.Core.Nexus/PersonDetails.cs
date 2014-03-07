@@ -5,6 +5,7 @@
     using EnergyTrading.MDM.Data;
     using EnergyTrading;
     using EnergyTrading.Data;
+    using EnergyTrading.MDM.Extensions;
 
     public class PersonDetails : IIdentifiable, IEntityDetail
     {
@@ -45,9 +46,9 @@
 
         public byte[] Timestamp { get; set; }
 
-        public long Version
+        public ulong Version
         {
-            get { return BitConverter.ToInt64(this.Timestamp, 0); }
+            get { return this.Timestamp.ToUnsignedLongVersion(); }
         }
     }
 }

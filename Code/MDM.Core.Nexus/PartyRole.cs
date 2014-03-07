@@ -50,7 +50,7 @@
         /// should be performed with this value as relative difference has no business meaning.
         /// </para>
         /// </summary>
-        public long Version
+        public ulong Version
         {
             get
             {

@@ -3,6 +3,8 @@ namespace EnergyTrading.MDM.Test
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -53,7 +55,7 @@ namespace EnergyTrading.MDM.Test
 
         protected static void Because_of()
         {
-            client.DefaultHeaders.Add("If-Match", BitConverter.ToInt64(entity.Mappings[0].Version, 0).ToString());
+            client.DefaultHeaders.Add("If-Match", entity.Mappings[0].Version.ToUnsignedLongVersion().ToString());
 
             response = client.Post(ServiceUrl["Agreement"] +  string.Format("{0}/Mapping/{1}", entity.Id, currentTrayportMapping.Id), content);
         }

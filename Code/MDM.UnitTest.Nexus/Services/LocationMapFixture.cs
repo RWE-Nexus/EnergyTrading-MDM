@@ -105,7 +105,7 @@ namespace EnergyTrading.MDM.Test.Services
             var list = new List<LocationMapping> { mapping };
             repository.Setup(x => x.Queryable<LocationMapping>()).Returns(list.AsQueryable());
 
-            var request = new MappingRequest { SystemName = "Endur", Identifier = "A", ValidAt = SystemTime.UtcNow(), Version = -1 };
+            var request = new MappingRequest { SystemName = "Endur", Identifier = "A", ValidAt = SystemTime.UtcNow(), Version = 1 };
 
             // Act
             var response = service.Map(request);

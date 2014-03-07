@@ -50,7 +50,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.PartyOverride>(new MappingContext()).FindOne(entity.Id).Version;
         }

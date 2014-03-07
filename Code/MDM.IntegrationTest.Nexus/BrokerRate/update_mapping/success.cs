@@ -61,7 +61,7 @@
 //
 //        protected static void Because_of()
 //        {
-//            client.DefaultHeaders.Add("If-Match", BitConverter.ToInt64(entity.Mappings[0].Version, 0).ToString());
+        //            client.DefaultHeaders.Add("If-Match", entity.Mappings[0].Version.ToUnsignedLongVersion().ToString());
 //
 //            response = client.Post(ServiceUrl["BrokerRate"] +  string.Format("{0}/Mapping/{1}", entity.Id, currentTrayportMapping.Id), content);
 //        }

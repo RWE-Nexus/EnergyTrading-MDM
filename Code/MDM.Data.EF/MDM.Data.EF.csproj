@@ -36,8 +36,9 @@
     <Reference Include="EnergyTrading.Contracts">
       <HintPath>..\packages\EnergyTrading.Contracts.2.7.28050.10\lib\net35\EnergyTrading.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.Core">
-      <HintPath>..\packages\EnergyTrading.Core.2.7.28050.10\lib\net40\EnergyTrading.Core.dll</HintPath>
+    <Reference Include="EnergyTrading.Core, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.0.6\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.EntityFramework">
       <HintPath>..\packages\EnergyTrading.EntityFramework.2.7.28050.10\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>

@@ -107,7 +107,7 @@
             var list = new List<TenorTypeMapping> { mapping };
             repository.Setup(x => x.Queryable<TenorTypeMapping>()).Returns(list.AsQueryable());
 
-            var request = new MappingRequest { SystemName = "Endur", Identifier = "A", ValidAt = SystemTime.UtcNow(), Version = -1 };
+            var request = new MappingRequest { SystemName = "Endur", Identifier = "A", ValidAt = SystemTime.UtcNow(), Version = 1 };
 
             // Act
             var response = service.Map(request);

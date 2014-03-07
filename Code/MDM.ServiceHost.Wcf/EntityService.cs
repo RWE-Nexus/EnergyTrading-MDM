@@ -554,23 +554,23 @@
             return new TransactionOptions { IsolationLevel = IsolationLevel.Serializable };
         }
 
-        protected long ReadVersion()
+        protected ulong ReadVersion()
         {
             return this.Version("If-None-Match");
         }
 
-        protected long WriteVersion()
+        protected ulong WriteVersion()
         {
             return this.Version("If-Match");
         }
 
-        protected long Version(string header)
+        protected ulong Version(string header)
         {
-            var version = 0L;
+            var version = 0UL;
             var etag = this.contextWrapper.Headers[header];
             if (!string.IsNullOrEmpty(etag))
             {
-                long.TryParse(etag.Trim('"'), out version);
+                ulong.TryParse(etag.Trim('"'), out version);
             }
 
             return version;
@@ -591,8 +591,8 @@
                     var response = action.Invoke();
 
                     // Check if we have emitted this one before
-                    this.contextWrapper.CheckConditionalRetrieve(response.Version);
-                    this.OutgoingResponse.SetETag(response.Version);
+                    this.contextWrapper.CheckConditionalRetrieve(response.Version.ToString());
+                    this.OutgoingResponse.SetETag(response.Version.ToString());
                     this.OutgoingResponse.ContentType = this.MdmContentType;
 
                     return response.Contract;

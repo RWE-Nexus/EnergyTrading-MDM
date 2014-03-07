@@ -23,7 +23,7 @@
 
         private static PartyRoleMapping currentTrayportMapping;
 
-        private static long startVersion;
+        private static ulong startVersion;
 
         private static MDM.LegalEntity entity;
 
@@ -74,7 +74,7 @@
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.LegalEntity>(new MappingContext()).FindOne(entity.Id).Version;
         }

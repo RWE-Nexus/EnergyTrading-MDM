@@ -23,7 +23,7 @@ namespace EnergyTrading.MDM.Test
 
         private static PersonMapping currentTrayportMapping;
 
-        private static long startVersion;
+        private static ulong startVersion;
 
         private static MDM.Person entity;
 
@@ -74,7 +74,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.Person>(new MappingContext()).FindOne(entity.Id).Version;
         }

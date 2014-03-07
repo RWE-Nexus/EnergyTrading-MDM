@@ -3,6 +3,8 @@ namespace EnergyTrading.MDM.Test
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -63,10 +65,10 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             var partyaccountabilityMapping = new DbSetRepository<MDM.PartyAccountabilityMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
-            return BitConverter.ToInt64(partyaccountabilityMapping.Version, 0);
+            return partyaccountabilityMapping.Version.ToUnsignedLongVersion();
         }
     }
 }

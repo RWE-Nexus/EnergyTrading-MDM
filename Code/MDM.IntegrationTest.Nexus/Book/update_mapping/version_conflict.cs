@@ -23,7 +23,7 @@
 
         private static BookMapping currentTrayportMapping;
 
-        private static long startVersion;
+        private static ulong startVersion;
 
         private static MDM.Book entity;
 
@@ -74,7 +74,7 @@
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.Book>(new MappingContext()).FindOne(entity.Id).Version;
         }

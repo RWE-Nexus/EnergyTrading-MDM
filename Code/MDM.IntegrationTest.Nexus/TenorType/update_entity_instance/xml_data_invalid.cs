@@ -50,7 +50,7 @@
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.TenorType>(new MappingContext()).FindOne(entity.Id).Version;
         }

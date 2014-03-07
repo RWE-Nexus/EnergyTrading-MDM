@@ -14,7 +14,7 @@
         private static HttpResponseMessage response;
         private static HttpContent content;
         private static HttpClient client;
-        private static long startVersion;
+        private static ulong startVersion;
         private static MDM.LegalEntity entity;
 
         [ClassInitialize]
@@ -51,7 +51,7 @@
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.LegalEntity>(new MappingContext()).FindOne(entity.Id).Version;
         }

@@ -3,6 +3,8 @@
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -15,7 +17,7 @@
         private static HttpResponseMessage response;
         private static HttpContent content;
         private static HttpClient client;
-        private static long startVersion;
+        private static ulong startVersion;
         private static MDM.BrokerRate entity;
 
         [ClassInitialize]
@@ -36,7 +38,7 @@
 
         protected static void Because_of()
         {
-            client.DefaultHeaders.Add("If-Match", BitConverter.ToInt64(entity.Mappings[0].Version, 0).ToString());
+            client.DefaultHeaders.Add("If-Match", entity.Mappings[0].Version.ToUnsignedLongVersion().ToString());
 
             response = client.Post(ServiceUrl["BrokerRate"] +  string.Format("{0}/Mapping/{1}", entity.Id, 
                 int.MaxValue), content);
@@ -54,10 +56,10 @@
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             byte[] b = new DbSetRepository<MDM.BrokerRateMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id).Version;
-            return BitConverter.ToInt64(b, 0);
+            return b.ToUnsignedLongVersion();
         }
     }
 }

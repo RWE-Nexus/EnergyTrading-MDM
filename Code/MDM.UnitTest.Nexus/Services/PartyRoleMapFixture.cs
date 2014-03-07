@@ -119,7 +119,7 @@ namespace EnergyTrading.MDM.Test.Services
                 SystemName = "Endur", 
                 Identifier = "A", 
                 ValidAt = SystemTime.UtcNow(), 
-                Version = -1
+                Version = 1
             };
 
             // Act

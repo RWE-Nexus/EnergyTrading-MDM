@@ -5,6 +5,7 @@ namespace EnergyTrading.MDM
 
     using EnergyTrading;
     using EnergyTrading.Data;
+    using EnergyTrading.MDM.Extensions;
 
     public class PartyAccountability : IIdentifiable, IEntity, IEntityDetail
     {
@@ -59,11 +60,11 @@ namespace EnergyTrading.MDM
         /// should be performed with this value as relative difference has no business meaning.
         /// </para>
         /// </summary>
-        public long Version
+        public ulong Version
         {
             get
             {
-                var version = BitConverter.ToInt64(this.Timestamp, 0);
+                var version = this.Timestamp.ToUnsignedLongVersion();
                 version = this.Mappings.LatestVersion(version);
                 return version;
             }

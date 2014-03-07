@@ -3,6 +3,8 @@ namespace EnergyTrading.MDM.Test
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -63,10 +65,10 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
-            var dimensionMapping = new DbSetRepository<MDM.DimensionMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
-            return BitConverter.ToInt64(dimensionMapping.Version, 0);
+            var dimensionMapping = new DbSetRepository<DimensionMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            return dimensionMapping.Version.ToUnsignedLongVersion();
         }
     }
 }

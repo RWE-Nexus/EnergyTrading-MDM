@@ -18,7 +18,7 @@
         /// Should test for equality rather than > since entity.Version can be a large negative number
         /// and version will default to 0 if not provided.
         /// </remarks>
-        long Version { get; }
+        ulong Version { get; }
 
         void AddDetails(IEntityDetail details);
 

@@ -23,7 +23,7 @@ namespace EnergyTrading.MDM.Test
 
         private static ProductTypeInstanceMapping currentTrayportMapping;
 
-        private static long startVersion;
+        private static ulong startVersion;
 
         private static MDM.ProductTypeInstance entity;
 
@@ -74,7 +74,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.ProductTypeInstance>(new MappingContext()).FindOne(entity.Id).Version;
         }

@@ -23,7 +23,7 @@ namespace EnergyTrading.MDM.Test
 
         private static CommodityInstrumentTypeMapping currentTrayportMapping;
 
-        private static long startVersion;
+        private static ulong startVersion;
 
         private static MDM.CommodityInstrumentType entity;
 
@@ -74,7 +74,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             return new DbSetRepository<MDM.CommodityInstrumentType>(new MappingContext()).FindOne(entity.Id).Version;
         }

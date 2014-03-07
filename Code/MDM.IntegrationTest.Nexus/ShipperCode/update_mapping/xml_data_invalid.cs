@@ -3,6 +3,8 @@ namespace EnergyTrading.MDM.Test
     using System;
     using System.Net;
 
+    using EnergyTrading.MDM.Extensions;
+
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -15,7 +17,7 @@ namespace EnergyTrading.MDM.Test
         private static HttpResponseMessage response;
         private static HttpContent content;
         private static HttpClient client;
-        private static long startVersion;
+        private static ulong startVersion;
         private static MDM.ShipperCode entity;
 
         [ClassInitialize]
@@ -54,10 +56,10 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             byte[] b = new DbSetRepository<MDM.ShipperCodeMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id).Version;
-            return BitConverter.ToInt64(b, 0);
+            return b.ToUnsignedLongVersion();
         }
     }
 }
