@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B2E3CFE-42FE-407F-A2AE-77E138F04E8A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnergyTrading.MDM</RootNamespace>
+    <AssemblyName>MDM.Core.Nexus</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Code\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EnergyTrading.Contracts">
+      <HintPath>..\packages\EnergyTrading.Contracts.2.7.28050.10\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Core, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.0.6\lib\net40\EnergyTrading.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.MDM.Contracts">
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.1.28286.5\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agreement.cs" />
+    <Compile Include="Agreement.gen.cs" />
+    <Compile Include="AgreementMapping.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="Book.gen.cs" />
+    <Compile Include="BookMapping.cs" />
+    <Compile Include="Broker.cs" />
+    <Compile Include="BrokerCommodity.cs" />
+    <Compile Include="BrokerCommodity.gen.cs" />
+    <Compile Include="BrokerCommodityMapping.cs" />
+    <Compile Include="BrokerDetails.cs" />
+    <Compile Include="BrokerRate.cs" />
+    <Compile Include="BrokerRate.gen.cs" />
+    <Compile Include="BrokerRateDetails.cs" />
+    <Compile Include="BrokerRateMapping.cs" />
+    <Compile Include="BusinessUnit.cs" />
+    <Compile Include="BusinessUnitDetails.cs" />
+    <Compile Include="Calendar.cs" />
+    <Compile Include="Calendar.gen.cs" />
+    <Compile Include="CalendarDay.cs" />
+    <Compile Include="CalendarMapping.cs" />
+    <Compile Include="Commodity.cs" />
+    <Compile Include="Commodity.gen.cs" />
+    <Compile Include="CommodityFeeType.cs" />
+    <Compile Include="CommodityFeeType.gen.cs" />
+    <Compile Include="CommodityFeeTypeMapping.cs" />
+    <Compile Include="CommodityInstrumentType.cs" />
+    <Compile Include="CommodityInstrumentType.gen.cs" />
+    <Compile Include="CommodityInstrumentTypeMapping.cs" />
+    <Compile Include="Contracts\Mappers\AgreementDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\AgreementMapper.cs" />
+    <Compile Include="Contracts\Mappers\BookDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\BookMapper.cs" />
+    <Compile Include="Contracts\Mappers\BrokerCommodityDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\BrokerCommodityMapper.cs" />
+    <Compile Include="Contracts\Mappers\BrokerDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\BrokerMapper.cs" />
+    <Compile Include="Contracts\Mappers\BrokerRateDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\BrokerRateMapper.cs" />
+    <Compile Include="Contracts\Mappers\BusinessUnitDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\BusinessUnitMapper.cs" />
+    <Compile Include="Contracts\Mappers\CalendarDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\CalendarMapper.cs" />
+    <Compile Include="Contracts\Mappers\CommodityDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\CommodityFeeTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\CommodityFeeTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\CommodityInstrumentTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\CommodityInstrumentTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\CommodityMapper.cs" />
+    <Compile Include="Contracts\Mappers\CounterpartyDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\CounterpartyMapper.cs" />
+    <Compile Include="Contracts\Mappers\CurveDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\CurveMapper.cs" />
+    <Compile Include="Contracts\Mappers\BookDefaultDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\BookDefaultMapper.cs" />
+    <Compile Include="Contracts\Mappers\DimensionDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\DimensionMapper.cs" />
+    <Compile Include="Contracts\Mappers\ExchangeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ExchangeMapper.cs" />
+    <Compile Include="Contracts\Mappers\FeeTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\FeeTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\HierarchyDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\HierarchyMapper.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeOverrideDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeOverrideMapper.cs" />
+    <Compile Include="Contracts\Mappers\LegalEntityDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\LegalEntityMapper.cs" />
+    <Compile Include="Contracts\Mappers\LocationDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\LocationMapper.cs" />
+    <Compile Include="Contracts\Mappers\LocationRoleDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\LocationRoleMapper.cs" />
+    <Compile Include="Contracts\Mappers\MarketDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\MarketMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyAccountabilityDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyAccountabilityMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyOverrideDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyOverrideMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyRoleAccountabilityDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyRoleAccountabilityMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyRoleDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PartyRoleMapper.cs" />
+    <Compile Include="Contracts\Mappers\PersonDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PersonMapper.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioHierarchyDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioHierarchyMapper.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductCurveDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductCurveMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductScotaDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductScotaMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductTenorTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductTenorTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeInstanceDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeInstanceMapper.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\SettlementContactDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\SettlementContactMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShapeDayDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShapeDayMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShapeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShapeElementDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShapeElementMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShapeMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShipperCodeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\ShipperCodeMapper.cs" />
+    <Compile Include="Contracts\Mappers\TenorDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\TenorMapper.cs" />
+    <Compile Include="Contracts\Mappers\TenorTypeDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\TenorTypeMapper.cs" />
+    <Compile Include="Contracts\Mappers\UnitDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\UnitMapper.cs" />
+    <Compile Include="Contracts\Mappers\VesselDetailsMapper.cs" />
+    <Compile Include="Contracts\Mappers\VesselMapper.cs" />
+    <Compile Include="Contracts\Rules\PartyRoleAmendMappingNoOverlappingRule.cs" />
+    <Compile Include="Contracts\Rules\PartyRoleCreateMappingdNoOverlappingRule.cs" />
+    <Compile Include="Contracts\Validators\AgreementValidator.cs" />
+    <Compile Include="Contracts\Validators\BookValidator.cs" />
+    <Compile Include="Contracts\Validators\BrokerCommodityValidator.cs" />
+    <Compile Include="Contracts\Validators\BrokerRateValidator.cs" />
+    <Compile Include="Contracts\Validators\BrokerValidator.cs" />
+    <Compile Include="Contracts\Validators\BusinessUnitValidator.cs" />
+    <Compile Include="Contracts\Validators\CalendarValidator.cs" />
+    <Compile Include="Contracts\Validators\CommodityFeeTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\CommodityInstrumentTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\CommodityValidator.cs" />
+    <Compile Include="Contracts\Validators\CounterpartyValidator.cs" />
+    <Compile Include="Contracts\Validators\CurveValidator.cs" />
+    <Compile Include="Contracts\Validators\DefaultPortfolioValidator.cs" />
+    <Compile Include="Contracts\Validators\DimensionValidator.cs" />
+    <Compile Include="Contracts\Validators\ExchangeValidator.cs" />
+    <Compile Include="Contracts\Validators\FeeTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\HierarchyValidator.cs" />
+    <Compile Include="Contracts\Validators\InstrumentTypeOverrideValidator.cs" />
+    <Compile Include="Contracts\Validators\InstrumentTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\LegalEntityValidator.cs" />
+    <Compile Include="Contracts\Validators\LocationRoleValidator.cs" />
+    <Compile Include="Contracts\Validators\LocationValidator.cs" />
+    <Compile Include="Contracts\Validators\MarketValidator.cs" />
+    <Compile Include="Contracts\Validators\PartyAccountabilityValidator.cs" />
+    <Compile Include="Contracts\Validators\PartyOverrideValidator.cs" />
+    <Compile Include="Contracts\Validators\PartyRoleAccountabilityValidator.cs" />
+    <Compile Include="Contracts\Validators\PartyRoleNexusIdValidator.cs" />
+    <Compile Include="Contracts\Validators\PartyRoleValidator.cs" />
+    <Compile Include="Contracts\Validators\PartyValidator.cs" />
+    <Compile Include="Contracts\Validators\PersonValidator.cs" />
+    <Compile Include="Contracts\Validators\PortfolioHierarchyValidator.cs" />
+    <Compile Include="Contracts\Validators\PortfolioValidator.cs" />
+    <Compile Include="Contracts\Validators\ProductCurveValidator.cs" />
+    <Compile Include="Contracts\Validators\ProductScotaValidator.cs" />
+    <Compile Include="Contracts\Validators\ProductTenorTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\ProductTypeInstanceValidator.cs" />
+    <Compile Include="Contracts\Validators\ProductTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\ProductValidator.cs" />
+    <Compile Include="Contracts\Validators\SettlementContactValidator.cs" />
+    <Compile Include="Contracts\Validators\ShapeDayValidator.cs" />
+    <Compile Include="Contracts\Validators\ShapeElementValidator.cs" />
+    <Compile Include="Contracts\Validators\ShapeValidator.cs" />
+    <Compile Include="Contracts\Validators\ShipperCodeValidator.cs" />
+    <Compile Include="Contracts\Validators\TenorTypeValidator.cs" />
+    <Compile Include="Contracts\Validators\TenorValidator.cs" />
+    <Compile Include="Contracts\Validators\UnitValidator.cs" />
+    <Compile Include="Contracts\Validators\VesselValidator.cs" />
+    <Compile Include="BookDefault.cs" />
+    <Compile Include="Data\RepositoryExtensions.cs" />
+    <Compile Include="DefaultPortfolio.gen.cs" />
+    <Compile Include="BookDefaultMapping.cs" />
+    <Compile Include="LegalEntityDetails.cs" />
+    <Compile Include="Counterparty.cs" />
+    <Compile Include="CounterpartyDetails.cs" />
+    <Compile Include="Curve.cs" />
+    <Compile Include="Curve.gen.cs" />
+    <Compile Include="CurveMapping.cs" />
+    <Compile Include="Data\Search\BrokerRateSearchCommand.cs" />
+    <Compile Include="Data\Search\PartySearchCommand.cs" />
+    <Compile Include="DeliveryInfo.cs" />
+    <Compile Include="Dimension.cs" />
+    <Compile Include="Dimension.gen.cs" />
+    <Compile Include="DimensionMapping.cs" />
+    <Compile Include="Exchange.cs" />
+    <Compile Include="ExchangeDetails.cs" />
+    <Compile Include="FeeType.cs" />
+    <Compile Include="FeeType.gen.cs" />
+    <Compile Include="FeeTypeMapping.cs" />
+    <Compile Include="Hierarchy.cs" />
+    <Compile Include="Hierarchy.gen.cs" />
+    <Compile Include="HierarchyMapping.cs" />
+    <Compile Include="InstrumentType.cs" />
+    <Compile Include="InstrumentType.gen.cs" />
+    <Compile Include="InstrumentTypeMapping.cs" />
+    <Compile Include="InstrumentTypeOverride.cs" />
+    <Compile Include="InstrumentTypeOverride.gen.cs" />
+    <Compile Include="InstrumentTypeOverrideMapping.cs" />
+    <Compile Include="LegalEntity.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="Location.gen.cs" />
+    <Compile Include="LocationMapping.cs" />
+    <Compile Include="LocationRole.cs" />
+    <Compile Include="LocationRole.gen.cs" />
+    <Compile Include="LocationRoleMapping.cs" />
+    <Compile Include="LocationRoleType.cs" />
+    <Compile Include="Mappers\AgreementDetailsMapper.cs" />
+    <Compile Include="Mappers\AgreementMapper.cs" />
+    <Compile Include="Mappers\AgreementMappingMapper.cs" />
+    <Compile Include="Mappers\BookDetailsMapper.cs" />
+    <Compile Include="Mappers\BookMapper.cs" />
+    <Compile Include="Mappers\BookMappingMapper.cs" />
+    <Compile Include="Mappers\BrokerCommodityDetailsMapper.cs" />
+    <Compile Include="Mappers\BrokerCommodityMapper.cs" />
+    <Compile Include="Mappers\BrokerCommodityMappingMapper.cs" />
+    <Compile Include="Mappers\BrokerMapper.cs" />
+    <Compile Include="Mappers\BrokerRateDetailsMapper.cs" />
+    <Compile Include="Mappers\BrokerRateMapper.cs" />
+    <Compile Include="Mappers\BrokerRateMappingMapper.cs" />
+    <Compile Include="Mappers\BusinessUnitDetailsMapper.cs" />
+    <Compile Include="Mappers\BusinessUnitMapper.cs" />
+    <Compile Include="Mappers\CalendarMapper.cs" />
+    <Compile Include="Mappers\CommodityDetailsMapper.cs" />
+    <Compile Include="Mappers\CommodityFeeTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\CommodityFeeTypeMapper.cs" />
+    <Compile Include="Mappers\CommodityFeeTypeMappingMapper.cs" />
+    <Compile Include="Mappers\CommodityInstrumentTypeMapper.cs" />
+    <Compile Include="Mappers\CommodityMapper.cs" />
+    <Compile Include="Mappers\CommodityMappingMapper.cs" />
+    <Compile Include="Mappers\BookDefaultDetailsMapper.cs" />
+    <Compile Include="Mappers\BookDefaultMapper.cs" />
+    <Compile Include="Mappers\BookDefaultMappingMapper.cs" />
+    <Compile Include="Mappers\FeeTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\FeeTypeMapper.cs" />
+    <Compile Include="Mappers\FeeTypeMappingMapper.cs" />
+    <Compile Include="Mappers\LegalEntityDetailsMapper.cs" />
+    <Compile Include="Mappers\LegalEntityMapper.cs" />
+    <Compile Include="Mappers\PartyOverrideDetailsMapper.cs" />
+    <Compile Include="Mappers\PartyOverrideMapper.cs" />
+    <Compile Include="Mappers\PartyOverrideMappingMapper.cs" />
+    <Compile Include="Mappers\PartyRoleAccountabilityDetailsMapper.cs" />
+    <Compile Include="Mappers\PartyRoleAccountabilityMapper.cs" />
+    <Compile Include="Mappers\PartyRoleAccountabilityMappingMapper.cs" />
+    <Compile Include="Mappers\ProductLinksMapper.cs" />
+    <Compile Include="Mappers\CounterpartyMapper.cs" />
+    <Compile Include="Mappers\CurveMapper.cs" />
+    <Compile Include="Mappers\DimensionDetailsMapper.cs" />
+    <Compile Include="Mappers\DimensionMapper.cs" />
+    <Compile Include="Mappers\DimensionMappingMapper.cs" />
+    <Compile Include="Mappers\ExchangeMapper.cs" />
+    <Compile Include="Mappers\HierarchyMapper.cs" />
+    <Compile Include="Mappers\InstrumentTypeMapper.cs" />
+    <Compile Include="Mappers\InstrumentTypeOverrideDetailsMapper.cs" />
+    <Compile Include="Mappers\InstrumentTypeOverrideMapper.cs" />
+    <Compile Include="Mappers\InstrumentTypeOverrideMappingMapper.cs" />
+    <Compile Include="Mappers\LocationMapper.cs" />
+    <Compile Include="Mappers\LocationRoleMapper.cs" />
+    <Compile Include="Mappers\MarketMapper.cs" />
+    <Compile Include="Mappers\BrokerDetailsMapper.cs" />
+    <Compile Include="Mappers\CalendarDetailsMapper.cs" />
+    <Compile Include="Mappers\CalendarMappingMapper.cs" />
+    <Compile Include="Mappers\CommodityInstrumentTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\CommodityInstrumentTypeMappingMapper.cs" />
+    <Compile Include="Mappers\CounterpartyDetailsMapper.cs" />
+    <Compile Include="Mappers\CurveDetailsMapper.cs" />
+    <Compile Include="Mappers\CurveMappingMapper.cs" />
+    <Compile Include="Mappers\ExchangeDetailsMapper.cs" />
+    <Compile Include="Mappers\HierarchyDetailsMapper.cs" />
+    <Compile Include="Mappers\HierarchyMappingMapper.cs" />
+    <Compile Include="Mappers\InstrumentTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\InstrumentTypeMappingMapper.cs" />
+    <Compile Include="Mappers\LocationDetailsMapper.cs" />
+    <Compile Include="Mappers\LocationMappingMapper.cs" />
+    <Compile Include="Mappers\LocationRoleDetailsMapper.cs" />
+    <Compile Include="Mappers\LocationRoleMappingMapper.cs" />
+    <Compile Include="Mappers\MarketDetailsMapper.cs" />
+    <Compile Include="Mappers\MarketMappingMapper.cs" />
+    <Compile Include="Mappers\PartyAccountabilityDetailsMapper.cs" />
+    <Compile Include="Mappers\PartyAccountabilityMapper.cs" />
+    <Compile Include="Mappers\PartyAccountabilityMappingMapper.cs" />
+    <Compile Include="Mappers\PartyDetailsMapper.cs" />
+    <Compile Include="Mappers\PartyLinksMapper.cs" />
+    <Compile Include="Mappers\PartyMapper.cs" />
+    <Compile Include="Mappers\PartyMappingMapper.cs" />
+    <Compile Include="Mappers\PartyRoleDetailsMapper.cs" />
+    <Compile Include="Mappers\PartyRoleMapper.cs" />
+    <Compile Include="Mappers\PartyRoleMappingMapper.cs" />
+    <Compile Include="Mappers\PersonDetailsMapper.cs" />
+    <Compile Include="CommodityMapping.cs" />
+    <Compile Include="Mappers\PersonMapper.cs" />
+    <Compile Include="Mappers\PersonMappingMapper.cs" />
+    <Compile Include="Mappers\PortfolioDetailsMapper.cs" />
+    <Compile Include="Mappers\PortfolioHierarchyDetailsMapper.cs" />
+    <Compile Include="Mappers\PortfolioHierarchyMapper.cs" />
+    <Compile Include="Mappers\PortfolioHierarchyMappingMapper.cs" />
+    <Compile Include="Mappers\PortfolioMapper.cs" />
+    <Compile Include="Mappers\PortfolioMappingMapper.cs" />
+    <Compile Include="Mappers\ProductCurveDetailsMapper.cs" />
+    <Compile Include="Mappers\ProductCurveMapper.cs" />
+    <Compile Include="Mappers\ProductCurveMappingMapper.cs" />
+    <Compile Include="Mappers\ProductDetailsMapper.cs" />
+    <Compile Include="Mappers\ProductMapper.cs" />
+    <Compile Include="Mappers\ProductMappingMapper.cs" />
+    <Compile Include="Mappers\ProductScotaDetailsMapper.cs" />
+    <Compile Include="Mappers\ProductScotaMapper.cs" />
+    <Compile Include="Mappers\ProductScotaMappingMapper.cs" />
+    <Compile Include="Mappers\ProductTenorTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\ProductTenorTypeMapper.cs" />
+    <Compile Include="Mappers\ProductTenorTypeMappingMapper.cs" />
+    <Compile Include="Mappers\ProductTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\ProductTypeInstanceDetailsMapper.cs" />
+    <Compile Include="Mappers\ProductTypeInstanceMapper.cs" />
+    <Compile Include="Mappers\ProductTypeInstanceMappingMapper.cs" />
+    <Compile Include="Mappers\ProductTypeMapper.cs" />
+    <Compile Include="Mappers\ProductTypeMappingMapper.cs" />
+    <Compile Include="Mappers\SettlementContactDetailsMapper.cs" />
+    <Compile Include="Mappers\SettlementContactMapper.cs" />
+    <Compile Include="Mappers\ShapeDayDetailsMapper.cs" />
+    <Compile Include="Mappers\ShapeDayMapper.cs" />
+    <Compile Include="Mappers\ShapeDayMappingMapper.cs" />
+    <Compile Include="Mappers\ShapeDetailsMapper.cs" />
+    <Compile Include="Mappers\ShapeElementDetailsMapper.cs" />
+    <Compile Include="Mappers\ShapeElementMapper.cs" />
+    <Compile Include="Mappers\ShapeElementMappingMapper.cs" />
+    <Compile Include="Mappers\ShapeMapper.cs" />
+    <Compile Include="Mappers\ShapeMappingMapper.cs" />
+    <Compile Include="Mappers\ShipperCodeDetailsMapper.cs" />
+    <Compile Include="Mappers\ShipperCodeMapper.cs" />
+    <Compile Include="Mappers\ShipperCodeMappingMapper.cs" />
+    <Compile Include="Mappers\TenorDetailsMapper.cs" />
+    <Compile Include="Mappers\TenorMapper.cs" />
+    <Compile Include="Mappers\TenorMappingMapper.cs" />
+    <Compile Include="Mappers\TenorTypeDetailsMapper.cs" />
+    <Compile Include="Mappers\TenorTypeMapper.cs" />
+    <Compile Include="Mappers\TenorTypeMappingMapper.cs" />
+    <Compile Include="Mappers\UnitDetailsMapper.cs" />
+    <Compile Include="Mappers\UnitMapper.cs" />
+    <Compile Include="Mappers\UnitMappingMapper.cs" />
+    <Compile Include="Mappers\VesselDetailsMapper.cs" />
+    <Compile Include="Mappers\VesselMapper.cs" />
+    <Compile Include="Mappers\VesselMappingMapper.cs" />
+    <Compile Include="Market.cs" />
+    <Compile Include="Market.gen.cs" />
+    <Compile Include="MarketMapping.cs" />
+    <Compile Include="Messages\Validators\PartyRoleAmendMappingRequestValidator.cs" />
+    <Compile Include="Messages\Validators\PartyRoleCreateMappingRequestValidator.cs" />
+    <Compile Include="NexusName.cs" />
+    <Compile Include="Party.cs" />
+    <Compile Include="Party.gen.cs" />
+    <Compile Include="PartyAccountability.cs" />
+    <Compile Include="PartyAccountabilityMapping.cs" />
+    <Compile Include="PartyDetails.cs" />
+    <Compile Include="PartyMapping.cs" />
+    <Compile Include="PartyOverride.cs" />
+    <Compile Include="PartyOverride.gen.cs" />
+    <Compile Include="PartyOverrideMapping.cs" />
+    <Compile Include="PartyRole.cs" />
+    <Compile Include="PartyRoleAccountability.cs" />
+    <Compile Include="PartyRoleAccountabilityMapping.cs" />
+    <Compile Include="PartyRoleDetails.cs" />
+    <Compile Include="PartyRoleMapping.cs" />
+    <Compile Include="Person.gen.cs" />
+    <Compile Include="Portfolio.cs" />
+    <Compile Include="Portfolio.gen.cs" />
+    <Compile Include="PortfolioHierarchy.cs" />
+    <Compile Include="PortfolioHierarchy.gen.cs" />
+    <Compile Include="PortfolioHierarchyMapping.cs" />
+    <Compile Include="PortfolioMapping.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Product.gen.cs" />
+    <Compile Include="ProductCurve.cs" />
+    <Compile Include="ProductCurve.gen.cs" />
+    <Compile Include="ProductCurveMapping.cs" />
+    <Compile Include="ProductDelivery.cs" />
+    <Compile Include="ProductMapping.cs" />
+    <Compile Include="ProductScota.cs" />
+    <Compile Include="ProductScota.gen.cs" />
+    <Compile Include="ProductScotaMapping.cs" />
+    <Compile Include="ProductTenorType.cs" />
+    <Compile Include="ProductTenorType.gen.cs" />
+    <Compile Include="ProductTenorTypeMapping.cs" />
+    <Compile Include="ProductType.cs" />
+    <Compile Include="ProductType.gen.cs" />
+    <Compile Include="ProductTypeInstance.cs" />
+    <Compile Include="ProductTypeInstance.gen.cs" />
+    <Compile Include="ProductTypeInstanceMapping.cs" />
+    <Compile Include="ProductTypeMapping.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="PersonDetails.cs" />
+    <Compile Include="PersonMapping.cs" />
+    <Compile Include="Services\AgreementService.cs" />
+    <Compile Include="Services\BookService.cs" />
+    <Compile Include="Services\BrokerCommodityService.cs" />
+    <Compile Include="Services\BrokerRateService.cs" />
+    <Compile Include="Services\BrokerService.cs" />
+    <Compile Include="Services\BusinessUnitService.cs" />
+    <Compile Include="Services\CalendarService.cs" />
+    <Compile Include="Services\CommodityFeeTypeService.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeService.cs" />
+    <Compile Include="Services\CommodityService.cs" />
+    <Compile Include="Services\CounterpartyService.cs" />
+    <Compile Include="Services\CurveService.cs" />
+    <Compile Include="Services\BookDefaultService.cs" />
+    <Compile Include="Services\DimensionService.cs" />
+    <Compile Include="Services\ExchangeService.cs" />
+    <Compile Include="Services\FeeTypeService.cs" />
+    <Compile Include="Services\HierarchyService.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideService.cs" />
+    <Compile Include="Services\InstrumentTypeService.cs" />
+    <Compile Include="Services\LegalEntityService.cs" />
+    <Compile Include="Services\LocationRoleService.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\MarketService.cs" />
+    <Compile Include="Services\PartyAccountabilityService.cs" />
+    <Compile Include="Services\PartyOverrideService.cs" />
+    <Compile Include="Services\PartyRoleAccountabilityService.cs" />
+    <Compile Include="Services\PartyRoleService.cs" />
+    <Compile Include="Services\PartyService.cs" />
+    <Compile Include="Services\PersonService.cs" />
+    <Compile Include="Services\PortfolioHierarchyService.cs" />
+    <Compile Include="Services\PortfolioService.cs" />
+    <Compile Include="Services\ProductCurveService.cs" />
+    <Compile Include="Services\ProductScotaService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ProductTenorTypeService.cs" />
+    <Compile Include="Services\ProductTypeInstanceService.cs" />
+    <Compile Include="Services\ProductTypeService.cs" />
+    <Compile Include="Services\SettlementContactService.cs" />
+    <Compile Include="Services\ShapeDayService.cs" />
+    <Compile Include="Services\ShapeElementService.cs" />
+    <Compile Include="Services\ShapeService.cs" />
+    <Compile Include="Services\ShipperCodeService.cs" />
+    <Compile Include="Services\TenorService.cs" />
+    <Compile Include="Services\TenorTypeService.cs" />
+    <Compile Include="Services\UnitService.cs" />
+    <Compile Include="Services\VesselService.cs" />
+    <Compile Include="SettlementContact.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="Shape.gen.cs" />
+    <Compile Include="ShapeDay.cs" />
+    <Compile Include="ShapeDay.gen.cs" />
+    <Compile Include="ShapeDayMapping.cs" />
+    <Compile Include="ShapeElement.cs" />
+    <Compile Include="ShapeElement.gen.cs" />
+    <Compile Include="ShapeElementMapping.cs" />
+    <Compile Include="ShapeMapping.cs" />
+    <Compile Include="ShipperCode.cs" />
+    <Compile Include="ShipperCode.gen.cs" />
+    <Compile Include="ShipperCodeMapping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tenor.cs" />
+    <Compile Include="Tenor.gen.cs" />
+    <Compile Include="TenorMapping.cs" />
+    <Compile Include="TenorType.cs" />
+    <Compile Include="TenorType.gen.cs" />
+    <Compile Include="TenorTypeMapping.cs" />
+    <Compile Include="Unit.cs" />
+    <Compile Include="Unit.gen.cs" />
+    <Compile Include="UnitMapping.cs" />
+    <Compile Include="Vessel.cs" />
+    <Compile Include="Vessel.gen.cs" />
+    <Compile Include="VesselMapping.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
+      <Project>{cac0933b-4282-4d7e-98b6-c6f0806f3830}</Project>
+      <Name>MDM.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\Services\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Messages\Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

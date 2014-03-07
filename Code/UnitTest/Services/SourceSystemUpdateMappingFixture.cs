@@ -116,7 +116,7 @@ namespace EnergyTrading.MDM.Test.Services
             var start = new DateTime(2000, 12, 31);
             var finish = DateUtility.Round(SystemTime.UtcNow().AddDays(5));
             var s1 = new SourceSystem { Name = "Test" };
-            var m1 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Version = BitConverter.GetBytes(34L), Validity = new DateRange(start, DateUtility.MaxDate) };			
+            var m1 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Version = new byte[] { 0, 0, 0, 0, 0, 0, 0, 34 }, Validity = new DateRange(start, DateUtility.MaxDate) };			
             var m2 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Validity = new DateRange(start, finish) };
 
             // NB We deliberately bypasses the business logic

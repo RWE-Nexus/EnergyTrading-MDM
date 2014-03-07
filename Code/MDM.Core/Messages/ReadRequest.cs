@@ -44,6 +44,6 @@
         /// The version of the mapping, used for caching
         /// </para>
         /// </summary>
-        public long Version { get; set; }
+        public ulong Version { get; set; }
     }
 }

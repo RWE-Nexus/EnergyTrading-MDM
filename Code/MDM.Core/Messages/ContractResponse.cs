@@ -16,7 +16,7 @@
 
         public TContract Contract { get; set; }
 
-        public long Version { get; set; }
+        public ulong Version { get; set; }
 
         public ContractError Error { get; set; }
 

@@ -262,7 +262,7 @@
         /// <param name="contract"></param>
         /// <param name="version"></param>
         /// <returns></returns>
-        public ContractResponse<TContract> Update(int entityId, long version, TContract contract)
+        public ContractResponse<TContract> Update(int entityId, ulong version, TContract contract)
         {
             // Get the entity
             var entity = this.repository.FindOne<TEntity>(entityId);
@@ -488,7 +488,7 @@
         /// <param name="validAt"></param>
         /// <param name="version"></param>
         /// <returns></returns>
-        private ContractResponse<TContract> ContractResponse(TEntity entity, DateTime validAt, long version)
+        private ContractResponse<TContract> ContractResponse(TEntity entity, DateTime validAt, ulong version)
         {
             // If details are null, e.g: entity has been expired (filter the details based on the validAt date)
             // then return EntityNotFound message

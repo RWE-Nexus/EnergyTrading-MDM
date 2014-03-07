@@ -16,10 +16,10 @@
         {
             var search = SearchBuilder.CreateSearch();
             search.AddSearchCriteria(SearchCombinator.And)
-                    .AddCriteria("TargetPerson.Id", SearchCondition.Equals, "1", true)
-                    .AddCriteria("PartyAccountabilityType", SearchCondition.Equals, "PartyAccountability", false);
-            var key1 = search.ToKey<PartyAccountability>();
-            var key2 = search.ToKey<PartyAccountability>();
+                    .AddCriteria("TargetSourceSystem.Id", SearchCondition.Equals, "1", true)
+                    .AddCriteria("SourceSystemType", SearchCondition.Equals, "SourceSystem", false);
+            var key1 = search.ToKey<SourceSystem>();
+            var key2 = search.ToKey<SourceSystem>();
             Assert.AreEqual(key1, key2);
         }
 
@@ -29,8 +29,8 @@
             var search = SearchBuilder.CreateSearch();
             search.AddSearchCriteria(SearchCombinator.And)
                   .AddCriteria("Name", SearchCondition.Equals, "bing", true);
-            var key1 = search.ToKey<Person>();
-            var key2 = search.ToKey<Party>();
+            var key1 = search.ToKey<SourceSystem>();
+            var key2 = search.ToKey<ReferenceData>();
             Assert.AreNotEqual(key1, key2);
         }
 
@@ -39,17 +39,17 @@
         {
             var search = SearchBuilder.CreateSearch();
             search.AddSearchCriteria(SearchCombinator.And)
-                    .AddCriteria("TargetPerson.Id", SearchCondition.Equals, "1", true)
-                    .AddCriteria("PartyAccountabilityType", SearchCondition.Equals, "PartyAccountability", false);
-            var key1 = search.ToKey<PartyAccountability>();
-            var candidate = key1.ToSearch<PartyAccountability>();
+                    .AddCriteria("TargetSourceSystem.Id", SearchCondition.Equals, "1", true)
+                    .AddCriteria("SourceSystemType", SearchCondition.Equals, "SourceSystem", false);
+            var key1 = search.ToKey<SourceSystem>();
+            var candidate = key1.ToSearch<SourceSystem>();
             Assert.AreEqual(candidate.SearchFields.Combinator, SearchCombinator.And);
-            Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[0].Field, "TargetPerson.Id");
-            Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[1].Field, "PartyAccountabilityType");
+            Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[0].Field, "TargetSourceSystem.Id");
+            Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[1].Field, "SourceSystemType");
             Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[0].Condition, SearchCondition.Equals);
             Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[1].Condition, SearchCondition.Equals);
             Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[0].ComparisonValue, "1");
-            Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[1].ComparisonValue, "PartyAccountability");
+            Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[1].ComparisonValue, "SourceSystem");
         }
 
         [TestMethod]
@@ -57,9 +57,9 @@
         {
             var search = SearchBuilder.CreateSearch();
             search.AddSearchCriteria(SearchCombinator.And)
-                    .AddCriteria("TargetPerson.Id", SearchCondition.Equals, "1", true)
-                    .AddCriteria("PartyAccountabilityType", SearchCondition.Equals, "PartyAccountability", false);
-            var key1 = search.ToKey<PartyAccountability>();
+                    .AddCriteria("TargetSourceSystem.Id", SearchCondition.Equals, "1", true)
+                    .AddCriteria("SourceSystemType", SearchCondition.Equals, "SourceSystem", false);
+            var key1 = search.ToKey<SourceSystem>();
             var urlEncodedKey = HttpUtility.UrlEncode(key1);
             Assert.AreEqual(key1, urlEncodedKey);
         }

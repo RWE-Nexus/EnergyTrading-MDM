@@ -4,6 +4,7 @@
 
     using EnergyTrading;
     using EnergyTrading.Data;
+    using EnergyTrading.MDM.Extensions;
 
     /// <summary>
     /// Generic mapping from a <see cref="SourceSystem" /> to an MDM entity.
@@ -49,9 +50,9 @@
 
         public byte[] Version { get; set; }
 
-        long IRangedChild.Version
+        ulong IRangedChild.Version
         {
-            get { return BitConverter.ToInt64(this.Version, 0); }
+            get { return this.Version.ToUnsignedLongVersion(); }
         }
 
         /// <summary>

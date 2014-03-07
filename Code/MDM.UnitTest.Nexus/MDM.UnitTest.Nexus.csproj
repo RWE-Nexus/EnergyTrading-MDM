@@ -1,0 +1,933 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E7251A7-8482-4C0D-82E8-C4325CE2A9C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnergyTrading.MDM.Test</RootNamespace>
+    <AssemblyName>MDM.UnitTest.Nexus</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Code\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EnergyTrading.Contracts">
+      <HintPath>..\packages\EnergyTrading.Contracts.2.7.28050.10\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Core, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.0.6\lib\net40\EnergyTrading.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.EntityFramework">
+      <HintPath>..\packages\EnergyTrading.EntityFramework.2.7.28050.10\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.MDM.Contracts">
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.1.28286.5\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Test">
+      <HintPath>..\packages\EnergyTrading.Test.2.7.28050.10\lib\net40\EnergyTrading.Test.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Unity">
+      <HintPath>..\packages\EnergyTrading.Unity.2.7.28050.10\lib\net40\EnergyTrading.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <HintPath>..\..\..\..\..\..\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XmlDiffPatch">
+      <HintPath>..\packages\XMLDiffPatch.1.0.8.28\lib\net\XmlDiffPatch.dll</HintPath>
+    </Reference>
+    <Reference Include="XmlDiffPatch.View">
+      <HintPath>..\packages\XMLDiffPatch.1.0.8.28\lib\net\XmlDiffPatch.View.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckerFactory.cs" />
+    <Compile Include="Checkers\Contracts\AgreementChecker.cs" />
+    <Compile Include="Checkers\Contracts\AgreementDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\BookChecker.cs" />
+    <Compile Include="Checkers\Contracts\BookDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\BrokerChecker.cs" />
+    <Compile Include="Checkers\Contracts\BrokerCommodityChecker.cs" />
+    <Compile Include="Checkers\Contracts\BrokerCommodityDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\BrokerDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\BrokerRateChecker.cs" />
+    <Compile Include="Checkers\Contracts\BrokerRateDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\BusinessUnitChecker.cs" />
+    <Compile Include="Checkers\Contracts\BusinessUnitDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\CommodityFeeTypeChecker.cs" />
+    <Compile Include="Checkers\Contracts\CommodityFeeTypeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\CommodityInstrumentTypeChecker.cs" />
+    <Compile Include="Checkers\Contracts\CommodityInstrumentTypeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\CounterpartyChecker.cs" />
+    <Compile Include="Checkers\Contracts\CounterpartyDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\CurveChecker.cs" />
+    <Compile Include="Checkers\Contracts\CurveDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\DateRangeChecker.cs" />
+    <Compile Include="Checkers\Contracts\BookDefaultChecker.cs" />
+    <Compile Include="Checkers\Contracts\BookDefaultDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\DimensionChecker.cs" />
+    <Compile Include="Checkers\Contracts\DimensionDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ExchangeChecker.cs" />
+    <Compile Include="Checkers\Contracts\ExchangeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\FeeTypeChecker.cs" />
+    <Compile Include="Checkers\Contracts\FeeTypeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\HeaderChecker.cs" />
+    <Compile Include="Checkers\Contracts\HierarchyChecker.cs" />
+    <Compile Include="Checkers\Contracts\HierarchyDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\InstrumentTypeOverrideChecker.cs" />
+    <Compile Include="Checkers\Contracts\InstrumentTypeOverrideDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\LegalEntityChecker.cs" />
+    <Compile Include="Checkers\Contracts\LegalEntityDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\NexusIdChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyAccountabilityChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyAccountabilityDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyOverrideChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyOverrideDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyRoleAccountabilityChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyRoleAccountabilityDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyRoleChecker.cs" />
+    <Compile Include="Checkers\Contracts\PartyRoleDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\PersonDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\PortfolioHierarchyChecker.cs" />
+    <Compile Include="Checkers\Contracts\PortfolioHierarchyDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductCurveChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductCurveDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductScotaChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductScotaDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductTenorTypeChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductTenorTypeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductTypeChecker.cs" />
+    <Compile Include="Checkers\Contracts\ProductTypeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\SettlementContactChecker.cs" />
+    <Compile Include="Checkers\Contracts\SettlementContactDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ShapeChecker.cs" />
+    <Compile Include="Checkers\Contracts\ShapeDayChecker.cs" />
+    <Compile Include="Checkers\Contracts\ShapeDayDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ShapeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\ShapeElementChecker.cs" />
+    <Compile Include="Checkers\Contracts\ShapeElementDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\SystemDataChecker.cs" />
+    <Compile Include="Checkers\Contracts\TenorChecker.cs" />
+    <Compile Include="Checkers\Contracts\TenorDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\TenorTypeChecker.cs" />
+    <Compile Include="Checkers\Contracts\TenorTypeDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\UnitChecker.cs" />
+    <Compile Include="Checkers\Contracts\UnitDetailsChecker.cs" />
+    <Compile Include="Checkers\Contracts\VesselChecker.cs" />
+    <Compile Include="Checkers\Contracts\VesselDetailsChecker.cs" />
+    <Compile Include="Checkers\Mapping\AgreementChecker.cs" />
+    <Compile Include="Checkers\Mapping\AgreementMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\BookChecker.cs" />
+    <Compile Include="Checkers\Mapping\BookMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\BrokerChecker.cs" />
+    <Compile Include="Checkers\Mapping\BrokerCommodityChecker.cs" />
+    <Compile Include="Checkers\Mapping\BrokerCommodityMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\BrokerRateChecker.cs" />
+    <Compile Include="Checkers\Mapping\BrokerRateDetailsChecker.cs" />
+    <Compile Include="Checkers\Mapping\BrokerRateMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\BusinessUnitChecker.cs" />
+    <Compile Include="Checkers\Mapping\CalendarChecker.cs" />
+    <Compile Include="Checkers\Mapping\CalendarDayChecker.cs" />
+    <Compile Include="Checkers\Mapping\CalendarMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\CheckerExtensions.cs" />
+    <Compile Include="Checkers\Mapping\CommodityChecker.cs" />
+    <Compile Include="Checkers\Mapping\CommodityFeeTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\CommodityFeeTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\CommodityInstrumentTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\CommodityInstrumentTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\CommodityMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\CounterpartyChecker.cs" />
+    <Compile Include="Checkers\Mapping\CurveChecker.cs" />
+    <Compile Include="Checkers\Mapping\DateRangeChecker.cs" />
+    <Compile Include="Checkers\Mapping\BookDefaultChecker.cs" />
+    <Compile Include="Checkers\Mapping\BookDefaultMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\DimensionChecker.cs" />
+    <Compile Include="Checkers\Mapping\DimensionMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\EntityMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ExchangeChecker.cs" />
+    <Compile Include="Checkers\Mapping\FeeTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\FeeTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\HierarchyChecker.cs" />
+    <Compile Include="Checkers\Mapping\HierarchyMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\InstrumentTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\InstrumentTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\InstrumentTypeOverrideChecker.cs" />
+    <Compile Include="Checkers\Mapping\InstrumentTypeOverrideMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\LegalEntityChecker.cs" />
+    <Compile Include="Checkers\Mapping\LocationChecker.cs" />
+    <Compile Include="Checkers\Mapping\LocationMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\LocationRoleChecker.cs" />
+    <Compile Include="Checkers\Mapping\LocationRoleMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\LocationRoleTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\MarketChecker.cs" />
+    <Compile Include="Checkers\Mapping\MarketMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyAccountabilityChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyDetailsChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyOverrideChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyOverrideMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyRoleAccountabilityChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyRoleChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyRoleDetailsChecker.cs" />
+    <Compile Include="Checkers\Mapping\PartyRoleMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\PersonChecker.cs" />
+    <Compile Include="Checkers\Mapping\PersonDetailsChecker.cs" />
+    <Compile Include="Checkers\Mapping\PersonMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\PortfolioChecker.cs" />
+    <Compile Include="Checkers\Mapping\PortfolioHierarchyChecker.cs" />
+    <Compile Include="Checkers\Mapping\PortfolioHierarchyMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\PortfolioMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductCurveChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductCurveMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductScotaChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductScotaMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductTenorTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductTenorTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductTypeInstanceChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductTypeInstanceMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ProductTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ReferenceDataChecker.cs" />
+    <Compile Include="Checkers\Mapping\SettlementContactChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShapeChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShapeDayChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShapeDayMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShapeElementChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShapeElementMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShapeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShipperCodeChecker.cs" />
+    <Compile Include="Checkers\Mapping\ShipperCodeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\SourceSystemChecker.cs" />
+    <Compile Include="Checkers\Mapping\SourceSystemMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\TenorChecker.cs" />
+    <Compile Include="Checkers\Mapping\TenorMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\TenorTypeChecker.cs" />
+    <Compile Include="Checkers\Mapping\TenorTypeMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\UnitChecker.cs" />
+    <Compile Include="Checkers\Mapping\UnitMappingChecker.cs" />
+    <Compile Include="Checkers\Mapping\VesselChecker.cs" />
+    <Compile Include="Checkers\Mapping\VesselMappingChecker.cs" />
+    <Compile Include="Contracts\Mappers\AgreementDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\AgreementMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BookDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BookMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BookDefaultDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BookDefaultMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\LegalEntityDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\LegalEntityMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductTenorTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductTenorTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Validators\AgreementValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\BookValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\BookDefaultValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\LegalEntityValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductTenorTypeValidatorFixture.cs" />
+    <Compile Include="Data\EF\AgreementMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\AgreementRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BookMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BookRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BookDefaultMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BookDefaultRepositoryFixture.cs" />
+    <Compile Include="Data\EF\LegalEntityRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductTenorTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductTenorTypeRepositoryFixture.cs" />
+    <Compile Include="Extensions\SearchExtensionsFixture.cs" />
+    <Compile Include="Contracts\Mappers\TenorDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\TenorMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\TenorTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\TenorTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Validators\TenorTypeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\TenorValidatorFixture.cs" />
+    <Compile Include="Data\EF\TenorMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\TenorRepositoryFixture.cs" />
+    <Compile Include="Data\EF\TenorTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\TenorTypeRepositoryFixture.cs" />
+    <Compile Include="Mappers\AgreementDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\BookDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\BookDefaultDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\LegalEntityDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductTenorTypeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\TenorDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\TenorTypeDetailsMapperFixture.cs" />
+    <Compile Include="Messages\MessageFactoryTests.cs" />
+    <Compile Include="Configuration\EntityConfigurationFixture.cs" />
+    <Compile Include="Configuration\PersonConfigurationFixture.cs" />
+    <Compile Include="ContractObjectMother.cs" />
+    <Compile Include="Contracts\Mappers\BrokerCommodityDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BrokerCommodityMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BrokerDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BrokerMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BrokerRateDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BrokerRateMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BusinessUnitDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\BusinessUnitMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CalendarDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CalendarMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CommodityDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CommodityFeeTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CommodityFeeTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CommodityInstrumentTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CommodityInstrumentTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CommodityMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CounterpartyMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\CounterpartyDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\DimensionDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\DimensionMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ExchangeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ExchangeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\FeeTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\FeeTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\HierarchyDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\HierarchyMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeOverrideDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeOverrideMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyOverrideDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyOverrideMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyRoleDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyRoleMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioHierarchyDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioHierarchyMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PortfolioMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductCurveDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductCurveMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductScotaDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductScotaMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\SettlementContactDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\InstrumentTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\LocationDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\LocationMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\LocationRoleDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\LocationRoleMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\MappingMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\MarketDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\MarketMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PartyMappingMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PersonDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\PersonMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeInstanceDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeInstanceMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ProductTypeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShapeDayDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShapeDayMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShapeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShapeElementDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShapeElementMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShapeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShipperCodeDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\ShipperCodeMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\SourceSystemDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\SourceSystemMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\UnitDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\UnitMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\VesselDetailsMapperFixture.cs" />
+    <Compile Include="Contracts\Mappers\VesselMapperFixture.cs" />
+    <Compile Include="Contracts\Rules\AmendMappingNoOverlappingRuleFixture.cs" />
+    <Compile Include="Contracts\Rules\NexusEntityExistsRuleFixture.cs" />
+    <Compile Include="Contracts\Rules\NexusIdTypeNoOverlappingRuleFixture.cs" />
+    <Compile Include="Contracts\Rules\NexusIdTypeSystemExistsRuleFixture.cs" />
+    <Compile Include="Contracts\Rules\PartyRoleAmendMappingNoOverlappingRuleFixture.cs" />
+    <Compile Include="Contracts\Rules\PartyRoleCreateMappingdNoOverlappingRuleFixture.cs" />
+    <Compile Include="Contracts\Validators\BrokerCommodityValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\BrokerRateValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\BrokerValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\BusinessUnitValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\CalendarValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\BrokerValidatiorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\BusinessUnitValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\CommodityFeeTypeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\FeeTypeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\InstrumentTypeOverrideValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\PartyOverrideValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductCurveValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductScotaValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\PartyRoleValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\ExchangeValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\CounterpartyValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\CommodityInstrumentTypeValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\CommodityInstrumentTypeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\CommodityValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\CounterpartyValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\DimensionValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ExchangeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\HierarchyValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\InstrumentTypeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\LocationRoleValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\LocationRoleValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\LocationValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\MarketValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\MarketValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\PartyRoleValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\PartyValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\PersonValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\PortfolioHierarchyValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\PortfolioValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductTypeInstanceValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductTypeInstanceValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\ProductTypeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ProductValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\SettlementContactValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ShapeDayValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ShapeElementValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ShapeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ShipperCodeValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\ShipperCodeValidatorFixture.partial.cs" />
+    <Compile Include="Contracts\Validators\SourceSystemValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\StubValidatorRepository.cs" />
+    <Compile Include="Contracts\Validators\UnitValidatorFixture.cs" />
+    <Compile Include="Contracts\Validators\VesselValidatorFixture.cs" />
+    <Compile Include="Data\EF\BrokerCommodityMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BrokerCommodityRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BrokerRateMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BrokerRateRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BrokerRepositoryFixture.cs" />
+    <Compile Include="Data\EF\BusinessUnitRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CalendarMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CalendarRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CommodityFeeTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CommodityFeeTypeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CommodityInstrumentTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CommodityInstrumentTypeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CommodityMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CommodityRepositoryFixture.cs" />
+    <Compile Include="Data\EF\CounterpartyRepositoryFixture.cs" />
+    <Compile Include="Data\EF\DbSetRepositoryFixture.cs" />
+    <Compile Include="Data\EF\DimensionMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\DimensionRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ExchangeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\FeeTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\FeeTypeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\HierarchyMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\HierarchyRepositoryFixture.cs" />
+    <Compile Include="Data\EF\InstrumentTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\InstrumentTypeOverrideMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\InstrumentTypeOverrideRepositoryFixture.cs" />
+    <Compile Include="Data\EF\InstrumentTypeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\LocationMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\LocationRepositoryFixture.cs" />
+    <Compile Include="Data\EF\LocationRoleMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\LocationRoleRepositoryFixture.cs" />
+    <Compile Include="Data\EF\MarketMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\MarketRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyDetailsRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyOverrideMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyOverrideRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyRoleMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PartyRoleRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PortfolioHierarchyMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PortfolioHierarchyRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PortfolioMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PortfolioRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductCurveMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductCurveRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductScotaMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductScotaRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductTypeInstanceMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductTypeInstanceRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductTypeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ProductTypeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ReferenceDataRepositoryFixture.cs" />
+    <Compile Include="Data\EF\SettlementContactRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShapeDayMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShapeDayRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShapeElementMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShapeElementRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShapeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShapeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShipperCodeMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\ShipperCodeRepositoryFixture.cs" />
+    <Compile Include="Data\EF\SourceSystemMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\SourceSystemRepositoryFixture.cs" />
+    <Compile Include="Data\EF\UnitMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\UnitRepositoryFixture.cs" />
+    <Compile Include="Data\EF\VesselMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\VesselRepositoryFixture.cs" />
+    <Compile Include="Extensions\MappingRequestExtensionsFixture.cs" />
+    <Compile Include="Extensions\DateRangeExtensionsFixture.cs" />
+    <Compile Include="Extensions\MappingResponseExtensionsFixture.cs" />
+    <Compile Include="Feeds\FeedFactoryFixture.cs" />
+    <Compile Include="Fixture.cs" />
+    <Compile Include="Data\EF\PersonDetailsRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PersonMappingRepositoryFixture.cs" />
+    <Compile Include="Data\EF\PersonRepositoryFixture.cs" />
+    <Compile Include="Data\EF\Zapper.cs" />
+    <Compile Include="Data\EntityOverlapsFixture.cs" />
+    <Compile Include="Data\EntityValidAtFixture.cs" />
+    <Compile Include="CommodityMappingFixture.cs" />
+    <Compile Include="EntityMappingFixture.cs" />
+    <Compile Include="Mappers\BrokerCommodityDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\BrokerDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\BrokerRateDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\BusinessUnitDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\CalendarDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\CommodityDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\CommodityFeeTypeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\CommodityInstrumentTypeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\BrokerMapperFixture.cs" />
+    <Compile Include="Mappers\FeeTypeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\PartyOverrideDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductLinksMapperFixture.cs" />
+    <Compile Include="Mappers\DimensionDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ExchangeMapperFixture.cs" />
+    <Compile Include="Mappers\CounterpartyMapperFixture.cs" />
+    <Compile Include="Mappers\CounterpartyDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ExchangeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\HierarchyDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\InstrumentTypeOverrideDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\LocationDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\LocationRoleDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\MarketDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\PartyRoleDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\PartyRoleMapperFixture.cs" />
+    <Compile Include="Mappers\PortfolioDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\PortfolioHierarchyDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductCurveDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductScotaDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductTypeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ProductTypeInstanceDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\SettlementContactDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ShapeDayDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ShapeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ShapeElementDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\ShipperCodeDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\SourceSystemDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\UnitDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\VesselDetailsMapperFixture.cs" />
+    <Compile Include="Mapping\EntityMappingSpecs.cs" />
+    <Compile Include="Search\SearchServiceNonTemporalSearchFixture.cs" />
+    <Compile Include="Search\SearchCommandEntitySearchFixture.cs" />
+    <Compile Include="Search\SearchCommandMappingSearchFixture.cs" />
+    <Compile Include="Search\SearchServiceFixture.cs" />
+    <Compile Include="Services\AgreementCreateFixture.cs" />
+    <Compile Include="Services\AgreementCreateMappingFixture.cs" />
+    <Compile Include="Services\AgreementCrossMapFixture.cs" />
+    <Compile Include="Services\AgreementMapFixture.cs" />
+    <Compile Include="Services\AgreementUpdateFixture.cs" />
+    <Compile Include="Services\AgreementUpdateMappingFixture.cs" />
+    <Compile Include="Services\BookCreateFixture.cs" />
+    <Compile Include="Services\BookCreateMappingFixture.cs" />
+    <Compile Include="Services\BookCrossMapFixture.cs" />
+    <Compile Include="Services\BookMapFixture.cs" />
+    <Compile Include="Services\BookUpdateFixture.cs" />
+    <Compile Include="Services\BookUpdateMappingFixture.cs" />
+    <Compile Include="Services\BrokerCommodityCreateFixture.cs" />
+    <Compile Include="Services\BrokerCommodityCreateMappingFixture.cs" />
+    <Compile Include="Services\BrokerCommodityCrossMapFixture.cs" />
+    <Compile Include="Services\BrokerCommodityMapFixture.cs" />
+    <Compile Include="Services\BrokerCommodityUpdateFixture.cs" />
+    <Compile Include="Services\BrokerCommodityUpdateMappingFixture.cs" />
+    <Compile Include="Services\BrokerCreateFixture.cs" />
+    <Compile Include="Services\BrokerCrossMapFixture.cs" />
+    <Compile Include="Services\BrokerRateCreateFixture.cs" />
+    <Compile Include="Services\BrokerRateCreateMappingFixture.cs" />
+    <Compile Include="Services\BrokerRateCrossMapFixture.cs" />
+    <Compile Include="Services\BrokerRateMapFixture.cs" />
+    <Compile Include="Services\BrokerRateUpdateFixture.cs" />
+    <Compile Include="Services\BrokerRateUpdateMappingFixture.cs" />
+    <Compile Include="Services\BrokerUpdateFixture.cs" />
+    <Compile Include="Services\BusinessUnitCreateFixture.cs" />
+    <Compile Include="Services\BusinessUnitCrossMapFixture.cs" />
+    <Compile Include="Services\BusinessUnitUpdateFixture.cs" />
+    <Compile Include="Services\CalendarCreateFixture.cs" />
+    <Compile Include="Services\CalendarCreateMappingFixture.cs" />
+    <Compile Include="Services\CalendarCrossMapFixture.cs" />
+    <Compile Include="Services\CalendarMapFixture.cs" />
+    <Compile Include="Services\CalendarUpdateFixture.cs" />
+    <Compile Include="Services\CalendarUpdateMappingFixture.cs" />
+    <Compile Include="Services\CommodityCreateFixture.cs" />
+    <Compile Include="Services\CommodityCreateMappingFixture.cs" />
+    <Compile Include="Services\CommodityCrossMapFixture.cs" />
+    <Compile Include="Services\CommodityFeeTypeCreateFixture.cs" />
+    <Compile Include="Services\CommodityFeeTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\CommodityFeeTypeCrossMapFixture.cs" />
+    <Compile Include="Services\CommodityFeeTypeMapFixture.cs" />
+    <Compile Include="Services\CommodityFeeTypeUpdateFixture.cs" />
+    <Compile Include="Services\CommodityFeeTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeCreateFixture.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeCrossMapFixture.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeMapFixture.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeUpdateFixture.cs" />
+    <Compile Include="Services\CommodityInstrumentTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\CommodityMapFixture.cs" />
+    <Compile Include="Services\CommodityUpdateFixture.cs" />
+    <Compile Include="Services\CommodityUpdateMappingFixture.cs" />
+    <Compile Include="Services\CounterpartyCreateFixture.cs" />
+    <Compile Include="Services\CounterpartyCrossMapFixture.cs" />
+    <Compile Include="Services\CounterpartyUpdateFixture.cs" />
+    <Compile Include="Services\BookDefaultCreateFixture.cs" />
+    <Compile Include="Services\BookDefaultCreateMappingFixture.cs" />
+    <Compile Include="Services\BookDefaultCrossMapFixture.cs" />
+    <Compile Include="Services\BookDefaultMapFixture.cs" />
+    <Compile Include="Services\BookDefaultUpdateFixture.cs" />
+    <Compile Include="Services\BookDefaultUpdateMappingFixture.cs" />
+    <Compile Include="Services\DimensionCreateFixture.cs" />
+    <Compile Include="Services\DimensionCreateMappingFixture.cs" />
+    <Compile Include="Services\DimensionCrossMapFixture.cs" />
+    <Compile Include="Services\DimensionMapFixture.cs" />
+    <Compile Include="Services\DimensionUpdateFixture.cs" />
+    <Compile Include="Services\DimensionUpdateMappingFixture.cs" />
+    <Compile Include="Services\ExchangeCreateFixture.cs" />
+    <Compile Include="Services\ExchangeUpdateFixture.cs" />
+    <Compile Include="Services\FeeTypeCreateFixture.cs" />
+    <Compile Include="Services\FeeTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\FeeTypeCrossMapFixture.cs" />
+    <Compile Include="Services\FeeTypeMapFixture.cs" />
+    <Compile Include="Services\FeeTypeUpdateFixture.cs" />
+    <Compile Include="Services\FeeTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\HierarchyCreateFixture.cs" />
+    <Compile Include="Services\HierarchyCreateMappingFixture.cs" />
+    <Compile Include="Services\HierarchyCrossMapFixture.cs" />
+    <Compile Include="Services\HierarchyMapFixture.cs" />
+    <Compile Include="Services\HierarchyUpdateFixture.cs" />
+    <Compile Include="Services\HierarchyUpdateMappingFixture.cs" />
+    <Compile Include="Services\InstrumentTypeCreateFixture.cs" />
+    <Compile Include="Services\InstrumentTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\InstrumentTypeCrossMapFixture.cs" />
+    <Compile Include="Services\InstrumentTypeMapFixture.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideCreateFixture.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideCreateMappingFixture.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideCrossMapFixture.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideMapFixture.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideUpdateFixture.cs" />
+    <Compile Include="Services\InstrumentTypeOverrideUpdateMappingFixture.cs" />
+    <Compile Include="Services\InstrumentTypeUpdateFixture.cs" />
+    <Compile Include="Services\InstrumentTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\LegalEntityCreateFixture.cs" />
+    <Compile Include="Services\LegalEntityCrossMapFixture.cs" />
+    <Compile Include="Services\LegalEntityUpdateFixture.cs" />
+    <Compile Include="Services\LocationCreateFixture.cs" />
+    <Compile Include="Services\LocationCreateMappingFixture.cs" />
+    <Compile Include="Services\LocationCrossMapFixture.cs" />
+    <Compile Include="Services\LocationMapFixture.cs" />
+    <Compile Include="Services\LocationRoleCreateFixture.cs" />
+    <Compile Include="Services\LocationRoleCreateMappingFixture.cs" />
+    <Compile Include="Services\LocationRoleCrossMapFixture.cs" />
+    <Compile Include="Services\LocationRoleMapFixture.cs" />
+    <Compile Include="Services\LocationRoleUpdateFixture.cs" />
+    <Compile Include="Services\LocationRoleUpdateMappingFixture.cs" />
+    <Compile Include="Services\LocationUpdateFixture.cs" />
+    <Compile Include="Services\LocationUpdateMappingFixture.cs" />
+    <Compile Include="Services\MarketCreateFixture.cs" />
+    <Compile Include="Services\MarketCreateMappingFixture.cs" />
+    <Compile Include="Services\MarketCrossMapFixture.cs" />
+    <Compile Include="Services\MarketMapFixture.cs" />
+    <Compile Include="Services\MarketUpdateFixture.cs" />
+    <Compile Include="Services\MarketUpdateMappingFixture.cs" />
+    <Compile Include="Services\MdmServiceFixture.cs" />
+    <Compile Include="Services\PartyOverrideCreateFixture.cs" />
+    <Compile Include="Services\PartyOverrideCreateMappingFixture.cs" />
+    <Compile Include="Services\PartyOverrideCrossMapFixture.cs" />
+    <Compile Include="Services\PartyOverrideMapFixture.cs" />
+    <Compile Include="Services\PartyOverrideUpdateFixture.cs" />
+    <Compile Include="Services\PartyOverrideUpdateMappingFixture.cs" />
+    <Compile Include="Services\PartyRoleCreateFixture.cs" />
+    <Compile Include="Services\PartyRoleCreateMappingFixture.cs" />
+    <Compile Include="Services\PartyRoleCrossMapFixture.cs" />
+    <Compile Include="Services\PartyRoleMapFixture.cs" />
+    <Compile Include="Services\PartyRoleUpdateFixture.cs" />
+    <Compile Include="Services\PartyRoleUpdateMappingFixture.cs" />
+    <Compile Include="Services\PortfolioCreateFixture.cs" />
+    <Compile Include="Services\PortfolioCreateMappingFixture.cs" />
+    <Compile Include="Services\PortfolioCrossMapFixture.cs" />
+    <Compile Include="Services\PortfolioHierarchyCreateFixture.cs" />
+    <Compile Include="Services\PortfolioHierarchyCreateMappingFixture.cs" />
+    <Compile Include="Services\PortfolioHierarchyCrossMapFixture.cs" />
+    <Compile Include="Services\PortfolioHierarchyMapFixture.cs" />
+    <Compile Include="Services\PortfolioHierarchyUpdateFixture.cs" />
+    <Compile Include="Services\PortfolioHierarchyUpdateMappingFixture.cs" />
+    <Compile Include="Services\PortfolioMapFixture.cs" />
+    <Compile Include="Services\PortfolioUpdateFixture.cs" />
+    <Compile Include="Services\PortfolioUpdateMappingFixture.cs" />
+    <Compile Include="Services\ProductCreateFixture.cs" />
+    <Compile Include="Services\ProductCreateMappingFixture.cs" />
+    <Compile Include="Services\ProductCrossMapFixture.cs" />
+    <Compile Include="Services\ProductCurveCreateFixture.cs" />
+    <Compile Include="Services\ProductCurveCreateMappingFixture.cs" />
+    <Compile Include="Services\ProductCurveCrossMapFixture.cs" />
+    <Compile Include="Services\ProductCurveMapFixture.cs" />
+    <Compile Include="Services\ProductCurveUpdateFixture.cs" />
+    <Compile Include="Services\ProductCurveUpdateMappingFixture.cs" />
+    <Compile Include="Services\ProductMapFixture.cs" />
+    <Compile Include="Services\ProductScotaCreateFixture.cs" />
+    <Compile Include="Services\ProductScotaCreateMappingFixture.cs" />
+    <Compile Include="Services\ProductScotaCrossMapFixture.cs" />
+    <Compile Include="Services\ProductScotaMapFixture.cs" />
+    <Compile Include="Services\ProductScotaUpdateFixture.cs" />
+    <Compile Include="Services\ProductScotaUpdateMappingFixture.cs" />
+    <Compile Include="Services\ProductTenorTypeCreateFixture.cs" />
+    <Compile Include="Services\ProductTenorTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\ProductTenorTypeCrossMapFixture.cs" />
+    <Compile Include="Services\ProductTenorTypeMapFixture.cs" />
+    <Compile Include="Services\ProductTenorTypeUpdateFixture.cs" />
+    <Compile Include="Services\ProductTenorTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\ProductTypeCreateFixture.cs" />
+    <Compile Include="Services\ProductTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\ProductTypeCrossMapFixture.cs" />
+    <Compile Include="Services\ProductTypeInstanceCreateFixture.cs" />
+    <Compile Include="Services\ProductTypeInstanceCreateMappingFixture.cs" />
+    <Compile Include="Services\ProductTypeInstanceCrossMapFixture.cs" />
+    <Compile Include="Services\ProductTypeInstanceMapFixture.cs" />
+    <Compile Include="Services\ProductTypeInstanceUpdateFixture.cs" />
+    <Compile Include="Services\ProductTypeInstanceUpdateMappingFixture.cs" />
+    <Compile Include="Services\ProductTypeMapFixture.cs" />
+    <Compile Include="Services\ProductTypeUpdateFixture.cs" />
+    <Compile Include="Services\ProductTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\ProductUpdateFixture.cs" />
+    <Compile Include="Services\ProductUpdateMappingFixture.cs" />
+    <Compile Include="Services\SettlementContactCreateFixture.cs" />
+    <Compile Include="Services\SettlementContactCrossMapFixture.cs" />
+    <Compile Include="Services\SettlementContactUpdateFixture.cs" />
+    <Compile Include="Services\ShapeCreateFixture.cs" />
+    <Compile Include="Services\ShapeCreateMappingFixture.cs" />
+    <Compile Include="Services\ShapeCrossMapFixture.cs" />
+    <Compile Include="Services\ShapeDayCreateFixture.cs" />
+    <Compile Include="Services\ShapeDayCreateMappingFixture.cs" />
+    <Compile Include="Services\ShapeDayCrossMapFixture.cs" />
+    <Compile Include="Services\ShapeDayMapFixture.cs" />
+    <Compile Include="Services\ShapeDayUpdateFixture.cs" />
+    <Compile Include="Services\ShapeDayUpdateMappingFixture.cs" />
+    <Compile Include="Services\ShapeElementCreateFixture.cs" />
+    <Compile Include="Services\ShapeElementCreateMappingFixture.cs" />
+    <Compile Include="Services\ShapeElementCrossMapFixture.cs" />
+    <Compile Include="Services\ShapeElementMapFixture.cs" />
+    <Compile Include="Services\ShapeElementUpdateFixture.cs" />
+    <Compile Include="Services\ShapeElementUpdateMappingFixture.cs" />
+    <Compile Include="Services\ShapeMapFixture.cs" />
+    <Compile Include="Services\ShapeUpdateFixture.cs" />
+    <Compile Include="Services\ShapeUpdateMappingFixture.cs" />
+    <Compile Include="Services\ShipperCodeCreateFixture.cs" />
+    <Compile Include="Services\ShipperCodeCreateMappingFixture.cs" />
+    <Compile Include="Services\ShipperCodeCrossMapFixture.cs" />
+    <Compile Include="Services\ShipperCodeMapFixture.cs" />
+    <Compile Include="Services\ShipperCodeUpdateFixture.cs" />
+    <Compile Include="Services\ShipperCodeUpdateMappingFixture.cs" />
+    <Compile Include="Services\SourceSystemCreateFixture.cs" />
+    <Compile Include="Mappers\PartyDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\PartyMappingMapperFixture.cs" />
+    <Compile Include="Mappers\PersonDetailsMapperFixture.cs" />
+    <Compile Include="Mappers\PersonMappingMapperFixture.cs" />
+    <Compile Include="ObjectMother.cs" />
+    <Compile Include="PartyDetailsFixture.cs" />
+    <Compile Include="PartyFixture.cs" />
+    <Compile Include="PartyMappingFixture.cs" />
+    <Compile Include="PersonDetailsFixture.cs" />
+    <Compile Include="PersonFixture.cs" />
+    <Compile Include="PersonMappingFixture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PartyCreateFixture.cs" />
+    <Compile Include="Services\PartyCreateMappingFixture.cs" />
+    <Compile Include="Services\PartyCreateSearchFixture.cs" />
+    <Compile Include="Services\PartyCrossMapFixture.cs" />
+    <Compile Include="Services\PartyGetSearchResultsFixture.cs" />
+    <Compile Include="Services\PartyMapFixture.cs" />
+    <Compile Include="Services\PartyRequestFixture.cs" />
+    <Compile Include="Services\PartyUpdateFixture.cs" />
+    <Compile Include="Services\PartyUpdateMappingFixture.cs" />
+    <Compile Include="Services\PersonUpdateFixture.cs" />
+    <Compile Include="Services\PersonUpdateMappingFixture.cs" />
+    <Compile Include="Services\PersonCreateFixture.cs" />
+    <Compile Include="Services\PersonCreateMappingFixture.cs" />
+    <Compile Include="Services\PersonCrossMapFixture.cs" />
+    <Compile Include="Services\PersonMapFixture.cs" />
+    <Compile Include="Services\PersonRequestFixture.cs" />
+    <Compile Include="Services\SourceSystemCreateMappingFixture.cs" />
+    <Compile Include="Services\SourceSystemCrossMapFixture.cs" />
+    <Compile Include="Services\SourceSystemMapFixture.cs" />
+    <Compile Include="Services\SourceSystemUpdateFixture.cs" />
+    <Compile Include="Services\SourceSystemUpdateMappingFixture.cs" />
+    <Compile Include="Services\TenorCreateFixture.cs" />
+    <Compile Include="Services\TenorCreateMappingFixture.cs" />
+    <Compile Include="Services\TenorCrossMapFixture.cs" />
+    <Compile Include="Services\TenorMapFixture.cs" />
+    <Compile Include="Services\TenorTypeCreateFixture.cs" />
+    <Compile Include="Services\TenorTypeCreateMappingFixture.cs" />
+    <Compile Include="Services\TenorTypeCrossMapFixture.cs" />
+    <Compile Include="Services\TenorTypeMapFixture.cs" />
+    <Compile Include="Services\TenorTypeUpdateFixture.cs" />
+    <Compile Include="Services\TenorTypeUpdateMappingFixture.cs" />
+    <Compile Include="Services\TenorUpdateFixture.cs" />
+    <Compile Include="Services\TenorUpdateMappingFixture.cs" />
+    <Compile Include="Services\UnitCreateFixture.cs" />
+    <Compile Include="Services\UnitCreateMappingFixture.cs" />
+    <Compile Include="Services\UnitCrossMapFixture.cs" />
+    <Compile Include="Services\UnitMapFixture.cs" />
+    <Compile Include="Services\UnitUpdateFixture.cs" />
+    <Compile Include="Services\UnitUpdateMappingFixture.cs" />
+    <Compile Include="Services\VesselCreateFixture.cs" />
+    <Compile Include="Services\VesselCreateMappingFixture.cs" />
+    <Compile Include="Services\VesselCrossMapFixture.cs" />
+    <Compile Include="Services\VesselMapFixture.cs" />
+    <Compile Include="Services\VesselUpdateFixture.cs" />
+    <Compile Include="Services\VesselUpdateMappingFixture.cs" />
+    <Compile Include="Web\ContractRequestFixture.cs" />
+    <Compile Include="Web\PartyRequestFixture.cs" />
+    <Compile Include="Web\PersonRequestFixture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MDM.Data.EF.Nexus\MDM.Data.EF.Nexus.csproj">
+      <Project>{762ad6d7-6f76-436e-97ab-f533a72717e8}</Project>
+      <Name>MDM.Data.EF.Nexus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Data.EF\MDM.Data.EF.csproj">
+      <Project>{7A19CCF8-7DB6-41B3-92FC-5E9289844160}</Project>
+      <Name>MDM.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Wcf.Nexus\MDM.ServiceHost.Wcf.Nexus.csproj">
+      <Project>{E24C551C-13F8-4B9C-87FA-C29550180401}</Project>
+      <Name>MDM.MappingService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Core.Nexus\MDM.Core.Nexus.csproj">
+      <Project>{2b2e3cfe-42fe-407f-a2ae-77e138f04e8a}</Project>
+      <Name>MDM.Core.Nexus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
+      <Project>{CAC0933B-4282-4D7E-98B6-C6F0806F3830}</Project>
+      <Name>MDM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Unity\MDM.ServiceHost.Unity.csproj">
+      <Project>{a70c860c-383c-411c-9642-878b284b0924}</Project>
+      <Name>MDM.ServiceHost.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Wcf\MDM.ServiceHost.Wcf.csproj">
+      <Project>{de2a7205-571a-48b0-9b38-6b4a76677898}</Project>
+      <Name>MDM.ServiceHost.Wcf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Unity.Nexus\MDM.ServiceHost.Unity.Nexus.csproj">
+      <Project>{d4094f55-5509-4c70-ab68-ccdc54cc87ed}</Project>
+      <Name>MDM.ServiceHost.Unity.Nexus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="App.re56844.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App.re55750.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App.r909912.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App.re57632.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App.r898893.config">
+      <DependentUpon>App.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Compile Include="Contracts\Validators\ProductTypeValidatorFixture.partial.cs" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\Web\Microsoft.Web.Publishing.Tasks.dll" />
+  <Target Name="AfterCompile">
+    <PropertyGroup Condition="$(Username) != 'SYSTEM'">
+      <BuildServer>false</BuildServer>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Username) == 'SYSTEM' Or $(Username) == 'SRV_CCNETUSER' Or $(Username) == 'SRV_RWEST_TC_BUILD'">
+      <BuildServer>true</BuildServer>
+    </PropertyGroup>
+    <Message Text="Configuration is $(Configuration)" />
+    <Message Text="UserName is $(Username)" />
+    <Message Text="On BuildServer is $(BuildServer)" />
+    <ItemGroup>
+      <OriginalWebConfig Include="App.config" />
+      <TempWebConfig Include="TempApp.config" />
+    </ItemGroup>
+    <Copy SourceFiles="@(OriginalWebConfig)" DestinationFiles="@(TempWebConfig)" />
+    <!--<TransformXml Condition="$(BuildServer) == 'false'" ContinueOnError="true" Source="@(TempWebConfig)" Transform="App.$(Username).config" Destination="@(OriginalWebConfig)" StackTrace="true" />-->
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

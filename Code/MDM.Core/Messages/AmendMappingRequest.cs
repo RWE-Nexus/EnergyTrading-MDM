@@ -8,6 +8,6 @@
 
         public RWEST.Nexus.MDM.Contracts.NexusId Mapping { get; set; }
 
-        public long Version { get; set; }
+        public ulong Version { get; set; }
     }
 }

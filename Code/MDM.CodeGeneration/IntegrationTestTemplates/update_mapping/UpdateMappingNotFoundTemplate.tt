@@ -22,6 +22,7 @@ namespace EnergyTrading.MDM.Test
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
+    using EnergyTrading.MDM.Extensions;
 
     [TestClass]
     public class when_a_request_is_made_to_update_a_<#= EntityName.ToLower() #>_mapping_and_the_mapping_doesnt_exist : IntegrationTestBase
@@ -76,10 +77,10 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        private static long CurrentEntityVersion()
+        private static ulong CurrentEntityVersion()
         {
             var <#= EntityName.ToLower() #>Mapping = new DbSetRepository<MDM.<#= MappingName #>>(new MappingContext()).FindOne(entity.Mappings[0].Id);
-            return BitConverter.ToInt64(<#= EntityName.ToLower() #>Mapping.Version, 0);
+            return <#= EntityName.ToLower() #>Mapping.Version.ToUnsignedLongVersion();
         }
     }
 }

@@ -10,8 +10,6 @@
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.Search;
-    using Person = EnergyTrading.MDM.Person;
-    using PersonDetails = EnergyTrading.MDM.PersonDetails;
 
     /// <summary>
     /// Create and map a type of MDM entity.
@@ -75,7 +73,7 @@
         /// <param name="version">The version we are intending to update</param>
         /// <param name="contract"></param>
         /// <returns></returns>
-        ContractResponse<TContract> Update(int entityId, long version, TContract contract);
+        ContractResponse<TContract> Update(int entityId, ulong version, TContract contract);
 
         /// <summary>
         /// Delete a mapping from an existing entit

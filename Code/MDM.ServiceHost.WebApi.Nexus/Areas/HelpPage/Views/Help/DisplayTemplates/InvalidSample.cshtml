@@ -1,0 +1,13 @@
+@using EnergyTrading.MDM.MappingService2.Areas.HelpPage
+@model EnergyTrading.MDM.ServiceHost.WebApi.Nexus.Areas.HelpPage.SampleGeneration.InvalidSample
+
+@if (HttpContext.Current.IsDebuggingEnabled)
+{
+    <div class="warning-message-container">
+        <p>@Model.ErrorMessage</p>
+    </div>
+}
+else
+{
+    <p>Sample not available.</p>
+}

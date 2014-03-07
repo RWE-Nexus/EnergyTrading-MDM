@@ -6,6 +6,6 @@
     {
         IEntity Entity { get; set; }
 
-        long Version { get; }
+        ulong Version { get; }
     }
 }
