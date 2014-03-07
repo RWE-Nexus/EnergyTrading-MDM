@@ -1,6 +1,5 @@
 ﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Results
 {
-    using System.Globalization;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -13,9 +12,9 @@
         private readonly HttpRequestMessage request;
         private readonly T content;
         private readonly HttpStatusCode statusCode;
-        private readonly long version;
+        private readonly ulong version;
 
-        public ResponseWithETag(HttpRequestMessage request, T content, HttpStatusCode statusCode, long version)
+        public ResponseWithETag(HttpRequestMessage request, T content, HttpStatusCode statusCode, ulong version)
         {
             this.request = request;
             this.content = content;
@@ -26,10 +25,11 @@
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var response = this.request.CreateResponse(this.statusCode, this.content);
-            var etag = string.Format("\"{0}\"", this.version.ToString(CultureInfo.InvariantCulture));
-            response.Headers.ETag = new EntityTagHeaderValue(etag);
-            response.Headers.CacheControl = new CacheControlHeaderValue();
-            response.Headers.CacheControl.Private = true;
+            response.Headers.ETag = new EntityTagHeaderValue(this.version.ToEtag());
+            response.Headers.CacheControl = new CacheControlHeaderValue
+                {
+                    Private = true
+                };
             return Task.FromResult(response);
         }
     }

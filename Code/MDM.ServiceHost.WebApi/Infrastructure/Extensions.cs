@@ -6,17 +6,17 @@
 
     public static class Extensions
     {
-        public static long ToVersion(this ETag etag)
+        public static ulong ToVersion(this ETag etag)
         {
             if (etag == null)
             {
                 return 0;
             }
 
-            return long.Parse(etag.Tag.Replace("\"", ""));
+            return ulong.Parse(etag.Tag.Replace("\"", ""));
         }
 
-        public static string ToEtag(this long version)
+        public static string ToEtag(this ulong version)
         {
             return "\"" + version + "\"";
         }
