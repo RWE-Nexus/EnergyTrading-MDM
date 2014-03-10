@@ -77,7 +77,7 @@ namespace EnergyTrading.MDM.Test.Services
             // Domain
             var system = new SourceSystem { Name = "Test" };
             var mapping = new <#= MappingName #> { System = system, MappingValue = "A" };
-            var d1 = new <#= EntityName #>Details { Id = 1, Name = "Test", Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 } };
+            var d1 = new <#= EntityName #>Details { Id = 1, Name = "Test", Timestamp = 74UL.GetVersionByteArray() };
             var entity = new <#= EntityName #>();
             entity.AddDetails(d1);
 

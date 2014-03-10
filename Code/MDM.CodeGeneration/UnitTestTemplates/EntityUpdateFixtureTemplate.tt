@@ -100,9 +100,9 @@ namespace EnergyTrading.MDM.Test.Services
             var mapping = new <#= MappingName #> { System = system, MappingValue = "A" };
             var d1 = ObjectMother.Create<<#= EntityName #>>();
             d1.Id = 1;
-            d1.Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 };
+            d1.Timestamp = 74UL.GetVersionByteArray();
             var entity = ObjectMother.Create<<#= EntityName #>>(); 
-            entity.Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 };
+            entity.Timestamp = 74UL.GetVersionByteArray();
             entity.AddDetails(d1);
 
             var d2 = ObjectMother.Create<<#= EntityName #>>(); 

@@ -16,19 +16,19 @@
             var person = new Person();
             var entity = person as IEntity;
 
-            Assert.AreEqual(long.MinValue, entity.Version, "Version differs");
+            Assert.AreEqual(ulong.MinValue, entity.Version, "Version differs");
         }
 
         [TestMethod]
         public void VersionReportsLatestTimestamp()
         {
             var person = new Person();
-            var details = new PersonDetails { Id = 12, FirstName = "John", LastName = "Smith", Timestamp = new byte[] { 34, 0, 0, 0, 0, 0, 0, 0 } };
+            var details = new PersonDetails { Id = 12, FirstName = "John", LastName = "Smith", Timestamp = 34UL.GetVersionByteArray() };
             person.AddDetails(details);
 
             var entity = person as IEntity;
 
-            Assert.AreEqual(34, entity.Version, "Version differs");
+            Assert.AreEqual(34UL, entity.Version, "Version differs");
         }
 
         [TestMethod]

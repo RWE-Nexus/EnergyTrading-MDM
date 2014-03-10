@@ -111,12 +111,12 @@ namespace EnergyTrading.MDM.Test.Services
 
             // NB Don't put mappingId here - service assigns it
             var identifier = new NexusId { SystemName = "Test", Identifier = "A" };
-            var message = new AmendMappingRequest { MappingId = mappingId, Mapping = identifier, Version = 34 };
+            var message = new AmendMappingRequest { MappingId = mappingId, Mapping = identifier, Version = 34UL };
 
             var start = new DateTime(2000, 12, 31);
             var finish = DateUtility.Round(SystemTime.UtcNow().AddDays(5));
             var s1 = new SourceSystem { Name = "Test" };
-            var m1 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Version = new byte[] { 0, 0, 0, 0, 0, 0, 0, 34 }, Validity = new DateRange(start, DateUtility.MaxDate) };			
+            var m1 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Version = 34UL.GetVersionByteArray(), Validity = new DateRange(start, DateUtility.MaxDate) };			
             var m2 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Validity = new DateRange(start, finish) };
 
             // NB We deliberately bypasses the business logic

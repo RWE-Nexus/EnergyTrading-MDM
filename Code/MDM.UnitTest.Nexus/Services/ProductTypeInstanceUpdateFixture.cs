@@ -87,9 +87,9 @@ namespace EnergyTrading.MDM.Test.Services
             var mapping = new ProductTypeInstanceMapping { System = system, MappingValue = "A" };
             var d1 = ObjectMother.Create<ProductTypeInstance>();
             d1.Id = 1;
-            d1.Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 };
-            var entity = ObjectMother.Create<ProductTypeInstance>(); 
-            entity.Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 };
+            d1.Timestamp = 74UL.GetVersionByteArray();
+            var entity = ObjectMother.Create<ProductTypeInstance>();
+            entity.Timestamp = 74UL.GetVersionByteArray();
             entity.AddDetails(d1);
 
             var d2 = ObjectMother.Create<ProductTypeInstance>(); 

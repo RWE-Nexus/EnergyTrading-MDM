@@ -64,7 +64,7 @@ namespace EnergyTrading.MDM.Test.Services
             // Domain
             var system = new SourceSystem { Name = "Test" };
             var mapping = new PartyRoleMapping { System = system, MappingValue = "A" };
-            var d1 = new CounterpartyDetails { Id = 1, Name = "Test", Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 } };
+            var d1 = new CounterpartyDetails { Id = 1, Name = "Test", Timestamp = 74UL.GetVersionByteArray() };
             var entity = new Counterparty();
             entity.Party = new Party() { Id = 1};
             entity.AddDetails(d1);

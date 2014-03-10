@@ -64,7 +64,7 @@
             // Domain
             var system = new SourceSystem { Name = "Test" };
             var mapping = new PersonMapping { System = system, MappingValue = "A" };
-            var d1 = new PersonDetails { Id = 1, FirstName = "Bill", LastName = "Jones", Email = "test@test.com", Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 } };
+            var d1 = new PersonDetails { Id = 1, FirstName = "Bill", LastName = "Jones", Email = "test@test.com", Timestamp = 74UL.GetVersionByteArray() };
             var entity = new Person();
             entity.AddDetails(d1);
 
