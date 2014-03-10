@@ -20,19 +20,19 @@ namespace EnergyTrading.MDM.Test
             var party = new Party();
             var entity = party as IEntity;
 
-            Assert.AreEqual(long.MinValue, entity.Version, "Version differs");
+            Assert.AreEqual(ulong.MinValue, entity.Version, "Version differs");
         }
 
         [TestMethod]
         public void VersionReportsLatestTimestamp()
         {
             var party = new Party();
-            var details = new PartyDetails() { Id = 12, Name = "Party 1", Timestamp = new byte[] { 34, 0, 0, 0, 0, 0, 0, 0 } };
+            var details = new PartyDetails() { Id = 12, Name = "Party 1", Timestamp = 34UL.GetVersionByteArray() };
             party.AddDetails(details);
 
             var entity = party as IEntity;
 
-            Assert.AreEqual(34, entity.Version, "Version differs");
+            Assert.AreEqual(34UL, entity.Version, "Version differs");
         }
 
         [TestMethod]

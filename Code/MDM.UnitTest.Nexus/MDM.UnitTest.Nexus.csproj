@@ -834,6 +834,7 @@
     <Compile Include="Services\VesselMapFixture.cs" />
     <Compile Include="Services\VesselUpdateFixture.cs" />
     <Compile Include="Services\VesselUpdateMappingFixture.cs" />
+    <Compile Include="VersionHelperExtensions.cs" />
     <Compile Include="Web\ContractRequestFixture.cs" />
     <Compile Include="Web\PartyRequestFixture.cs" />
     <Compile Include="Web\PersonRequestFixture.cs" />

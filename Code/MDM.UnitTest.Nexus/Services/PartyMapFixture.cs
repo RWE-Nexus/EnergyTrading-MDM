@@ -208,7 +208,7 @@ namespace EnergyTrading.MDM.Test.Services
 
             Assert.IsNull(response.Contract, "Contract not null"); 
             Assert.IsTrue(response.IsValid);
-            Assert.AreEqual(0, response.Version);
+            Assert.AreEqual(0UL, response.Version);
         }
     }
 }

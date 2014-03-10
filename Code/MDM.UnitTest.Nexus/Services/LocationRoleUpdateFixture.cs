@@ -87,9 +87,9 @@ namespace EnergyTrading.MDM.Test.Services
             var mapping = new LocationRoleMapping { System = system, MappingValue = "A" };
             var d1 = ObjectMother.Create<LocationRole>();
             d1.Id = 1;
-            d1.Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 };
-            var entity = ObjectMother.Create<LocationRole>(); 
-            entity.Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 };
+            d1.Timestamp = 74UL.GetVersionByteArray();
+            var entity = ObjectMother.Create<LocationRole>();
+            entity.Timestamp = 74UL.GetVersionByteArray();
             entity.AddDetails(d1);
 
             var d2 = ObjectMother.Create<LocationRole>(); 

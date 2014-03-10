@@ -139,6 +139,7 @@
     <Compile Include="Services\SourceSystemMapFixture.cs" />
     <Compile Include="Services\SourceSystemUpdateFixture.cs" />
     <Compile Include="Services\SourceSystemUpdateMappingFixture.cs" />
+    <Compile Include="VersionHelperExtensions.cs" />
     <Compile Include="Web\ContractRequestFixture.cs" />
   </ItemGroup>
   <ItemGroup>

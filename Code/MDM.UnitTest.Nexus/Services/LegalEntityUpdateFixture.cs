@@ -66,7 +66,7 @@
             // Domain
             var system = new SourceSystem { Name = "Test" };
             var mapping = new PartyRoleMapping { System = system, MappingValue = "A" };
-            var d1 = new LegalEntityDetails { Id = 1, Name = "LE 1", Timestamp = new byte[] { 74, 0, 0, 0, 0, 0, 0, 0 } };
+            var d1 = new LegalEntityDetails { Id = 1, Name = "LE 1", Timestamp = 74UL.GetVersionByteArray() };
             var entity = new LegalEntity { Party = new Party { Id = 999 } };
             entity.AddDetails(d1);
 
