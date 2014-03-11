@@ -100,7 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckerFactory.cs" />
+    <Compile Include="Checkers\Contracts\DateRangeChecker.cs" />
+    <Compile Include="Checkers\Contracts\HeaderChecker.cs" />
+    <Compile Include="Checkers\Contracts\NexusIdChecker.cs" />
     <Compile Include="Checkers\Contracts\SystemDataChecker.cs" />
+    <Compile Include="Checkers\Mapping\CheckerExtensions.cs" />
+    <Compile Include="Checkers\Mapping\DateRangeChecker.cs" />
     <Compile Include="Checkers\Mapping\EntityMappingChecker.cs" />
     <Compile Include="Checkers\Mapping\ReferenceDataChecker.cs" />
     <Compile Include="Checkers\Mapping\SourceSystemChecker.cs" />
