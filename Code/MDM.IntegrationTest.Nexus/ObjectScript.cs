@@ -77,7 +77,7 @@ namespace EnergyTrading.MDM.Test
 
         static ObjectScript()
         {
-            Repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            Repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
         }
 
         public void RunScript()
