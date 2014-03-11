@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
         public void should_delete_the_mapping()
         {
             var dbCalendar =
-                new DbSetRepository<MDM.Calendar>(new MappingContext()).FindOne(calendar.Id);
+                new DbSetRepository<MDM.Calendar>(new NexusMappingContext()).FindOne(calendar.Id);
 
             Assert.IsTrue(dbCalendar.Mappings.Where(mapping => mapping.Id == calendar.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
         public void should_leave_other_mappings_untouched()
         {
             var dbCalendar =
-                new DbSetRepository<MDM.Calendar>(new MappingContext()).FindOne(calendar.Id);
+                new DbSetRepository<MDM.Calendar>(new NexusMappingContext()).FindOne(calendar.Id);
 
             Assert.AreEqual(1, dbCalendar.Mappings.Count);
         }

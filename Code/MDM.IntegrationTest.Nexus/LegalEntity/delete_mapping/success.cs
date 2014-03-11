@@ -40,7 +40,7 @@
         public void should_delete_the_mapping()
         {
             var dbLegalEntity =
-                new DbSetRepository<MDM.LegalEntity>(new MappingContext()).FindOne(legalentity.Id);
+                new DbSetRepository<MDM.LegalEntity>(new NexusMappingContext()).FindOne(legalentity.Id);
 
             Assert.IsTrue(dbLegalEntity.Mappings.Where(mapping => mapping.Id == legalentity.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@
         public void should_leave_other_mappings_untouched()
         {
             var dbLegalEntity =
-                new DbSetRepository<MDM.LegalEntity>(new MappingContext()).FindOne(legalentity.Id);
+                new DbSetRepository<MDM.LegalEntity>(new NexusMappingContext()).FindOne(legalentity.Id);
 
             Assert.AreEqual(1, dbLegalEntity.Mappings.Count);
         }

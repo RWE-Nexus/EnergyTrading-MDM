@@ -67,7 +67,7 @@ namespace EnergyTrading.MDM.Test
 
         private static ulong CurrentEntityVersion()
         {
-            var partyoverrideMapping = new DbSetRepository<MDM.PartyOverrideMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            var partyoverrideMapping = new DbSetRepository<MDM.PartyOverrideMapping>(new NexusMappingContext()).FindOne(entity.Mappings[0].Id);
             return partyoverrideMapping.Version.ToUnsignedLongVersion();
         }
     }

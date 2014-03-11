@@ -58,7 +58,7 @@ namespace EnergyTrading.MDM.Test
         public void should_create_a_mapping_on_the_broker_entity()
         {
             var savedMapping =
-                new DbSetRepository<MDM.PartyRoleMapping>(new MappingContext()).FindOne(int.Parse(GetLocationHeader()[3]));
+                new DbSetRepository<MDM.PartyRoleMapping>(new NexusMappingContext()).FindOne(int.Parse(GetLocationHeader()[3]));
 
             Assert.AreEqual(mapping.SystemName, savedMapping.System.Name);
             Assert.AreEqual(mapping.Identifier, savedMapping.MappingValue);

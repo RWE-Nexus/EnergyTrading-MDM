@@ -30,7 +30,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
 
         protected static void Establish_context()
         {
-            repository = new DbSetRepository<MDM.ReferenceData>(new MappingContext());
+            repository = new DbSetRepository<MDM.ReferenceData>(new NexusMappingContext());
 
             foreach (var rd in repository.Queryable())
             {

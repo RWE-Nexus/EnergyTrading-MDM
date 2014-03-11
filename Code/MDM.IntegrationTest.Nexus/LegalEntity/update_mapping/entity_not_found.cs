@@ -67,7 +67,7 @@
 
         private static ulong CurrentEntityVersion()
         {
-            var legalentityMapping = new DbSetRepository<MDM.PartyRoleMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            var legalentityMapping = new DbSetRepository<MDM.PartyRoleMapping>(new NexusMappingContext()).FindOne(entity.Mappings[0].Id);
             return legalentityMapping.Version.ToUnsignedLongVersion();
         }
     }

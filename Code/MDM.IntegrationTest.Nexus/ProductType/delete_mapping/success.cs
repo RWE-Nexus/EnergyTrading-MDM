@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
         public void should_delete_the_mapping()
         {
             var dbProductType =
-                new DbSetRepository<MDM.ProductType>(new MappingContext()).FindOne(producttype.Id);
+                new DbSetRepository<MDM.ProductType>(new NexusMappingContext()).FindOne(producttype.Id);
 
             Assert.IsTrue(dbProductType.Mappings.Where(mapping => mapping.Id == producttype.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
         public void should_leave_other_mappings_untouched()
         {
             var dbProductType =
-                new DbSetRepository<MDM.ProductType>(new MappingContext()).FindOne(producttype.Id);
+                new DbSetRepository<MDM.ProductType>(new NexusMappingContext()).FindOne(producttype.Id);
 
             Assert.AreEqual(1, dbProductType.Mappings.Count);
         }

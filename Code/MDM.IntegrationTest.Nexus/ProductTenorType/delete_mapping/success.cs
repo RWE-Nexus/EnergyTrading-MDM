@@ -40,7 +40,7 @@
         public void should_delete_the_mapping()
         {
             var dbProductTenorType =
-                new DbSetRepository<MDM.ProductTenorType>(new MappingContext()).FindOne(producttenortype.Id);
+                new DbSetRepository<MDM.ProductTenorType>(new NexusMappingContext()).FindOne(producttenortype.Id);
 
             Assert.IsTrue(dbProductTenorType.Mappings.Where(mapping => mapping.Id == producttenortype.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@
         public void should_leave_other_mappings_untouched()
         {
             var dbProductTenorType =
-                new DbSetRepository<MDM.ProductTenorType>(new MappingContext()).FindOne(producttenortype.Id);
+                new DbSetRepository<MDM.ProductTenorType>(new NexusMappingContext()).FindOne(producttenortype.Id);
 
             Assert.AreEqual(1, dbProductTenorType.Mappings.Count);
         }

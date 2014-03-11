@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
         public void should_delete_the_mapping()
         {
             var dbPortfolioHierarchy =
-                new DbSetRepository<MDM.PortfolioHierarchy>(new MappingContext()).FindOne(portfoliohierarchy.Id);
+                new DbSetRepository<MDM.PortfolioHierarchy>(new NexusMappingContext()).FindOne(portfoliohierarchy.Id);
 
             Assert.IsTrue(dbPortfolioHierarchy.Mappings.Where(mapping => mapping.Id == portfoliohierarchy.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
         public void should_leave_other_mappings_untouched()
         {
             var dbPortfolioHierarchy =
-                new DbSetRepository<MDM.PortfolioHierarchy>(new MappingContext()).FindOne(portfoliohierarchy.Id);
+                new DbSetRepository<MDM.PortfolioHierarchy>(new NexusMappingContext()).FindOne(portfoliohierarchy.Id);
 
             Assert.AreEqual(1, dbPortfolioHierarchy.Mappings.Count);
         }

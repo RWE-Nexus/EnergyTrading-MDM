@@ -29,7 +29,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
         protected static void Establish_context()
         {
             refData = new ReferenceData() { Key = "LocationType", Value = Guid.NewGuid().ToString() };
-            var repository = new DbSetRepository<MDM.ReferenceData>(new MappingContext());
+            var repository = new DbSetRepository<MDM.ReferenceData>(new NexusMappingContext());
 
             foreach (var rd in repository.Queryable())
             {

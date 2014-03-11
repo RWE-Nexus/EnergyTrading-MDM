@@ -63,7 +63,7 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_update_the_mapping_on_the_agreement_entity()
         {
-            var savedMapping = new DbSetRepository<MDM.Agreement>(new MappingContext()).FindOne(entity.Id).Mappings[0];
+            var savedMapping = new DbSetRepository<MDM.Agreement>(new NexusMappingContext()).FindOne(entity.Id).Mappings[0];
 
             Assert.AreEqual(currentTrayportMapping.System.Name, savedMapping.System.Name);
             Assert.AreEqual(currentTrayportMapping.MappingValue, savedMapping.MappingValue);

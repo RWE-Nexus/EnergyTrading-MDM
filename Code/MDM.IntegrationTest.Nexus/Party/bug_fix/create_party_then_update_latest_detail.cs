@@ -44,14 +44,14 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_update_the_latest_party_details()
         {
-            var party = new DbSetRepository<MDM.Party>(new MappingContext()).FindOne(entity.Id);
+            var party = new DbSetRepository<MDM.Party>(new NexusMappingContext()).FindOne(entity.Id);
             Assert.AreEqual(party.LatestDetails.Name, "Bob");
         }
 
         [TestMethod]
         public void should_not_create_a_new_detail()
         {
-            var party = new DbSetRepository<MDM.Party>(new MappingContext()).FindOne(entity.Id);
+            var party = new DbSetRepository<MDM.Party>(new NexusMappingContext()).FindOne(entity.Id);
             Assert.AreEqual(party.Details.Count, 1);
         }
     }

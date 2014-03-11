@@ -26,7 +26,7 @@
         public static void ConfirmEntitySaved(int id, RWEST.Nexus.MDM.Contracts.BookDefault contract)
         {
             var savedEntity =
-                new DbSetRepository<MDM.BookDefault>(new MappingContext()).FindOne(id);
+                new DbSetRepository<MDM.BookDefault>(new NexusMappingContext()).FindOne(id);
             contract.Identifiers.Add(new NexusId() { IsNexusId = true, Identifier = id.ToString() });
 
             CompareContractWithEntityDetails(contract, savedEntity);
@@ -35,7 +35,7 @@
         public static void CompareContractWithSavedEntity(RWEST.Nexus.MDM.Contracts.BookDefault contract)
         {
             int id = int.Parse(contract.Identifiers.Where(x => x.IsNexusId).First().Identifier);
-            var savedEntity = new DbSetRepository<MDM.BookDefault>(new MappingContext()).FindOne(id);
+            var savedEntity = new DbSetRepository<MDM.BookDefault>(new NexusMappingContext()).FindOne(id);
 
             CompareContractWithEntityDetails(contract, savedEntity);
         }

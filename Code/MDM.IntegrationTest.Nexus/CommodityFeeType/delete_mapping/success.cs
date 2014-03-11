@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
         public void should_delete_the_mapping()
         {
             var dbCommodityFeeType =
-                new DbSetRepository<MDM.CommodityFeeType>(new MappingContext()).FindOne(commodityfeetype.Id);
+                new DbSetRepository<MDM.CommodityFeeType>(new NexusMappingContext()).FindOne(commodityfeetype.Id);
 
             Assert.IsTrue(dbCommodityFeeType.Mappings.Where(mapping => mapping.Id == commodityfeetype.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
         public void should_leave_other_mappings_untouched()
         {
             var dbCommodityFeeType =
-                new DbSetRepository<MDM.CommodityFeeType>(new MappingContext()).FindOne(commodityfeetype.Id);
+                new DbSetRepository<MDM.CommodityFeeType>(new NexusMappingContext()).FindOne(commodityfeetype.Id);
 
             Assert.AreEqual(1, dbCommodityFeeType.Mappings.Count);
         }

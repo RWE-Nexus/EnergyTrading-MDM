@@ -181,7 +181,9 @@
                     "dbo.ShipperCodeAudit",
                     "dbo.ShipperCode",
 
-                    // Party
+                    // Party                  
+                    "dbo.PartyRoleAccountabilityMapping",
+                    "dbo.PartyRoleAccountability",
                     "dbo.Person",
                     "dbo.PartyRoleMappingAudit",
                     "dbo.PartyRoleMapping",

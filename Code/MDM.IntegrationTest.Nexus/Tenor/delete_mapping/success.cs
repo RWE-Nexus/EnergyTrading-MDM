@@ -40,7 +40,7 @@
         public void should_delete_the_mapping()
         {
             var dbTenor =
-                new DbSetRepository<MDM.Tenor>(new MappingContext()).FindOne(tenor.Id);
+                new DbSetRepository<MDM.Tenor>(new NexusMappingContext()).FindOne(tenor.Id);
 
             Assert.IsTrue(dbTenor.Mappings.Where(mapping => mapping.Id == tenor.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@
         public void should_leave_other_mappings_untouched()
         {
             var dbTenor =
-                new DbSetRepository<MDM.Tenor>(new MappingContext()).FindOne(tenor.Id);
+                new DbSetRepository<MDM.Tenor>(new NexusMappingContext()).FindOne(tenor.Id);
 
             Assert.AreEqual(1, dbTenor.Mappings.Count);
         }

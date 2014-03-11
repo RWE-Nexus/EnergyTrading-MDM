@@ -40,7 +40,7 @@
         public void should_delete_the_mapping()
         {
             var dbDefaultPortfolio =
-                new DbSetRepository<MDM.BookDefault>(new MappingContext()).FindOne(defaultportfolio.Id);
+                new DbSetRepository<MDM.BookDefault>(new NexusMappingContext()).FindOne(defaultportfolio.Id);
 
             Assert.IsTrue(dbDefaultPortfolio.Mappings.Where(mapping => mapping.Id == defaultportfolio.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@
         public void should_leave_other_mappings_untouched()
         {
             var dbDefaultPortfolio =
-                new DbSetRepository<MDM.BookDefault>(new MappingContext()).FindOne(defaultportfolio.Id);
+                new DbSetRepository<MDM.BookDefault>(new NexusMappingContext()).FindOne(defaultportfolio.Id);
 
             Assert.AreEqual(1, dbDefaultPortfolio.Mappings.Count);
         }

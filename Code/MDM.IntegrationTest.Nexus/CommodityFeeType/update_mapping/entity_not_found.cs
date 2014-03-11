@@ -67,7 +67,7 @@ namespace EnergyTrading.MDM.Test
 
         private static ulong CurrentEntityVersion()
         {
-            var commodityfeetypeMapping = new DbSetRepository<MDM.CommodityFeeTypeMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            var commodityfeetypeMapping = new DbSetRepository<MDM.CommodityFeeTypeMapping>(new NexusMappingContext()).FindOne(entity.Mappings[0].Id);
             return commodityfeetypeMapping.Version.ToUnsignedLongVersion();
         }
     }

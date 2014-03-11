@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
         public void should_delete_the_mapping()
         {
             var dbPartyAccountability =
-                new DbSetRepository<MDM.PartyRoleAccountability>(new MappingContext()).FindOne(partyaccountability.Id);
+                new DbSetRepository<MDM.PartyRoleAccountability>(new NexusMappingContext()).FindOne(partyaccountability.Id);
 
             Assert.IsTrue(dbPartyAccountability.Mappings.Where(mapping => mapping.Id == partyaccountability.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
         public void should_leave_other_mappings_untouched()
         {
             var dbPartyAccountability =
-                new DbSetRepository<MDM.PartyRoleAccountability>(new MappingContext()).FindOne(partyaccountability.Id);
+                new DbSetRepository<MDM.PartyRoleAccountability>(new NexusMappingContext()).FindOne(partyaccountability.Id);
 
             Assert.AreEqual(1, dbPartyAccountability.Mappings.Count);
         }

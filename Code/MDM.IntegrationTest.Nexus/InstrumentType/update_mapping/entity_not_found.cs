@@ -67,7 +67,7 @@ namespace EnergyTrading.MDM.Test
 
         private static ulong CurrentEntityVersion()
         {
-            var instrumenttypeMapping = new DbSetRepository<MDM.InstrumentTypeMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            var instrumenttypeMapping = new DbSetRepository<MDM.InstrumentTypeMapping>(new NexusMappingContext()).FindOne(entity.Mappings[0].Id);
             return instrumenttypeMapping.Version.ToUnsignedLongVersion();
         }
     }

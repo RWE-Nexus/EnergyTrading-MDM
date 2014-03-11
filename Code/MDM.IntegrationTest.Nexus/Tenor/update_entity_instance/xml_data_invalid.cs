@@ -52,7 +52,7 @@
 
         private static ulong CurrentEntityVersion()
         {
-            return new DbSetRepository<MDM.Tenor>(new MappingContext()).FindOne(entity.Id).Version;
+            return new DbSetRepository<MDM.Tenor>(new NexusMappingContext()).FindOne(entity.Id).Version;
         }
     }
 }

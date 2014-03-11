@@ -61,7 +61,7 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_update_the_mapping_on_the_productcurve_entity()
         {
-            var savedMapping = new DbSetRepository<MDM.ProductCurve>(new MappingContext()).FindOne(entity.Id).Mappings[0];
+            var savedMapping = new DbSetRepository<MDM.ProductCurve>(new NexusMappingContext()).FindOne(entity.Id).Mappings[0];
 
             Assert.AreEqual(currentTrayportMapping.System.Name, savedMapping.System.Name);
             Assert.AreEqual(currentTrayportMapping.MappingValue, savedMapping.MappingValue);

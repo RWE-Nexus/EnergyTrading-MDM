@@ -58,7 +58,7 @@
         public void should_create_a_mapping_on_the_tenortype_entity()
         {
             var savedMapping =
-                new DbSetRepository<MDM.TenorTypeMapping>(new MappingContext()).FindOne(int.Parse(GetLocationHeader()[3]));
+                new DbSetRepository<MDM.TenorTypeMapping>(new NexusMappingContext()).FindOne(int.Parse(GetLocationHeader()[3]));
 
             Assert.AreEqual(mapping.SystemName, savedMapping.System.Name);
             Assert.AreEqual(mapping.Identifier, savedMapping.MappingValue);

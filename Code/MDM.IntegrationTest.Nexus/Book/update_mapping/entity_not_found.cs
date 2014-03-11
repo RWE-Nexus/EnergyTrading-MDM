@@ -67,7 +67,7 @@
 
         private static ulong CurrentEntityVersion()
         {
-            var bookMapping = new DbSetRepository<MDM.BookMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            var bookMapping = new DbSetRepository<MDM.BookMapping>(new NexusMappingContext()).FindOne(entity.Mappings[0].Id);
             return bookMapping.Version.ToUnsignedLongVersion();
         }
     }

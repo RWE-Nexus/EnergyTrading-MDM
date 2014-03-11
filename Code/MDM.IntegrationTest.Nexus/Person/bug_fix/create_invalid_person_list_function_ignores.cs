@@ -62,7 +62,7 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_not_return_the_invalid_person()
         {
-            var person = new DbSetRepository<MDM.Person>(new MappingContext()).FindOne(entity.Id);
+            var person = new DbSetRepository<MDM.Person>(new NexusMappingContext()).FindOne(entity.Id);
             Assert.AreEqual(0, returnedPersons.Where(person1 => person1.NexusId() == entity.Id).Count());
         }
     }

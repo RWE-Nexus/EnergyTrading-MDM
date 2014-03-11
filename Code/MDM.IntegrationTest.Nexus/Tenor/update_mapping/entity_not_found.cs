@@ -67,7 +67,7 @@
 
         private static ulong CurrentEntityVersion()
         {
-            var tenorMapping = new DbSetRepository<MDM.TenorMapping>(new MappingContext()).FindOne(entity.Mappings[0].Id);
+            var tenorMapping = new DbSetRepository<MDM.TenorMapping>(new NexusMappingContext()).FindOne(entity.Mappings[0].Id);
             return tenorMapping.Version.ToUnsignedLongVersion();
         }
     }

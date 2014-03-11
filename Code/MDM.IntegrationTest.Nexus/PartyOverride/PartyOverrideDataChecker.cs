@@ -23,7 +23,7 @@ namespace EnergyTrading.MDM.Test
         public static void ConfirmEntitySaved(int id, RWEST.Nexus.MDM.Contracts.PartyOverride contract)
         {
             var savedEntity =
-                new DbSetRepository<MDM.PartyOverride>(new MappingContext()).FindOne(id);
+                new DbSetRepository<MDM.PartyOverride>(new NexusMappingContext()).FindOne(id);
             contract.Identifiers.Add(new NexusId() { IsNexusId = true, Identifier = id.ToString() });
 
             CompareContractWithEntityDetails(contract, savedEntity);
@@ -32,7 +32,7 @@ namespace EnergyTrading.MDM.Test
         public static void CompareContractWithSavedEntity(RWEST.Nexus.MDM.Contracts.PartyOverride contract)
         {
             int id = int.Parse(contract.Identifiers.Where(x => x.IsNexusId).First().Identifier);
-            var savedEntity = new DbSetRepository<MDM.PartyOverride>(new MappingContext()).FindOne(id);
+            var savedEntity = new DbSetRepository<MDM.PartyOverride>(new NexusMappingContext()).FindOne(id);
 
             CompareContractWithEntityDetails(contract, savedEntity);
         }

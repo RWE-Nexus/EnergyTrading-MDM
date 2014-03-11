@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
         public void should_delete_the_mapping()
         {
             var dbPartyOverride =
-                new DbSetRepository<MDM.PartyOverride>(new MappingContext()).FindOne(partyoverride.Id);
+                new DbSetRepository<MDM.PartyOverride>(new NexusMappingContext()).FindOne(partyoverride.Id);
 
             Assert.IsTrue(dbPartyOverride.Mappings.Where(mapping => mapping.Id == partyoverride.Mappings[0].Id).Count() == 0);
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
         public void should_leave_other_mappings_untouched()
         {
             var dbPartyOverride =
-                new DbSetRepository<MDM.PartyOverride>(new MappingContext()).FindOne(partyoverride.Id);
+                new DbSetRepository<MDM.PartyOverride>(new NexusMappingContext()).FindOne(partyoverride.Id);
 
             Assert.AreEqual(1, dbPartyOverride.Mappings.Count);
         }

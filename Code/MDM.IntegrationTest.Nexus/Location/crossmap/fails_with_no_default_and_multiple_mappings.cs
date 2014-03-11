@@ -36,7 +36,7 @@ namespace EnergyTrading.MDM.Test
 
         private static void Establish_Context()
         {
-            var repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
+            var repository = new DbSetRepository(new DbContextProvider(() => new NexusMappingContext()));
 
             endur = new SourceSystem { Name = "Endur" + Guid.NewGuid() };
             trayport = new SourceSystem { Name = "Trayport" + Guid.NewGuid() };

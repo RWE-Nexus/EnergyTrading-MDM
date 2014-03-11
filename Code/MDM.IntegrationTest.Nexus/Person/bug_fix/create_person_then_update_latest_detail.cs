@@ -44,14 +44,14 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_update_the_latest_person_details()
         {
-            var person = new DbSetRepository<MDM.Person>(new MappingContext()).FindOne(entity.Id);
+            var person = new DbSetRepository<MDM.Person>(new NexusMappingContext()).FindOne(entity.Id);
             Assert.AreEqual(person.LatestDetails.FirstName, "Bob");
         }
 
         [TestMethod]
         public void should_not_create_a_new_detail()
         {
-            var person = new DbSetRepository<MDM.Person>(new MappingContext()).FindOne(entity.Id);
+            var person = new DbSetRepository<MDM.Person>(new NexusMappingContext()).FindOne(entity.Id);
             Assert.AreEqual(person.Details.Count, 1);
         }
     }

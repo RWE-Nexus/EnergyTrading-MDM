@@ -36,7 +36,7 @@ namespace EnergyTrading.MDM.Test
         public static void ConfirmEntitySaved(int id, RWEST.Nexus.MDM.Contracts.Broker contract)
         {
             var savedEntity =
-                new DbSetRepository<MDM.Broker>(new MappingContext()).FindOne(id);
+                new DbSetRepository<MDM.Broker>(new NexusMappingContext()).FindOne(id);
             contract.Identifiers.Add(new NexusId() { IsNexusId = true, Identifier = id.ToString() });
 
             CompareContractWithEntityDetails(contract, savedEntity);
@@ -45,7 +45,7 @@ namespace EnergyTrading.MDM.Test
         public static void CompareContractWithSavedEntity(RWEST.Nexus.MDM.Contracts.Broker contract)
         {
             int id = int.Parse(contract.Identifiers.Where(x => x.IsNexusId).First().Identifier);
-            var savedEntity = new DbSetRepository<MDM.Broker>(new MappingContext()).FindOne(id);
+            var savedEntity = new DbSetRepository<MDM.Broker>(new NexusMappingContext()).FindOne(id);
 
             CompareContractWithEntityDetails(contract, savedEntity);
         }
