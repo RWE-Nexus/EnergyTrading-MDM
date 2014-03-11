@@ -18,8 +18,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.Core\bin\Release\MDM.Service.Unity.dll" target="lib\net40" />
-    <file src="Code\MDM.Core\bin\Release\MDM.Service.Unity.pdb" target="lib\net40" />
-    <file src="Code\MDM.Core\bin\Release\MDM.Service.Unity.xml" target="lib\net40" />
+    <file src="Code\MDM.Core\bin\Release\MDM.Service.Core.dll" target="lib\net40" />
+    <file src="Code\MDM.Core\bin\Release\MDM.Service.Core.pdb" target="lib\net40" />
+    <file src="Code\MDM.Core\bin\Release\MDM.Service.Core.xml" target="lib\net40" />
   </files>
 </package>

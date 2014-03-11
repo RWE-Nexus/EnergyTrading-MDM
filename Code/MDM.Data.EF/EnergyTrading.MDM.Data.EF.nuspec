@@ -14,6 +14,7 @@
       <dependency id="CommonServiceLocator" version="[1.0, 2.0)" />
       <dependency id="EnergyTrading.EntityFramework" version="" />
       <dependency id="EnergyTrading.MDM.Contracts" version="" />
+      <dependency id="EnergyTrading.MDM.Core" version="" />
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />

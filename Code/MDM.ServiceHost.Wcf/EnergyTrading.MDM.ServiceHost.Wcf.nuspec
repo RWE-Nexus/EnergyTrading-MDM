@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>EnergyTrading.MDM.ServiceHost.Unity</id>
-    <title>EnergyTrading.MDM.ServiceHost.Unity</title>
-    <description>Unity specific service configuration classes for MDM</description>
+    <id>EnergyTrading.MDM.ServiceHost.Wcf</id>
+    <title>EnergyTrading.MDM.ServiceHost.Wcf</title>
+    <description>WCF specific service base classes for MDM</description>
     <version>$version$</version>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
     <owners>RWEST</owners>
     <authors>RWEST Architecture Team</authors>
-    <tags>MDM Unity .net40</tags>
+    <tags>MDM WCF .net40</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="[1.0, 2.0)" />
       <dependency id="EnergyTrading.Caching.AppFabric" version="" />
-      <dependency id="EnergyTrading.MDM.Contracts" version="" />
+      <dependency id="EnergyTrading.MDM.ServiceHost.Unity" version="" />
       <dependency id="EnergyTrading.MDM.Core" version="" />
+      <dependency id="EnergyTrading.MDM.Contracts" version="" />
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />

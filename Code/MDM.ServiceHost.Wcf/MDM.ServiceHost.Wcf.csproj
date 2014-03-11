@@ -104,6 +104,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="EnergyTrading.MDM.ServiceHost.Wcf.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
