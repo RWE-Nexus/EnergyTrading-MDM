@@ -114,7 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\UnitTest\ObjectMother.cs">
+    <Compile Include="..\MDM.UnitTest.Nexus\ObjectMother.cs">
       <Link>ObjectMother.cs</Link>
     </Compile>
     <Compile Include="Agreement\AgreementData.cs" />
