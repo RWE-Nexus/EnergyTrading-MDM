@@ -26,8 +26,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.ServiceHost.Unity\bin\Release\MDM.ServiceHost.Unity.dll" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Unity\bin\Release\MDM.ServiceHost.Unity.pdb" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Unity\bin\Release\MDM.ServiceHost.Unity.xml" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.dll" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.pdb" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.xml" target="lib\net40" />
   </files>
 </package>
