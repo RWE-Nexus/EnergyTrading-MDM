@@ -177,7 +177,7 @@
 
         protected DbContext CreateDbContext()
         {
-            return new MappingContext();
+            return new NexusMappingContext();
         }
 
         protected virtual T Default()

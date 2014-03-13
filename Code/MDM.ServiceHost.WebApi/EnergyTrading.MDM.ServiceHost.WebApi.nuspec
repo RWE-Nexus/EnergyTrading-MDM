@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EnergyTrading.MDM.ServiceHost.WebApi</id>
+    <title>EnergyTrading.MDM.ServiceHost.WebApi</title>
+    <description>WebApi specific service base classes for MDM</description>
+    <version>$version$</version>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
+    <owners>RWEST</owners>
+    <authors>RWEST Architecture Team</authors>
+    <tags>EnergyTrading MDM WebApi .net45</tags>
+    <dependencies>
+      <dependency id="CommonServiceLocator" version="[1.0, 2.0)" />
+      <dependency id="EnergyTrading.Caching.AppFabric" version="" />
+      <dependency id="EnergyTrading.MDM.ServiceHost.Unity" version="" />
+      <dependency id="EnergyTrading.MDM.Core" version="" />
+      <dependency id="EnergyTrading.MDM.Contracts" version="" />
+      <dependency id="EnergyTrading.Contracts" version="" />
+      <dependency id="EnergyTrading.Core" version="" />
+      <dependency id="EnergyTrading.Unity" version="" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="" />
+      <dependency id="ServerAppFabric.Client" version="" />
+      <dependency id="Unity" version="[2.1, 3.0)" />
+      <dependency id="Unity.Interception" version="[2.1, 3.0)" />
+    </dependencies>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+  </metadata>
+  <files>
+    <file src="Code\MDM.ServiceHost.WebApi\bin\Release\MDM.ServiceHost.WebApi.dll" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.WebApi\bin\Release\MDM.ServiceHost.WebApi.pdb" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.WebApi\bin\Release\MDM.ServiceHost.WebApi.xml" target="lib\net45" />
+  </files>
+</package>
