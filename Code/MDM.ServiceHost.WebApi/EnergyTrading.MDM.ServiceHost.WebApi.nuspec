@@ -12,7 +12,6 @@
     <tags>EnergyTrading MDM WebApi .net45</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
-      <dependency id="EnergyTrading.Caching.AppFabric" version="" />
       <dependency id="EnergyTrading.MDM.ServiceHost.Unity" version="" />
       <dependency id="EnergyTrading.MDM.Core" version="" />
       <dependency id="EnergyTrading.MDM.Contracts" version="" />
@@ -21,7 +20,6 @@
       <dependency id="EnergyTrading.Unity" version="" />
       <dependency id="Microsoft.AspNet.WebApi.Client" version="" />
       <dependency id="Microsoft.AspNet.WebApi.Core" version="" />
-      <dependency id="ServerAppFabric.Client" version="" />
       <dependency id="Unity" version="" />
       <dependency id="Unity.Interception" version="" />
     </dependencies>

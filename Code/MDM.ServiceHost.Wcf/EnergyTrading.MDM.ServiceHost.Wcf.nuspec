@@ -12,14 +12,12 @@
     <tags>MDM WCF .net40</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
-      <dependency id="EnergyTrading.Caching.AppFabric" version="" />
       <dependency id="EnergyTrading.MDM.ServiceHost.Unity" version="" />
       <dependency id="EnergyTrading.MDM.Core" version="" />
       <dependency id="EnergyTrading.MDM.Contracts" version="" />
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />
-      <dependency id="ServerAppFabric.Client" version="" />
       <dependency id="Unity" version="" />
       <dependency id="Unity.Interception" version="" />
     </dependencies>
