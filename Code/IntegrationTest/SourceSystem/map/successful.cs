@@ -10,7 +10,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_source_system_to_master_data_service_mapping_request_is_made_as_of_a_specific_date_sourcesystem  : IntegrationTestBase
@@ -44,7 +44,7 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_return_the_correct_vesrion_of_the_sourcesystem()
         {
-            var sourcesystem = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.SourceSystem>();
+            var sourcesystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
 
             Script.SourceSystemDataChecker.CompareContractWithSavedEntity(sourcesystem);
         }
@@ -92,7 +92,7 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_return_the_correct_vesrion_of_the_sourcesystem()
         {
-            var sourcesystem = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.SourceSystem>();
+            var sourcesystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
 
             Script.SourceSystemDataChecker.CompareContractWithSavedEntity(sourcesystem);
         }

@@ -1,7 +1,7 @@
 ﻿namespace EnergyTrading.MDM.Test.Checkers.Mapping
 {
     using EnergyTrading;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.Test;
 
     public class DateRangeChecker : Checker<DateRange>

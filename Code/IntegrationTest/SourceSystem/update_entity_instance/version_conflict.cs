@@ -29,7 +29,7 @@ namespace EnergyTrading.MDM.Test
             client = new HttpClient();
             entity = Script.SourceSystemData.CreateBasicEntity();
 
-            content = HttpContentExtensions.CreateDataContract(new RWEST.Nexus.MDM.Contracts.SourceSystem());
+            content = HttpContentExtensions.CreateDataContract(new EnergyTrading.Mdm.Contracts.SourceSystem());
             startVersion = CurrentEntityVersion();
         }
 

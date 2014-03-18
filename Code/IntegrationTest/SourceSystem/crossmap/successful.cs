@@ -9,7 +9,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_source_system_to_destination_system_mapping_request_is_made_for_sourcesystem : IntegrationTestBase
@@ -34,7 +34,7 @@ namespace EnergyTrading.MDM.Test
 
             response = client.Get();
 
-            mappingResponse = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.MappingResponse>();
+            mappingResponse = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.MappingResponse>();
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(entity.Mappings[1].Validity.Start, mappingResponse.Mappings[0].StartDate);
             Assert.AreEqual(entity.Mappings[1].Validity.Finish, mappingResponse.Mappings[0].EndDate);
             Assert.AreEqual("endur", mappingResponse.Mappings[0].SystemName.ToLower(), true);
-            Assert.IsFalse(mappingResponse.Mappings[0].IsNexusId);
+            Assert.IsFalse(mappingResponse.Mappings[0].IsMdmId);
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@ namespace EnergyTrading.MDM.Test
                 + "&as-of=" + entity.Mappings[0].Validity.Start.ToString(DateFormatString));
 
             response = client.Get();
-            mappingResponse = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.MappingResponse>();
+            mappingResponse = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.MappingResponse>();
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(entity.Mappings[1].Validity.Start, mappingResponse.Mappings[0].StartDate);
             Assert.AreEqual(entity.Mappings[1].Validity.Finish, mappingResponse.Mappings[0].EndDate);
             Assert.AreEqual("endur", mappingResponse.Mappings[0].SystemName.ToLower(), true);
-            Assert.IsFalse(mappingResponse.Mappings[0].IsNexusId);
+            Assert.IsFalse(mappingResponse.Mappings[0].IsMdmId);
         }
 
         [TestMethod]

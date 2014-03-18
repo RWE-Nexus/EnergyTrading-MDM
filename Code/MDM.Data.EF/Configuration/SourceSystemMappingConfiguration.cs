@@ -2,7 +2,7 @@ namespace EnergyTrading.MDM.Data.EF.Configuration
 {
     using System.Data.Entity.ModelConfiguration;
 
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     public class SourceSystemMappingConfiguration : EntityTypeConfiguration<SourceSystemMapping>
     {

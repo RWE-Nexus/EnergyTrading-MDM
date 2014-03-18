@@ -2,7 +2,7 @@
 {
     using System.Data.Entity.ModelConfiguration;
 
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     public class SourceSystemConfiguration : EntityTypeConfiguration<SourceSystem>
     {

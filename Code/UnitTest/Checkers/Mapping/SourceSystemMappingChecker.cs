@@ -1,6 +1,6 @@
 namespace EnergyTrading.MDM.Test.Checkers.Mapping
 {
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.Test;
 
     public class SourceSystemMappingChecker : Checker<SourceSystemMapping>

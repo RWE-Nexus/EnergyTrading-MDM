@@ -4,6 +4,6 @@
     {
         public int EntityId { get; set; }
 
-        public RWEST.Nexus.MDM.Contracts.NexusId Mapping { get; set; }
+        public EnergyTrading.Mdm.Contracts.MdmId Mapping { get; set; }
     }
 }

@@ -1,18 +1,18 @@
 namespace EnergyTrading.MDM.Mappers
 {
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Mapping;
 
-    public class SourceSystemMappingMapper: Mapper<EnergyTrading.MDM.SourceSystemMapping, NexusId>
+    public class SourceSystemMappingMapper: Mapper<EnergyTrading.MDM.SourceSystemMapping, MdmId>
     {
-        private readonly Mapper<IEntityMapping, NexusId> mapper;
+        private readonly Mapper<IEntityMapping, MdmId> mapper;
 
         public SourceSystemMappingMapper()
         {
             this.mapper = new EntityMappingMapper();
         }
 
-        public override void Map(EnergyTrading.MDM.SourceSystemMapping source, NexusId destination)
+        public override void Map(EnergyTrading.MDM.SourceSystemMapping source, MdmId destination)
         {
             this.mapper.Map(source, destination);
         }

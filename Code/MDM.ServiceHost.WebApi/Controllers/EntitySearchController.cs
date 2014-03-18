@@ -12,7 +12,7 @@
     using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
     using MDM.ServiceHost.WebApi.Infrastructure.Feeds;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public class EntitySearchController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity

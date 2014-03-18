@@ -1,7 +1,7 @@
 ﻿namespace EnergyTrading.MDM.Messages.Validators
 {
     using EnergyTrading.Data;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Contracts.Rules;
     using EnergyTrading.Validation;
 

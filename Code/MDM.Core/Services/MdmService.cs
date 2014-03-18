@@ -8,7 +8,7 @@
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.MDM.Contracts.Rules;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Data;
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Extensions;
@@ -18,7 +18,7 @@
     using EnergyTrading.Mapping;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.Xml.Serialization;
 
@@ -93,7 +93,7 @@
             }
 
             // Create the mapping and save
-            var mapping = this.MappingEngine.Map<RWEST.Nexus.MDM.Contracts.NexusId, TMapping>(message.Mapping);
+            var mapping = this.MappingEngine.Map<EnergyTrading.Mdm.Contracts.MdmId, TMapping>(message.Mapping);
             entity.ProcessMapping(mapping);
 
             this.repository.Save(entity);
@@ -244,7 +244,7 @@
             }
 
             var mr = new MappingResponse();
-            mr.Mappings.Add(this.MappingEngine.Map<TMapping, NexusId>(mapping));
+            mr.Mappings.Add(this.MappingEngine.Map<TMapping, MdmId>(mapping));
             var response = new ContractResponse<MappingResponse>
             {
                 Contract = mr,
@@ -288,17 +288,17 @@
             this.Validate(contract);
 
             // Handle each identifier individually - if a nexus id has been passed in then it should be ignored            
-            foreach (var identifier in contract.Identifiers.Where(id => id.SystemName != NexusName.Name))
+            foreach (var identifier in contract.Identifiers.Where(id => id.SystemName != MdmInternalName.Name))
             {
-                var mapping = this.MappingEngine.Map<RWEST.Nexus.MDM.Contracts.NexusId, TMapping>(identifier);
+                var mapping = this.MappingEngine.Map<EnergyTrading.Mdm.Contracts.MdmId, TMapping>(identifier);
                 entity.ProcessMapping(mapping);
             }
 
             // Convert and save it
             var details = this.MappingEngine.Map<TDetailsContract, TDetails>((TDetailsContract)contract.Details);
-            if (contract.Nexus != null)
+            if (contract.MdmSystemData != null)
             {
-                details.Validity = this.MappingEngine.Map<SystemData, EnergyTrading.DateRange>(contract.Nexus);
+                details.Validity = this.MappingEngine.Map<SystemData, EnergyTrading.DateRange>(contract.MdmSystemData);
             }
             entity.AddDetails(details);
 
@@ -344,7 +344,7 @@
             message.Mapping.MappingId = message.MappingId;
 
             // Translate from the contract
-            var changedMapping = this.MappingEngine.Map<RWEST.Nexus.MDM.Contracts.NexusId, TMapping>(message.Mapping);
+            var changedMapping = this.MappingEngine.Map<EnergyTrading.Mdm.Contracts.MdmId, TMapping>(message.Mapping);
 
             // Update the mapping and save
             var entity = (TEntity)mapping.Entity;
@@ -448,21 +448,21 @@
             var details = this.Details(entity).Where(validator).FirstOrDefault();
             var target = this.MappingEngine.Map<TDetails, TDetailsContract>(details);
             contract.Details = target;
-            contract.Nexus = new SystemData { StartDate = details.Validity.Start, EndDate = details.Validity.Finish };
+            contract.MdmSystemData = new SystemData { StartDate = details.Validity.Start, EndDate = details.Validity.Finish };
         }
 
-        private void AssignIdentifiers(TEntity entity, Action<RWEST.Nexus.MDM.Contracts.NexusId> assigner, Func<TMapping, bool> validator)
+        private void AssignIdentifiers(TEntity entity, Action<EnergyTrading.Mdm.Contracts.MdmId> assigner, Func<TMapping, bool> validator)
         {
             foreach (var candidate in this.Mappings(entity).Where(validator))
             {
-                var target = this.MappingEngine.Map<TMapping, NexusId>(candidate);
+                var target = this.MappingEngine.Map<TMapping, MdmId>(candidate);
                 assigner(target);
             }
         }
 
         private void AssignLinks(TContract contract, TEntity entity)
         {
-            var target = this.MappingEngine.Map<TEntity, List<RWEST.Nexus.Contracts.Atom.Link>>(entity);
+            var target = this.MappingEngine.Map<TEntity, List<EnergyTrading.Contracts.Atom.Link>>(entity);
             contract.Links = target;
         }
 
@@ -535,7 +535,7 @@
 
                 if (response.HasMutlipleMappingsWithOneDefault())
                 {
-                    response.Mappings = new NexusIdList()
+                    response.Mappings = new MdmIdList()
                         {
                             response.Mappings.Where(x => x.DefaultReverseInd.HasValue && x.DefaultReverseInd.Value).
                                 First()

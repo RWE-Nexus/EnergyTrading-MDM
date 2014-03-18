@@ -8,7 +8,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_source_system_to_destination_system_mapping_request_is_made_and_the_source_system_mapping_string_is_unkown_for_sourcesystem : IntegrationTestBase

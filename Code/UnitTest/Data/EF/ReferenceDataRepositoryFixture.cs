@@ -4,7 +4,7 @@ namespace EnergyTrading.MDM.Test.Data.EF
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     [TestClass]
     public class ReferenceDataRepositoryFixture : DbSetRepositoryFixture<ReferenceData>

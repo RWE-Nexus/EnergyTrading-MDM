@@ -14,7 +14,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
     [TestClass]
     public class when_a_request_is_made_to_delete_a_list_of_reference_data : IntegrationTestBase
     {
-        private static IList<RWEST.Nexus.MDM.Contracts.ReferenceData> referenceDataList;
+        private static IList<EnergyTrading.Mdm.Contracts.ReferenceData> referenceDataList;
         private static string key = "SomeRefData";
         private static HttpContent content;
         private static HttpClient client;
@@ -42,7 +42,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
             repository.Add(new MDM.ReferenceData() { Key = key, Value = "test3" });
             repository.Flush();
 
-            referenceDataList = new List<RWEST.Nexus.MDM.Contracts.ReferenceData>() { new RWEST.Nexus.MDM.Contracts.ReferenceData() { Value = "test1"}, new RWEST.Nexus.MDM.Contracts.ReferenceData() { Value = "test2"}};
+            referenceDataList = new List<EnergyTrading.Mdm.Contracts.ReferenceData>() { new EnergyTrading.Mdm.Contracts.ReferenceData() { Value = "test1"}, new EnergyTrading.Mdm.Contracts.ReferenceData() { Value = "test2"}};
 
             content = HttpContentExtensions.CreateDataContract(referenceDataList);
             client = new HttpClient();

@@ -1,9 +1,8 @@
 ﻿namespace EnergyTrading.MDM.Test.Checkers.Contracts
 {
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Test;
 
-    public class NexusIdChecker : Checker<RWEST.Nexus.MDM.Contracts.NexusId>
+    public class NexusIdChecker : Checker<EnergyTrading.Mdm.Contracts.MdmId>
     {
         public NexusIdChecker()
         {

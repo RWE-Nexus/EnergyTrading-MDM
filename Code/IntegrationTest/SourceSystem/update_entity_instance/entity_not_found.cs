@@ -22,7 +22,7 @@ namespace EnergyTrading.MDM.Test
         protected static void Establish_context()
         {
             client = new HttpClient();
-            var sourcesystem = new RWEST.Nexus.MDM.Contracts.SourceSystem();
+            var sourcesystem = new EnergyTrading.Mdm.Contracts.SourceSystem();
             content = HttpContentExtensions.CreateDataContract(sourcesystem);
         }
 

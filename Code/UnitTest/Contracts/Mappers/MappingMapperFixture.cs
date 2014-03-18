@@ -9,7 +9,7 @@
 
     using EnergyTrading;
     using EnergyTrading.Data;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     public class MappingMapperFixture : Fixture
     {
@@ -24,7 +24,7 @@
 
             var start = new DateTime(2010, 1, 1);
             var end = new DateTime(2012, 12, 31);
-            var source = new RWEST.Nexus.MDM.Contracts.NexusId { MappingId = 1, SystemName = "Test", Identifier = "1", StartDate = start, EndDate = end };
+            var source = new EnergyTrading.Mdm.Contracts.MdmId { MappingId = 1, SystemName = "Test", Identifier = "1", StartDate = start, EndDate = end };
 
             var expected = new TMapping
             {               

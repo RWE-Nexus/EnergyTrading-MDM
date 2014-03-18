@@ -4,9 +4,8 @@
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using RWEST.Nexus.MDM;
 
-    public class MappingMapper<TMapping> : Mapper<RWEST.Nexus.MDM.Contracts.NexusId, TMapping>
+    public class MappingMapper<TMapping> : Mapper<EnergyTrading.Mdm.Contracts.MdmId, TMapping>
         where TMapping : class, IEntityMapping, new()
     {
         private readonly IRepository repository;
@@ -16,7 +15,7 @@
             this.repository = repository;
         }
 
-        public override void Map(RWEST.Nexus.MDM.Contracts.NexusId source, TMapping destination)
+        public override void Map(EnergyTrading.Mdm.Contracts.MdmId source, TMapping destination)
         {
             destination.MappingId = (int) (source.MappingId.HasValue ? source.MappingId.Value : 0L);
             destination.System = this.repository.SystemByName(source.SystemName);

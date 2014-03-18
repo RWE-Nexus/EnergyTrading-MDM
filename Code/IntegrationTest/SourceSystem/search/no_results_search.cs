@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
             search.AddSearchCriteria(SearchCombinator.Or).AddCriteria(
                 "x", SearchCondition.Equals, Guid.NewGuid().ToString());
 
-            content = HttpContentExtensions.CreateDataContract(RWEST.Nexus.Contracts.Search.SearchExtensions.ToNexus(search));
+            content = HttpContentExtensions.CreateDataContract(search);
         }
     }
 }

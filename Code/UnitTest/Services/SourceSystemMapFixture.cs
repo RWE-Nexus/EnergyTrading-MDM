@@ -13,7 +13,7 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.Mapping;
     using EnergyTrading.Validation;
     using EnergyTrading.Search;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
@@ -91,15 +91,15 @@ namespace EnergyTrading.MDM.Test.Services
             sourcesystem.ProcessMapping(mapping);
 
             // Contract details
-            var identifier = new RWEST.Nexus.MDM.Contracts.NexusId
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
                 SystemName = "Endur",
                 Identifier = "A"
             };
-            var cDetails = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails();
+            var cDetails = new EnergyTrading.Mdm.Contracts.SourceSystemDetails();
 
-            mappingEngine.Setup(x => x.Map<SourceSystemMapping, RWEST.Nexus.MDM.Contracts.NexusId>(mapping)).Returns(identifier);
-            mappingEngine.Setup(x => x.Map<SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystemDetails>(sourcesystem)).Returns(cDetails);
+            mappingEngine.Setup(x => x.Map<SourceSystemMapping, EnergyTrading.Mdm.Contracts.MdmId>(mapping)).Returns(identifier);
+            mappingEngine.Setup(x => x.Map<SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystemDetails>(sourcesystem)).Returns(cDetails);
             validatorFactory.Setup(x => x.IsValid(It.IsAny<MappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
 
             var list = new List<SourceSystemMapping> { mapping };
@@ -112,16 +112,16 @@ namespace EnergyTrading.MDM.Test.Services
             var candidate = response.Contract;
 
             // Assert
-            mappingEngine.Verify(x => x.Map<SourceSystemMapping, RWEST.Nexus.MDM.Contracts.NexusId>(mapping));
-            mappingEngine.Verify(x => x.Map<SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystemDetails>(sourcesystem));
+            mappingEngine.Verify(x => x.Map<SourceSystemMapping, EnergyTrading.Mdm.Contracts.MdmId>(mapping));
+            mappingEngine.Verify(x => x.Map<SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystemDetails>(sourcesystem));
             repository.Verify(x => x.Queryable<SourceSystemMapping>());
             Assert.IsNotNull(candidate, "Contract null");
             Assert.AreEqual(2, candidate.Identifiers.Count, "Identifier count incorrect");
             // NB This is order dependent
             Assert.AreSame(identifier, candidate.Identifiers[1], "Different identifier assigned");
             Assert.AreSame(cDetails, candidate.Details, "Different details assigned");
-            Assert.AreEqual(start, candidate.Nexus.StartDate, "Start date differs");
-            Assert.AreEqual(finish, candidate.Nexus.EndDate, "End date differs");
+            Assert.AreEqual(start, candidate.MdmSystemData.StartDate, "Start date differs");
+            Assert.AreEqual(finish, candidate.MdmSystemData.EndDate, "End date differs");
         }
     }
 }

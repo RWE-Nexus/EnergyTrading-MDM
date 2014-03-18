@@ -10,7 +10,7 @@
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Validation;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public static class FaultFactory
     {

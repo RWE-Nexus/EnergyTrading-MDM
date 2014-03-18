@@ -7,7 +7,6 @@
     using Moq;
 
     using EnergyTrading.Data;
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.MDM.Contracts.Rules;
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
@@ -24,9 +23,9 @@
             var repository = new Mock<IRepository>();
             repository.Setup(x => x.Queryable<SourceSystem>()).Returns(systemList.AsQueryable());
 
-            var identifier = new NexusId { SystemName = "Test", Identifier = "1" };
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "1" };
 
-            var rule = new NexusIdSystemExistsRule(repository.Object);
+            var rule = new MdmIdSystemExistsRule(repository.Object);
 
             // Act
             var result = rule.IsValid(identifier);
@@ -44,9 +43,9 @@
             var repository = new Mock<IRepository>();
             repository.Setup(x => x.Queryable<SourceSystem>()).Returns(systemList.AsQueryable());
 
-            var identifier = new NexusId { SystemName = "Test", Identifier = "1" };
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "1" };
 
-            var rule = new NexusIdSystemExistsRule(repository.Object);
+            var rule = new MdmIdSystemExistsRule(repository.Object);
 
             // Act
             var result = rule.IsValid(identifier);

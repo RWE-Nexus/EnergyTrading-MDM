@@ -7,7 +7,7 @@ namespace EnergyTrading.MDM.Services
     using EnergyTrading.Mapping;
     using EnergyTrading.Validation;
 
-    public class SourceSystemService : MdmService<RWEST.Nexus.MDM.Contracts.SourceSystem, SourceSystem, SourceSystemMapping, SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystemDetails>
+    public class SourceSystemService : MdmService<EnergyTrading.Mdm.Contracts.SourceSystem, SourceSystem, SourceSystemMapping, SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystemDetails>
     {
         public SourceSystemService(IValidatorEngine validatorFactory, IMappingEngine mappingEngine, IRepository repository, ISearchCache searchCache) : base(validatorFactory, mappingEngine, repository, searchCache)
         {

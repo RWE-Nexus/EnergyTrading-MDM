@@ -15,7 +15,7 @@
     using MDM.ServiceHost.WebApi.Infrastructure.ETags;
     using MDM.ServiceHost.WebApi.Infrastructure.Results;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public class EntityMappingController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
@@ -53,7 +53,7 @@
             throw new Exception("Undefined exception to be fixed");
         }
 
-        public IHttpActionResult Post(int id, [FromBody] RWEST.Nexus.MDM.Contracts.Mapping mapping)
+        public IHttpActionResult Post(int id, [FromBody] EnergyTrading.Mdm.Contracts.Mapping mapping)
         {           
             var request = new CreateMappingRequest
                 {
@@ -93,7 +93,7 @@
         }
 
         [HttpPut, HttpPost]
-        public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] RWEST.Nexus.MDM.Contracts.Mapping mapping)
+        public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] EnergyTrading.Mdm.Contracts.Mapping mapping)
         {
             IEntityMapping returnedMapping = null;
 

@@ -2,7 +2,7 @@
 {
     using EnergyTrading.Test;
 
-    public class DateRangeChecker : Checker<RWEST.Nexus.MDM.Contracts.DateRange>
+    public class DateRangeChecker : Checker<EnergyTrading.Mdm.Contracts.DateRange>
     {
         public DateRangeChecker()
         {

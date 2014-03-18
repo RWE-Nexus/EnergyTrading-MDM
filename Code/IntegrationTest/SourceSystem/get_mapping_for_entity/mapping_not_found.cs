@@ -9,7 +9,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
 

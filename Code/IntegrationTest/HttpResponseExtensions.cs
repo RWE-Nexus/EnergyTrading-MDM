@@ -7,7 +7,7 @@
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public static class HttpResponseExtensions
     {

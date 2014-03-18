@@ -12,7 +12,7 @@ namespace EnergyTrading.MDM.Test
     {
         private static MDM.SourceSystem sourcesystem;
 
-        private static RWEST.Nexus.MDM.Contracts.SourceSystem returnedSourceSystem;
+        private static EnergyTrading.Mdm.Contracts.SourceSystem returnedSourceSystem;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
@@ -33,7 +33,7 @@ namespace EnergyTrading.MDM.Test
             {
                 using (HttpResponseMessage response = client.Get())
                 {
-                    returnedSourceSystem = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.SourceSystem>();
+                    returnedSourceSystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace EnergyTrading.MDM.Test
     public class when_a_request_is_made_for_a_sourcesystem_as_of_a_date_and_they_exist : IntegrationTestBase
     {
         private static MDM.SourceSystem sourcesystem;
-        private static RWEST.Nexus.MDM.Contracts.SourceSystem returnedSourceSystem;
+        private static EnergyTrading.Mdm.Contracts.SourceSystem returnedSourceSystem;
         private static DateTime asof;
         private static HttpClient client;
 
@@ -73,7 +73,7 @@ namespace EnergyTrading.MDM.Test
                     sourcesystem.Id.ToString(), asof.ToString(DateFormatString)));
 
             HttpResponseMessage response = client.Get();
-            returnedSourceSystem = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.SourceSystem>();
+            returnedSourceSystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
         }
 
         [TestMethod]

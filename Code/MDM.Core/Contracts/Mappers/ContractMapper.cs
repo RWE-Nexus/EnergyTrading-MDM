@@ -4,7 +4,6 @@
 
     using EnergyTrading;
     using EnergyTrading.Mapping;
-    using RWEST.Nexus.MDM;
 
     /// <summary>
     /// Maps an MDM contract to an entity using a <see cref="IMappingEngine" /> for the internal elements.
@@ -31,7 +30,7 @@
             // Map all the identifiers
             foreach (var id in this.Identifiers(source))
             {
-                var mapping = this.mappingEngine.Map<RWEST.Nexus.MDM.Contracts.NexusId, TMapping>(id);
+                var mapping = this.mappingEngine.Map<EnergyTrading.Mdm.Contracts.MdmId, TMapping>(id);
                 destination.ProcessMapping(mapping);
             }
 
@@ -45,9 +44,9 @@
 
         protected abstract DateRange ContractDetailsValidity(TContract contract);
 
-        protected abstract IEnumerable<RWEST.Nexus.MDM.Contracts.NexusId> Identifiers(TContract contract);
+        protected abstract IEnumerable<EnergyTrading.Mdm.Contracts.MdmId> Identifiers(TContract contract);
 
-        protected DateRange SystemDataValidity(RWEST.Nexus.MDM.Contracts.SystemData system)
+        protected DateRange SystemDataValidity(EnergyTrading.Mdm.Contracts.SystemData system)
         {
             return system == null
                        ? DateRange.MaxDateRange

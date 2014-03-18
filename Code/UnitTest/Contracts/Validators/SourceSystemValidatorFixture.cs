@@ -4,9 +4,9 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
     using System.Collections.Generic;
     using System.Linq;
 
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
 
-    using RWEST.Nexus.MDM.Contracts;
     using MDM.Data;
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,9 +16,9 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
     using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.Data;
     using EnergyTrading.Validation;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using DateRange = EnergyTrading.DateRange;
-    using SourceSystem = RWEST.Nexus.MDM.Contracts.SourceSystem;
+    using SourceSystem = EnergyTrading.Mdm.Contracts.SourceSystem;
 
     [TestClass]
     public partial class SourceSystemValidatorFixture : Fixture
@@ -55,7 +55,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
             systemRepository.Setup(x => x.Queryable()).Returns(systemList.AsQueryable());
 
-            var identifier = new RWEST.Nexus.MDM.Contracts.NexusId
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
                 SystemName = "Test",
                 Identifier = "1",
@@ -66,7 +66,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var validatorEngine = new Mock<IValidatorEngine>();
             var validator = new SourceSystemValidator(validatorEngine.Object, repository);
 
-            var sourcesystem = new SourceSystem { Details = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails{Name = "Test"}, Identifiers = new RWEST.Nexus.MDM.Contracts.NexusIdList { identifier } };
+            var sourcesystem = new SourceSystem { Details = new EnergyTrading.Mdm.Contracts.SourceSystemDetails{Name = "Test"}, Identifiers = new EnergyTrading.Mdm.Contracts.MdmIdList { identifier } };
             this.AddRelatedEntities(sourcesystem);
 
             // Act
@@ -96,7 +96,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var systemRepository = new Mock<IRepository<MDM.SourceSystem>>();
             systemRepository.Setup(x => x.Queryable()).Returns(systemList.AsQueryable());
 
-            var overlapsRangeIdentifier = new RWEST.Nexus.MDM.Contracts.NexusId
+            var overlapsRangeIdentifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
                 SystemName = "Test",
                 Identifier = "1",
@@ -106,11 +106,11 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
             var identifierValidator = new NexusIdValidator<SourceSystemMapping>(repository.Object);
             var validatorEngine = new Mock<IValidatorEngine>();
-            validatorEngine.Setup(x => x.IsValid(It.IsAny<RWEST.Nexus.MDM.Contracts.NexusId>(), It.IsAny<IList<IRule>>()))
-                          .Returns((RWEST.Nexus.MDM.Contracts.NexusId x, IList<IRule> y) => identifierValidator.IsValid(x, y));
+            validatorEngine.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.MdmId>(), It.IsAny<IList<IRule>>()))
+                          .Returns((EnergyTrading.Mdm.Contracts.MdmId x, IList<IRule> y) => identifierValidator.IsValid(x, y));
             var validator = new SourceSystemValidator(validatorEngine.Object, repository.Object);
 
-            var sourcesystem = new SourceSystem { Identifiers = new RWEST.Nexus.MDM.Contracts.NexusIdList { overlapsRangeIdentifier } };
+            var sourcesystem = new SourceSystem { Identifiers = new EnergyTrading.Mdm.Contracts.MdmIdList { overlapsRangeIdentifier } };
 
             // Act
             var violations = new List<IRule>();
@@ -134,7 +134,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var repository = new Mock<IRepository>();
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
-            var badSystemIdentifier = new RWEST.Nexus.MDM.Contracts.NexusId
+            var badSystemIdentifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
                 SystemName = "Jim",
                 Identifier = "1",
@@ -144,11 +144,11 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
             var identifierValidator = new NexusIdValidator<SourceSystemMapping>(repository.Object);
             var validatorEngine = new Mock<IValidatorEngine>();
-            validatorEngine.Setup(x => x.IsValid(It.IsAny<RWEST.Nexus.MDM.Contracts.NexusId>(), It.IsAny<IList<IRule>>()))
-                           .Returns((RWEST.Nexus.MDM.Contracts.NexusId x, IList<IRule> y) => identifierValidator.IsValid(x, y));
+            validatorEngine.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.MdmId>(), It.IsAny<IList<IRule>>()))
+                           .Returns((EnergyTrading.Mdm.Contracts.MdmId x, IList<IRule> y) => identifierValidator.IsValid(x, y));
             var validator = new SourceSystemValidator(validatorEngine.Object, repository.Object);
 
-            var sourcesystem = new SourceSystem { Identifiers = new RWEST.Nexus.MDM.Contracts.NexusIdList { badSystemIdentifier } };
+            var sourcesystem = new SourceSystem { Identifiers = new EnergyTrading.Mdm.Contracts.MdmIdList { badSystemIdentifier } };
 
             // Act
             var violations = new List<IRule>();
@@ -187,9 +187,9 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var sourceSystem = new SourceSystem();
             sourceSystem.Details.Name = name;
             sourceSystem.Details.Parent = new EntityId
-                {Identifier = new NexusId
+                {Identifier = new MdmId
                     {
-                        SystemName = "Nexus", Identifier = parentId.ToString(), IsNexusId = true
+                        SystemName = "Nexus", Identifier = parentId.ToString(), IsMdmId = true
                     }};
             return sourceSystem;
         }

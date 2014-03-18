@@ -11,11 +11,11 @@ namespace EnergyTrading.MDM.Test
     {
         private static HttpResponseMessage response;
         private static HttpContent content;
-        private static RWEST.Nexus.MDM.Contracts.SourceSystem sourcesystemDataContract;
+        private static EnergyTrading.Mdm.Contracts.SourceSystem sourcesystemDataContract;
         private static HttpClient client;
         private static MDM.SourceSystem entity;
 
-        private static RWEST.Nexus.MDM.Contracts.SourceSystem updatedContract;
+        private static EnergyTrading.Mdm.Contracts.SourceSystem updatedContract;
 
         [ClassInitialize]
         public static void ClassInit(TestContext context)
@@ -30,7 +30,7 @@ namespace EnergyTrading.MDM.Test
             entity = Script.SourceSystemData.CreateBasicEntity();
             var getResponse = client.Get(ServiceUrl["SourceSystem"] + entity.Id);
 
-            updatedContract = getResponse.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.SourceSystem>();
+            updatedContract = getResponse.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
             content = HttpContentExtensions.CreateDataContract(Script.SourceSystemData.MakeChangeToContract(updatedContract));
         }
 

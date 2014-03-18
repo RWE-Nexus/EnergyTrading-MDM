@@ -8,12 +8,12 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_request_is_made_for_all_sourcesystem : IntegrationTestBase
     {
-        private static IList<RWEST.Nexus.MDM.Contracts.SourceSystem> returnedSourceSystems;
+        private static IList<EnergyTrading.Mdm.Contracts.SourceSystem> returnedSourceSystems;
 
         private static MDM.SourceSystem entity1;
 
@@ -55,7 +55,7 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_contain_the_new_entities_that_were_added()
         {
-            IList<RWEST.Nexus.MDM.Contracts.NexusId> entityIds = returnedSourceSystems.Select(x => x.Identifiers.First(id => id.IsNexusId)).ToList();
+            IList<EnergyTrading.Mdm.Contracts.MdmId> entityIds = returnedSourceSystems.Select(x => x.Identifiers.First(id => id.IsMdmId)).ToList();
             Assert.IsTrue(entityIds.Any(nexusId => nexusId.Identifier == entity1.Id.ToString()));
             Assert.IsTrue(entityIds.Any(nexusId => nexusId.Identifier == entity2.Id.ToString()));
         }

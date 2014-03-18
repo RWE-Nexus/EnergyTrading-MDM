@@ -4,7 +4,7 @@
 
     using EnergyTrading;
     using EnergyTrading.Extensions;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public static class MessageFactory
     {

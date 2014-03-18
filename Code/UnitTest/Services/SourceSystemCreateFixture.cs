@@ -45,7 +45,7 @@ namespace EnergyTrading.MDM.Test.Services
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem();
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem();
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<object>(), It.IsAny<IList<IRule>>())).Returns(false);
 
@@ -65,10 +65,10 @@ namespace EnergyTrading.MDM.Test.Services
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
             var sourcesystem = new SourceSystem();
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem();
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem();
 
-            validatorFactory.Setup(x => x.IsValid(It.IsAny<RWEST.Nexus.MDM.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.SourceSystem, SourceSystem>(contract)).Returns(sourcesystem);
+            validatorFactory.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.SourceSystem, SourceSystem>(contract)).Returns(sourcesystem);
 
             // Act
             var expected = service.Create(contract);

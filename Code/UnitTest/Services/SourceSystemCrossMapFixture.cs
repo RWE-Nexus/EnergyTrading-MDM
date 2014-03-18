@@ -4,17 +4,18 @@ namespace EnergyTrading.MDM.Test.Services
     using System.Collections.Generic;
     using System.Linq;
 
+    using EnergyTrading.Mdm.Contracts;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Moq;
 
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
     using EnergyTrading.Validation;
     using EnergyTrading.Search;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
@@ -99,13 +100,13 @@ namespace EnergyTrading.MDM.Test.Services
             sourcesystem.ProcessMapping(targetMapping);
 
             // Contract details
-            var targetIdentifier = new NexusId
+            var targetIdentifier = new MdmId
             {
                 SystemName = "Trayport",
                 Identifier = "B"
             };
 
-            mappingEngine.Setup(x => x.Map<SourceSystemMapping, NexusId>(targetMapping)).Returns(targetIdentifier);
+            mappingEngine.Setup(x => x.Map<SourceSystemMapping, MdmId>(targetMapping)).Returns(targetIdentifier);
 
             var list = new List<SourceSystemMapping> { mapping };
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
@@ -164,13 +165,13 @@ namespace EnergyTrading.MDM.Test.Services
             sourcesystem.ProcessMapping(targetMapping);
 
             // Contract details
-            var targetIdentifier = new NexusId
+            var targetIdentifier = new MdmId
             {
                 SystemName = "Trayport",
                 Identifier = "B"
             };
 
-            mappingEngine.Setup(x => x.Map<SourceSystemMapping, NexusId>(targetMapping)).Returns(targetIdentifier);
+            mappingEngine.Setup(x => x.Map<SourceSystemMapping, MdmId>(targetMapping)).Returns(targetIdentifier);
 
             var list = new List<SourceSystemMapping> { mapping };
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());

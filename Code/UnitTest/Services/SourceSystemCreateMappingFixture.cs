@@ -6,12 +6,11 @@ namespace EnergyTrading.MDM.Test.Services
 
     using Moq;
 
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
     using EnergyTrading.Validation;
     using EnergyTrading.Search;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
@@ -50,7 +49,7 @@ namespace EnergyTrading.MDM.Test.Services
             var message = new CreateMappingRequest
                 {
                     EntityId = 12,
-                    Mapping = new NexusId { SystemName = "Test", Identifier = "A" }
+                    Mapping = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" }
                 };
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<CreateMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
@@ -72,7 +71,7 @@ namespace EnergyTrading.MDM.Test.Services
 			var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
-            var identifier = new NexusId { SystemName = "Test", Identifier = "A" };
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" };
             var message = new CreateMappingRequest
             {
                 EntityId = 12,
@@ -82,7 +81,7 @@ namespace EnergyTrading.MDM.Test.Services
             var system = new MDM.SourceSystem { Name = "Test" };
             var mapping = new SourceSystemMapping { System = system, MappingValue = "A" };
             validatorFactory.Setup(x => x.IsValid(It.IsAny<CreateMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.NexusId, SourceSystemMapping>(identifier)).Returns(mapping);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>(identifier)).Returns(mapping);
 
             var sourcesystem = new MDM.SourceSystem();
             repository.Setup(x => x.FindOne<MDM.SourceSystem>(12)).Returns(sourcesystem);

@@ -7,7 +7,7 @@
             return string.Format("{0} identified by '{1}' not found", entityName, request.EntityId);
         }
 
-        protected override void PopulateFault(RWEST.Nexus.MDM.Contracts.Fault fault, GetRequest request)
+        protected override void PopulateFault(EnergyTrading.Mdm.Contracts.Fault fault, GetRequest request)
         {
             fault.Identifier = request.EntityId.ToString();
         }

@@ -9,9 +9,9 @@ namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 
     using Microsoft.Practices.Unity;
 
-    using RWEST.Nexus.Contracts.Atom;
+    using EnergyTrading.Contracts.Atom;
 
-    public class SourceSystemConfiguration : EntityConfiguration<Services.SourceSystemService, MDM.SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystem, 
+    public class SourceSystemConfiguration : EntityConfiguration<Services.SourceSystemService, MDM.SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystem, 
 		SourceSystemMapping, SourceSystemValidator>
     {
         public SourceSystemConfiguration(IUnityContainer container) : base(container)
@@ -25,9 +25,9 @@ namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 
         protected override void ContractDomainMapping()
         {
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.SourceSystem, MDM.SourceSystem>, EnergyTrading.MDM.Contracts.Mappers.SourceSystemMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.SourceSystemDetails, MDM.SourceSystem>, EnergyTrading.MDM.Contracts.Mappers.SourceSystemDetailsMapper>();
-            this.Container.RegisterType<IMapper<RWEST.Nexus.MDM.Contracts.NexusId, SourceSystemMapping>, MappingMapper<SourceSystemMapping>>();
+            this.Container.RegisterType<IMapper<EnergyTrading.Mdm.Contracts.SourceSystem, MDM.SourceSystem>, EnergyTrading.MDM.Contracts.Mappers.SourceSystemMapper>();
+            this.Container.RegisterType<IMapper<EnergyTrading.Mdm.Contracts.SourceSystemDetails, MDM.SourceSystem>, EnergyTrading.MDM.Contracts.Mappers.SourceSystemDetailsMapper>();
+            this.Container.RegisterType<IMapper<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>, MappingMapper<SourceSystemMapping>>();
         }
 
         protected override void DomainContractMapping()
@@ -35,7 +35,7 @@ namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
             this.MappingEngine.RegisterMap(new Mappers.SourceSystemDetailsMapper());
             this.MappingEngine.RegisterMap(new SourceSystemMappingMapper());      
             this.Container.RegisterType<IMapper<MDM.SourceSystem, List<Link>>, NullLinksMapper>();
-            this.Container.RegisterType<IMapper<MDM.SourceSystem, RWEST.Nexus.MDM.Contracts.SourceSystem>, MDM.Mappers.SourceSystemMapper>();
+            this.Container.RegisterType<IMapper<MDM.SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystem>, MDM.Mappers.SourceSystemMapper>();
         }
     }
 }

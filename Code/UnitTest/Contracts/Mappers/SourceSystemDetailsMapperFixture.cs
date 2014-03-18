@@ -15,7 +15,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             // Arrange
             var mockRepository = new Mock<IRepository>();
 
-            var source = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails
+            var source = new EnergyTrading.Mdm.Contracts.SourceSystemDetails
                 {
                 };
 

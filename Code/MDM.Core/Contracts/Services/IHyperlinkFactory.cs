@@ -10,6 +10,6 @@
     {
         void AddLinks(int mdmId, TContract contract);
 
-        void AddLinks(int mdmId, IEnumerable<RWEST.Nexus.MDM.Contracts.NexusId> identifiers);
+        void AddLinks(int mdmId, IEnumerable<EnergyTrading.Mdm.Contracts.MdmId> identifiers);
     }
 }

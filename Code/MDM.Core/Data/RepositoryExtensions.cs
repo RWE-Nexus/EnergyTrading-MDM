@@ -4,8 +4,8 @@
     using System.Linq;
 
     using EnergyTrading.Data;
-    using RWEST.Nexus.MDM;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Messages;
 
     using ReferenceData = EnergyTrading.MDM.ReferenceData;
@@ -91,7 +91,7 @@
 
             var nexusId = entityId.Identifier;
                  
-            if (nexusId.IsNexusId)
+            if (nexusId.IsMdmId)
             {
                 return repository.FindOne<T>(int.Parse(nexusId.Identifier));
             }

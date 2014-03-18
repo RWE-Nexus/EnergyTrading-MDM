@@ -7,7 +7,6 @@
 
     using Moq;
 
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;
     using EnergyTrading.Validation;
@@ -33,7 +32,7 @@
         [TestMethod]
         public void ResolveNexusMappingValidator()
         {
-            this.Resolve<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>>();
+            this.Resolve<IValidator<EnergyTrading.Mdm.Contracts.MdmId>>();
         }
 
         protected void Resolve<T>()

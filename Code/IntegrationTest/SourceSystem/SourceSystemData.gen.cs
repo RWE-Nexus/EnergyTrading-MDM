@@ -87,16 +87,16 @@ namespace EnergyTrading.MDM.Test
             return entity;
         }
 
-        public RWEST.Nexus.MDM.Contracts.SourceSystem MakeChangeToContract(RWEST.Nexus.MDM.Contracts.SourceSystem currentContract)
+        public EnergyTrading.Mdm.Contracts.SourceSystem MakeChangeToContract(EnergyTrading.Mdm.Contracts.SourceSystem currentContract)
         {
             this.AddDetailsToContract(currentContract);
-            currentContract.Nexus.StartDate = currentContract.Nexus.StartDate.Value.AddDays(2);
+            currentContract.MdmSystemData.StartDate = currentContract.MdmSystemData.StartDate.Value.AddDays(2);
             return currentContract;
         }
 
-        public RWEST.Nexus.MDM.Contracts.SourceSystem CreateContractForEntityCreation()
+        public EnergyTrading.Mdm.Contracts.SourceSystem CreateContractForEntityCreation()
         {
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem();
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem();
             this.AddDetailsToContract(contract);
             return contract;
         }
@@ -108,7 +108,7 @@ namespace EnergyTrading.MDM.Test
 
         partial void CreateSearchData(Search search, SourceSystem entity1, SourceSystem entity2);
 
-        partial void AddDetailsToContract(RWEST.Nexus.MDM.Contracts.SourceSystem contract);
+        partial void AddDetailsToContract(EnergyTrading.Mdm.Contracts.SourceSystem contract);
 
         partial void AddDetailsToEntity(MDM.SourceSystem entity, DateTime startDate, DateTime endDate);
 

@@ -2,7 +2,7 @@
 {
     using EnergyTrading.Test;
 
-    public class SystemDataChecker : Checker<RWEST.Nexus.MDM.Contracts.SystemData>
+    public class SystemDataChecker : Checker<EnergyTrading.Mdm.Contracts.SystemData>
     {
         public SystemDataChecker()
         {

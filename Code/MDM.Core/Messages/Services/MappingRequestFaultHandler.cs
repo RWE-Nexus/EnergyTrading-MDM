@@ -19,7 +19,7 @@
             }
         }
         
-        protected override void PopulateFault(RWEST.Nexus.MDM.Contracts.Fault fault, MappingRequest request)
+        protected override void PopulateFault(EnergyTrading.Mdm.Contracts.Fault fault, MappingRequest request)
         {
             fault.SourceSystem = request.SystemName;
             fault.Identifier = request.Identifier;

@@ -104,7 +104,7 @@
             this.Name,
             new InjectionConstructor(new ResolvedParameter<IValidatorEngine>(this.Name)));
 
-            this.Container.RegisterType<IValidator<RWEST.Nexus.MDM.Contracts.NexusId>, NexusIdValidator<TMapping>>(this.Name);
+            this.Container.RegisterType<IValidator<EnergyTrading.Mdm.Contracts.MdmId>, NexusIdValidator<TMapping>>(this.Name);
                 
             this.Container.RegisterType<IValidator<AmendMappingRequest>, AmendMappingRequestValidator<TMapping>>(
             this.Name, new InjectionConstructor(new ResolvedParameter<IRepository>()));

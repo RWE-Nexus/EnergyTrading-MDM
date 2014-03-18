@@ -1,7 +1,7 @@
 namespace EnergyTrading.MDM.Extensions
 {
     using System.Linq;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public static class MappingResponseExtensions
     {

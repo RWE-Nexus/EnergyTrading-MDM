@@ -6,7 +6,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_request_is_made_to_create_a_sourcesystem_entity_and_the_xml_does_not_satisfy_the_schema : IntegrationTestBase

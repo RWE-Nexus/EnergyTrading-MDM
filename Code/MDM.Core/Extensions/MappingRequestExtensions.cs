@@ -2,7 +2,7 @@
 {
     using System;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Messages;
 
     public static class MappingRequestExtensions

@@ -1,6 +1,6 @@
 ﻿namespace EnergyTrading.MDM.Messages.Services
 {
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public interface IFaultHandler<in T>
         where T : ReadRequest

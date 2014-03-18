@@ -15,6 +15,7 @@
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.Extensions;
     using EnergyTrading.Logging;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM;
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Extensions;
@@ -29,8 +30,6 @@
     using MDM.ServiceHost.Wcf.Feeds;
 
     using Microsoft.Practices.ServiceLocation;
-
-    using RWEST.Nexus.MDM.Contracts;
 
     public abstract class EntityService<TContract, TEntity>
         where TContract : class, IMdmEntity
@@ -83,7 +82,7 @@
             get { return this.contextWrapper; }
         }
 
-        public void CreateHandler(TContract contract)
+        public virtual void CreateHandler(TContract contract)
         {
             this.WebHandler(() =>
                 {
@@ -111,7 +110,7 @@
                 });
         }
 
-        public void CreateMappingHandler(string id, Mapping mapping)
+        public virtual void CreateMappingHandler(string id, Mapping mapping)
         {
             this.WebHandler(() =>
                 {
@@ -141,7 +140,7 @@
                 });
         }
 
-        public void DeleteMappingHandler(string entityId, string mappingId)
+        public virtual void DeleteMappingHandler(string entityId, string mappingId)
         {
             this.WebHandler(() =>
                 {
@@ -166,7 +165,7 @@
                 });
         }
 
-        public MappingResponse CrossMapHandler()
+        public virtual MappingResponse CrossMapHandler()
         {
             return this.ContractHandler(
                 delegate
@@ -193,12 +192,12 @@
                 });
         }
 
-        public void DeleteHandler(string id)
+        public virtual void DeleteHandler(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Message FeedHandler()
+        public virtual Message FeedHandler()
         {
             return this.WebHandler(
                 delegate
@@ -226,7 +225,7 @@
                 });
         }
 
-        public TContract GetHandler(string id)
+        public virtual TContract GetHandler(string id)
         {
             return this.ContractHandler(
                 delegate
@@ -254,7 +253,7 @@
                 });
         }
 
-        public IList<TContract> GetEntityListHandler(string id)
+        public virtual IList<TContract> GetEntityListHandler(string id)
         {
             return this.WebHandler(
                 delegate
@@ -284,7 +283,7 @@
                 });
         }
 
-        public IList<TContract> ListHandler()
+        public virtual IList<TContract> ListHandler()
         {
             return this.WebHandler(
                 delegate
@@ -297,7 +296,7 @@
                 });
         }
 
-        public TContract MapHandler()
+        public virtual TContract MapHandler()
         {
             return this.ContractHandler(
                 delegate
@@ -325,7 +324,7 @@
                 });
         }
 
-        public MappingResponse MappingHandler(string id, string mappingId)
+        public virtual MappingResponse MappingHandler(string id, string mappingId)
         {
             return this.ContractHandler(
                 delegate
@@ -356,7 +355,7 @@
                 });
         }
 
-        public Message SearchHandler(Search search)
+        public virtual Message SearchHandler(Search search)
         {
             return this.WebHandler(
                 delegate
@@ -380,7 +379,7 @@
                 });
         }
 
-        public Message DirectSearchHandler(IEntitySearchCommand<TEntity> searchCommand, Search search)
+        public virtual Message DirectSearchHandler(IEntitySearchCommand<TEntity> searchCommand, Search search)
         {
             var result = this.Service.CreateDirectSearch(search, searchCommand);
 
@@ -392,7 +391,7 @@
             return this.feedFactory.CreateFeed(result, this.EntityName, this.OutgoingResponse.BaseUri);
         }
 
-        public Message NonTemporalSearchHandler(Search search)
+        public virtual Message NonTemporalSearchHandler(Search search)
         {
             var result = this.Service.CreateNonTemporalSearch(search);
 
@@ -410,7 +409,7 @@
             return this.Service.GetSearchResults(key, pageNumber);
         }
 
-        public Message SearchResultsHandler(string searchKey, string pageNumber)
+        public virtual Message SearchResultsHandler(string searchKey, string pageNumber)
         {
             Logger.DebugFormat("Search for {0}: SearchKey: {1}, PageNumber: {2}", typeof(TContract).Name, searchKey, pageNumber);
 
@@ -425,7 +424,7 @@
             return this.feedFactory.CreateFeed<TContract>(searchResults, this.EntityName, this.OutgoingResponse.BaseUri);
         }
 
-        public Message MappingsHandler(string id)
+        public virtual Message MappingsHandler(string id)
         {
             return this.WebHandler(
                 delegate
@@ -467,7 +466,7 @@
                 });
         }
 
-        public void UpdateHandler(string id, TContract contract)
+        public virtual void UpdateHandler(string id, TContract contract)
         {
             this.WebHandler(
                 delegate
@@ -498,7 +497,7 @@
                 });
         }
 
-        public void UpdateMappingHandler(string id, string mappingId, Mapping mapping)
+        public virtual void UpdateMappingHandler(string id, string mappingId, Mapping mapping)
         {
             this.WebHandler(
                 delegate
@@ -683,7 +682,7 @@
             }
         }
 
-        private IList<TContract> GetList()
+        protected IList<TContract> GetList()
         {
             List<TContract> list;
 

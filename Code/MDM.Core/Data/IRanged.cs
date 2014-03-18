@@ -1,7 +1,7 @@
 ﻿namespace EnergyTrading.MDM.Data
 {
     using EnergyTrading;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     public interface IRanged
     {

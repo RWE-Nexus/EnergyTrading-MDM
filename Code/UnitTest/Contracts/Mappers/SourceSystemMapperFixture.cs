@@ -13,7 +13,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
     using EnergyTrading;
     using EnergyTrading.Mapping;
 
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     [TestClass]
     public class SourceSystemMapperFixture : Fixture
@@ -28,7 +28,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             var config = new SourceSystemConfiguration(container);
             config.Configure();
 
-            var validator = container.Resolve<IMapper<RWEST.Nexus.MDM.Contracts.SourceSystem, SourceSystem>>();
+            var validator = container.Resolve<IMapper<EnergyTrading.Mdm.Contracts.SourceSystem, SourceSystem>>();
 
             // Assert
             Assert.IsNotNull(validator, "Mapper resolution failed");
@@ -42,13 +42,13 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             var end = DateUtility.MaxDate;
             var range = new DateRange(start, end);
 
-            var id = new RWEST.Nexus.MDM.Contracts.NexusId { SystemName = "Test", Identifier = "A" };
-            var contractDetails = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails();
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem
+            var id = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" };
+            var contractDetails = new EnergyTrading.Mdm.Contracts.SourceSystemDetails();
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem
             {
-                Identifiers = new RWEST.Nexus.MDM.Contracts.NexusIdList { id },
+                Identifiers = new EnergyTrading.Mdm.Contracts.MdmIdList { id },
                 Details = contractDetails,
-                Nexus = new RWEST.Nexus.MDM.Contracts.SystemData { StartDate = start, EndDate = end }
+                MdmSystemData = new EnergyTrading.Mdm.Contracts.SystemData { StartDate = start, EndDate = end }
             };
 
             // NB Don't assign validity here, want to prove SUT sets it
@@ -57,8 +57,8 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             var mapping = new SourceSystemMapping();
 
             var mappingEngine = new Mock<IMappingEngine>();
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.NexusId, SourceSystemMapping>(id)).Returns(mapping);
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.SourceSystemDetails, SourceSystem>(contractDetails)).Returns(details);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>(id)).Returns(mapping);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.SourceSystemDetails, SourceSystem>(contractDetails)).Returns(details);
 
             var mapper = new SourceSystemMapper(mappingEngine.Object);
 

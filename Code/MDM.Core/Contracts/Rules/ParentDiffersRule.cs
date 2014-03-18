@@ -6,7 +6,7 @@ namespace EnergyTrading.MDM.Contracts.Rules
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.Validation;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public class ParentDiffersRule<TEntity, TRelatedEntity, TMapping> : Rule<TEntity>
         where TRelatedEntity : class, IEntity

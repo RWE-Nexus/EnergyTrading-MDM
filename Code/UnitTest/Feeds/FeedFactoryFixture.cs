@@ -2,17 +2,15 @@ namespace EnergyTrading.MDM.Test.Feeds
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.ServiceModel.Channels;
     using System.ServiceModel.Syndication;
-    using System.Xml;
+
+    using EnergyTrading.Search;
+    using EnergyTrading.Test;
 
     using global::MDM.ServiceHost.Wcf.Feeds;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using EnergyTrading.Search;
-    using EnergyTrading.Test;
 
     [TestClass]
     public class when_the_feed_factory_is_asked_to_create_a_feed_and_there_are_multiple_pages : SpecBase<FeedFactory>
@@ -28,22 +26,22 @@ namespace EnergyTrading.MDM.Test.Feeds
 
         protected override void Because_of()
         {
-            var bobSmith = new RWEST.Nexus.MDM.Contracts.Person()
+            var bobSmith = new EnergyTrading.Mdm.Contracts.SourceSystem()
                 {
-                    Details = new RWEST.Nexus.MDM.Contracts.PersonDetails() { Forename = "Bob", Surname = "Smith" } 
+                    Details = new EnergyTrading.Mdm.Contracts.SourceSystemDetails() { Name = "Bob" } 
                 };
 
-            var fredJones = new RWEST.Nexus.MDM.Contracts.Person()
+            var fredJones = new EnergyTrading.Mdm.Contracts.SourceSystem()
                 {
-                    Details = new RWEST.Nexus.MDM.Contracts.PersonDetails() { Forename = "Fred", Surname = "Jones" } 
+                    Details = new EnergyTrading.Mdm.Contracts.SourceSystemDetails() { Name = "Fred" } 
                 };
 
-            var personList = new List<RWEST.Nexus.MDM.Contracts.Person>() { bobSmith, fredJones };
+            var personList = new List<EnergyTrading.Mdm.Contracts.SourceSystem>() { bobSmith, fredJones };
 
             var cacheSearchResultPage = new CacheSearchResultPage(new List<int>() { 1, 2 }, DateTime.Now, 2, this.currentSearch.ToString());
-            var searchResultPage = new SearchResultPage<RWEST.Nexus.MDM.Contracts.Person>(cacheSearchResultPage, personList);
+            var searchResultPage = new SearchResultPage<EnergyTrading.Mdm.Contracts.SourceSystem>(cacheSearchResultPage, personList);
 
-            this.response = this.Sut.CreateFeed(searchResultPage, "Person", this.baseUri);
+            this.response = this.Sut.CreateFeed(searchResultPage, "SourceSystem", this.baseUri);
         }
 
         [TestMethod] 
@@ -80,22 +78,22 @@ namespace EnergyTrading.MDM.Test.Feeds
 
         protected override void Because_of()
         {
-            var bobSmith = new RWEST.Nexus.MDM.Contracts.Person()
+            var bobSmith = new EnergyTrading.Mdm.Contracts.SourceSystem()
                 {
-                    Details = new RWEST.Nexus.MDM.Contracts.PersonDetails() { Forename = "Bob", Surname = "Smith" } 
+                    Details = new EnergyTrading.Mdm.Contracts.SourceSystemDetails() { Name = "Bob" } 
                 };
 
-            var fredJones = new RWEST.Nexus.MDM.Contracts.Person()
+            var fredJones = new EnergyTrading.Mdm.Contracts.SourceSystem()
                 {
-                    Details = new RWEST.Nexus.MDM.Contracts.PersonDetails() { Forename = "Fred", Surname = "Jones" } 
+                    Details = new EnergyTrading.Mdm.Contracts.SourceSystemDetails() { Name = "Fred" } 
                 };
 
-            var personList = new List<RWEST.Nexus.MDM.Contracts.Person>() { bobSmith, fredJones };
+            var personList = new List<EnergyTrading.Mdm.Contracts.SourceSystem>() { bobSmith, fredJones };
 
             var cacheSearchResultPage = new CacheSearchResultPage(new List<int>() { 1, 2 }, DateTime.Now, null, this.currentSearch.ToString());
-            var searchResultPage = new SearchResultPage<RWEST.Nexus.MDM.Contracts.Person>(cacheSearchResultPage, personList);
+            var searchResultPage = new SearchResultPage<EnergyTrading.Mdm.Contracts.SourceSystem>(cacheSearchResultPage, personList);
 
-            this.response = this.Sut.CreateFeed(searchResultPage, "Person", this.baseUri);
+            this.response = this.Sut.CreateFeed(searchResultPage, "SourceSystem", this.baseUri);
         }
 
         [TestMethod] 

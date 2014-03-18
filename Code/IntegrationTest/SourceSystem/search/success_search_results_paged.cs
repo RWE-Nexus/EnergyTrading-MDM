@@ -11,7 +11,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using EnergyTrading.Contracts.Search;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Search;
 
     [TestClass]
@@ -47,13 +47,13 @@
         [TestMethod]
         public void should_have_one_of_the_results_in_the_first_page()
         {
-            Assert.AreEqual(1, pageOne.Where(x => x.ToNexusKey() == entity1.Id || x.ToNexusKey() == entity2.Id).Count());
+            Assert.AreEqual(1, pageOne.Where(x => x.ToMdmKey() == entity1.Id || x.ToMdmKey() == entity2.Id).Count());
         }
 
         [TestMethod]
         public void should_have_one_of_the_results_in_the_second_page()
         {
-            Assert.AreEqual(1, pageTwo.Where(x => x.ToNexusKey() == entity1.Id || x.ToNexusKey() == entity2.Id).Count());
+            Assert.AreEqual(1, pageTwo.Where(x => x.ToMdmKey() == entity1.Id || x.ToMdmKey() == entity2.Id).Count());
         }
 
         [TestMethod]
@@ -104,9 +104,9 @@
 
         private static IList<SourceSystem> GetPeopleFromFeed(SyndicationFeed feed)
         {
-            List<RWEST.Nexus.MDM.Contracts.SourceSystem> result =
+            List<EnergyTrading.Mdm.Contracts.SourceSystem> result =
                 feed.Items.Select(syndicationItem => (XmlSyndicationContent)syndicationItem.Content).Select(
-                    syndic => syndic.ReadContent<RWEST.Nexus.MDM.Contracts.SourceSystem>()).ToList();
+                    syndic => syndic.ReadContent<EnergyTrading.Mdm.Contracts.SourceSystem>()).ToList();
 
             return result;
         }

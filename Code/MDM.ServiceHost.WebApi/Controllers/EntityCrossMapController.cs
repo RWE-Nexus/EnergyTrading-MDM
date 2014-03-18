@@ -15,7 +15,7 @@
     using MDM.ServiceHost.WebApi.Infrastructure.ETags;
     using MDM.ServiceHost.WebApi.Infrastructure.Results;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public class EntityCrossMapController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity

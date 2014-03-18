@@ -1,7 +1,7 @@
 namespace EnergyTrading.MDM.Contracts.Rules
 {
     using System;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     using EnergyTrading.MDM.Data;
     using EnergyTrading.Data;

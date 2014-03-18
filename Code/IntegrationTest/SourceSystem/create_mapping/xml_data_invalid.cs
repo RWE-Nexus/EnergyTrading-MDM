@@ -26,7 +26,7 @@ namespace EnergyTrading.MDM.Test
         protected static void Establish_context()
         {
             entity = Script.SourceSystemData.CreateBasicEntity();
-            var notAMapping = new RWEST.Nexus.MDM.Contracts.SourceSystem();
+            var notAMapping = new EnergyTrading.Mdm.Contracts.SourceSystem();
             content = HttpContentExtensions.CreateDataContract(notAMapping);
             client = new HttpClient();
         }

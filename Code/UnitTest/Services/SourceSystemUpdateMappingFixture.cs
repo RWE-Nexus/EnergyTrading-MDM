@@ -7,14 +7,13 @@ namespace EnergyTrading.MDM.Test.Services
 
     using Moq;
 
-    using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
     using EnergyTrading.Validation;
     using EnergyTrading.Search;
 
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
@@ -56,7 +55,7 @@ namespace EnergyTrading.MDM.Test.Services
             var message = new AmendMappingRequest
             {
                 EntityId = 12,
-                Mapping = new NexusId { SystemName = "Test", Identifier = "A" }
+                Mapping = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" }
             };
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<AmendMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
@@ -83,7 +82,7 @@ namespace EnergyTrading.MDM.Test.Services
             var message = new AmendMappingRequest
             {
                 MappingId = 12,
-                Mapping = new NexusId { SystemName = "Test", Identifier = "A" },
+                Mapping = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" },
                 Version = 34
             };
 
@@ -110,7 +109,7 @@ namespace EnergyTrading.MDM.Test.Services
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
             // NB Don't put mappingId here - service assigns it
-            var identifier = new NexusId { SystemName = "Test", Identifier = "A" };
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" };
             var message = new AmendMappingRequest { MappingId = mappingId, Mapping = identifier, Version = 34UL };
 
             var start = new DateTime(2000, 12, 31);
@@ -126,7 +125,7 @@ namespace EnergyTrading.MDM.Test.Services
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<AmendMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
             repository.Setup(x => x.FindOne<SourceSystemMapping>(mappingId)).Returns(m1);
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.NexusId, SourceSystemMapping>(identifier)).Returns(m2);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>(identifier)).Returns(m2);
 
             // Act
             service.UpdateMapping(message);

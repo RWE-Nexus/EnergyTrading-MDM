@@ -2,7 +2,7 @@ namespace EnergyTrading.MDM.Contracts.Mappers
 {
     using System.Collections.Generic;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Mapping;
 	
     /// <summary>
@@ -21,10 +21,10 @@ namespace EnergyTrading.MDM.Contracts.Mappers
 
         protected override EnergyTrading.DateRange ContractDetailsValidity(SourceSystem contract)
         {
-            return this.SystemDataValidity(contract.Nexus);
+            return this.SystemDataValidity(contract.MdmSystemData);
         }
 
-        protected override IEnumerable<RWEST.Nexus.MDM.Contracts.NexusId> Identifiers(SourceSystem contract)
+        protected override IEnumerable<EnergyTrading.Mdm.Contracts.MdmId> Identifiers(SourceSystem contract)
         {
             return contract.Identifiers;
         }

@@ -8,7 +8,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_request_is_made_to_retrive_a_sourcesystem_from_a_source_system_and_the_source_system_doesnt_exist : IntegrationTestBase

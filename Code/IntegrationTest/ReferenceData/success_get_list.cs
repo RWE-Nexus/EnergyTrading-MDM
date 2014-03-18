@@ -7,7 +7,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using EnergyTrading.Data.EntityFramework;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Data.EF.Configuration;
     using ReferenceData = EnergyTrading.MDM.ReferenceData;
 
@@ -45,7 +45,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
         protected static void Because_of()
         {
             var getResponse = client.Get(ServiceUrl["ReferenceData"] + string.Format("/list/{0}", refData.Key));
-            response = getResponse.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.ReferenceDataList>();
+            response = getResponse.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.ReferenceDataList>();
         }
 
         [TestMethod]

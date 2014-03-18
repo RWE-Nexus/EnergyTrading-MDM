@@ -8,7 +8,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
 
@@ -34,7 +34,7 @@ namespace EnergyTrading.MDM.Test
             client = new HttpClient(ServiceUrl["SourceSystem"] + string.Format("{0}/mapping/{1}", entity.Id, mapping.Id));
 
             response = client.Get();
-            mappingResponse = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.MappingResponse>();
+            mappingResponse = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.MappingResponse>();
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(mapping.Validity.Start, mappingResponse.Mappings[0].StartDate);
             Assert.AreEqual(mapping.Validity.Finish, mappingResponse.Mappings[0].EndDate);
             Assert.AreEqual(mapping.System.Name, mappingResponse.Mappings[0].SystemName);
-            Assert.IsFalse(mappingResponse.Mappings[0].IsNexusId);
+            Assert.IsFalse(mappingResponse.Mappings[0].IsMdmId);
             Assert.AreEqual(mapping.Id, mappingResponse.Mappings[0].MappingId);
         }
 

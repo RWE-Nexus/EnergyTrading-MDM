@@ -11,7 +11,7 @@
     using EnergyTrading;
     using EnergyTrading.Mapping;
 
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     public class EntityMappingFixture : Fixture
     {
@@ -31,7 +31,7 @@
             task.Configure();
 
             var start = new DateTime(2000, 12, 31);
-            var expected = new RWEST.Nexus.MDM.Contracts.NexusId
+            var expected = new EnergyTrading.Mdm.Contracts.MdmId
             {
                 MappingId = 34,
                 SystemName = "Test",
@@ -52,7 +52,7 @@
 
             var mappingEngine = container.Resolve<IMappingEngine>();
 
-            var candidate = mappingEngine.Map<IEntityMapping, RWEST.Nexus.MDM.Contracts.NexusId>(m1);
+            var candidate = mappingEngine.Map<IEntityMapping, EnergyTrading.Mdm.Contracts.MdmId>(m1);
             Check(expected, candidate);
         }
     }

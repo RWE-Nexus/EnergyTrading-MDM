@@ -12,7 +12,7 @@
             return string.Format("Mapping String '{1}' not found for Source System '{0}'", request.SystemName, request.Identifier, request.TargetSystemName);
         }
 
-        protected override void PopulateFault(RWEST.Nexus.MDM.Contracts.Fault fault, CrossMappingRequest request)
+        protected override void PopulateFault(EnergyTrading.Mdm.Contracts.Fault fault, CrossMappingRequest request)
         {
             fault.SourceSystem = request.SystemName;
             fault.Mapping = request.Identifier;

@@ -9,7 +9,7 @@
     using EnergyTrading.MDM.Contracts.Rules;
     using EnergyTrading;
     using EnergyTrading.Data;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
     [TestClass]
     public class NexusIdNoOverlappingRuleFixture
@@ -27,7 +27,7 @@
             var repository = new Mock<IRepository>();
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
-            var identifier = new RWEST.Nexus.MDM.Contracts.NexusId
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId
                 {
                     SystemName = "Test", 
                     Identifier = "1", 
@@ -58,7 +58,7 @@
             var repository = new Mock<IRepository>();
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
-            var identifier = new RWEST.Nexus.MDM.Contracts.NexusId
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
                 SystemName = "Test",
                 Identifier = "1",

@@ -10,7 +10,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using EnergyTrading.Contracts.Search;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Search;
 
     [TestClass]
@@ -46,12 +46,12 @@ namespace EnergyTrading.MDM.Test
                 response.Content.ReadAsStream(), new XmlReaderSettings { ProhibitDtd = false });
             SyndicationFeed feed = SyndicationFeed.Load(reader);
 
-            List<RWEST.Nexus.MDM.Contracts.SourceSystem> result =
+            List<EnergyTrading.Mdm.Contracts.SourceSystem> result =
                 feed.Items.Select(syndicationItem => (XmlSyndicationContent)syndicationItem.Content).Select(
-                    syndic => syndic.ReadContent<RWEST.Nexus.MDM.Contracts.SourceSystem>()).ToList();
+                    syndic => syndic.ReadContent<EnergyTrading.Mdm.Contracts.SourceSystem>()).ToList();
 
-            Assert.AreEqual(1, result.Where(x => x.ToNexusKey() == entity1.Id).Count(), string.Format("Entity not found in search results {0}", entity1.Id));
-            Assert.AreEqual(1, result.Where(x => x.ToNexusKey() == entity2.Id).Count(), string.Format("Entity not found in search results {0}", entity2.Id));
+            Assert.AreEqual(1, result.Where(x => x.ToMdmKey() == entity1.Id).Count(), string.Format("Entity not found in search results {0}", entity1.Id));
+            Assert.AreEqual(1, result.Where(x => x.ToMdmKey() == entity2.Id).Count(), string.Format("Entity not found in search results {0}", entity2.Id));
         }
 
         protected static void Because_of()
@@ -106,11 +106,11 @@ namespace EnergyTrading.MDM.Test
                 response.Content.ReadAsStream(), new XmlReaderSettings { ProhibitDtd = false });
             SyndicationFeed feed = SyndicationFeed.Load(reader);
 
-            List<RWEST.Nexus.MDM.Contracts.SourceSystem> result =
+            List<EnergyTrading.Mdm.Contracts.SourceSystem> result =
                 feed.Items.Select(syndicationItem => (XmlSyndicationContent)syndicationItem.Content).Select(
-                    syndic => syndic.ReadContent<RWEST.Nexus.MDM.Contracts.SourceSystem>()).ToList();
+                    syndic => syndic.ReadContent<EnergyTrading.Mdm.Contracts.SourceSystem>()).ToList();
 
-            Assert.AreEqual(1, result.Where(x => x.ToNexusKey() == entity1.Id).Count(), string.Format("Entity not found in search results {0}", entity1.Id));
+            Assert.AreEqual(1, result.Where(x => x.ToMdmKey() == entity1.Id).Count(), string.Format("Entity not found in search results {0}", entity1.Id));
         }
 
         protected static void Because_of()

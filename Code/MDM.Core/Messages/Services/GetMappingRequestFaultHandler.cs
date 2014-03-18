@@ -12,7 +12,7 @@
             return string.Format("Mapping identified by '{2}' not found", entityName, request.EntityId, request.MappingId);
         }
 
-        protected override void PopulateFault(RWEST.Nexus.MDM.Contracts.Fault fault, GetMappingRequest request)
+        protected override void PopulateFault(EnergyTrading.Mdm.Contracts.Fault fault, GetMappingRequest request)
         {
         }
     }

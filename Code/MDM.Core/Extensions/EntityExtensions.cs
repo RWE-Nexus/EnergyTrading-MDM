@@ -3,30 +3,30 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public static class EntityExtensions
     {
         public static EntityId CreateNexusEntityId(this IEntity entity, Func<string> name)
         {
-            NexusId nexusMapping = CreateNexusMapping(entity);
+            MdmId mdmMapping = CreateNexusMapping(entity);
 
-            return nexusMapping == null ? null : new EntityId { Identifier = nexusMapping, Name = name() };
+            return mdmMapping == null ? null : new EntityId { Identifier = mdmMapping, Name = name() };
         }
 
-        public static NexusId CreateNexusMapping(this IEntity entity)
+        public static MdmId CreateNexusMapping(this IEntity entity)
         {
             if (entity == null)
             {
                 return null;
             }
 
-            return new NexusId
+            return new MdmId
                 {
-                    SystemName = NexusName.Name, 
+                    SystemName = MdmInternalName.Name, 
                     Identifier = entity.Id.ToString(), 
                     SourceSystemOriginated = false, 
-                    IsNexusId = true, 
+                    IsMdmId = true, 
                     StartDate = entity.Validity.Start, 
                     EndDate = entity.Validity.Finish
                 };

@@ -1,9 +1,10 @@
 namespace EnergyTrading.MDM.Test.Extensions
 {
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Extensions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using EnergyTrading.MDM.Messages;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class MappingRequestExtensionsFixture

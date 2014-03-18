@@ -8,7 +8,7 @@ namespace EnergyTrading.MDM.Test
     using Microsoft.Http;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     [TestClass]
     public class when_a_request_is_made_to_retrive_a_sourcesystem_from_a_source_system_and_the_mapping_string_doesnt_exist : IntegrationTestBase
@@ -32,8 +32,8 @@ namespace EnergyTrading.MDM.Test
         [TestMethod]
         public void should_not_return_a_sourcesystem()
         {
-            RWEST.Nexus.MDM.Contracts.SourceSystem returnedSourceSystem = null;
-            try { returnedSourceSystem = response.Content.ReadAsDataContract<RWEST.Nexus.MDM.Contracts.SourceSystem>(); } catch { }
+            EnergyTrading.Mdm.Contracts.SourceSystem returnedSourceSystem = null;
+            try { returnedSourceSystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>(); } catch { }
             Assert.IsNull(returnedSourceSystem);
         }
 

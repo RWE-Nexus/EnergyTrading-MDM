@@ -12,7 +12,7 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.Mapping;
     using EnergyTrading.Validation;
     using EnergyTrading.Search;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
@@ -47,13 +47,13 @@ namespace EnergyTrading.MDM.Test.Services
             var repository = new Mock<IRepository>();
 			var searchCache = new Mock<ISearchCache>();
 
-            validatorFactory.Setup(x => x.IsValid(It.IsAny<RWEST.Nexus.MDM.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
+            validatorFactory.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
-            var cd = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails();
-            var nexus = new RWEST.Nexus.MDM.Contracts.SystemData { StartDate = new DateTime(2012, 1, 1) };
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem { Details = cd, Nexus = nexus };
+            var cd = new EnergyTrading.Mdm.Contracts.SourceSystemDetails();
+            var nexus = new EnergyTrading.Mdm.Contracts.SystemData { StartDate = new DateTime(2012, 1, 1) };
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem { Details = cd, MdmSystemData = nexus };
 
             var details = ObjectMother.Create<SourceSystem>();
             details.Id = 1;
@@ -76,10 +76,10 @@ namespace EnergyTrading.MDM.Test.Services
 			var searchCache = new Mock<ISearchCache>();
 
             // Contract
-            var cd = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails();
-            var nexus = new RWEST.Nexus.MDM.Contracts.SystemData { StartDate = new DateTime(2012, 1, 1) };
-            var identifier = new RWEST.Nexus.MDM.Contracts.NexusId { SystemName = "Test", Identifier = "A" };
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem { Details = cd, Nexus = nexus };
+            var cd = new EnergyTrading.Mdm.Contracts.SourceSystemDetails();
+            var nexus = new EnergyTrading.Mdm.Contracts.SystemData { StartDate = new DateTime(2012, 1, 1) };
+            var identifier = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" };
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem { Details = cd, MdmSystemData = nexus };
             contract.Identifiers.Add(identifier);
 
             // Domain
@@ -96,13 +96,13 @@ namespace EnergyTrading.MDM.Test.Services
             var range = new DateRange(new DateTime(2012, 1, 1), DateTime.MaxValue);
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<CreateMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
-            validatorFactory.Setup(x => x.IsValid(It.IsAny<RWEST.Nexus.MDM.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
+            validatorFactory.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
 
             repository.Setup(x => x.FindOne<SourceSystem>(1)).Returns(entity);
 
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.SourceSystemDetails, SourceSystem>(cd)).Returns(d2);
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.SystemData, DateRange>(nexus)).Returns(range);
-            mappingEngine.Setup(x => x.Map<RWEST.Nexus.MDM.Contracts.NexusId, SourceSystemMapping>(identifier)).Returns(mapping);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.SourceSystemDetails, SourceSystem>(cd)).Returns(d2);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.SystemData, DateRange>(nexus)).Returns(range);
+            mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>(identifier)).Returns(mapping);
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -139,11 +139,11 @@ namespace EnergyTrading.MDM.Test.Services
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
-            var cd = new RWEST.Nexus.MDM.Contracts.SourceSystemDetails();
-            var nexus = new RWEST.Nexus.MDM.Contracts.SystemData { StartDate = new DateTime(2012, 1, 1) };
-            var contract = new RWEST.Nexus.MDM.Contracts.SourceSystem { Details = cd, Nexus = nexus };
+            var cd = new EnergyTrading.Mdm.Contracts.SourceSystemDetails();
+            var nexus = new EnergyTrading.Mdm.Contracts.SystemData { StartDate = new DateTime(2012, 1, 1) };
+            var contract = new EnergyTrading.Mdm.Contracts.SourceSystem { Details = cd, MdmSystemData = nexus };
 
-            validatorFactory.Setup(x => x.IsValid(It.IsAny<RWEST.Nexus.MDM.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
+            validatorFactory.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
 
             // Act
             var response = service.Update(1, 1, contract);

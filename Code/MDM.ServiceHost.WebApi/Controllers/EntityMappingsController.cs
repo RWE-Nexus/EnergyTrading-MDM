@@ -14,7 +14,7 @@
     using MDM.ServiceHost.WebApi.Infrastructure.ETags;
     using MDM.ServiceHost.WebApi.Infrastructure.Feeds;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public class EntityMappingsController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity

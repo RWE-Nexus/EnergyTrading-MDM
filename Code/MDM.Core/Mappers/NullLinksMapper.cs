@@ -4,7 +4,7 @@ namespace EnergyTrading.MDM.Mappers
     using System.Collections.Generic;
     using System.Linq;
 
-    using RWEST.Nexus.Contracts.Atom;
+    using EnergyTrading.Contracts.Atom;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
 

@@ -34,18 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnergyTrading.Contracts">
-      <HintPath>..\packages\EnergyTrading.Contracts.2.7.28050.10\lib\net35\EnergyTrading.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="EnergyTrading.Core, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.Contracts, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Core.2.8.0.6\lib\net40\EnergyTrading.Core.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Contracts.2.8.0.9\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Core, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.0.9\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.EntityFramework">
       <HintPath>..\packages\EnergyTrading.EntityFramework.2.7.28050.10\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.MDM.Contracts">
-      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.1.28286.5\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
+    <Reference Include="EnergyTrading.MDM.Contracts, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.0.4\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.Test">
       <HintPath>..\packages\EnergyTrading.Test.2.7.28050.10\lib\net40\EnergyTrading.Test.dll</HintPath>
@@ -151,10 +153,6 @@
     <ProjectReference Include="..\MDM.Data.EF\MDM.Data.EF.csproj">
       <Project>{7A19CCF8-7DB6-41B3-92FC-5E9289844160}</Project>
       <Name>MDM.Data.EF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MDM.ServiceHost.Wcf.Nexus\MDM.ServiceHost.Wcf.Nexus.csproj">
-      <Project>{E24C551C-13F8-4B9C-87FA-C29550180401}</Project>
-      <Name>MDM.MappingService</Name>
     </ProjectReference>
     <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
       <Project>{CAC0933B-4282-4D7E-98B6-C6F0806F3830}</Project>

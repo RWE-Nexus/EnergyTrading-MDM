@@ -9,7 +9,7 @@ namespace EnergyTrading.MDM.Test
     public class when_a_request_is_made_to_create_a_sourcesystem_entity : IntegrationTestBase
     {
         private static HttpResponseMessage response;
-        private static RWEST.Nexus.MDM.Contracts.SourceSystem sourcesystem;
+        private static EnergyTrading.Mdm.Contracts.SourceSystem sourcesystem;
         private static HttpContent content;
         private static HttpClient client;
 

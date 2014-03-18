@@ -5,8 +5,8 @@
     using System.Linq;
 
     using EnergyTrading.Contracts.Search;
-    using RWEST.Nexus.MDM.Contracts;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.Search;

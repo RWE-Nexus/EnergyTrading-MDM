@@ -1,14 +1,14 @@
 ﻿namespace EnergyTrading.MDM.Contracts.Rules
 {
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     using EnergyTrading.MDM.Data;
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Validation;
-    using RWEST.Nexus.MDM;
+    using EnergyTrading.Mdm;
 
-    public class NexusIdNoOverlappingRule<T> : Rule<RWEST.Nexus.MDM.Contracts.NexusId>
+    public class NexusIdNoOverlappingRule<T> : Rule<EnergyTrading.Mdm.Contracts.MdmId>
         where T : class, IIdentifiable, IEntityMapping
     {
         private const string MessageTemplate = "Identifier '{0}' for system '{1}' already assigned to an entity for some part of the range {2:yyyy-MMM-dd} to {3:yyyy-MMM-dd}";
@@ -19,7 +19,7 @@
             this.repository = repository;
         }
 
-        public override bool IsValid(NexusId entity)
+        public override bool IsValid(MdmId entity)
         {
             var range = new EnergyTrading.DateRange(entity.StartDate, entity.EndDate);
             var count = this.repository.FindOverlappingMappingCount<T>(entity.SystemName, entity.Identifier, range);

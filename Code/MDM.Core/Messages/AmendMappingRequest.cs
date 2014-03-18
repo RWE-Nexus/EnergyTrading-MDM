@@ -6,7 +6,7 @@
 
         public int MappingId { get; set; }
 
-        public RWEST.Nexus.MDM.Contracts.NexusId Mapping { get; set; }
+        public EnergyTrading.Mdm.Contracts.MdmId Mapping { get; set; }
 
         public ulong Version { get; set; }
     }

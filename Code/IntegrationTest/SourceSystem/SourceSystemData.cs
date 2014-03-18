@@ -6,7 +6,7 @@ namespace EnergyTrading.MDM.Test
 
     public partial class SourceSystemData
     {
-        partial void AddDetailsToContract(RWEST.Nexus.MDM.Contracts.SourceSystem contract)
+        partial void AddDetailsToContract(EnergyTrading.Mdm.Contracts.SourceSystem contract)
         {
             contract.Details.Name = Guid.NewGuid().ToString();
         }

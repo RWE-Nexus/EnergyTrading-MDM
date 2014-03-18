@@ -9,7 +9,7 @@
 
     using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
 
-    using RWEST.Nexus.MDM.Contracts;
+    using EnergyTrading.Mdm.Contracts;
 
     public class EntityListController<TContract, TEntity, TListContract> : BaseEntityController
         where TContract : class, IMdmEntity
