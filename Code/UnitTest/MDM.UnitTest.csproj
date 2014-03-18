@@ -150,6 +150,14 @@
     <Compile Include="Web\ContractRequestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MDM.Core.Nexus\MDM.Core.Nexus.csproj">
+      <Project>{2b2e3cfe-42fe-407f-a2ae-77e138f04e8a}</Project>
+      <Name>MDM.Core.Nexus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Data.EF.Nexus\MDM.Data.EF.Nexus.csproj">
+      <Project>{762ad6d7-6f76-436e-97ab-f533a72717e8}</Project>
+      <Name>MDM.Data.EF.Nexus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MDM.Data.EF\MDM.Data.EF.csproj">
       <Project>{7A19CCF8-7DB6-41B3-92FC-5E9289844160}</Project>
       <Name>MDM.Data.EF</Name>
@@ -158,9 +166,17 @@
       <Project>{CAC0933B-4282-4D7E-98B6-C6F0806F3830}</Project>
       <Name>MDM.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Unity.Nexus\MDM.ServiceHost.Unity.Nexus.csproj">
+      <Project>{d4094f55-5509-4c70-ab68-ccdc54cc87ed}</Project>
+      <Name>MDM.ServiceHost.Unity.Nexus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MDM.ServiceHost.Unity\MDM.ServiceHost.Unity.csproj">
       <Project>{a70c860c-383c-411c-9642-878b284b0924}</Project>
       <Name>MDM.ServiceHost.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Wcf.Nexus\MDM.ServiceHost.Wcf.Nexus.csproj">
+      <Project>{e24c551c-13f8-4b9c-87fa-c29550180401}</Project>
+      <Name>MDM.ServiceHost.Wcf.Nexus</Name>
     </ProjectReference>
     <ProjectReference Include="..\MDM.ServiceHost.Wcf\MDM.ServiceHost.Wcf.csproj">
       <Project>{de2a7205-571a-48b0-9b38-6b4a76677898}</Project>

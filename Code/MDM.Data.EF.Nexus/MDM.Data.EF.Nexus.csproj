@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{762AD6D7-6F76-436E-97AB-F533A72717E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnergyTrading.MDM.Data.EF</RootNamespace>
+    <AssemblyName>MDM.Data.EF.Nexus</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Code\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EnergyTrading.Contracts, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Contracts.2.8.0.9\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Core">
+      <HintPath>..\packages\EnergyTrading.Core.2.8.0.9\lib\net40\EnergyTrading.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.EntityFramework">
+      <HintPath>..\packages\EnergyTrading.EntityFramework.2.7.28050.10\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.MDM.Contracts, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.0.4\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Unity">
+      <HintPath>..\packages\EnergyTrading.Unity.2.7.28050.10\lib\net40\EnergyTrading.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\Libs\UberProf\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenNexus.MDM.Contracts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OpenNexus.MDM.Contracts.3.2.0.2\lib\net35\OpenNexus.MDM.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\CalendarActions.cs" />
+    <Compile Include="Configuration\AgreementConfiguration.cs" />
+    <Compile Include="Configuration\AgreementMappingConfiguration.cs" />
+    <Compile Include="Configuration\BookConfiguration.cs" />
+    <Compile Include="Configuration\BookMappingConfiguration.cs" />
+    <Compile Include="Configuration\BrokerCommodityConfiguration.cs" />
+    <Compile Include="Configuration\BrokerCommodityMappingConfiguration.cs" />
+    <Compile Include="Configuration\BrokerDetailsConfiguration.cs" />
+    <Compile Include="Configuration\BrokerRateConfiguration.cs" />
+    <Compile Include="Configuration\BrokerRateDetailsConfiguration.cs" />
+    <Compile Include="Configuration\BrokerRateMappingConfiguration.cs" />
+    <Compile Include="Configuration\BusinessUnitDetailsConfiguration.cs" />
+    <Compile Include="Configuration\CalendarConfiguration.cs" />
+    <Compile Include="Configuration\CalendarDayConfiguration.cs" />
+    <Compile Include="Configuration\CalendarMappingConfiguration.cs" />
+    <Compile Include="Configuration\CommodityConfiguration.cs" />
+    <Compile Include="Configuration\CommodityFeeTypeConfiguration.cs" />
+    <Compile Include="Configuration\CommodityFeeTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\CommodityInstrumentTypeConfiguration.cs" />
+    <Compile Include="Configuration\CommodityInstrumentTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\CommodityMappingConfiguration.cs" />
+    <Compile Include="Configuration\CounterpartyDetailsConfiguration.cs" />
+    <Compile Include="Configuration\CurveConfiguration.cs" />
+    <Compile Include="Configuration\CurveMappingConfiguration.cs" />
+    <Compile Include="Configuration\BookDefaultConfiguration.cs" />
+    <Compile Include="Configuration\BookDefaultMappingConfiguration.cs" />
+    <Compile Include="Configuration\DimensionConfiguration.cs" />
+    <Compile Include="Configuration\DimensionMappingConfiguration.cs" />
+    <Compile Include="Configuration\ExchangeDetailsConfiguration.cs" />
+    <Compile Include="Configuration\FeeTypeConfiguration.cs" />
+    <Compile Include="Configuration\FeeTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\HierarchyConfiguration.cs" />
+    <Compile Include="Configuration\HierarchyMappingConfiguration.cs" />
+    <Compile Include="Configuration\InstrumentTypeConfiguration.cs" />
+    <Compile Include="Configuration\InstrumentTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\InstrumentTypeOverrideConfiguration.cs" />
+    <Compile Include="Configuration\InstrumentTypeOverrideMappingConfiguration.cs" />
+    <Compile Include="Configuration\LegalEntityDetailsConfiguration.cs" />
+    <Compile Include="Configuration\LocationConfiguration.cs" />
+    <Compile Include="Configuration\LocationMappingConfiguration.cs" />
+    <Compile Include="Configuration\LocationRoleConfiguration.cs" />
+    <Compile Include="Configuration\LocationRoleMappingConfiguration.cs" />
+    <Compile Include="Configuration\LocationRoleTypeConfiguration.cs" />
+    <Compile Include="Configuration\NexusMappingContextConfiguration.cs" />
+    <Compile Include="Configuration\NexusMappingContext.cs" />
+    <Compile Include="Configuration\MarketConfiguration.cs" />
+    <Compile Include="Configuration\MarketMappingConfiguration.cs" />
+    <Compile Include="Configuration\PartyAccountabilityConfiguration.cs" />
+    <Compile Include="Configuration\PartyAccountabilityMappingConfiguration.cs" />
+    <Compile Include="Configuration\PartyConfiguration.cs" />
+    <Compile Include="Configuration\PartyDetailsConfiguration.cs" />
+    <Compile Include="Configuration\PartyMappingConfiguration.cs" />
+    <Compile Include="Configuration\PartyOverrideConfiguration.cs" />
+    <Compile Include="Configuration\PartyOverrideMappingConfiguration.cs" />
+    <Compile Include="Configuration\PartyRoleAccountabilityConfiguration.cs" />
+    <Compile Include="Configuration\PartyRoleAccountabilityMappingConfiguration.cs" />
+    <Compile Include="Configuration\PartyRoleConfiguration.cs" />
+    <Compile Include="Configuration\PartyRoleDetailsConfiguration.cs" />
+    <Compile Include="Configuration\PartyRoleMappingConfiguration.cs" />
+    <Compile Include="Configuration\PersonConfiguration.cs" />
+    <Compile Include="Configuration\PersonDetailsConfiguration.cs" />
+    <Compile Include="Configuration\PersonMappingConfiguration.cs" />
+    <Compile Include="Configuration\PortfolioConfiguration.cs" />
+    <Compile Include="Configuration\PortfolioHierarchyConfiguration.cs" />
+    <Compile Include="Configuration\PortfolioHierarchyMappingConfiguration.cs" />
+    <Compile Include="Configuration\PortfolioMappingConfiguration.cs" />
+    <Compile Include="Configuration\ProductConfiguration.cs" />
+    <Compile Include="Configuration\ProductCurveConfiguration.cs" />
+    <Compile Include="Configuration\ProductCurveMappingConfiguration.cs" />
+    <Compile Include="Configuration\ProductMappingConfiguration.cs" />
+    <Compile Include="Configuration\ProductScotaConfiguration.cs" />
+    <Compile Include="Configuration\ProductScotaMappingConfiguration.cs" />
+    <Compile Include="Configuration\ProductTenorTypeConfiguration.cs" />
+    <Compile Include="Configuration\ProductTenorTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\ProductTypeConfiguration.cs" />
+    <Compile Include="Configuration\ProductTypeInstanceConfiguration.cs" />
+    <Compile Include="Configuration\ProductTypeInstanceMappingConfiguration.cs" />
+    <Compile Include="Configuration\ProductTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\RepositoryConfiguration.cs" />
+    <Compile Include="Configuration\SettlementContactConfiguration.cs" />
+    <Compile Include="Configuration\ShapeConfiguration.cs" />
+    <Compile Include="Configuration\ShapeDayConfiguration.cs" />
+    <Compile Include="Configuration\ShapeDayMappingConfiguration.cs" />
+    <Compile Include="Configuration\ShapeElementConfiguration.cs" />
+    <Compile Include="Configuration\ShapeElementMappingConfiguration.cs" />
+    <Compile Include="Configuration\ShapeMappingConfiguration.cs" />
+    <Compile Include="Configuration\ShipperCodeConfiguration.cs" />
+    <Compile Include="Configuration\ShipperCodeMappingConfiguration.cs" />
+    <Compile Include="Configuration\TenorConfiguration.cs" />
+    <Compile Include="Configuration\TenorMappingConfiguration.cs" />
+    <Compile Include="Configuration\TenorTypeConfiguration.cs" />
+    <Compile Include="Configuration\TenorTypeMappingConfiguration.cs" />
+    <Compile Include="Configuration\UnitConfiguration.cs" />
+    <Compile Include="Configuration\UnitMappingConfiguration.cs" />
+    <Compile Include="Configuration\VesselConfiguration.cs" />
+    <Compile Include="Configuration\VesselMappingConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MDM.Core.Nexus\MDM.Core.Nexus.csproj">
+      <Project>{2b2e3cfe-42fe-407f-a2ae-77e138f04e8a}</Project>
+      <Name>MDM.Core.Nexus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
+      <Project>{CAC0933B-4282-4D7E-98B6-C6F0806F3830}</Project>
+      <Name>MDM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Data.EF\MDM.Data.EF.csproj">
+      <Project>{7a19ccf8-7db6-41b3-92fc-5e9289844160}</Project>
+      <Name>MDM.Data.EF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

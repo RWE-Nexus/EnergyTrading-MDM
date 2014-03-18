@@ -2,16 +2,12 @@
 {
     using System;
 
+    using EnergyTrading;
+    using EnergyTrading.Mapping;
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
     using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
 
-    using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
-
-    using EnergyTrading;
-    using EnergyTrading.Mapping;
-
-    using EnergyTrading.Mdm;
 
     public class EntityMappingFixture : Fixture
     {

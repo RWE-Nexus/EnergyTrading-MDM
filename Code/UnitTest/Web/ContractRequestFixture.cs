@@ -1,10 +1,7 @@
-﻿using EnergyTrading.Logging;
-
-namespace EnergyTrading.MDM.Test.Web
+﻿namespace EnergyTrading.MDM.Test.Web
 {
     using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
 
-    using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
