@@ -42,8 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EnergyTrading.Core.2.8.0.9\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.EntityFramework">
-      <HintPath>..\packages\EnergyTrading.EntityFramework.2.7.28050.10\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
+    <Reference Include="EnergyTrading.EntityFramework, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.EntityFramework.2.8.0.9\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.MDM.Contracts, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -52,8 +53,9 @@
     <Reference Include="EnergyTrading.Test">
       <HintPath>..\packages\EnergyTrading.Test.2.7.28050.10\lib\net40\EnergyTrading.Test.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.Unity">
-      <HintPath>..\packages\EnergyTrading.Unity.2.7.28050.10\lib\net40\EnergyTrading.Unity.dll</HintPath>
+    <Reference Include="EnergyTrading.Unity, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Unity.2.8.0.9\lib\net40\EnergyTrading.Unity.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
