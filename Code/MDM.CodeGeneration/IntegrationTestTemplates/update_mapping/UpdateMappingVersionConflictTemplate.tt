@@ -17,13 +17,13 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_update_a_<#= EntityName.ToLower() #>_mapping_and_the_etag_is_not_current : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.<#= EntityName #> entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -75,13 +75,13 @@ namespace EnergyTrading.MDM.Test
                 entity.Mappings[0].Id), content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_not_update_the_<#= EntityName.ToLower() #>_in_the_database()
         {
             Assert.AreEqual(startVersion, CurrentEntityVersion());
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_a_no_content_status_code()
         {
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);

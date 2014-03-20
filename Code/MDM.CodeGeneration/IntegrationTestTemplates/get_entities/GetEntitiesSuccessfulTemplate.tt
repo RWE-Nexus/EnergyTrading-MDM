@@ -18,11 +18,11 @@ namespace EnergyTrading.MDM.Test
     using System.Linq;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_all_<#= EntityName.ToLower() #> : IntegrationTestBase
     {
         private static IList<RWEST.Nexus.MDM.Contracts.<#= EntityName #>> returned<#= EntityName #>s;
@@ -31,7 +31,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.<#= EntityName #> entity2;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -55,7 +55,7 @@ namespace EnergyTrading.MDM.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_<#= EntityName.ToLower() #>_with_the_correct_details()
         {
             foreach (var <#= EntityName.ToLower() #> in returned<#= EntityName #>s)
@@ -64,7 +64,7 @@ namespace EnergyTrading.MDM.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void should_contain_the_new_entities_that_were_added()
         {
             IList<RWEST.Nexus.MDM.Contracts.NexusId> entityIds = returned<#= EntityName #>s.Select(x => x.Identifiers.First(id => id.IsNexusId)).ToList();

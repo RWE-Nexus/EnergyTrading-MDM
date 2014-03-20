@@ -3,16 +3,16 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_update_a_sourcesystem_entity_and_the_entity_is_not_found_ : IntegrationTestBase
     {
         private static HttpResponseMessage response;
         private static HttpContent content;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -32,7 +32,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Post(ServiceUrl["SourceSystem"] + int.MaxValue, content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_a_not_found_status_code()
         {
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);

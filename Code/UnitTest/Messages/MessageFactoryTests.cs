@@ -3,16 +3,16 @@
     using System;
     using System.Collections.Specialized;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.MDM.Messages;
 
-    [TestClass]
+    [TestFixture]
     public class MessageFactoryTests
     {
         private const string DateFormatString = "yyyy-MM-dd'T'HH:mm:ss.fffffffZ";
 
-        [TestMethod]
+        [Test]
         public void MessageFactoryParseTest()
         {
             DateTime dateBeforeParse = new DateTime(2011, 1, 1, 0, 0, 0);

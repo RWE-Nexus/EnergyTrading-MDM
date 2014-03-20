@@ -8,11 +8,11 @@ namespace EnergyTrading.MDM.Test
     using System.Data.SqlTypes;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_source_system_to_master_data_service_mapping_request_is_made_as_of_a_specific_date_sourcesystem  : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -20,7 +20,7 @@ namespace EnergyTrading.MDM.Test
         private static HttpClient client;
         private static MDM.SourceSystem sourcesystem;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -41,7 +41,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_correct_vesrion_of_the_sourcesystem()
         {
             var sourcesystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
@@ -49,27 +49,27 @@ namespace EnergyTrading.MDM.Test
             Script.SourceSystemDataChecker.CompareContractWithSavedEntity(sourcesystem);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_ok()
         {
             response.StatusCode = HttpStatusCode.OK;
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_source_system_to_master_data_service_mapping_request_is_made_as_of_now_for_sourcesystem : IntegrationTestBase
     {
         private static HttpResponseMessage response;
         private static HttpClient client;
         private static MDM.SourceSystem sourcesystem;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -89,7 +89,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_correct_vesrion_of_the_sourcesystem()
         {
             var sourcesystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
@@ -97,13 +97,13 @@ namespace EnergyTrading.MDM.Test
             Script.SourceSystemDataChecker.CompareContractWithSavedEntity(sourcesystem);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_ok()
         {
             response.StatusCode = HttpStatusCode.OK;

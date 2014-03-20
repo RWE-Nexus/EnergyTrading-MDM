@@ -3,9 +3,9 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_create_a_sourcesystem_entity : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -13,7 +13,7 @@ namespace EnergyTrading.MDM.Test
         private static HttpContent content;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -34,19 +34,19 @@ namespace EnergyTrading.MDM.Test
             response.AssertStatusCodeIs(HttpStatusCode.Created);
         }
 
-        [TestMethod]
+        [Test]
         public void should_create_an_instance_of_the_sourcesystem_in_the_database_with_the_correct_details()
         {
             Script.SourceSystemDataChecker.ConfirmEntitySaved(int.Parse(GetLocationHeader()[1]), sourcesystem);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_an_created_status_code()
         {
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_location_of_the_entity()
         {
             int id;

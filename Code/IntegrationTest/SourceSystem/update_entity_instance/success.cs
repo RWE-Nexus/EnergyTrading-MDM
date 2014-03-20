@@ -4,9 +4,9 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_update_a_sourcesystem_entity : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -17,7 +17,7 @@ namespace EnergyTrading.MDM.Test
 
         private static EnergyTrading.Mdm.Contracts.SourceSystem updatedContract;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -40,13 +40,13 @@ namespace EnergyTrading.MDM.Test
             response = client.Post(ServiceUrl["SourceSystem"] + entity.Id, content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_update_the_sourcesystem_in_the_database_with_the_correct_details()
         {
             Script.SourceSystemDataChecker.ConfirmEntitySaved(entity.Id, updatedContract);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_a_no_content_status_code()
         {
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);

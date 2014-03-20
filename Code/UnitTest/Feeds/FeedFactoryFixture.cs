@@ -10,9 +10,9 @@ namespace EnergyTrading.MDM.Test.Feeds
 
     using global::MDM.ServiceHost.Wcf.Feeds;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_the_feed_factory_is_asked_to_create_a_feed_and_there_are_multiple_pages : SpecBase<FeedFactory>
     {
         private Message response;
@@ -44,7 +44,7 @@ namespace EnergyTrading.MDM.Test.Feeds
             this.response = this.Sut.CreateFeed(searchResultPage, "SourceSystem", this.baseUri);
         }
 
-        [TestMethod] 
+        [Test] 
         public void should_include_the_next_page_of_search_results_as_a_relative_link()
         {
             var formatter = new Atom10FeedFormatter();
@@ -54,7 +54,7 @@ namespace EnergyTrading.MDM.Test.Feeds
             Assert.AreEqual(this.baseUri + "search?key=" + this.currentSearch + "&page=2", links[0].Uri.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void should_set_the_correct_name_for_the_next_search_results_link()
         {
             var formatter = new Atom10FeedFormatter();
@@ -64,7 +64,7 @@ namespace EnergyTrading.MDM.Test.Feeds
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_the_feed_factory_is_asked_to_create_a_feed_and_there_are_multiple_pages_but_this_is_the_last_page : SpecBase<FeedFactory>
     {
         private Message response;
@@ -96,7 +96,7 @@ namespace EnergyTrading.MDM.Test.Feeds
             this.response = this.Sut.CreateFeed(searchResultPage, "SourceSystem", this.baseUri);
         }
 
-        [TestMethod] 
+        [Test] 
         public void should_not_include_a_link_for_the_next_page()
         {
             var formatter = new Atom10FeedFormatter();

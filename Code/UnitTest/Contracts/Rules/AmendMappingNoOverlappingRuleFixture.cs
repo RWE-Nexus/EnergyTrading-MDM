@@ -5,7 +5,7 @@
 
     using EnergyTrading;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -13,10 +13,10 @@
     using EnergyTrading.MDM.Contracts.Rules;
     using EnergyTrading.MDM.Messages;
 
-    [TestClass]
+    [TestFixture]
     public class AmendMappingNoOverlappingRuleFixture
     {
-        [TestMethod]
+        [Test]
         public void NoOverlapPasses()
         {
             // Assert
@@ -49,7 +49,7 @@
             Assert.IsTrue(result, "Rule failed");
         }
 
-        [TestMethod]
+        [Test]
         public void OverlappingIdentifierFails()
         {
             // Assert

@@ -4,33 +4,33 @@ namespace EnergyTrading.MDM.Test.Extensions
     using EnergyTrading.MDM.Extensions;
     using EnergyTrading.MDM.Messages;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class MappingRequestExtensionsFixture
     {
-        [TestMethod]
+        [Test]
         public void IsNexusMappingRequest_EmptySourceSystem_ReturnsFalse()
         {
             var mappingRequest = new MappingRequest();
             Assert.IsFalse(mappingRequest.IsNexusMappingRequest());
         }
 
-        [TestMethod]
+        [Test]
         public void IsNexusMappingRequest_NexusSourceSystem_ReturnsTrue()
         {
             var mappingRequest = new MappingRequest { SystemName = SourceSystemNames.Nexus, Identifier = "999" };
             Assert.IsTrue(mappingRequest.IsNexusMappingRequest());
         }
 
-        [TestMethod]
+        [Test]
         public void HasNumericIdentifier_WithInteger_ReturnsTrue()
         {
             var mappingRequest = new MappingRequest { SystemName = SourceSystemNames.Nexus, Identifier = "999" };
             Assert.IsTrue(mappingRequest.HasNumericIdentifier());
         }
 
-        [TestMethod]
+        [Test]
         public void HasNumericIdentifier_WithNaN_ReturnsTrue()
         {
             var mappingRequest = new MappingRequest { SystemName = SourceSystemNames.Nexus, Identifier = "string" };

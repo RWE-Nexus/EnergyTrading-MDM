@@ -4,7 +4,7 @@ namespace EnergyTrading.MDM.Test.Services
     using System.Collections.Generic;
     using System.Linq;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -17,10 +17,10 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemMapFixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullRequestErrors()
         {
@@ -36,7 +36,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.Map(null);
         }
 
-        [TestMethod]
+        [Test]
         public void UnsuccessfulMatchReturnsNotFound()
         {
             // Arrange
@@ -62,7 +62,7 @@ namespace EnergyTrading.MDM.Test.Services
             Assert.AreEqual(ErrorType.NotFound, contract.Error.Type, "ErrorType difers");
         }
 
-        [TestMethod]
+        [Test]
         public void SuccessMatch()
         {
             // Arrange

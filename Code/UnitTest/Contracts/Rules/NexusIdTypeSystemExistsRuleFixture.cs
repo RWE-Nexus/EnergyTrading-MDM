@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -11,10 +11,10 @@
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
 
-    [TestClass]
+    [TestFixture]
     public class NexusIdSystemExistsRuleFixture
     {
-        [TestMethod]
+        [Test]
         public void SystemPresentPasses()
         {
             // Arrange
@@ -35,7 +35,7 @@
             Assert.IsTrue(result, "Rule failed");
         }
 
-        [TestMethod]
+        [Test]
         public void SystemMissingFails()
         {
             // Assert

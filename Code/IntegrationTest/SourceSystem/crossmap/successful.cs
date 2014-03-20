@@ -7,11 +7,11 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_source_system_to_destination_system_mapping_request_is_made_for_sourcesystem : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -19,7 +19,7 @@ namespace EnergyTrading.MDM.Test
         private static MappingResponse mappingResponse;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -37,35 +37,35 @@ namespace EnergyTrading.MDM.Test
             mappingResponse = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.MappingResponse>();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_correct_vesrion_of_the_mapping()
         {
             Assert.AreEqual(entity.Mappings[1].Validity.Start, mappingResponse.Mappings[0].StartDate);
             Assert.AreEqual(entity.Mappings[1].Validity.Finish, mappingResponse.Mappings[0].EndDate);
-            Assert.AreEqual("endur", mappingResponse.Mappings[0].SystemName.ToLower(), true);
+            Assert.AreEqual("endur", mappingResponse.Mappings[0].SystemName.ToLower());
             Assert.IsFalse(mappingResponse.Mappings[0].IsMdmId);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_ok()
         {
             response.StatusCode = HttpStatusCode.OK;
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_only_one_mapping()
         {
             Assert.AreEqual(1, mappingResponse.Mappings.Count);
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_source_system_to_destination_system_mapping_request_is_made_as_of_a_date_for_sourcesystem : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -73,7 +73,7 @@ namespace EnergyTrading.MDM.Test
         private static HttpClient client;
         private static MDM.SourceSystem entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -91,28 +91,28 @@ namespace EnergyTrading.MDM.Test
             mappingResponse = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.MappingResponse>();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_correct_vesrion_of_the_sourcesystem()
         {
             Assert.AreEqual(entity.Mappings[1].Validity.Start, mappingResponse.Mappings[0].StartDate);
             Assert.AreEqual(entity.Mappings[1].Validity.Finish, mappingResponse.Mappings[0].EndDate);
-            Assert.AreEqual("endur", mappingResponse.Mappings[0].SystemName.ToLower(), true);
+            Assert.AreEqual("endur", mappingResponse.Mappings[0].SystemName.ToLower());
             Assert.IsFalse(mappingResponse.Mappings[0].IsMdmId);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_ok()
         {
             response.StatusCode = HttpStatusCode.OK;
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_only_one_mapping()
         {
             Assert.AreEqual(1, mappingResponse.Mappings.Count);

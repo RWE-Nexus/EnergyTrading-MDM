@@ -6,14 +6,14 @@ namespace EnergyTrading.MDM.Test
     using EnergyTrading;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
 
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_create_a_sourcesystem_mapping : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -26,7 +26,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.SourceSystem entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -54,11 +54,11 @@ namespace EnergyTrading.MDM.Test
             response = client.Post(ServiceUrl["SourceSystem"] + string.Format("{0}/Mapping", entity.Id), content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_create_a_mapping_on_the_sourcesystem_entity()
         {
             var savedMapping =
-                new DbSetRepository<MDM.SourceSystemMapping>(new MappingContext()).FindOne(int.Parse(GetLocationHeader()[3]));
+                new DbSetRepository(new DbContextProvider(() => new MappingContext())).FindOne<MDM.SourceSystemMapping>(int.Parse(GetLocationHeader()[3]));
 
             Assert.AreEqual(mapping.SystemName, savedMapping.System.Name);
             Assert.AreEqual(mapping.Identifier, savedMapping.MappingValue);
@@ -68,13 +68,13 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(DateUtility.Round(mapping.EndDate.Value), savedMapping.Validity.Finish);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_an_created_status_code()
         {
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_location_of_the_entity()
         {
             int id;
@@ -82,7 +82,7 @@ namespace EnergyTrading.MDM.Test
             bool parsedMappingId = int.TryParse(GetLocationHeader()[3], out id);
             Assert.IsTrue(parsedEntityId, "The SourceSystem id returned was not an integer");
             Assert.IsTrue(parsedMappingId, "The mapping id returned was not an integer");
-            Assert.AreEqual("Mapping", GetLocationHeader()[2], true);
+            Assert.AreEqual("Mapping", GetLocationHeader()[2]);
         }
 
         private string[] GetLocationHeader()

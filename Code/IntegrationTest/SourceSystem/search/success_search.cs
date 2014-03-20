@@ -4,12 +4,12 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.Search;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_search_for_a_sourcesystem_is_made_with_a_specific_name : IntegrationTestBase
     {
         private static HttpClient client;
@@ -18,20 +18,20 @@ namespace EnergyTrading.MDM.Test
 
         private static HttpResponseMessage response;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
             Because_of();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_a_status_code_of_Ok()
         {
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_content_of_the_search_results()
         {
             Assert.IsTrue(response.Headers["Content-Type"].ToLowerInvariant().StartsWith("application/xml"));

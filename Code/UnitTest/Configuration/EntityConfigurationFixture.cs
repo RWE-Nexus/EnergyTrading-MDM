@@ -3,7 +3,7 @@
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
 
     using Microsoft.Practices.Unity;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -12,24 +12,24 @@
     using EnergyTrading.Validation;
     using EnergyTrading.MDM.Messages;
 
-    [TestClass]
+    [TestFixture]
     public abstract class EntityConfigurationFixture : Fixture
     {
         protected abstract string EntityName { get; }
 
-        [TestMethod]
+        [Test]
         public void ResolveValidatorEngine()
         {
             this.Resolve<IValidatorEngine>();
         }
 
-        [TestMethod]
+        [Test]
         public void ResolveMappingRequestValidator()
         {
             this.Resolve<IValidator<CreateMappingRequest>>();
         }
 
-        [TestMethod]
+        [Test]
         public void ResolveNexusMappingValidator()
         {
             this.Resolve<IValidator<EnergyTrading.Mdm.Contracts.MdmId>>();

@@ -2,7 +2,7 @@
 {
     using EnergyTrading;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     public static class CheckerExtensions
     {

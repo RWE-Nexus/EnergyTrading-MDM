@@ -9,7 +9,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
     using MDM.Data;
     using Microsoft.Practices.Unity;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -20,10 +20,10 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
     using DateRange = EnergyTrading.DateRange;
     using SourceSystem = EnergyTrading.Mdm.Contracts.SourceSystem;
 
-    [TestClass]
+    [TestFixture]
     public partial class SourceSystemValidatorFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         public void ValidatorResolution()
         {
             var container = CreateContainer();
@@ -42,7 +42,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             Assert.IsNotNull(validator, "Validator resolution failed");
         }
 
-        [TestMethod]
+        [Test]
         public void ValidSourceSystemPasses()
         {
             // Assert
@@ -50,10 +50,10 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var system = new MDM.SourceSystem { Name = "Test" };
 
             var systemList = new List<MDM.SourceSystem> { system };
-            var systemRepository = new Mock<IRepository<MDM.SourceSystem>>();
+            var systemRepository = new Mock<IRepository>();
 			var repository = new StubValidatorRepository();
 
-            systemRepository.Setup(x => x.Queryable()).Returns(systemList.AsQueryable());
+            systemRepository.Setup(x => x.Queryable<MDM.SourceSystem>()).Returns(systemList.AsQueryable());
 
             var identifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
@@ -78,7 +78,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             Assert.AreEqual(0, violations.Count, "Violation count differs");
         }
 
-        [TestMethod]
+        [Test]
         public void OverlapsRangeFails()
         {
             // Assert
@@ -93,8 +93,8 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
             var systemList = new List<MDM.SourceSystem>();
-            var systemRepository = new Mock<IRepository<MDM.SourceSystem>>();
-            systemRepository.Setup(x => x.Queryable()).Returns(systemList.AsQueryable());
+            var systemRepository = new Mock<IRepository>();
+            systemRepository.Setup(x => x.Queryable<MDM.SourceSystem>()).Returns(systemList.AsQueryable());
 
             var overlapsRangeIdentifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
@@ -120,7 +120,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             Assert.IsFalse(result, "Validator succeeded");
         }
 
-        [TestMethod]
+        [Test]
         public void BadSystemFails()
         {
             // Assert
@@ -158,7 +158,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             Assert.IsFalse(result, "Validator succeeded");
 		}
 
-        [TestMethod]
+        [Test]
         public void ParentShouldNotBeSameAsEntity()
         {
             // Arrange

@@ -5,7 +5,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
 
     using Microsoft.Practices.Unity;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -15,10 +15,10 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
 
     using EnergyTrading.Mdm;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemMapperFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         public void Resolve()
         {
             var container = CreateContainer();
@@ -34,7 +34,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             Assert.IsNotNull(validator, "Mapper resolution failed");
         }
 
-        [TestMethod]
+        [Test]
         public void Map()
         {
             // Arrange

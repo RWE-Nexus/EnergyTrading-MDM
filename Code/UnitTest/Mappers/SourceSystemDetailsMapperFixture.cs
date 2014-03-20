@@ -1,11 +1,11 @@
 namespace EnergyTrading.MDM.Test.Mappers
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemDetailsMapperFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         public void Map()
         {
             // Arrange

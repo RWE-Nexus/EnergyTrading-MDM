@@ -3,7 +3,7 @@ namespace EnergyTrading.MDM.Test.Services
     using System;
     using System.Collections.Generic;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -20,10 +20,10 @@ namespace EnergyTrading.MDM.Test.Services
     using DateRange = EnergyTrading.DateRange;
 	using SourceSystem = EnergyTrading.MDM.SourceSystem;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemUpdateMappingFixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ValidationException))]
         public void NullContractInvalid()
         {
@@ -41,7 +41,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.UpdateMapping(null);
         }
 
-        [TestMethod]
+        [Test]
         public void EntityNotFound()
         {
             // Arrange
@@ -67,7 +67,7 @@ namespace EnergyTrading.MDM.Test.Services
             Assert.IsNull(candidate);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(VersionConflictException))]
         public void VersionConflict()
         {
@@ -95,7 +95,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.UpdateMapping(message);
         }
 
-        [TestMethod]
+        [Test]
         public void ValidDetailsSaved()
         {
             const int mappingId = 12;

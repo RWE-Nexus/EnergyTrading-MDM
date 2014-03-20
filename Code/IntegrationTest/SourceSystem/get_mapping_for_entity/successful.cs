@@ -6,13 +6,13 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_an_individual_mapping_for_a_sourcesystem : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -21,7 +21,7 @@ namespace EnergyTrading.MDM.Test
         private static SourceSystem entity;
         private static SourceSystemMapping mapping;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -37,7 +37,7 @@ namespace EnergyTrading.MDM.Test
             mappingResponse = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.MappingResponse>();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_correct_vesrion_of_the_mapping()
         {
             Assert.AreEqual(mapping.Validity.Start, mappingResponse.Mappings[0].StartDate);
@@ -47,19 +47,19 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(mapping.Id, mappingResponse.Mappings[0].MappingId);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_ok()
         {
             response.StatusCode = HttpStatusCode.OK;
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_only_one_mapping()
         {
             Assert.AreEqual(1, mappingResponse.Mappings.Count);

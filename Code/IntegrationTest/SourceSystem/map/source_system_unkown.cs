@@ -6,17 +6,17 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_retrive_a_sourcesystem_from_a_source_system_and_the_source_system_doesnt_exist : IntegrationTestBase
     {
         private static HttpClient client;
         private static HttpResponseMessage response;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -29,19 +29,19 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_not_found_status_code()
         {
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_validation_error()
         {
             Fault fault = null;

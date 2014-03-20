@@ -2,7 +2,7 @@ namespace EnergyTrading.MDM.Test.Services
 {
     using System.Collections.Generic;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -12,10 +12,10 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.Validation;
     using EnergyTrading.MDM.Services;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemCreateFixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ValidationException))]
         public void NullContractInvalid()
         {
@@ -33,7 +33,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.Create(null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ValidationException))]
         public void InvalidContractNotSaved()
         {
@@ -53,7 +53,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.Create(contract);
         }
 
-        [TestMethod]
+        [Test]
         public void ValidContractIsSaved()
         {
             // Arrange

@@ -2,16 +2,16 @@
 {
     using System.Web;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.MDM.Extensions;
     using EnergyTrading.Search;
 
-    [TestClass]
+    [TestFixture]
     public class SearchExtensionsFixture
     {
-        [TestMethod]
+        [Test]
         public void KeysForSameSearchAreTheSame()
         {
             var search = SearchBuilder.CreateSearch();
@@ -23,7 +23,7 @@
             Assert.AreEqual(key1, key2);
         }
 
-        [TestMethod]
+        [Test]
         public void KeysForSameSearchButDifferentEntitiesAreDifferent()
         {
             var search = SearchBuilder.CreateSearch();
@@ -34,7 +34,7 @@
             Assert.AreNotEqual(key1, key2);
         }
 
-        [TestMethod]
+        [Test]
         public void SearchKeysAreReversible()
         {
             var search = SearchBuilder.CreateSearch();
@@ -52,7 +52,7 @@
             Assert.AreEqual(candidate.SearchFields.Criterias[0].Criteria[1].ComparisonValue, "SourceSystem");
         }
 
-        [TestMethod]
+        [Test]
         public void KeyIsNotAffectedByUrlEncoding()
         {
             var search = SearchBuilder.CreateSearch();

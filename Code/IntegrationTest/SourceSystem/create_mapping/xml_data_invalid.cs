@@ -3,9 +3,9 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_create_a_sourcesystem_mapping_and_the_xml_does_not_satisfy_the_schema : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -16,7 +16,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.SourceSystem entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -36,7 +36,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Post(ServiceUrl["SourceSystem"] + string.Format("{0}/Mapping", entity.Id), content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_bad_request_status_code()
         {
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);

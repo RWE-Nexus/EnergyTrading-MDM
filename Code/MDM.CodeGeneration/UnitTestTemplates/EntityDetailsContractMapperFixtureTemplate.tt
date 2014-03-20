@@ -12,12 +12,12 @@ public class EntityDetailsContractMapperFixtureTemplate : Template
         #>
 namespace EnergyTrading.MDM.Test.Contracts.Mappers
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class <#= EntityName #>DetailsMapperFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         public void Map()
         {
             // Arrange

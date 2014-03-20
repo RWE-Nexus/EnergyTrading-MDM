@@ -6,17 +6,17 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_retrive_a_sourcesystem_from_a_source_system_and_the_mapping_string_doesnt_exist : IntegrationTestBase
     {
         private static HttpClient client;
         private static HttpResponseMessage response;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -29,7 +29,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_not_return_a_sourcesystem()
         {
             EnergyTrading.Mdm.Contracts.SourceSystem returnedSourceSystem = null;
@@ -37,19 +37,19 @@ namespace EnergyTrading.MDM.Test
             Assert.IsNull(returnedSourceSystem);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_not_found_status_code()
         {
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         [Ignore]
         // This test relates to a feature to return the correct message dependant on if a map fails because a source
         // system is missing or a mapping is missing
@@ -62,8 +62,8 @@ namespace EnergyTrading.MDM.Test
             Assert.IsNotNull(fault);
             Assert.AreEqual("Unknown Mapping", fault.Reason);
             Assert.AreEqual( new DateTime(2010, 03, 16, 11, 21, 23), fault.AsOfDate.Value);
-            Assert.AreEqual("Trayport", fault.SourceSystem, true);
-            Assert.AreEqual("SourceSystem Mapping String 'abc' not found for Source System 'Trayport' and the given date '2010-03-16T11:21:23Z'", fault.Message, true);
+            Assert.AreEqual("Trayport", fault.SourceSystem);
+            Assert.AreEqual("SourceSystem Mapping String 'abc' not found for Source System 'Trayport' and the given date '2010-03-16T11:21:23Z'", fault.Message);
         }
     }
 }

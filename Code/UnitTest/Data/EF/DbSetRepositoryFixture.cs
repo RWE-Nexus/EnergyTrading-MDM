@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Transactions;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
@@ -23,7 +23,7 @@
     /// Also have to flatten inheritance hierarchy as MSTest only goes down one layer!
     /// </remarks>
     /// <typeparam name="T"></typeparam>
-    [TestClass, Ignore]
+    [TestFixture, Ignore]
     public abstract class DbSetRepositoryFixture<T> : Fixture
         where T : class, IIdentifiable, new()
     {
@@ -32,13 +32,13 @@
         private IRepository repository;
         private IRepository repository2;
 
-        [ClassInitialize]
+        [SetUp]
         public void ClassInitialize()
         {
             this.Zap();
         }
 
-        [ClassCleanup]
+        [TearDown]
         public void ClassCleanup()
         {
             this.Zap();
@@ -101,8 +101,8 @@
             }
         }
 
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void Save()
         {
             var expected = this.Default();
@@ -126,8 +126,8 @@
             Check(expected, candidate);
         }
 		
-		[TestMethod]
-        [TestCategory("Integration")]
+		[Test]
+        [Category("Integration")]
         public void Delete()
         {
             var expected = this.Default();
@@ -155,8 +155,8 @@
 		    Assert.AreEqual(ExpectedEntitiesCountAfterDelete, count);
         }
 
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void RepositoryQuery()
         {
             var entities = from x in this.Repository.Queryable<T>() select x;

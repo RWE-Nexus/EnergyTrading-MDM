@@ -2,12 +2,12 @@ namespace EnergyTrading.MDM.Test.Extensions
 {
     using EnergyTrading.MDM.Extensions;
     using EnergyTrading.Mdm.Contracts;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_mapping_response_has_more_than_one_default
     {
-        [TestMethod]
+        [Test]
         public void HasMultipleDefaultMapping_should_return_true()
         {
             var mappingResponse = new MappingResponse() { Mappings = new MdmIdList() };
@@ -18,10 +18,10 @@ namespace EnergyTrading.MDM.Test.Extensions
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_mapping_response_has_one_default
     {
-        [TestMethod]
+        [Test]
         public void HasMultipleDefaultMapping_should_return_false()
         {
             var mappingResponse = new MappingResponse() { Mappings = new MdmIdList() };
@@ -31,10 +31,10 @@ namespace EnergyTrading.MDM.Test.Extensions
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_mapping_response_has_multiple_mappings_with_no_default
     {
-        [TestMethod]
+        [Test]
         public void HasMultipleMappingsWithNoDefault_should_return_true()
         {
             var mappingResponse = new MappingResponse() { Mappings = new MdmIdList() };
@@ -44,10 +44,10 @@ namespace EnergyTrading.MDM.Test.Extensions
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_mapping_response_has_multiple_mappings_with_one_default
     {
-        [TestMethod]
+        [Test]
         public void HasMutlipleMappingsWithOneDefault_should_return_true()
         {
             var mappingResponse = new MappingResponse() { Mappings = new MdmIdList() };

@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using Moq;
 
     using EnergyTrading.MDM.Contracts.Rules;
@@ -11,10 +11,10 @@
     using EnergyTrading.Data;
     using EnergyTrading.Mdm;
 
-    [TestClass]
+    [TestFixture]
     public class NexusIdNoOverlappingRuleFixture
     {
-        [TestMethod]
+        [Test]
         public void NoOverlapPasses()
         {
             // Assert
@@ -45,7 +45,7 @@
             Assert.IsTrue(result, "Rule failed");
         }
 
-        [TestMethod]
+        [Test]
         public void OverlappingIdentifierFails()
         {
             // Assert

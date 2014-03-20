@@ -4,13 +4,13 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_update_a_sourcesystem_mapping_and_the_etag_is_not_current : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -27,7 +27,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.SourceSystem entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -62,13 +62,13 @@ namespace EnergyTrading.MDM.Test
                 entity.Mappings[0].Id), content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_not_update_the_sourcesystem_in_the_database()
         {
             Assert.AreEqual(startVersion, CurrentEntityVersion());
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_a_no_content_status_code()
         {
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, response.StatusCode);
@@ -76,7 +76,7 @@ namespace EnergyTrading.MDM.Test
 
         private static ulong CurrentEntityVersion()
         {
-            return new DbSetRepository<MDM.SourceSystem>(new MappingContext()).FindOne(entity.Id).Version;
+            return new DbSetRepository(new DbContextProvider(() => new MappingContext())).FindOne<MDM.SourceSystem>(entity.Id).Version;
         }
     }
 }

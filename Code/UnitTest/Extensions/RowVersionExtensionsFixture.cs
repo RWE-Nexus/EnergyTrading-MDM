@@ -4,19 +4,19 @@
 
     using EnergyTrading.MDM.Extensions;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class RowVersionExtensionsFixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ThrowsIfWrongLength()
         {
             new byte[6].ToUnsignedLongVersion();
         }
 
-        [TestMethod]
+        [Test]
         public void RunToUnsignedLongVersionTests()
         {
             this.TestToUnsignedLongVersion(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0);
@@ -34,7 +34,7 @@
             Assert.AreEqual(expected, candidate);
         }
 
-        [TestMethod]
+        [Test]
         public void UnsignedLongVersionComparisonTests()
         {
             Assert.IsTrue(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }.ToUnsignedLongVersion() > new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }.ToUnsignedLongVersion());

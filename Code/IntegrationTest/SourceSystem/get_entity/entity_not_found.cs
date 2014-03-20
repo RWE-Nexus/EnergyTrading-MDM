@@ -6,17 +6,17 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_a_sourcesystem_and_they_dont_exist : IntegrationTestBase
     {
         private static HttpResponseMessage response;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -29,7 +29,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_nexus_failure_with_correct_information()
         {
             Fault fault = null;
@@ -42,26 +42,26 @@ namespace EnergyTrading.MDM.Test
             Assert.IsNull(fault.AsOfDate);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_not_found()
         {
             response.StatusCode = HttpStatusCode.NotFound;
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_a_sourcesystem_as_of_a_date_and_they_dont_exist : IntegrationTestBase
     {
         private static HttpResponseMessage response;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -73,7 +73,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_nexus_failure_with_correct_information()
         {
             Fault fault = null;
@@ -87,13 +87,13 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(date, fault.AsOfDate);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_not_found()
         {
             response.StatusCode = HttpStatusCode.NotFound;

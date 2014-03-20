@@ -20,19 +20,19 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM.Contracts;
 
     using <#= EntityName #> = EnergyTrading.MDM.<#= EntityName #>;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_an_individual_mapping_for_a_<#= EntityName.ToLower() #>_and_the_mapping_doesnt_exist : IntegrationTestBase
     {
         private static HttpResponseMessage response;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -47,7 +47,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_nexus_failure_with_correct_information()
         {
             Fault fault = null;
@@ -59,13 +59,13 @@ namespace EnergyTrading.MDM.Test
             Assert.IsNull(fault.AsOfDate);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_not_found()
         {
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);

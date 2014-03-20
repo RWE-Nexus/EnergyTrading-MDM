@@ -4,14 +4,14 @@ namespace EnergyTrading.MDM.Test.ReferenceData
     using System.Linq;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
 
     using ReferenceData = EnergyTrading.MDM.ReferenceData;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_delete_a_list_of_reference_data : IntegrationTestBase
     {
         private static IList<EnergyTrading.Mdm.Contracts.ReferenceData> referenceDataList;
@@ -19,9 +19,9 @@ namespace EnergyTrading.MDM.Test.ReferenceData
         private static HttpContent content;
         private static HttpClient client;
 
-        private static DbSetRepository<ReferenceData> repository;
+        private static DbSetRepository repository;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -30,9 +30,9 @@ namespace EnergyTrading.MDM.Test.ReferenceData
 
         protected static void Establish_context()
         {
-            repository = new DbSetRepository<MDM.ReferenceData>(new MappingContext());
+            repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
 
-            foreach (var rd in repository.Queryable())
+            foreach (var rd in repository.Queryable<ReferenceData>())
             {
                 repository.Delete(rd);
             }
@@ -53,12 +53,12 @@ namespace EnergyTrading.MDM.Test.ReferenceData
             client.Post(ServiceUrl["ReferenceData"] + string.Format("/delete/{0}", key), content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_delete_each_of_the_reference_data_strings()
         {
-            Assert.AreEqual(0, repository.Queryable().Where(x => x.Value == "test1").Count());
-            Assert.AreEqual(0, repository.Queryable().Where(x => x.Value == "test2").Count());
-            Assert.AreEqual(1, repository.Queryable().Where(x => x.Value == "test3").Count());
+            Assert.AreEqual(0, repository.Queryable<ReferenceData>().Where(x => x.Value == "test1").Count());
+            Assert.AreEqual(0, repository.Queryable<ReferenceData>().Where(x => x.Value == "test2").Count());
+            Assert.AreEqual(1, repository.Queryable<ReferenceData>().Where(x => x.Value == "test3").Count());
         }
     }
 }

@@ -5,16 +5,16 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_a_sourcesystem_and_they_exist : IntegrationTestBase
     {
         private static MDM.SourceSystem sourcesystem;
 
         private static EnergyTrading.Mdm.Contracts.SourceSystem returnedSourceSystem;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -38,14 +38,14 @@ namespace EnergyTrading.MDM.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_sourcesystem_with_the_correct_details()
         {
             Script.SourceSystemDataChecker.CompareContractWithSavedEntity(returnedSourceSystem);
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_a_sourcesystem_as_of_a_date_and_they_exist : IntegrationTestBase
     {
         private static MDM.SourceSystem sourcesystem;
@@ -53,7 +53,7 @@ namespace EnergyTrading.MDM.Test
         private static DateTime asof;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -76,7 +76,7 @@ namespace EnergyTrading.MDM.Test
             returnedSourceSystem = response.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.SourceSystem>();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_sourcesystem_with_the_correct_details()
         {
             Script.SourceSystemDataChecker.CompareContractWithSavedEntity(returnedSourceSystem);

@@ -14,13 +14,13 @@ public class EntityDetailsMapperFixtureTemplate : Template
 namespace EnergyTrading.MDM.Test.Mappers
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using EnergyTrading.MDM.Test;
 
-    [TestClass]
+    [TestFixture]
     public class <#= EntityName #>DetailsMapperFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         public void Map()
         {
             // Arrange

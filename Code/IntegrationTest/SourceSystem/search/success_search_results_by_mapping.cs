@@ -7,13 +7,13 @@ namespace EnergyTrading.MDM.Test
     using System.Xml;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Search;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_search_for_a_sourcesystem_is_made_with_a_mapping_value_and_results_are_found : IntegrationTestBase
     {
         private static HttpClient client;
@@ -26,20 +26,20 @@ namespace EnergyTrading.MDM.Test
 
         private static HttpResponseMessage response;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
             Because_of();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_ok_status_code()
         {
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_relevant_search_results()
         {
             XmlReader reader = XmlReader.Create(
@@ -75,7 +75,7 @@ namespace EnergyTrading.MDM.Test
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class when_a_search_for_a_sourcesystem_is_made_with_a_mapping_value_and_a_system_name_and_results_are_found : IntegrationTestBase
     {
         private static HttpClient client;
@@ -86,20 +86,20 @@ namespace EnergyTrading.MDM.Test
 
         private static HttpResponseMessage response;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
             Because_of();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_ok_status_code()
         {
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_relevant_search_results()
         {
             XmlReader reader = XmlReader.Create(

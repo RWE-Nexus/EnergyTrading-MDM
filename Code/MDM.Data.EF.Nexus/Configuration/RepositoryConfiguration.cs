@@ -31,7 +31,7 @@ namespace EnergyTrading.MDM.Data.EF.Configuration
         {
             // Database stuff
             this.container.RegisterType<IRepository, DbSetRepository>();
-            this.container.RegisterType(typeof(IRepository<>), typeof(DbSetRepository<>));
+//            this.container.RegisterType(typeof(IRepository<>), typeof(DbSetRepository<>));
 
             this.container.RegisterInstance(
                 typeof(IList<Action<IDbSetRepository>>),

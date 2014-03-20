@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
     using Contracts;
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 

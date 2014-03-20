@@ -3,15 +3,15 @@
     using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
 
     using Microsoft.Practices.Unity;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class ContractRequestFixture<TContract, TEntity>
         where TContract : class
     {
         protected UnityContainer Container { get; set; }
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             Container = new UnityContainer();

@@ -1,10 +1,10 @@
 namespace EnergyTrading.MDM.Test.Data.EF
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemRepositoryFixture : DbSetRepositoryFixture<SourceSystem>
     {
         protected override SourceSystem Default()

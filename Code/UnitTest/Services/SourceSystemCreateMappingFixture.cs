@@ -2,7 +2,7 @@ namespace EnergyTrading.MDM.Test.Services
 {
     using System.Collections.Generic;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -14,10 +14,10 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemCreateMappingFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ValidationException))]
         public void NullContractInvalid()
         {
@@ -35,7 +35,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.CreateMapping(null);
         }
 
-        [TestMethod]
+        [Test]
         public void EntityNotFound()
         {
             // Arrange
@@ -61,7 +61,7 @@ namespace EnergyTrading.MDM.Test.Services
             Assert.IsNull(candidate);
         }
 
-        [TestMethod]
+        [Test]
         public void ValidContractAdded()
         {
             // Arrange

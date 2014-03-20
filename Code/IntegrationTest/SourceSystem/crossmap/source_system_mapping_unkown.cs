@@ -6,17 +6,17 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_source_system_to_destination_system_mapping_request_is_made_and_the_source_system_mapping_string_is_unkown_for_sourcesystem : IntegrationTestBase
     {
         private static HttpResponseMessage response;
         private static HttpClient client;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -30,7 +30,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_nexus_failure_with_correct_information()
         {
             Fault fault = null;
@@ -39,20 +39,20 @@ namespace EnergyTrading.MDM.Test
             Assert.IsNotNull(fault);
             Assert.AreEqual("Unknown Mapping", fault.Reason);
             Assert.AreEqual("abc", fault.Mapping);
-            Assert.AreEqual("Trayport", fault.SourceSystem, true);
+            Assert.AreEqual("Trayport", fault.SourceSystem);
             Assert.IsNull(fault.AsOfDate);
             Assert.AreEqual(
                 "Mapping String 'abc' not found for Source System 'Trayport'",
-                fault.Message, true);
+                fault.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_status_not_found()
         {
             response.StatusCode = HttpStatusCode.NotFound;

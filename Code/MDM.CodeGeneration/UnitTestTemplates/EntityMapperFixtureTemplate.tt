@@ -15,7 +15,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
     using System;
 
     using Microsoft.Practices.Unity;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -26,10 +26,10 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
 
     using RWEST.Nexus.MDM;
 
-    [TestClass]
+    [TestFixture]
     public class <#=  EntityName #>MapperFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         public void Resolve()
         {
             var container = CreateContainer();
@@ -45,7 +45,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             Assert.IsNotNull(validator, "Mapper resolution failed");
         }
 
-        [TestMethod]
+        [Test]
         public void Map()
         {
             // Arrange

@@ -18,7 +18,7 @@ namespace EnergyTrading.MDM.Test
     using System;
     using System.Linq;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Data.EntityFramework;
     using RWEST.Nexus.MDM.Contracts;

@@ -1,6 +1,6 @@
 namespace EnergyTrading.MDM.Test
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using EnergyTrading.Mdm.Contracts;
 
     public static class SourceSystemComparer

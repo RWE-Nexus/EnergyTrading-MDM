@@ -12,11 +12,11 @@ public class EntityRepositoryFixtureTemplate : Template
 #>
 namespace EnergyTrading.MDM.Test.Data.EF
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM;
 
-    [TestClass]
+    [TestFixture]
     public class <#= EntityName #>RepositoryFixture : DbSetRepositoryFixture<<#= EntityName #>>
     {
         protected override <#= EntityName #> Default()

@@ -3,7 +3,7 @@ namespace EnergyTrading.MDM.Test.Services
     using System;
     using System.Collections.Generic;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -16,10 +16,10 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
 
-    [TestClass]
+    [TestFixture]
     public class SourceSystemUpdateFixture : Fixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ValidationException))]
         public void NullContractInvalid()
         {
@@ -38,7 +38,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.Update(1, 0, null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(VersionConflictException))]
         public void EarlierVersionRaisesVersionConflict()
         {
@@ -67,7 +67,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.Update(1, 1, contract);
         }
 
-        [TestMethod]
+        [Test]
         public void ValidDetailsSaved()
         {
             var validatorFactory = new Mock<IValidatorEngine>();
@@ -128,7 +128,7 @@ namespace EnergyTrading.MDM.Test.Services
             Check(d2, entity);
         }
 
-        [TestMethod]
+        [Test]
         public void EntityNotFound()
         {
             // Arrange

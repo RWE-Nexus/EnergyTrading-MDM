@@ -4,14 +4,14 @@
 
     using EnergyTrading;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.MDM.Extensions;
 
-    [TestClass]
+    [TestFixture]
     public class DateRangeExtensionsFixture
     {
-        [TestMethod]
+        [Test]
         public void ToContractCopiesValue()
         {
             var start = new DateTime(2011, 1, 1);
@@ -23,7 +23,7 @@
             Assert.AreEqual(finish, candidate.EndDate, "EndDate differs");
         }
 
-        [TestMethod]
+        [Test]
         public void ToContractWithNullValueCreatesDefault()
         {
             DateRange value = null;

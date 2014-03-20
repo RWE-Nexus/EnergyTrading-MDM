@@ -19,17 +19,17 @@ namespace EnergyTrading.MDM.Test
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_retrive_a_<#= EntityName.ToLower() #>_from_a_source_system_and_the_mapping_string_doesnt_exist : IntegrationTestBase
     {
         private static HttpClient client;
         private static HttpResponseMessage response;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Because_of();
@@ -42,7 +42,7 @@ namespace EnergyTrading.MDM.Test
             response = client.Get();
         }
 
-        [TestMethod]
+        [Test]
         public void should_not_return_a_<#= EntityName.ToLower() #>()
         {
             RWEST.Nexus.MDM.Contracts.<#= EntityName #> returned<#= EntityName #> = null;
@@ -50,19 +50,19 @@ namespace EnergyTrading.MDM.Test
             Assert.IsNull(returned<#= EntityName #>);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_correct_content_type()
         {
             Assert.AreEqual(ConfigurationManager.AppSettings["restReturnType"], response.Content.ContentType);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_not_found_status_code()
         {
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         [Ignore]
         // This test relates to a feature to return the correct message dependant on if a map fails because a source
         // system is missing or a mapping is missing

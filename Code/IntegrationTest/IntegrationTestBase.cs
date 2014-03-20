@@ -1,16 +1,16 @@
 ﻿namespace EnergyTrading.MDM.Test
 {
     using System;
+    using System.Collections.Generic;
     using System.ServiceModel;
     using System.ServiceModel.Description;
     using System.ServiceModel.Web;
-    using System.Collections.Generic;
 
     using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [SetUpFixture]
     public abstract class IntegrationTestBase
     {
         protected static string DateFormatString = "yyyy-MM-dd'T'HH:mm:ss.fffffffZ";
@@ -18,7 +18,7 @@
         protected static Dictionary<string, string> ServiceUrl;
         private static List<WebServiceHost> webServiceHosts = new List<WebServiceHost>();
 
-        [AssemblyInitialize]
+        [SetUp]
         public static void CreateServiceHost(TestContext context)
         {
             // TODO_IntegrationTest - add unique url for new entity
@@ -59,7 +59,7 @@
             behavior.IncludeExceptionDetailInFaults = true;
         }
 
-        [AssemblyCleanup]
+        [TearDown]
         public static void CloseServiceHost()
         {
             foreach(var host in webServiceHosts)

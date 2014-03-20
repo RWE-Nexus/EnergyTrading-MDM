@@ -13,11 +13,11 @@ public class EntityMappingRepositoryFixtureTemplate : Template
 namespace EnergyTrading.MDM.Test.Data.EF
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM;
 
-    [TestClass]
+    [TestFixture]
     public class <#= EntityName #>MappingRepositoryFixture : DbSetRepositoryFixture<<#= EntityName #>Mapping>
     {
         protected override <#= EntityName #>Mapping Default()

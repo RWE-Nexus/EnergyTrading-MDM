@@ -6,11 +6,11 @@ namespace EnergyTrading.MDM.Test
     using System.Linq;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_all_sourcesystem : IntegrationTestBase
     {
         private static IList<EnergyTrading.Mdm.Contracts.SourceSystem> returnedSourceSystems;
@@ -19,7 +19,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.SourceSystem entity2;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -43,7 +43,7 @@ namespace EnergyTrading.MDM.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_sourcesystem_with_the_correct_details()
         {
             foreach (var sourcesystem in returnedSourceSystems)
@@ -52,7 +52,7 @@ namespace EnergyTrading.MDM.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void should_contain_the_new_entities_that_were_added()
         {
             IList<EnergyTrading.Mdm.Contracts.MdmId> entityIds = returnedSourceSystems.Select(x => x.Identifiers.First(id => id.IsMdmId)).ToList();

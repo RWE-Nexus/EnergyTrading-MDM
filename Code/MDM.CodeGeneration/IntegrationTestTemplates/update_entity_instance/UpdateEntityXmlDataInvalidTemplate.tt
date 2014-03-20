@@ -15,13 +15,13 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using RWEST.Nexus.MDM.Contracts;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_update_a_<#= EntityName.ToLower() #>_entity_and_the_xml_does_not_satisfy_the_schema_ : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -29,7 +29,7 @@ namespace EnergyTrading.MDM.Test
         private static HttpClient client;
         private static MDM.<#= EntityName #> entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -50,13 +50,13 @@ namespace EnergyTrading.MDM.Test
             response = client.Post(ServiceUrl["<#= EntityName #>"] + entity.Id, content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_not_update_the_<#= EntityName.ToLower() #>_in_the_database()
         {
             Assert.AreEqual(entity.Version, CurrentEntityVersion());
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_a_bad_request_status_code()
         {
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);

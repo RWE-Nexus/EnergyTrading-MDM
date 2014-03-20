@@ -4,13 +4,13 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_update_a_sourcesystem_mapping : IntegrationTestBase
     {
         private static HttpResponseMessage response;
@@ -25,7 +25,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.SourceSystem entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -58,10 +58,10 @@ namespace EnergyTrading.MDM.Test
             response = client.Post(ServiceUrl["SourceSystem"] +  string.Format("{0}/Mapping/{1}", entity.Id, currentTrayportMapping.Id), content);
         }
 
-        [TestMethod]
+        [Test]
         public void should_update_the_mapping_on_the_sourcesystem_entity()
         {
-            var savedMapping = new DbSetRepository<MDM.SourceSystem>(new MappingContext()).FindOne(entity.Id).Mappings[0];
+            var savedMapping = new DbSetRepository(new DbContextProvider(() => new MappingContext())).FindOne<MDM.SourceSystem>(entity.Id).Mappings[0];
 
             Assert.AreEqual(currentTrayportMapping.System.Name, savedMapping.System.Name);
             Assert.AreEqual(currentTrayportMapping.MappingValue, savedMapping.MappingValue);
@@ -71,7 +71,7 @@ namespace EnergyTrading.MDM.Test
             Assert.AreEqual(currentTrayportMapping.Validity.Finish.AddDays(2), savedMapping.Validity.Finish);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_an_created_status_code()
         {
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);

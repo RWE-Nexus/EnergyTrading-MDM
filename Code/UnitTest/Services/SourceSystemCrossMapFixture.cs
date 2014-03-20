@@ -6,7 +6,7 @@ namespace EnergyTrading.MDM.Test.Services
 
     using EnergyTrading.Mdm.Contracts;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using Moq;
 
@@ -21,10 +21,10 @@ namespace EnergyTrading.MDM.Test.Services
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
 	
-    [TestClass]
+    [TestFixture]
     public class SourceSystemCrossMapFixture
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullRequestErrors()
         {
@@ -40,7 +40,7 @@ namespace EnergyTrading.MDM.Test.Services
             service.CrossMap(null);
         }
 
-        [TestMethod]
+        [Test]
         public void UnsuccessfulMatchReturnsNotFound()
         {
             // Arrange
@@ -65,7 +65,7 @@ namespace EnergyTrading.MDM.Test.Services
             Assert.AreEqual(ErrorType.NotFound, contract.Error.Type, "ErrorType difers");
         }
 
-        [TestMethod]
+        [Test]
         public void SuccessMatch()
         {
             // Arrange
@@ -131,7 +131,7 @@ namespace EnergyTrading.MDM.Test.Services
             Assert.AreSame(targetIdentifier, candidate.Mappings[0], "Different identifier assigned");
         }
 
-        [TestMethod]
+        [Test]
         public void SuccessMatchSameVersion()
         {
             // Arrange

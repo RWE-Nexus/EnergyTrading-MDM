@@ -3,11 +3,11 @@ namespace EnergyTrading.MDM.Test
     using System.Net;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
     using EnergyTrading.Mdm.Contracts;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_to_create_a_sourcesystem_mapping_and_a_conflicting_mapping_exists : IntegrationTestBase
     {
         private static HttpResponseMessage response2;
@@ -22,7 +22,7 @@ namespace EnergyTrading.MDM.Test
 
         private static MDM.SourceSystem entity;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -52,7 +52,7 @@ namespace EnergyTrading.MDM.Test
             response2 = client.Post(ServiceUrl["SourceSystem"] + string.Format("{0}/Mapping", entity.Id), content2);
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_an_created_status_code()
         {
             Assert.AreEqual(HttpStatusCode.BadRequest, response2.StatusCode);

@@ -5,13 +5,13 @@ namespace EnergyTrading.MDM.Test.ReferenceData
     using System.Runtime.Serialization;
 
     using Microsoft.Http;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Data.EF.Configuration;
     using ReferenceData = EnergyTrading.MDM.ReferenceData;
 
-    [TestClass]
+    [TestFixture]
     public class when_a_request_is_made_for_reference_data_for_a_specific_type : IntegrationTestBase
     {
         private static HttpContent content;
@@ -19,7 +19,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
         private static ReferenceDataList response;
         private static ReferenceData refData;
 
-        [ClassInitialize]
+        [SetUp]
         public static void ClassInit(TestContext context)
         {
             Establish_context();
@@ -29,9 +29,9 @@ namespace EnergyTrading.MDM.Test.ReferenceData
         protected static void Establish_context()
         {
             refData = new ReferenceData() { Key = "LocationType", Value = Guid.NewGuid().ToString() };
-            var repository = new DbSetRepository<MDM.ReferenceData>(new MappingContext());
+            var repository = new DbSetRepository(new DbContextProvider(() => new MappingContext()));
 
-            foreach (var rd in repository.Queryable())
+            foreach (var rd in repository.Queryable<ReferenceData>())
             {
                 repository.Delete(rd);
             }
@@ -48,7 +48,7 @@ namespace EnergyTrading.MDM.Test.ReferenceData
             response = getResponse.Content.ReadAsDataContract<EnergyTrading.Mdm.Contracts.ReferenceDataList>();
         }
 
-        [TestMethod]
+        [Test]
         public void should_return_the_matching_reference_data()
         {
             Assert.AreEqual(response[0].Value, refData.Value);

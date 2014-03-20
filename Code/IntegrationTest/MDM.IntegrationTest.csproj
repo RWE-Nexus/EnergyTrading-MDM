@@ -34,28 +34,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnergyTrading.Contracts, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.Contracts, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Contracts.2.8.0.9\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Contracts.2.8.0.12\lib\net35\EnergyTrading.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.Core, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.Core, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Core.2.8.0.9\lib\net40\EnergyTrading.Core.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.0.12\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.EntityFramework, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.EntityFramework, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.EntityFramework.2.8.0.9\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.EntityFramework.2.8.0.12\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.MDM.Contracts, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.MDM.Contracts, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.0.4\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.0.6\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.Test">
-      <HintPath>..\packages\EnergyTrading.Test.2.7.28050.10\lib\net40\EnergyTrading.Test.dll</HintPath>
-    </Reference>
-    <Reference Include="EnergyTrading.Unity, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.Test, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Unity.2.8.0.9\lib\net40\EnergyTrading.Unity.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Test.2.8.0.12\lib\net40\EnergyTrading.Test.dll</HintPath>
+    </Reference>
+    <Reference Include="EnergyTrading.Unity, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnergyTrading.Unity.2.8.0.12\lib\net40\EnergyTrading.Unity.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
@@ -77,14 +78,14 @@
     <Reference Include="Microsoft.Practices.Unity.Configuration">
       <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-      <HintPath>..\..\..\..\..\..\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
