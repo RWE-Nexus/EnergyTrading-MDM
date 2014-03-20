@@ -1,1 +1,0 @@
-xsd.exe ../Schema/vnd.rwest.nexus+xml.xsd /c /o:Contracts/ /n:RWEST.Nexus.MDM.Contracts
