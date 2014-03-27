@@ -5,7 +5,6 @@
     using EnergyTrading;
     using EnergyTrading.Mapping;
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
-    using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
 
     using Microsoft.Practices.Unity;
 
@@ -21,7 +20,6 @@
             // Self-register and set up service location 
             container.RegisterInstance<IUnityContainer>(container);
             var locator = new UnityServiceLocator(container);
-            Global.ServiceLocator = locator;
 
             var task = new SimpleMappingEngineConfiguration(container);
             task.Configure();

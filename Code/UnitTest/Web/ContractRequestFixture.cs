@@ -1,7 +1,5 @@
 ﻿namespace EnergyTrading.MDM.Test.Web
 {
-    using EnergyTrading.MDM.ServiceHost.Wcf.Nexus;
-
     using Microsoft.Practices.Unity;
     using NUnit.Framework;
 
@@ -19,7 +17,6 @@
             // Self-register and set up service location 
             Container.RegisterInstance<IUnityContainer>(Container);
             var locator = new UnityServiceLocator(Container);
-            Global.ServiceLocator = locator;
         }
     }
 }
