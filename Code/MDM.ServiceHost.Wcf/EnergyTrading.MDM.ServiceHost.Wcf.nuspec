@@ -26,6 +26,7 @@
   <files>
     <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.dll" target="lib\net40" />
     <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.pdb" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.xml" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.dll" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.Extensions.dll" target="lib\net40" />
   </files>
 </package>
