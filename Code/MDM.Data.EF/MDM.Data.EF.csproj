@@ -43,9 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EnergyTrading.Core.2.8.1.28\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.EntityFramework, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.EntityFramework, Version=36.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.EntityFramework.2.8.1.28\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.EntityFramework.2.8.1.36\lib\net40\EnergyTrading.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.MDM.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
