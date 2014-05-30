@@ -3,10 +3,14 @@
     /// <summary>
     /// A system that has entities that we want to map for master data.
     /// </summary>
-    public partial class SourceSystem 
+    public partial class SourceSystem : ISourceSystem
     {
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
         public virtual SourceSystem Parent { get; set; }
 
+        /// <copydocfrom cref="ISourceSystem.Name" />
         public string Name { get; set; }
 
         partial void CopyDetails(SourceSystem details)

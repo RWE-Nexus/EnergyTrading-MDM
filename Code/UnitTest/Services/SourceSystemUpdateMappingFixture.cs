@@ -3,22 +3,21 @@ namespace EnergyTrading.MDM.Test.Services
     using System;
     using System.Collections.Generic;
 
-    using NUnit.Framework;
-
-    using Moq;
-
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.Validation;
-    using EnergyTrading.Search;
-
     using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
+    using EnergyTrading.Search;
+    using EnergyTrading.Validation;
+
+    using Moq;
+
+    using NUnit.Framework;
 
     using DateRange = EnergyTrading.DateRange;
-	using SourceSystem = EnergyTrading.MDM.SourceSystem;
+    using SourceSystem = EnergyTrading.MDM.SourceSystem;
 
     [TestFixture]
     public class SourceSystemUpdateMappingFixture
@@ -31,7 +30,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<object>(), It.IsAny<IList<IRule>>())).Returns(false);
 
@@ -48,7 +47,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -75,7 +74,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -98,25 +97,25 @@ namespace EnergyTrading.MDM.Test.Services
         [Test]
         public void ValidDetailsSaved()
         {
-            const int mappingId = 12;
-		
+            const int MappingId = 12;
+
             // Arrange
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
             // NB Don't put mappingId here - service assigns it
             var identifier = new EnergyTrading.Mdm.Contracts.MdmId { SystemName = "Test", Identifier = "A" };
-            var message = new AmendMappingRequest { MappingId = mappingId, Mapping = identifier, Version = 34UL };
+            var message = new AmendMappingRequest { MappingId = MappingId, Mapping = identifier, Version = 34UL };
 
             var start = new DateTime(2000, 12, 31);
             var finish = DateUtility.Round(SystemTime.UtcNow().AddDays(5));
             var s1 = new SourceSystem { Name = "Test" };
-            var m1 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Version = 34UL.GetVersionByteArray(), Validity = new DateRange(start, DateUtility.MaxDate) };			
-            var m2 = new SourceSystemMapping { Id = mappingId, System = s1, MappingValue = "1", Validity = new DateRange(start, finish) };
+            var m1 = new SourceSystemMapping { Id = MappingId, System = s1, MappingValue = "1", Version = 34UL.GetVersionByteArray(), Validity = new DateRange(start, DateUtility.MaxDate) };
+            var m2 = new SourceSystemMapping { Id = MappingId, System = s1, MappingValue = "1", Validity = new DateRange(start, finish) };
 
             // NB We deliberately bypasses the business logic
             var entity = new MDM.SourceSystem();
@@ -124,20 +123,19 @@ namespace EnergyTrading.MDM.Test.Services
             entity.Mappings.Add(m1);
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<AmendMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
-            repository.Setup(x => x.FindOne<SourceSystemMapping>(mappingId)).Returns(m1);
+            repository.Setup(x => x.FindOne<SourceSystemMapping>(MappingId)).Returns(m1);
             mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>(identifier)).Returns(m2);
 
             // Act
             service.UpdateMapping(message);
 
             // Assert
-            Assert.AreEqual(mappingId, identifier.MappingId, "Mapping identifier differs");
-			// Proves we have an update not an add
-			Assert.AreEqual(1, entity.Mappings.Count, "Mapping count differs"); 
+            Assert.AreEqual(MappingId, identifier.MappingId, "Mapping identifier differs");
+            // Proves we have an update not an add
+            Assert.AreEqual(1, entity.Mappings.Count, "Mapping count differs"); 
             // NB Don't verify result of Update - already covered by SourceSystemMappingFixture
             repository.Verify(x => x.Save(entity));
             repository.Verify(x => x.Flush());
         }
     }
 }
-	

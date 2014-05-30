@@ -3,18 +3,18 @@ namespace EnergyTrading.MDM.Test.Services
     using System;
     using System.Collections.Generic;
 
-    using NUnit.Framework;
-
-    using Moq;
-
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.Validation;
-    using EnergyTrading.Search;
     using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
+    using EnergyTrading.Search;
+    using EnergyTrading.Validation;
+
+    using Moq;
+
+    using NUnit.Framework;
 
     [TestFixture]
     public class SourceSystemUpdateFixture : Fixture
@@ -27,7 +27,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<object>(), It.IsAny<IList<IRule>>())).Returns(false);
             repository.Setup(x => x.FindOne<SourceSystem>(1)).Returns(new SourceSystem());
@@ -45,7 +45,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<EnergyTrading.Mdm.Contracts.SourceSystem>(), It.IsAny<IList<IRule>>())).Returns(true);
 
@@ -73,7 +73,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             // Contract
             var cd = new EnergyTrading.Mdm.Contracts.SourceSystemDetails();
@@ -135,7 +135,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -155,4 +155,3 @@ namespace EnergyTrading.MDM.Test.Services
         }
     }
 }
-	

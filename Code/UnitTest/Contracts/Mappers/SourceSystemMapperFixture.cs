@@ -2,18 +2,16 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
 {
     using System;
 
+    using EnergyTrading;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
 
     using Microsoft.Practices.Unity;
-    using NUnit.Framework;
 
     using Moq;
 
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading;
-    using EnergyTrading.Mapping;
-
-    using EnergyTrading.Mdm;
+    using NUnit.Framework;
 
     [TestFixture]
     public class SourceSystemMapperFixture : Fixture

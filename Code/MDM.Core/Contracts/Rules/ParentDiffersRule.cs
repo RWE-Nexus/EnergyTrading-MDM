@@ -1,12 +1,11 @@
 namespace EnergyTrading.MDM.Contracts.Rules
 {
     using System;
-    using EnergyTrading.Data;
-    using EnergyTrading.MDM.Data;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.Validation;
 
+    using EnergyTrading.Data;
     using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.MDM.Data;
+    using EnergyTrading.Validation;
 
     public class ParentDiffersRule<TEntity, TRelatedEntity, TMapping> : Rule<TEntity>
         where TRelatedEntity : class, IEntity

@@ -1,10 +1,10 @@
 namespace EnergyTrading.MDM.Contracts.Rules
 {
     using System;
-    using EnergyTrading.Mdm.Contracts;
 
-    using EnergyTrading.MDM.Data;
     using EnergyTrading.Data;
+    using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.MDM.Data;
     using EnergyTrading.Validation;
 
     public class NexusEntityExistsRule<TEntity, TRelatedEntity, TMapping> : Rule<TEntity>

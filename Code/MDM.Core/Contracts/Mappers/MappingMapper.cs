@@ -1,9 +1,9 @@
 ﻿namespace EnergyTrading.MDM.Contracts.Mappers
 {
-    using EnergyTrading.MDM.Data;
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Data;
 
     public class MappingMapper<TMapping> : Mapper<EnergyTrading.Mdm.Contracts.MdmId, TMapping>
         where TMapping : class, IEntityMapping, new()

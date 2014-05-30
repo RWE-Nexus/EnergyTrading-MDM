@@ -2,12 +2,12 @@
 {
     using System.Linq;
 
-    using NUnit.Framework;
+    using EnergyTrading.Data;
+    using EnergyTrading.MDM.Contracts.Rules;
 
     using Moq;
 
-    using EnergyTrading.Data;
-    using EnergyTrading.MDM.Contracts.Rules;
+    using NUnit.Framework;
 
     using SourceSystem = EnergyTrading.MDM.SourceSystem;
 

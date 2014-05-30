@@ -56,7 +56,6 @@
         {
             switch (typeof(T).Name)
             {
-
                 case "SourceSystem":
                     return new SourceSystem() as T;
             }

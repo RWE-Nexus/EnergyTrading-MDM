@@ -1,12 +1,9 @@
 ﻿namespace EnergyTrading.MDM.Contracts.Rules
 {
-    using EnergyTrading.Mdm.Contracts;
-
-    using EnergyTrading.MDM.Data;
-    using EnergyTrading;
     using EnergyTrading.Data;
+    using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.MDM.Data;
     using EnergyTrading.Validation;
-    using EnergyTrading.Mdm;
 
     public class NexusIdNoOverlappingRule<T> : Rule<EnergyTrading.Mdm.Contracts.MdmId>
         where T : class, IIdentifiable, IEntityMapping

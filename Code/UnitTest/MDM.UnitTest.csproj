@@ -129,16 +129,11 @@
     <Compile Include="Contracts\Rules\NexusIdTypeSystemExistsRuleFixture.cs" />
     <Compile Include="Contracts\Validators\SourceSystemValidatorFixture.cs" />
     <Compile Include="Contracts\Validators\StubValidatorRepository.cs" />
-    <Compile Include="Data\EF\DbSetRepositoryFixture.cs" />
-    <Compile Include="Data\EF\ReferenceDataRepositoryFixture.cs" />
-    <Compile Include="Data\EF\SourceSystemMappingRepositoryFixture.cs" />
-    <Compile Include="Data\EF\SourceSystemRepositoryFixture.cs" />
     <Compile Include="Extensions\MappingRequestExtensionsFixture.cs" />
     <Compile Include="Extensions\DateRangeExtensionsFixture.cs" />
     <Compile Include="Extensions\MappingResponseExtensionsFixture.cs" />
     <Compile Include="Feeds\FeedFactoryFixture.cs" />
     <Compile Include="Fixture.cs" />
-    <Compile Include="Data\EF\Zapper.cs" />
     <Compile Include="EntityMappingFixture.cs" />
     <Compile Include="Mappers\SourceSystemDetailsMapperFixture.cs" />
     <Compile Include="Mapping\EntityMappingSpecs.cs" />
@@ -171,7 +166,9 @@
       <Name>MDM.ServiceHost.Wcf</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>

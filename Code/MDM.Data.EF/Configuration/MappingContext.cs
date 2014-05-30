@@ -36,7 +36,6 @@
             // TODO_CodeGeneration - Add configuration classes
             modelBuilder.Configurations.Add(new SourceSystemConfiguration());
             modelBuilder.Configurations.Add(new SourceSystemMappingConfiguration());
-            modelBuilder.Configurations.Add(new ReferenceDataConfiguration());
         }
     }
 }

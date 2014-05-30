@@ -3,10 +3,9 @@
     using System;
 
     using EnergyTrading;
+    using EnergyTrading.MDM.Extensions;
 
     using NUnit.Framework;
-
-    using EnergyTrading.MDM.Extensions;
 
     [TestFixture]
     public class DateRangeExtensionsFixture

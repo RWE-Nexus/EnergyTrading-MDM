@@ -62,7 +62,7 @@
         {
             return repository.Queryable<TMapping>()
                             .Where(x => x.System.Name == sourceSystem
-                                 && x.MappingValue == mapping
+                                && x.MappingValue == mapping
                                 // Explicit ValidAt as LINQ to Entity can't cope with interfaces
                                 && x.Validity.Start <= validAt
                                 && x.Validity.Finish >= validAt)
@@ -80,9 +80,9 @@
             return false;
         }
 
-        public static T FindEntityByMapping<T, Tm>(this IRepository repository, EntityId entityId)
+        public static T FindEntityByMapping<T, TM>(this IRepository repository, EntityId entityId)
             where T : class, IEntity
-            where Tm : class, IEntityMapping
+            where TM : class, IEntityMapping
         {
             if (entityId == null)
             {
@@ -96,7 +96,7 @@
                 return repository.FindOne<T>(int.Parse(nexusId.Identifier));
             }
 
-            var entity = (from x in repository.Queryable<Tm>()
+            var entity = (from x in repository.Queryable<TM>()
                           where x.System.Name == nexusId.SystemName
                              && x.MappingValue == nexusId.Identifier
                           select x)
@@ -108,25 +108,6 @@
             }
 
             return (T)entity.Entity;
-        }
-
-        /// <summary>
-        /// Locate a LocationType by name
-        /// </summary>
-        /// <param name="repository"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static ReferenceData LocationTypeByName(this IRepository repository, string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                // Subsitute for the default if nothing provided.
-                name = "Location";
-            }
-
-            return repository.Queryable<MDM.ReferenceData>()
-                           .Where(x => x.Key == "LocationType" && x.Value == name)
-                           .FirstOrDefault();
         }
 
         /// <summary>

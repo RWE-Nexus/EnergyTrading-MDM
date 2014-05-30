@@ -5,12 +5,11 @@
     using System.ServiceModel.Web;
 
     using EnergyTrading.Extensions;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Messages.Services;
     using EnergyTrading.MDM.Services;
     using EnergyTrading.Validation;
-
-    using EnergyTrading.Mdm.Contracts;
 
     public static class FaultFactory
     {

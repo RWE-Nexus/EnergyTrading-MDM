@@ -2,9 +2,9 @@ namespace EnergyTrading.MDM.Contracts.Mappers
 {
     using System.Collections.Generic;
 
-    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Mapping;
-	
+    using EnergyTrading.Mdm.Contracts;
+
     /// <summary>
     /// Maps a <see cref="SourceSystem" /> to a <see cref="SourceSystem" />
     /// </summary>

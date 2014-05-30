@@ -2,9 +2,9 @@ namespace EnergyTrading.MDM.Test.Data.EF
 {
     using System;
 
-    using NUnit.Framework;
-
     using EnergyTrading.Mdm;
+
+    using NUnit.Framework;
 
     [TestFixture]
     public class ReferenceDataRepositoryFixture : DbSetRepositoryFixture<ReferenceData>

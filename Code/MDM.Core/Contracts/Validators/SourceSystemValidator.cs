@@ -1,5 +1,3 @@
-using EnergyTrading.MDM.Data;
-
 namespace EnergyTrading.MDM.Contracts.Validators
 {
     using EnergyTrading.Data;
@@ -18,4 +16,3 @@ namespace EnergyTrading.MDM.Contracts.Validators
         }
     }
 }
-		

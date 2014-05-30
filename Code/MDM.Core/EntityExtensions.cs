@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using EnergyTrading.MDM.Data;
     using EnergyTrading;
+    using EnergyTrading.MDM.Data;
 
     public static class EntityExtensions
     {

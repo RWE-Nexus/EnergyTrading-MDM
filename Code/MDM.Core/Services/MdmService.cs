@@ -4,23 +4,19 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using EnergyTrading.Contracts.Atom;
-    using EnergyTrading.Contracts.Search;
-    using EnergyTrading.MDM.Contracts.Rules;
-
-    using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Data;
-    using EnergyTrading.MDM.Data.Search;
-    using EnergyTrading.MDM.Extensions;
     using EnergyTrading;
+    using EnergyTrading.Contracts.Search;
     using EnergyTrading.Data;
     using EnergyTrading.Extensions;
     using EnergyTrading.Mapping;
+    using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.MDM.Contracts.Rules;
+    using EnergyTrading.MDM.Data;
+    using EnergyTrading.MDM.Data.Search;
+    using EnergyTrading.MDM.Extensions;
+    using EnergyTrading.MDM.Messages;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
-    using EnergyTrading.Mdm;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.Xml.Serialization;
 
     /// <summary>
     /// Create and map a type of MDM entity.
@@ -105,7 +101,10 @@
 
         public void DeleteMapping(DeleteMappingRequest message)
         {
-            if (message == null) return;
+            if (message == null)
+            {
+                return;
+            }
 
             this.repository.Delete<TMapping>(this.repository.FindOne<TMapping>(message.MappingId));
             this.repository.Flush();

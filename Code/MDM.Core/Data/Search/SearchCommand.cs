@@ -89,7 +89,7 @@
 
         private IQueryable<TEntity> EntityQuery(string query, DateTime? at, string orderBy)
         {
-            DateTime asof = at ?? SystemTime.UtcNow();
+            var asof = at ?? SystemTime.UtcNow();
 
             var queryable = this.repository.Queryable<TEntity>()
                 .Include("Mappings")
@@ -102,12 +102,11 @@
             }
 
             return queryable;
-
         }
 
         private IQueryable<TDetails> DetailsQuery(string query, DateTime? at, string orderBy)
         {
-            DateTime asof = at ?? SystemTime.UtcNow();
+            var asof = at ?? SystemTime.UtcNow();
 
             var queryable = this.repository.Queryable<TDetails>()
                 .Where(x => x.Validity.Start <= asof && x.Validity.Finish >= asof)

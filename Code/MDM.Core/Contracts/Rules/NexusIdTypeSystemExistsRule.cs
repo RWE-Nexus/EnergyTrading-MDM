@@ -1,9 +1,8 @@
 ﻿namespace EnergyTrading.MDM.Contracts.Rules
 {
-    using EnergyTrading.Mdm.Contracts;
-
-    using EnergyTrading.MDM.Data;
     using EnergyTrading.Data;
+    using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.MDM.Data;
     using EnergyTrading.Validation;
 
     public class MdmIdSystemExistsRule : Rule<EnergyTrading.Mdm.Contracts.MdmId>

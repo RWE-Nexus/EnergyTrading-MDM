@@ -2,6 +2,7 @@ namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 {
     using System.Collections.Generic;
 
+    using EnergyTrading.Contracts.Atom;
     using EnergyTrading.Mapping;
     using EnergyTrading.MDM.Contracts.Mappers;
     using EnergyTrading.MDM.Contracts.Validators;
@@ -9,10 +10,7 @@ namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
 
     using Microsoft.Practices.Unity;
 
-    using EnergyTrading.Contracts.Atom;
-
-    public class SourceSystemConfiguration : EntityConfiguration<Services.SourceSystemService, MDM.SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystem, 
-		SourceSystemMapping, SourceSystemValidator>
+    public class SourceSystemConfiguration : EntityConfiguration<Services.SourceSystemService, MDM.SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystem, SourceSystemMapping, SourceSystemValidator>
     {
         public SourceSystemConfiguration(IUnityContainer container) : base(container)
         {

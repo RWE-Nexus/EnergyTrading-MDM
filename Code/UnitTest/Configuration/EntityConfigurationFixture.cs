@@ -1,16 +1,16 @@
 ﻿namespace EnergyTrading.MDM.Test.Configuration
 {
+    using EnergyTrading.Configuration;
+    using EnergyTrading.Data;
+    using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Validation;
 
     using Microsoft.Practices.Unity;
-    using NUnit.Framework;
 
     using Moq;
 
-    using EnergyTrading.Configuration;
-    using EnergyTrading.Data;
-    using EnergyTrading.Validation;
-    using EnergyTrading.MDM.Messages;
+    using NUnit.Framework;
 
     [TestFixture]
     public abstract class EntityConfigurationFixture : Fixture

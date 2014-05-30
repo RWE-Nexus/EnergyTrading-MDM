@@ -1,8 +1,8 @@
 namespace EnergyTrading.MDM.Contracts.Mappers
 {
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Data;
     using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Data;
 
     public class SourceSystemDetailsMapper : Mapper<EnergyTrading.Mdm.Contracts.SourceSystemDetails, MDM.SourceSystem>
     {

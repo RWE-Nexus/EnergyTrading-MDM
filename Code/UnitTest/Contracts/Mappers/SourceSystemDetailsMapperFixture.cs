@@ -1,10 +1,10 @@
 namespace EnergyTrading.MDM.Test.Contracts.Mappers
 {
-    using NUnit.Framework;
+    using EnergyTrading.Data;
 
     using Moq;
 
-    using EnergyTrading.Data;
+    using NUnit.Framework;
 
     [TestFixture]
     public class SourceSystemDetailsMapperFixture : Fixture
@@ -16,8 +16,8 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             var mockRepository = new Mock<IRepository>();
 
             var source = new EnergyTrading.Mdm.Contracts.SourceSystemDetails
-                {
-                };
+            {
+            };
 
             var mapper = new EnergyTrading.MDM.Contracts.Mappers.SourceSystemDetailsMapper(mockRepository.Object);
 
@@ -26,8 +26,6 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
 
             // Assert
             Assert.IsNotNull(result);
-
         }
     }
 }
-		

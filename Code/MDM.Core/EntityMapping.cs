@@ -7,16 +7,22 @@
     using EnergyTrading.MDM.Extensions;
 
     /// <summary>
-    /// Generic mapping from a <see cref="SourceSystem" /> to an MDM entity.
+    /// Generic mapping for a <see cref="SourceSystem" /> to an MDM entity.
     /// </summary>
     public abstract class EntityMapping : IEntityMapping
     {
+        /// <summary>
+        /// Creates a new instance of the <see cref="EntityMapping"/> calss.
+        /// </summary>
         protected EntityMapping()
         {
             this.Validity = new DateRange();
             this.Version = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
         }
 
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int Id { get; set; }
 
         int IEntityMapping.MappingId
@@ -30,14 +36,21 @@
             get { return this.Id; }
         }
 
+        /// <summary>
+        /// Gets or sets the entity.
+        /// </summary>
         protected abstract IEntity Entity { get; set; }
 
-        IEntity IRangedChild.Entity 
+        /// <copydocfrom cref="IRangedChild.Entity" />
+        IEntity IRangedChild.Entity
         {
             get { return this.Entity; }
             set { this.Entity = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the SourceSystem
+        /// </summary>
         public virtual SourceSystem System { get; set; }
 
         public string MappingValue { get; set; }

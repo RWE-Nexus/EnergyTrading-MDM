@@ -4,23 +4,19 @@ namespace EnergyTrading.MDM.Test.Services
     using System.Collections.Generic;
     using System.Linq;
 
-    using EnergyTrading.Mdm.Contracts;
-
-    using NUnit.Framework;
-
-    using Moq;
-
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.Validation;
-    using EnergyTrading.Search;
-    using EnergyTrading.Mdm;
+    using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.MDM.Services;
+    using EnergyTrading.Search;
+    using EnergyTrading.Validation;
 
-    using SourceSystem = EnergyTrading.MDM.SourceSystem;
-	
+    using Moq;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class SourceSystemCrossMapFixture
     {
@@ -32,7 +28,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -47,7 +43,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -72,7 +68,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -138,7 +134,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 

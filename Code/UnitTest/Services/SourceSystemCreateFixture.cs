@@ -2,15 +2,15 @@ namespace EnergyTrading.MDM.Test.Services
 {
     using System.Collections.Generic;
 
-    using NUnit.Framework;
+    using EnergyTrading.Data;
+    using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Search;
+    using EnergyTrading.Validation;
 
     using Moq;
 
-    using EnergyTrading.Data;
-    using EnergyTrading.Mapping;
-    using EnergyTrading.Search;
-    using EnergyTrading.Validation;
-    using EnergyTrading.MDM.Services;
+    using NUnit.Framework;
 
     [TestFixture]
     public class SourceSystemCreateFixture
@@ -23,7 +23,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>(); 
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -41,7 +41,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -60,7 +60,7 @@ namespace EnergyTrading.MDM.Test.Services
             var validatorFactory = new Mock<IValidatorEngine>();
             var mappingEngine = new Mock<IMappingEngine>();
             var repository = new Mock<IRepository>();
-			var searchCache = new Mock<ISearchCache>();
+            var searchCache = new Mock<ISearchCache>();
 
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
@@ -80,4 +80,3 @@ namespace EnergyTrading.MDM.Test.Services
         }
     }
 }
-	

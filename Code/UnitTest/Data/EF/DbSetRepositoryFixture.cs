@@ -6,12 +6,12 @@
     using System.Linq;
     using System.Transactions;
 
-    using NUnit.Framework;
-
+    using EnergyTrading.Data;
     using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.MDM.Data.EF.Configuration;
-    using EnergyTrading.Data;
     using EnergyTrading.Test;
+
+    using NUnit.Framework;
 
     using CheckerFactory = EnergyTrading.MDM.Test.CheckerFactory;
 
@@ -125,34 +125,34 @@
             var candidate = this.Repository2.FindOne<T>(expected.Id);
             Check(expected, candidate);
         }
-		
-		[Test]
+
+        [Test]
         [Category("Integration")]
         public void Delete()
         {
             var expected = this.Default();
 
-		    using (var scope = new TransactionScope())
-		    {
-		        this.Repository.Add(expected);
-		        this.Repository.Flush();
+            using (var scope = new TransactionScope())
+            {
+                this.Repository.Add(expected);
+                this.Repository.Flush();
 
-		        scope.Complete();
-		    }
+                scope.Complete();
+            }
 
-		    var isEntityAdded = (from x in Repository.Queryable<T>() select x).Count() > 0;
-		    Assert.IsTrue(isEntityAdded);
+            var isEntityAdded = (from x in Repository.Queryable<T>() select x).Any();
+            Assert.IsTrue(isEntityAdded);
 
-		    using (var scope = new TransactionScope())
-		    {
-		        this.Repository.Delete(expected);
-		        this.Repository.Flush();
+            using (var scope = new TransactionScope())
+            {
+                this.Repository.Delete(expected);
+                this.Repository.Flush();
 
-		        scope.Complete();
-		    }
+                scope.Complete();
+            }
 
-		    var count = (from x in Repository.Queryable<T>() select x).Count();
-		    Assert.AreEqual(ExpectedEntitiesCountAfterDelete, count);
+            var count = (from x in Repository.Queryable<T>() select x).Count();
+            Assert.AreEqual(ExpectedEntitiesCountAfterDelete, count);
         }
 
         [Test]

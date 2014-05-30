@@ -4,14 +4,13 @@
     using System.Linq;
 
     using EnergyTrading;
-
-    using NUnit.Framework;
-
-    using Moq;
-
     using EnergyTrading.Data;
     using EnergyTrading.MDM.Contracts.Rules;
     using EnergyTrading.MDM.Messages;
+
+    using Moq;
+
+    using NUnit.Framework;
 
     [TestFixture]
     public class AmendMappingNoOverlappingRuleFixture

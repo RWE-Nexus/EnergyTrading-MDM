@@ -1,12 +1,9 @@
 ﻿namespace EnergyTrading.MDM.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.Mdm;
     using EnergyTrading.MDM.Data.Search;
     using EnergyTrading.MDM.Messages;
     using EnergyTrading.Search;

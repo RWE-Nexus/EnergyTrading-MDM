@@ -1,7 +1,7 @@
 namespace EnergyTrading.MDM.Mappers
 {
-    using EnergyTrading.MDM.Extensions;
     using EnergyTrading.Mapping;
+    using EnergyTrading.MDM.Extensions;
 
     public class SourceSystemDetailsMapper : Mapper<EnergyTrading.MDM.SourceSystem, EnergyTrading.Mdm.Contracts.SourceSystemDetails>
     {
@@ -11,4 +11,4 @@ namespace EnergyTrading.MDM.Mappers
             destination.Parent = source.Parent.CreateNexusEntityId(() => source.Parent.Name);
         }
     }
-}		
+}

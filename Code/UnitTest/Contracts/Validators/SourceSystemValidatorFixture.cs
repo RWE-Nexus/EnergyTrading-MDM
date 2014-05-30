@@ -2,21 +2,21 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
 
+    using EnergyTrading.Data;
     using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.MDM.Contracts.Validators;
     using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Validation;
 
-    using MDM.Data;
     using Microsoft.Practices.Unity;
-    using NUnit.Framework;
 
     using Moq;
 
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.Data;
-    using EnergyTrading.Validation;
-    using EnergyTrading.Mdm;
+    using NUnit.Framework;
+
     using DateRange = EnergyTrading.DateRange;
     using SourceSystem = EnergyTrading.Mdm.Contracts.SourceSystem;
 
@@ -30,7 +30,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var meConfig = new SimpleMappingEngineConfiguration(container);
             meConfig.Configure();
 
-			var repository = new Mock<IRepository>();
+            var repository = new Mock<IRepository>();
             container.RegisterInstance(repository.Object);
 
             var config = new SourceSystemConfiguration(container);
@@ -51,7 +51,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
             var systemList = new List<MDM.SourceSystem> { system };
             var systemRepository = new Mock<IRepository>();
-			var repository = new StubValidatorRepository();
+            var repository = new StubValidatorRepository();
 
             systemRepository.Setup(x => x.Queryable<MDM.SourceSystem>()).Returns(systemList.AsQueryable());
 
@@ -156,7 +156,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
             // Assert
             Assert.IsFalse(result, "Validator succeeded");
-		}
+        }
 
         [Test]
         public void ParentShouldNotBeSameAsEntity()
@@ -179,18 +179,28 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             Assert.AreEqual(1, violations.Count);
             Assert.AreEqual("Parent must not be same as entity", violations[0].Message);
         }
-		
-		partial void AddRelatedEntities(SourceSystem contract);
+
+        partial void AddRelatedEntities(SourceSystem contract);
 
         private SourceSystem NewSourceSystem(string name, int parentId)
         {
-            var sourceSystem = new SourceSystem();
-            sourceSystem.Details.Name = name;
-            sourceSystem.Details.Parent = new EntityId
-                {Identifier = new MdmId
+            var sourceSystem = new SourceSystem
+            {
+                Details =
+                {
+                    Name = name,
+                    Parent = new EntityId
                     {
-                        SystemName = "Nexus", Identifier = parentId.ToString(), IsMdmId = true
-                    }};
+                        Identifier = new MdmId
+                        {
+                            SystemName = "Nexus",
+                            Identifier = parentId.ToString(CultureInfo.InvariantCulture),
+                            IsMdmId = true
+                        }
+                    }
+                }
+            };
+
             return sourceSystem;
         }
     }

@@ -2,11 +2,11 @@
 {
     using System.Web;
 
-    using NUnit.Framework;
-
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.MDM.Extensions;
     using EnergyTrading.Search;
+
+    using NUnit.Framework;
 
     [TestFixture]
     public class SearchExtensionsFixture

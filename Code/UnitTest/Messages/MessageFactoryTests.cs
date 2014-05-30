@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Specialized;
 
-    using NUnit.Framework;
-
     using EnergyTrading.MDM.Messages;
+
+    using NUnit.Framework;
 
     [TestFixture]
     public class MessageFactoryTests

@@ -3,13 +3,11 @@
     using System;
     using System.Linq;
 
-    using Moq;
-
-    using EnergyTrading.MDM.Contracts.Mappers;
-
     using EnergyTrading;
     using EnergyTrading.Data;
-    using EnergyTrading.Mdm;
+    using EnergyTrading.MDM.Contracts.Mappers;
+
+    using Moq;
 
     public class MappingMapperFixture : Fixture
     {

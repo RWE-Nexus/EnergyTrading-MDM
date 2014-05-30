@@ -94,6 +94,7 @@
     <Compile Include="Extensions\MappingResponseExtensions.cs" />
     <Compile Include="Extensions\RowVersionExtensions.cs" />
     <Compile Include="Extensions\SearchExtensions.cs" />
+    <Compile Include="ISourceSystem.cs" />
     <Compile Include="Mappers\NullLinksMapper.cs" />
     <Compile Include="Mappers\EntityMappingMapper.cs" />
     <Compile Include="Mappers\SourceSystemDetailsMapper.cs" />

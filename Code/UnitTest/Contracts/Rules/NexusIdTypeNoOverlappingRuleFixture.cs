@@ -3,13 +3,13 @@
     using System;
     using System.Linq;
 
-    using NUnit.Framework;
-    using Moq;
-
-    using EnergyTrading.MDM.Contracts.Rules;
     using EnergyTrading;
     using EnergyTrading.Data;
-    using EnergyTrading.Mdm;
+    using EnergyTrading.MDM.Contracts.Rules;
+
+    using Moq;
+
+    using NUnit.Framework;
 
     [TestFixture]
     public class NexusIdNoOverlappingRuleFixture

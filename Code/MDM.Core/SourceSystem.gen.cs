@@ -2,6 +2,7 @@ namespace EnergyTrading.MDM
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using EnergyTrading;
     using EnergyTrading.Data;
@@ -31,6 +32,11 @@ namespace EnergyTrading.MDM
         }
 
         public virtual IList<SourceSystemMapping> Mappings { get; private set; }
+
+        IList<IEntityMapping> IEntity.Mappings
+        {
+            get { return Mappings.ToList<IEntityMapping>(); }
+        }
 
         IEntity IRangedChild.Entity
         {

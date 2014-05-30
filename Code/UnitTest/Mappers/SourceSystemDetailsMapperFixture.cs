@@ -18,10 +18,8 @@ namespace EnergyTrading.MDM.Test.Mappers
             // Act
             var result = mapper.Map(source);
 
-			// Assert
-			Assert.IsNotNull(result);
+            // Assert
+            Assert.IsNotNull(result);
         }
     }
 }
-
-	
