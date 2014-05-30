@@ -465,6 +465,11 @@
             contract.Links = target;
         }
 
+        private void AssignAudit(TContract contract, TEntity entity)
+        {
+            contract.Audit = new Audit() {Version = entity.Version};
+        }
+
         private TContract ConstructContract(TEntity entity, DateTime validAt)
         {
             var contract = new TContract();
@@ -472,8 +477,8 @@
             this.AssignIdentifiers(entity, x => contract.Identifiers.Add(x), x => x.Validity.ValidAt(validAt));
             this.AssignDetails(contract, entity, x => x.Validity.ValidAt(validAt));
             this.AssignLinks(contract, entity);
+            this.AssignAudit(contract, entity);
             this.PopulateEntityLevelAttributes(contract, entity);
-
             return contract;
         }
 
