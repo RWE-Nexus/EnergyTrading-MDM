@@ -467,7 +467,7 @@
 
         private void AssignAudit(TContract contract, TEntity entity)
         {
-            contract.Audit = new Audit() {Version = entity.Version};
+            contract.Audit = new Audit { Version = entity.Version};
         }
 
         private TContract ConstructContract(TEntity entity, DateTime validAt)

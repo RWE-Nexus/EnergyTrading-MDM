@@ -42,9 +42,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EnergyTrading.Core.2.8.1.28\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.MDM.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.1.1\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
+    <Reference Include="EnergyTrading.MDM.Contracts">
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.1.6\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.Unity, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
