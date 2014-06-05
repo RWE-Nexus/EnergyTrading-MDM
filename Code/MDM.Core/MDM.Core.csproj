@@ -129,7 +129,6 @@
     <Compile Include="Messages\MappingRequest.cs" />
     <Compile Include="Data\Search\SearchCommand.cs" />
     <Compile Include="RangedChildExtensions.cs" />
-    <Compile Include="ReferenceData.cs" />
     <Compile Include="Messages\Validators\AmendMappingRequestValidator.cs" />
     <Compile Include="Messages\Validators\CreateMappingRequestValidator.cs" />
     <Compile Include="Services\IMdmService.cs" />

@@ -112,7 +112,6 @@
     <Compile Include="Checkers\Mapping\CheckerExtensions.cs" />
     <Compile Include="Checkers\Mapping\DateRangeChecker.cs" />
     <Compile Include="Checkers\Mapping\EntityMappingChecker.cs" />
-    <Compile Include="Checkers\Mapping\ReferenceDataChecker.cs" />
     <Compile Include="Checkers\Mapping\SourceSystemChecker.cs" />
     <Compile Include="Checkers\Mapping\SourceSystemMappingChecker.cs" />
     <Compile Include="Extensions\RowVersionExtensionsFixture.cs" />

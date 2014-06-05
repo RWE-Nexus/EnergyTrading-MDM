@@ -4,11 +4,8 @@
     using System.Linq;
 
     using EnergyTrading.Data;
-    using EnergyTrading.Mdm;
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.MDM.Messages;
-
-    using ReferenceData = EnergyTrading.MDM.ReferenceData;
 
     public static class RepositoryExtensions
     {

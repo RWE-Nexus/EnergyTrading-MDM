@@ -24,17 +24,6 @@
         }
 
         [Test]
-        public void KeysForSameSearchButDifferentEntitiesAreDifferent()
-        {
-            var search = SearchBuilder.CreateSearch();
-            search.AddSearchCriteria(SearchCombinator.And)
-                  .AddCriteria("Name", SearchCondition.Equals, "bing", true);
-            var key1 = search.ToKey<SourceSystem>();
-            var key2 = search.ToKey<ReferenceData>();
-            Assert.AreNotEqual(key1, key2);
-        }
-
-        [Test]
         public void SearchKeysAreReversible()
         {
             var search = SearchBuilder.CreateSearch();
