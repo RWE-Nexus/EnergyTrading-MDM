@@ -18,8 +18,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.Core\bin\Release\EnergyTrading.Mdm.Domain.dll" target="lib\net40" />
-    <file src="Code\MDM.Core\bin\Release\EnergyTrading.Mdm.Domain.pdb" target="lib\net40" />
-    <file src="Code\MDM.Core\bin\Release\EnergyTrading.Mdm.Domain.xml" target="lib\net40" />
+    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.dll" target="lib\net40" />
+    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.pdb" target="lib\net40" />
+    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.xml" target="lib\net40" />
   </files>
 </package>
