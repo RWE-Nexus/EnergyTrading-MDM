@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM.Data.EF", "MDM.Data.EF\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM.UnitTest", "UnitTest\MDM.UnitTest.csproj", "{41C19231-42C4-43AC-AEF6-C129FCCA173B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7FCC7106-2E9F-414C-9EAF-8B150C51ECCC}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM.ServiceHost.Unity", "MDM.ServiceHost.Unity\MDM.ServiceHost.Unity.csproj", "{A70C860C-383C-411C-9642-878B284B0924}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDM.ServiceHost.Wcf", "MDM.ServiceHost.Wcf\MDM.ServiceHost.Wcf.csproj", "{DE2A7205-571A-48B0-9B38-6B4A76677898}"
