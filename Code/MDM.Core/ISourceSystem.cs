@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM
+﻿namespace EnergyTrading.Mdm
 {
     /// <summary>
     /// System providing mappings to MDM.
@@ -9,5 +9,10 @@
         /// Gets the name.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// Gets the parent system.
+        /// </summary>
+        ISourceSystem Parent { get; }
     }
 }

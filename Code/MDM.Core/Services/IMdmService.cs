@@ -1,11 +1,11 @@
-﻿namespace EnergyTrading.MDM.Services
+﻿namespace EnergyTrading.Mdm.Services
 {
     using System.Collections.Generic;
 
     using EnergyTrading.Contracts.Search;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Data.Search;
-    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.Mdm.Data.Search;
+    using EnergyTrading.Mdm.Messages;
     using EnergyTrading.Search;
 
     /// <summary>

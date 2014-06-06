@@ -1,4 +1,4 @@
-﻿namespace MDM.ServiceHost.Wcf
+﻿namespace Mdm.ServiceHost.Wcf
 {
     using System;
     using System.Collections.Generic;
@@ -16,18 +16,18 @@
     using EnergyTrading.Extensions;
     using EnergyTrading.Logging;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM;
-    using EnergyTrading.MDM.Data.Search;
-    using EnergyTrading.MDM.Extensions;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm;
+    using EnergyTrading.Mdm.Data.Search;
+    using EnergyTrading.Mdm.Extensions;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.ServiceModel.Channels;
     using EnergyTrading.Validation;
     using EnergyTrading.Web;
     using EnergyTrading.Xml.Serialization;
 
-    using MDM.ServiceHost.Wcf.Feeds;
+    using Mdm.ServiceHost.Wcf.Feeds;
 
     using Microsoft.Practices.ServiceLocation;
 

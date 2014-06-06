@@ -1,9 +1,9 @@
-﻿namespace EnergyTrading.MDM.Extensions
+﻿namespace EnergyTrading.Mdm.Extensions
 {
     using System;
 
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.Mdm.Messages;
 
     public static class MappingRequestExtensions
     {

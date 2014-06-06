@@ -1,9 +1,9 @@
-namespace EnergyTrading.MDM.Contracts.Rules
+namespace EnergyTrading.Mdm.Contracts.Rules
 {
     using System;
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Data;
-    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.Mdm.Data;
+    using EnergyTrading.Mdm.Messages;
     using EnergyTrading.Validation;
 
     public class SystemExistsRule : Rule<MappingRequest>

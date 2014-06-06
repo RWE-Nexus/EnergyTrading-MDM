@@ -1,8 +1,8 @@
-﻿namespace EnergyTrading.MDM.Messages.Validators
+﻿namespace EnergyTrading.Mdm.Messages.Validators
 {
     using EnergyTrading.Data;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Contracts.Rules;
+    using EnergyTrading.Mdm.Contracts.Rules;
     using EnergyTrading.Validation;
 
     public class AmendMappingRequestValidator<TMapping> : Validator<AmendMappingRequest>

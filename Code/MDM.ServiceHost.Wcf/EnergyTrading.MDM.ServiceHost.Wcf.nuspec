@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>EnergyTrading.MDM.ServiceHost.Wcf</id>
-    <title>EnergyTrading.MDM.ServiceHost.Wcf</title>
+    <id>EnergyTrading.Mdm.ServiceHost.Wcf</id>
+    <title>EnergyTrading.Mdm.ServiceHost.Wcf</title>
     <description>WCF specific service base classes for MDM</description>
     <version>$version$</version>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -12,9 +12,9 @@
     <tags>MDM WCF .net40</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
-      <dependency id="EnergyTrading.MDM.ServiceHost.Unity" version="" />
-      <dependency id="EnergyTrading.MDM.Core" version="" />
-      <dependency id="EnergyTrading.MDM.Contracts" version="" />
+      <dependency id="EnergyTrading.Mdm.ServiceHost.Unity" version="" />
+      <dependency id="EnergyTrading.Mdm.Core" version="" />
+      <dependency id="EnergyTrading.Mdm.Contracts" version="" />
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />
@@ -24,8 +24,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.dll" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\MDM.ServiceHost.Wcf.pdb" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.dll" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.pdb" target="lib\net40" />
     <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.dll" target="lib\net40" />
     <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.Extensions.dll" target="lib\net40" />
   </files>

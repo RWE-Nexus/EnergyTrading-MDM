@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Mappers
+namespace EnergyTrading.Mdm.Test.Mappers
 {
     using NUnit.Framework;
 
@@ -9,11 +9,11 @@ namespace EnergyTrading.MDM.Test.Mappers
         public void Map()
         {
             // Arrange
-            var source = new MDM.SourceSystem()
-                {
-                };
+            var source = new Mdm.SourceSystem
+            {
+            };
 
-            var mapper = new MDM.Mappers.SourceSystemDetailsMapper();
+            var mapper = new Mdm.Mappers.SourceSystemDetailsMapper();
 
             // Act
             var result = mapper.Map(source);

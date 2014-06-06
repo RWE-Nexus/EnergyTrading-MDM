@@ -1,4 +1,4 @@
-﻿namespace MDM.ServiceHost.Wcf
+﻿namespace Mdm.ServiceHost.Wcf
 {
     using System;
     using System.Net;
@@ -6,9 +6,9 @@
 
     using EnergyTrading.Extensions;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Messages.Services;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Messages.Services;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Validation;
 
     public static class FaultFactory

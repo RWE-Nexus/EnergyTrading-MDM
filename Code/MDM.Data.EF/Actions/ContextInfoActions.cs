@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Data.EF.Actions
+﻿namespace EnergyTrading.Mdm.Data.EF.Actions
 {
     using System.Data;
 

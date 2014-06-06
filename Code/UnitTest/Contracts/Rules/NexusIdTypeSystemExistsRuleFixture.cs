@@ -1,15 +1,15 @@
-﻿namespace EnergyTrading.MDM.Test.Contracts.Rules
+﻿namespace EnergyTrading.Mdm.Test.Contracts.Rules
 {
     using System.Linq;
 
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Contracts.Rules;
+    using EnergyTrading.Mdm.Contracts.Rules;
 
     using Moq;
 
     using NUnit.Framework;
 
-    using SourceSystem = EnergyTrading.MDM.SourceSystem;
+    using SourceSystem = EnergyTrading.Mdm.SourceSystem;
 
     [TestFixture]
     public class NexusIdSystemExistsRuleFixture

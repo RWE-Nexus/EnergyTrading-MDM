@@ -1,4 +1,4 @@
-namespace MDM.ServiceHost.Wcf
+namespace Mdm.ServiceHost.Wcf
 {
     public static class LogMessages
     {

@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Contracts.Mappers
+namespace EnergyTrading.Mdm.Test.Contracts.Mappers
 {
     using EnergyTrading.Data;
 
@@ -19,7 +19,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Mappers
             {
             };
 
-            var mapper = new EnergyTrading.MDM.Contracts.Mappers.SourceSystemDetailsMapper(mockRepository.Object);
+            var mapper = new EnergyTrading.Mdm.Contracts.Mappers.SourceSystemDetailsMapper(mockRepository.Object);
 
             // Act
             var result = mapper.Map(source);

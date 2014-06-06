@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Messages.Services
+﻿namespace EnergyTrading.Mdm.Messages.Services
 {
     public class GetMappingRequestFaultHandler : FaultHandler<GetMappingRequest>
     {

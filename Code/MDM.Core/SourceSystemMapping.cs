@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM
+namespace EnergyTrading.Mdm
 {
     /// <summary>
     /// Maps a <see cref="EntityMapping" /> to a <see cref="SourceSystem" />

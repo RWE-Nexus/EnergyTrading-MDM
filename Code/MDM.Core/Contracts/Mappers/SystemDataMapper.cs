@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Contracts.Mappers
+﻿namespace EnergyTrading.Mdm.Contracts.Mappers
 {
     using EnergyTrading;
     using EnergyTrading.Mapping;

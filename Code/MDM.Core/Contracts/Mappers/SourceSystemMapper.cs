@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Contracts.Mappers
+namespace EnergyTrading.Mdm.Contracts.Mappers
 {
     using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace EnergyTrading.MDM.Contracts.Mappers
     /// <summary>
     /// Maps a <see cref="SourceSystem" /> to a <see cref="SourceSystem" />
     /// </summary>
-    public class SourceSystemMapper : ContractMapper<SourceSystem, MDM.SourceSystem, SourceSystemDetails, MDM.SourceSystem, SourceSystemMapping>
+    public class SourceSystemMapper : ContractMapper<SourceSystem, Mdm.SourceSystem, SourceSystemDetails, Mdm.SourceSystem, SourceSystemMapping>
     {
         public SourceSystemMapper(IMappingEngine mappingEngine) : base(mappingEngine)
         {

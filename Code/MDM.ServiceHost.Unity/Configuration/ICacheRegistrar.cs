@@ -1,7 +1,7 @@
-﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
+﻿namespace EnergyTrading.Mdm.ServiceHost.Unity.Configuration
 {
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Services;
 
     public interface ICacheRegistrar
     {

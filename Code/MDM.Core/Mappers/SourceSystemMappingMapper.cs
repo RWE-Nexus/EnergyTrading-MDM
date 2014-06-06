@@ -1,9 +1,9 @@
-namespace EnergyTrading.MDM.Mappers
+namespace EnergyTrading.Mdm.Mappers
 {
     using EnergyTrading.Mapping;
     using EnergyTrading.Mdm.Contracts;
 
-    public class SourceSystemMappingMapper: Mapper<EnergyTrading.MDM.SourceSystemMapping, MdmId>
+    public class SourceSystemMappingMapper: Mapper<EnergyTrading.Mdm.SourceSystemMapping, MdmId>
     {
         private readonly Mapper<IEntityMapping, MdmId> mapper;
 
@@ -12,7 +12,7 @@ namespace EnergyTrading.MDM.Mappers
             this.mapper = new EntityMappingMapper();
         }
 
-        public override void Map(EnergyTrading.MDM.SourceSystemMapping source, MdmId destination)
+        public override void Map(EnergyTrading.Mdm.SourceSystemMapping source, MdmId destination)
         {
             this.mapper.Map(source, destination);
         }

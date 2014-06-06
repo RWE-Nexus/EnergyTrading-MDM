@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Feeds
+namespace EnergyTrading.Mdm.Test.Feeds
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace EnergyTrading.MDM.Test.Feeds
     using EnergyTrading.Search;
     using EnergyTrading.Test;
 
-    using global::MDM.ServiceHost.Wcf.Feeds;
+    using global::Mdm.ServiceHost.Wcf.Feeds;
 
     using NUnit.Framework;
 

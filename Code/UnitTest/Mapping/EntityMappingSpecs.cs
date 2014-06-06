@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Mapping
+namespace EnergyTrading.Mdm.Test.Mapping
 {
     using NUnit.Framework;
 

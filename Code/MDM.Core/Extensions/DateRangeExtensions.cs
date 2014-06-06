@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Extensions
+﻿namespace EnergyTrading.Mdm.Extensions
 {
     using DateRange = EnergyTrading.DateRange;
 

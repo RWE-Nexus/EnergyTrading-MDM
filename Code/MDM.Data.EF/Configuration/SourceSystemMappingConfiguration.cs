@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Data.EF.Configuration
+namespace EnergyTrading.Mdm.Data.EF.Configuration
 {
     using System.Data.Entity.ModelConfiguration;
 

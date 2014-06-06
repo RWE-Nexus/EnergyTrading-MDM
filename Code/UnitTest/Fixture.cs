@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Test
+﻿namespace EnergyTrading.Mdm.Test
 {
     using EnergyTrading.Test;
 

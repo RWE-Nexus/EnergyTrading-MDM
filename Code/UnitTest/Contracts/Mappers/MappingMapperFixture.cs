@@ -1,18 +1,18 @@
-﻿namespace EnergyTrading.MDM.Test.Contracts.Mappers
+﻿namespace EnergyTrading.Mdm.Test.Contracts.Mappers
 {
     using System;
     using System.Linq;
 
     using EnergyTrading;
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Contracts.Mappers;
+    using EnergyTrading.Mdm.Contracts.Mappers;
 
     using Moq;
 
     public class MappingMapperFixture : Fixture
     {
         public void Map<TMapping>()
-           where TMapping : EntityMapping, new()
+           where TMapping : class, IEntityMapping, new()
         {
             // Arrange
             var system = new SourceSystem { Name = "Test" };
@@ -30,7 +30,7 @@
                 MappingValue = "1",
                 Validity = new DateRange(start, end)
             };
-            ((IEntityMapping)expected).MappingId = 1;
+            expected.MappingId = 1;
 
             var mapper = new MappingMapper<TMapping>(repository.Object);
 

@@ -1,11 +1,11 @@
-﻿namespace EnergyTrading.MDM.Test.Contracts.Rules
+﻿namespace EnergyTrading.Mdm.Test.Contracts.Rules
 {
     using System;
     using System.Linq;
 
     using EnergyTrading;
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Contracts.Rules;
+    using EnergyTrading.Mdm.Contracts.Rules;
 
     using Moq;
 

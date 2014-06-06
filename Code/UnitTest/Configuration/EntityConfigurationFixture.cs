@@ -1,9 +1,9 @@
-﻿namespace EnergyTrading.MDM.Test.Configuration
+﻿namespace EnergyTrading.Mdm.Test.Configuration
 {
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
     using EnergyTrading.Validation;
 
     using Microsoft.Practices.Unity;

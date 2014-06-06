@@ -8,8 +8,8 @@
     <ProjectGuid>{7A19CCF8-7DB6-41B3-92FC-5E9289844160}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnergyTrading.MDM.Data.EF</RootNamespace>
-    <AssemblyName>MDM.Data.EF</AssemblyName>
+    <RootNamespace>EnergyTrading.Mdm.Data.EF</RootNamespace>
+    <AssemblyName>EnergyTrading.Mdm.Data.EF</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Code\</SolutionDir>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\MDM.Data.EF.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\EnergyTrading.Mdm.Data.EF.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\MDM.Data.EF.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\EnergyTrading.Mdm.Data.EF.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnergyTrading.Contracts, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">

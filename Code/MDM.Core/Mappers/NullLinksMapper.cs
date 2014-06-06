@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Mappers
+namespace EnergyTrading.Mdm.Mappers
 {
     using System;
     using System.Collections.Generic;

@@ -1,12 +1,12 @@
-﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
+﻿namespace EnergyTrading.Mdm.ServiceHost.Unity.Configuration
 {
     using System;
     using System.Collections.Generic;
 
     using EnergyTrading.Configuration;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading.MDM.Mappers;
+    using EnergyTrading.Mdm.Contracts.Mappers;
+    using EnergyTrading.Mdm.Mappers;
 
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;

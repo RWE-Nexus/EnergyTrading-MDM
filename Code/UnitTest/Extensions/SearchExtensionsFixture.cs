@@ -1,9 +1,9 @@
-﻿namespace EnergyTrading.MDM.Test.Extensions
+﻿namespace EnergyTrading.Mdm.Test.Extensions
 {
     using System.Web;
 
     using EnergyTrading.Contracts.Search;
-    using EnergyTrading.MDM.Extensions;
+    using EnergyTrading.Mdm.Extensions;
     using EnergyTrading.Search;
 
     using NUnit.Framework;

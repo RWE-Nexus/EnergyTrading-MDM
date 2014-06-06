@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>EnergyTrading.MDM.Core</id>
-    <title>EnergyTrading.MDM.Core</title>
-    <description>Core classes for MDM</description>
+    <id>EnergyTrading.MDM.Domain</id>
+    <title>EnergyTrading.MDM.Domain</title>
+    <description>Domain specific classes for MDM</description>
     <version>$version$</version>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
@@ -18,8 +18,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.Core\bin\Release\MDM.Core.dll" target="lib\net40" />
-    <file src="Code\MDM.Core\bin\Release\MDM.Core.pdb" target="lib\net40" />
-    <file src="Code\MDM.Core\bin\Release\MDM.Core.xml" target="lib\net40" />
+    <file src="Code\MDM.Core\bin\Release\EnergyTrading.Mdm.Domain.dll" target="lib\net40" />
+    <file src="Code\MDM.Core\bin\Release\EnergyTrading.Mdm.Domain.pdb" target="lib\net40" />
+    <file src="Code\MDM.Core\bin\Release\EnergyTrading.Mdm.Domain.xml" target="lib\net40" />
   </files>
 </package>

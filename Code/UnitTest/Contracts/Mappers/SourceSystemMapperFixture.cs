@@ -1,11 +1,11 @@
-namespace EnergyTrading.MDM.Test.Contracts.Mappers
+namespace EnergyTrading.Mdm.Test.Contracts.Mappers
 {
     using System;
 
     using EnergyTrading;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Contracts.Mappers;
-    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Mdm.Contracts.Mappers;
+    using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
 
     using Microsoft.Practices.Unity;
 

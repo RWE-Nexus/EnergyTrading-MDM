@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Services
+namespace EnergyTrading.Mdm.Test.Services
 {
     using System;
     using System.Collections.Generic;
@@ -7,8 +7,8 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
     using EnergyTrading.Mdm;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 
@@ -17,7 +17,7 @@ namespace EnergyTrading.MDM.Test.Services
     using NUnit.Framework;
 
     using DateRange = EnergyTrading.DateRange;
-    using SourceSystem = EnergyTrading.MDM.SourceSystem;
+    using SourceSystem = EnergyTrading.Mdm.SourceSystem;
 
     [TestFixture]
     public class SourceSystemUpdateMappingFixture
@@ -85,7 +85,7 @@ namespace EnergyTrading.MDM.Test.Services
                 Version = 34
             };
 
-            var mapping = new SourceSystemMapping { SourceSystem = new MDM.SourceSystem() { Timestamp = BitConverter.GetBytes(25L) } };
+            var mapping = new SourceSystemMapping { SourceSystem = new Mdm.SourceSystem() { Timestamp = BitConverter.GetBytes(25L) } };
 
             validatorFactory.Setup(x => x.IsValid(It.IsAny<AmendMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
             repository.Setup(x => x.FindOne<SourceSystemMapping>(12)).Returns(mapping);
@@ -118,7 +118,7 @@ namespace EnergyTrading.MDM.Test.Services
             var m2 = new SourceSystemMapping { Id = MappingId, System = s1, MappingValue = "1", Validity = new DateRange(start, finish) };
 
             // NB We deliberately bypasses the business logic
-            var entity = new MDM.SourceSystem();
+            var entity = new Mdm.SourceSystem();
             m1.SourceSystem = entity;
             entity.Mappings.Add(m1);
 

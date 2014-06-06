@@ -1,7 +1,7 @@
-namespace EnergyTrading.MDM.Test.Extensions
+namespace EnergyTrading.Mdm.Test.Extensions
 {
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Extensions;
+    using EnergyTrading.Mdm.Extensions;
 
     using NUnit.Framework;
 

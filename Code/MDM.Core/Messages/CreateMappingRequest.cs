@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Messages
+﻿namespace EnergyTrading.Mdm.Messages
 {
     public class CreateMappingRequest
     {

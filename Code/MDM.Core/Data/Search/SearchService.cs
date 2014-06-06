@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Data.Search
+namespace EnergyTrading.Mdm.Data.Search
 {
     using System.Collections.Generic;
     using EnergyTrading.Contracts.Search;

@@ -1,11 +1,11 @@
-namespace EnergyTrading.MDM.Test.Services
+namespace EnergyTrading.Mdm.Test.Services
 {
     using System.Collections.Generic;
 
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 
@@ -77,13 +77,13 @@ namespace EnergyTrading.MDM.Test.Services
                 Mapping = identifier
             };
 
-            var system = new MDM.SourceSystem { Name = "Test" };
+            var system = new Mdm.SourceSystem { Name = "Test" };
             var mapping = new SourceSystemMapping { System = system, MappingValue = "A" };
             validatorFactory.Setup(x => x.IsValid(It.IsAny<CreateMappingRequest>(), It.IsAny<IList<IRule>>())).Returns(true);
             mappingEngine.Setup(x => x.Map<EnergyTrading.Mdm.Contracts.MdmId, SourceSystemMapping>(identifier)).Returns(mapping);
 
-            var sourcesystem = new MDM.SourceSystem();
-            repository.Setup(x => x.FindOne<MDM.SourceSystem>(12)).Returns(sourcesystem);
+            var sourcesystem = new Mdm.SourceSystem();
+            repository.Setup(x => x.FindOne<Mdm.SourceSystem>(12)).Returns(sourcesystem);
 
             // Act
             var candidate = (SourceSystemMapping)service.CreateMapping(message);

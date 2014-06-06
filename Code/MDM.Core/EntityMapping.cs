@@ -1,10 +1,10 @@
-﻿namespace EnergyTrading.MDM
+﻿namespace EnergyTrading.Mdm
 {
     using System;
 
     using EnergyTrading;
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Extensions;
+    using EnergyTrading.Mdm.Extensions;
 
     /// <summary>
     /// Generic mapping for a <see cref="SourceSystem" /> to an MDM entity.
@@ -49,16 +49,26 @@
         }
 
         /// <summary>
-        /// Gets or sets the SourceSystem
+        /// Gets or sets the System
         /// </summary>
         public virtual SourceSystem System { get; set; }
 
+        ISourceSystem IEntityMapping.System
+        {
+            get { return System; }
+            set { System = (SourceSystem) value; }
+        }
+
+        /// <copydocfrom cref="IEntityMapping.MappingValue" />
         public string MappingValue { get; set; }
 
+        /// <copydocfrom cref="IEntityMapping.IsMaster" />
         public bool IsMaster { get; set; }
 
+        /// <copydocfrom cref="IEntityMapping.IsDefault" />
         public bool IsDefault { get; set; }
 
+        /// <copydocfrom cref="IEntityMapping.Validity" />
         public DateRange Validity { get; set; }
 
         public byte[] Version { get; set; }
@@ -66,21 +76,6 @@
         ulong IRangedChild.Version
         {
             get { return this.Version.ToUnsignedLongVersion(); }
-        }
-
-        /// <summary>
-        /// Updates a mapping from another mapping
-        /// </summary>
-        /// <param name="value"></param>
-        public void UpdateMapping(EntityMapping value)
-        {
-            if (!this.CompatibleMapping(value))
-            {
-                throw new ArgumentOutOfRangeException("value", "Mapping not compatible");    
-            }
-
-            this.ChangeStartDate(value.Validity.Start);
-            this.ChangeEndDate(value.Validity.Finish);
         }
 
         public void ChangeStartDate(DateTime value)
@@ -121,15 +116,6 @@
 
             // Update the validity end date
             this.Validity = this.Validity.ChangeFinish(value);
-        }
-
-        public bool CompatibleMapping(EntityMapping candidate)
-        {
-            return this.Id == candidate.Id 
-                && this.System == candidate.System 
-                && this.MappingValue == candidate.MappingValue 
-                && this.IsMaster == candidate.IsMaster 
-                && this.IsDefault == candidate.IsDefault;
         }
     }
 }

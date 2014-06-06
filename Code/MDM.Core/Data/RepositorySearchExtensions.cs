@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Data
+﻿namespace EnergyTrading.Mdm.Data
 {
     public static class RepositorySearchExtensions
     {

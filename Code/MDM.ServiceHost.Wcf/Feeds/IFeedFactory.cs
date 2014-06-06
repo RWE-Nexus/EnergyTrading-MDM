@@ -1,4 +1,4 @@
-﻿namespace MDM.ServiceHost.Wcf.Feeds
+﻿namespace Mdm.ServiceHost.Wcf.Feeds
 {
     using System;
     using System.ServiceModel.Channels;

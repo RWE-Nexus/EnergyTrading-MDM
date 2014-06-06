@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Checkers.Mapping
+namespace EnergyTrading.Mdm.Test.Checkers.Mapping
 {
     using EnergyTrading.Mdm;
     using EnergyTrading.Test;

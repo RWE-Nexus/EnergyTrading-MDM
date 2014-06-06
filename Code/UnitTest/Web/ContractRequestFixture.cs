@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Test.Web
+﻿namespace EnergyTrading.Mdm.Test.Web
 {
     using Microsoft.Practices.Unity;
     using NUnit.Framework;

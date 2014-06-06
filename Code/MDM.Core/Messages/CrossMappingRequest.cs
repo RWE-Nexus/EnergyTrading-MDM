@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Messages
+﻿namespace EnergyTrading.Mdm.Messages
 {
     /// <summary>
     /// A request to map from one system to another.

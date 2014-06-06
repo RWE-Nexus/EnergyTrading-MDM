@@ -1,11 +1,11 @@
-﻿namespace EnergyTrading.MDM.Data
+﻿namespace EnergyTrading.Mdm.Data
 {
     using System;
     using System.Linq;
 
     using EnergyTrading.Data;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.Mdm.Messages;
 
     public static class RepositoryExtensions
     {
@@ -113,9 +113,9 @@
         /// <param name="repository"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static MDM.SourceSystem SystemByName(this IRepository repository, string name)
+        public static Mdm.SourceSystem SystemByName(this IRepository repository, string name)
         {
-            return repository.Queryable<MDM.SourceSystem>()
+            return repository.Queryable<Mdm.SourceSystem>()
                            .Where(x => x.Name == name)
                            .FirstOrDefault();
         }

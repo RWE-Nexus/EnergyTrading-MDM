@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Services
+namespace EnergyTrading.Mdm.Test.Services
 {
     using System;
     using System.Collections.Generic;
@@ -7,8 +7,8 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 

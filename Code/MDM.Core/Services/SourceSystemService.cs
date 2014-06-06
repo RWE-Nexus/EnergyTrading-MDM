@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Services
+namespace EnergyTrading.Mdm.Services
 {
     using System.Collections.Generic;
 

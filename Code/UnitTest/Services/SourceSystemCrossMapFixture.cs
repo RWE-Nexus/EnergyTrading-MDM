@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Services
+namespace EnergyTrading.Mdm.Test.Services
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +8,8 @@ namespace EnergyTrading.MDM.Test.Services
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 
@@ -73,20 +73,20 @@ namespace EnergyTrading.MDM.Test.Services
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
             // Domain details
-            var system = new MDM.SourceSystem { Name = "Endur" };
+            var system = new Mdm.SourceSystem { Name = "Endur" };
             var mapping = new SourceSystemMapping
             {
                 System = system,
                 MappingValue = "A"
             };
-            var targetSystem = new MDM.SourceSystem { Name = "Trayport" };
+            var targetSystem = new Mdm.SourceSystem { Name = "Trayport" };
             var targetMapping = new SourceSystemMapping
             {
                 System = targetSystem,
                 MappingValue = "B",
                 IsDefault = true
             };
-            var sourcesystem = new MDM.SourceSystem
+            var sourcesystem = new Mdm.SourceSystem
             {
                 Id = 1,
                 Timestamp = new byte[] { 1, 0, 0, 0, 0, 0, 0, 0 }
@@ -139,20 +139,20 @@ namespace EnergyTrading.MDM.Test.Services
             var service = new SourceSystemService(validatorFactory.Object, mappingEngine.Object, repository.Object, searchCache.Object);
 
             // Domain details
-            var system = new MDM.SourceSystem { Name = "Endur" };
+            var system = new Mdm.SourceSystem { Name = "Endur" };
             var mapping = new SourceSystemMapping
             {
                 System = system,
                 MappingValue = "A"
             };
-            var targetSystem = new MDM.SourceSystem { Name = "Trayport" };
+            var targetSystem = new Mdm.SourceSystem { Name = "Trayport" };
             var targetMapping = new SourceSystemMapping
             {
                 System = targetSystem,
                 MappingValue = "B",
                 IsDefault = true
             };
-            var sourcesystem = new MDM.SourceSystem
+            var sourcesystem = new Mdm.SourceSystem
             {
                 Id = 1,
             };

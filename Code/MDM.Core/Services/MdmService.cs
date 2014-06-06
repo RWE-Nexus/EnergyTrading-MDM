@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Services
+﻿namespace EnergyTrading.Mdm.Services
 {
     using System;
     using System.Collections.Generic;
@@ -10,11 +10,11 @@
     using EnergyTrading.Extensions;
     using EnergyTrading.Mapping;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Contracts.Rules;
-    using EnergyTrading.MDM.Data;
-    using EnergyTrading.MDM.Data.Search;
-    using EnergyTrading.MDM.Extensions;
-    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.Mdm.Contracts.Rules;
+    using EnergyTrading.Mdm.Data;
+    using EnergyTrading.Mdm.Data.Search;
+    using EnergyTrading.Mdm.Extensions;
+    using EnergyTrading.Mdm.Messages;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 

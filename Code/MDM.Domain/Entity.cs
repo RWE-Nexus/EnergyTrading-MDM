@@ -1,29 +1,23 @@
-namespace EnergyTrading.Mdm
+﻿namespace EnergyTrading.Mdm
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using EnergyTrading;
     using EnergyTrading.Data;
     using EnergyTrading.Mdm.Extensions;
 
-    public partial class SourceSystem : IIdentifiable, IEntity, IEntityDetail
+    /// <summary>
+    /// Base implementation of an MDM entity.
+    /// </summary>
+    public abstract class Entity<TEntity> : IIdentifiable, IEntity, IEntityDetail
+        where TEntity : class, IRangedChild
     {
-        public SourceSystem()
+        protected Entity()
         {
-            this.Mappings = new List<SourceSystemMapping>();
-            this.Validity = new DateRange();
-            this.Timestamp = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-
-            this.OnCreate();
+            Mappings = new List<IEntityMapping>();
         }
 
-        /// <summary>
-        /// Allow for construction actions in the partial class.
-        /// </summary>
-        partial void OnCreate();
-        
         public int Id { get; set; }
 
         object IIdentifiable.Id
@@ -31,11 +25,11 @@ namespace EnergyTrading.Mdm
             get { return this.Id; }
         }
 
-        public virtual IList<SourceSystemMapping> Mappings { get; private set; }
+        public virtual IList<IEntityMapping> Mappings { get; private set; }
 
         IList<IEntityMapping> IEntity.Mappings
         {
-            get { return Mappings.ToList<IEntityMapping>(); }
+            get { return Mappings.ToList(); }
         }
 
         IEntity IRangedChild.Entity
@@ -72,10 +66,10 @@ namespace EnergyTrading.Mdm
         }
 
         /// <summary>
-        /// Add a details to the SourceSystem checking its validity 
+        /// Add a details to the entity checking its validity 
         /// </summary>
         /// <param name="details"></param>
-        public void AddDetails(SourceSystem details)
+        public void AddDetails(TEntity details)
         {
             // Sanity checks
             if (details == null)
@@ -92,27 +86,29 @@ namespace EnergyTrading.Mdm
         }
 
         /// <summary>
-        /// Perform the field by field copy operation
-        /// </summary>
-        partial void CopyDetails(SourceSystem details);
-
-        /// <summary>
         /// Add or update a mapping, checking that it exists and that the details are compatible.
         /// </summary>
         /// <param name="mapping"></param>
-        public void ProcessMapping(SourceSystemMapping mapping)
+        public void ProcessMapping(IEntityMapping mapping)
         {
-            this.ProcessMapping(this.Mappings, mapping, this.Validity.Finish);      
+            this.ProcessMapping(this.Mappings, mapping, this.Validity.Finish);
         }
 
         void IEntity.AddDetails(IEntityDetail details)
         {
-            this.AddDetails(details as SourceSystem);
+            this.AddDetails(details as TEntity);
         }
 
-        void IEntity.ProcessMapping(IEntityMapping mapping)
-        {
-            this.ProcessMapping(mapping as SourceSystemMapping);
+        /// <summary>
+        /// Perform the field by field copy operation
+        /// </summary>
+        protected abstract void CopyDetails(TEntity details);
+
+        /// <summary>
+        /// Allow for construction actions in the partial class.
+        /// </summary>
+        protected virtual void OnCreate()
+        {            
         }
     }
 }

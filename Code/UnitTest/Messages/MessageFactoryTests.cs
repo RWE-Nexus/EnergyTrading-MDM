@@ -1,9 +1,9 @@
-﻿namespace EnergyTrading.MDM.Test.Messages
+﻿namespace EnergyTrading.Mdm.Test.Messages
 {
     using System;
     using System.Collections.Specialized;
 
-    using EnergyTrading.MDM.Messages;
+    using EnergyTrading.Mdm.Messages;
 
     using NUnit.Framework;
 

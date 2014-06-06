@@ -1,8 +1,8 @@
-namespace EnergyTrading.MDM.Contracts.Validators
+namespace EnergyTrading.Mdm.Contracts.Validators
 {
     using EnergyTrading.Data;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Contracts.Rules;
+    using EnergyTrading.Mdm.Contracts.Rules;
     using EnergyTrading.Validation;
 
     public class SourceSystemValidator : Validator<SourceSystem>
@@ -11,8 +11,8 @@ namespace EnergyTrading.MDM.Contracts.Validators
         {
             Rules.Add(new ChildCollectionRule<SourceSystem, MdmId>(validatorEngine, p => p.Identifiers));
             Rules.Add(new PredicateRule<SourceSystem>(p => !string.IsNullOrWhiteSpace(p.Details.Name), "Name must not be null or an empty string"));
-            Rules.Add(new NexusEntityExistsRule<EnergyTrading.Mdm.Contracts.SourceSystem, MDM.SourceSystem, MDM.SourceSystemMapping>(repository, x => x.Details.Parent, false));
-            Rules.Add(new ParentDiffersRule<EnergyTrading.Mdm.Contracts.SourceSystem, MDM.SourceSystem, MDM.SourceSystemMapping>(repository, x => x.Details.Name, x => x.Details.Parent, y => y.Name));
+            Rules.Add(new NexusEntityExistsRule<EnergyTrading.Mdm.Contracts.SourceSystem, Mdm.SourceSystem, Mdm.SourceSystemMapping>(repository, x => x.Details.Parent, false));
+            Rules.Add(new ParentDiffersRule<EnergyTrading.Mdm.Contracts.SourceSystem, Mdm.SourceSystem, Mdm.SourceSystemMapping>(repository, x => x.Details.Name, x => x.Details.Parent, y => y.Name));
         }
     }
 }

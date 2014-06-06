@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Test.Contracts.Validators
+﻿namespace EnergyTrading.Mdm.Test.Contracts.Validators
 {
     using System;
     using System.Collections.Generic;

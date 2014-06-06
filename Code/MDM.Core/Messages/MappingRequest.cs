@@ -1,7 +1,7 @@
-﻿namespace EnergyTrading.MDM.Messages
+﻿namespace EnergyTrading.Mdm.Messages
 {
     /// <summary>
-    /// A request to map from a system to MDM.
+    /// A request to map from a system to Mdm.
     /// </summary>
     public class MappingRequest : ReadRequest
     {

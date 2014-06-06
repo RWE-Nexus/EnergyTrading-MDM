@@ -1,11 +1,11 @@
-﻿namespace EnergyTrading.MDM
+﻿namespace EnergyTrading.Mdm
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using EnergyTrading;
-    using EnergyTrading.MDM.Data;
+    using EnergyTrading.Mdm.Data;
 
     public static class EntityExtensions
     {
@@ -97,10 +97,10 @@
         }
 
         public static void AddMapping<TMapping>(this IEntity entity, IList<TMapping> list, TMapping mapping, DateTime maxDate)
-            where TMapping : class, IEntityMapping
+            where TMapping : IEntityMapping
         {
             // Sanity checks
-            if (mapping == null)
+            if (Equals(mapping, default(TMapping)))
             {
                 throw new ArgumentNullException("mapping");
             }
@@ -134,8 +134,39 @@
             list.Add(mapping);
         }
 
+        /// <summary>
+        /// Are two mappings compatible at a basic level.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="candidate"></param>
+        /// <returns></returns>
+        public static bool CompatibleMapping(this IEntityMapping source, IEntityMapping candidate)
+        {
+            return source.Id == candidate.Id 
+                && source.System == candidate.System 
+                && source.MappingValue == candidate.MappingValue
+                && source.IsMaster == candidate.IsMaster
+                && source.IsDefault == candidate.IsDefault;          
+        }
+
+        /// <summary>
+        /// Updates a mapping from another mapping
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="target"></param>
+        public static void UpdateMapping(this IEntityMapping value, IEntityMapping target)
+        {
+            if (!value.CompatibleMapping(target))
+            {
+                throw new ArgumentOutOfRangeException("value", "Mapping not compatible");
+            }
+
+            value.ChangeStartDate(value.Validity.Start);
+            value.ChangeEndDate(value.Validity.Finish);
+        }
+
         public static void ProcessMapping<TMapping>(this IEntity entity, IList<TMapping> list, TMapping mapping, DateTime maxDate)
-            where TMapping : EntityMapping
+            where TMapping : IEntityMapping
         {
             // Sanity checks
             if (mapping == null)
@@ -143,13 +174,13 @@
                 throw new ArgumentNullException("mapping");
             }
 
-            if (mapping.Id == 0)
+            if (mapping.MappingId == 0)
             {
                 entity.AddMapping(list, mapping, maxDate);
                 return;
             }
 
-            var current = list.Where(x => x.Id == mapping.Id).FirstOrDefault();
+            var current = list.FirstOrDefault(x => x.Id == mapping.Id);
             if (current == null)
             {
                 throw new ArgumentOutOfRangeException("mapping", string.Format("Entity {0}: Mapping Id {1} not found", entity.Id, mapping.Id));
@@ -159,21 +190,21 @@
         }
 
         public static TDetails Latest<TDetails>(this IEnumerable<TDetails> list)
-            where TDetails : class, IEntityDetail
+            where TDetails : IEntityDetail
         {
             return list.Latest(x => true);
         }
 
         public static TMapping Latest<TMapping>(this IEnumerable<TMapping> list, TMapping value)
-            where TMapping : class, IEntityMapping
+            where TMapping : IEntityMapping
         {
             return list.Latest(x => x.System == value.System && x.MappingValue == value.MappingValue);
         }
 
         public static T Latest<T>(this IEnumerable<T> values, Func<T, bool> query)
-            where T : class, IRanged
+            where T : IRanged
         {
-            T latest = null;
+            T latest = default(T);
             foreach (var candidate in values.Where(query))
             {
                 if (latest == null || candidate.Validity.Finish > latest.Validity.Finish)

@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Data.Search
+﻿namespace EnergyTrading.Mdm.Data.Search
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
 
     using EnergyTrading;
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Extensions;
+    using EnergyTrading.Mdm.Extensions;
 
     public class SearchCommand<TEntity, TDetails, TMapping> : ISearchCommand<TEntity, TDetails, TMapping>
         where TDetails : class, IEntityDetail where TEntity : class, IEntity where TMapping : class, IEntityMapping

@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM
+﻿namespace EnergyTrading.Mdm
 {
     /// <summary>
     /// Details for an MDM entity.

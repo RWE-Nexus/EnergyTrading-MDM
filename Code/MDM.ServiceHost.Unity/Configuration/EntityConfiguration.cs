@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Configuration
+﻿namespace EnergyTrading.Mdm.ServiceHost.Unity.Configuration
 {
     using System;
     using System.Collections.Generic;
@@ -9,10 +9,10 @@
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Messages.Validators;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Contracts.Validators;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Messages.Validators;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 

@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM
+﻿namespace EnergyTrading.Mdm
 {
     using System;
 
@@ -17,7 +17,7 @@
         /// <summary>
         /// Gets or sets the System property.
         /// </summary>
-        SourceSystem System { get; set; }
+        ISourceSystem System { get; set; }
 
         /// <summary>
         /// Gets or sets the MappingValue property.
@@ -41,7 +41,13 @@
         bool IsDefault { get; set; }
 
         /// <summary>
-        /// Change the end date of an existing mapping
+        /// Change the start date of a mapping.
+        /// </summary>
+        /// <param name="value"></param>
+        void ChangeStartDate(DateTime value);
+
+        /// <summary>
+        /// Change the end date of a mapping
         /// </summary>
         /// <param name="value"></param>
         void ChangeEndDate(DateTime value);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EnergyTrading.MDM.Test
+namespace EnergyTrading.Mdm.Test
 {
     public static class VersionHelperExtensions
     {

@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Test.Contracts.Validators
+namespace EnergyTrading.Mdm.Test.Contracts.Validators
 {
     using System;
     using System.Collections.Generic;
@@ -7,8 +7,8 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
 
     using EnergyTrading.Data;
     using EnergyTrading.Mdm.Contracts;
-    using EnergyTrading.MDM.Contracts.Validators;
-    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Mdm.Contracts.Validators;
+    using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
     using EnergyTrading.Validation;
 
     using Microsoft.Practices.Unity;
@@ -47,13 +47,13 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
         {
             // Assert
             var start = new DateTime(1999, 1, 1);
-            var system = new MDM.SourceSystem { Name = "Test" };
+            var system = new Mdm.SourceSystem { Name = "Test" };
 
-            var systemList = new List<MDM.SourceSystem> { system };
+            var systemList = new List<Mdm.SourceSystem> { system };
             var systemRepository = new Mock<IRepository>();
             var repository = new StubValidatorRepository();
 
-            systemRepository.Setup(x => x.Queryable<MDM.SourceSystem>()).Returns(systemList.AsQueryable());
+            systemRepository.Setup(x => x.Queryable<Mdm.SourceSystem>()).Returns(systemList.AsQueryable());
 
             var identifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
@@ -85,16 +85,16 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var start = new DateTime(1999, 1, 1);
             var finish = new DateTime(2020, 12, 31);
             var validity = new DateRange(start, finish);
-            var system = new MDM.SourceSystem { Name = "Test" };
+            var system = new Mdm.SourceSystem { Name = "Test" };
             var sourcesystemMapping = new SourceSystemMapping { System = system, MappingValue = "1", Validity = validity };
 
             var list = new List<SourceSystemMapping> { sourcesystemMapping };
             var repository = new Mock<IRepository>();
             repository.Setup(x => x.Queryable<SourceSystemMapping>()).Returns(list.AsQueryable());
 
-            var systemList = new List<MDM.SourceSystem>();
+            var systemList = new List<Mdm.SourceSystem>();
             var systemRepository = new Mock<IRepository>();
-            systemRepository.Setup(x => x.Queryable<MDM.SourceSystem>()).Returns(systemList.AsQueryable());
+            systemRepository.Setup(x => x.Queryable<Mdm.SourceSystem>()).Returns(systemList.AsQueryable());
 
             var overlapsRangeIdentifier = new EnergyTrading.Mdm.Contracts.MdmId
             {
@@ -127,7 +127,7 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var start = new DateTime(1999, 1, 1);
             var finish = new DateTime(2020, 12, 31);
             var validity = new DateRange(start, finish);
-            var system = new MDM.SourceSystem { Name = "Test" };
+            var system = new Mdm.SourceSystem { Name = "Test" };
             var sourcesystemMapping = new SourceSystemMapping { System = system, MappingValue = "1", Validity = validity };
 
             var list = new List<SourceSystemMapping> { sourcesystemMapping };
@@ -166,8 +166,8 @@ namespace EnergyTrading.MDM.Test.Contracts.Validators
             var sourceSystem = NewSourceSystem("SameName", parentId);
 
             var repository = new Mock<IRepository>();
-            repository.Setup(x => x.FindOne<MDM.SourceSystem>(parentId))
-                .Returns(new MDM.SourceSystem { Name = "SameName"});
+            repository.Setup(x => x.FindOne<Mdm.SourceSystem>(parentId))
+                .Returns(new Mdm.SourceSystem { Name = "SameName"});
 
             // Act
             var violations = new List<IRule>();

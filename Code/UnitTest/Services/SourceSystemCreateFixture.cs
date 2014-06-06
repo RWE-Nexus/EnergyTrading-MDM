@@ -1,10 +1,10 @@
-namespace EnergyTrading.MDM.Test.Services
+namespace EnergyTrading.Mdm.Test.Services
 {
     using System.Collections.Generic;
 
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 

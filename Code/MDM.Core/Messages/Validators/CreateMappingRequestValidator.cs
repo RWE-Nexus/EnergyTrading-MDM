@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.Messages.Validators
+﻿namespace EnergyTrading.Mdm.Messages.Validators
 {
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Validation;

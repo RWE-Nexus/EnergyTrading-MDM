@@ -1,6 +1,6 @@
-﻿namespace EnergyTrading.MDM
+﻿namespace EnergyTrading.Mdm
 {
-    using EnergyTrading.MDM.Data;
+    using EnergyTrading.Mdm.Data;
 
     /// <summary>
     /// Child supporting validity range and versioning.

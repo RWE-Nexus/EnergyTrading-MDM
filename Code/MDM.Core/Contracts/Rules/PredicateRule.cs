@@ -1,4 +1,4 @@
-namespace EnergyTrading.MDM.Contracts.Rules
+namespace EnergyTrading.Mdm.Contracts.Rules
 {
     using System;
 

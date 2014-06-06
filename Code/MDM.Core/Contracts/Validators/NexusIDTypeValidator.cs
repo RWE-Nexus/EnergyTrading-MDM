@@ -1,7 +1,7 @@
-﻿namespace EnergyTrading.MDM.Contracts.Validators
+﻿namespace EnergyTrading.Mdm.Contracts.Validators
 {
     using EnergyTrading.Data;
-    using EnergyTrading.MDM.Contracts.Rules;
+    using EnergyTrading.Mdm.Contracts.Rules;
     using EnergyTrading.Validation;
 
     public class NexusIdValidator<TMapping> : Validator<EnergyTrading.Mdm.Contracts.MdmId>

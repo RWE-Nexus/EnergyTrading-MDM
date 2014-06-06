@@ -7,8 +7,8 @@
     <ProjectGuid>{DE2A7205-571A-48B0-9B38-6B4A76677898}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnergyTrading.MDM.ServiceHost.Wcf</RootNamespace>
-    <AssemblyName>MDM.ServiceHost.Wcf</AssemblyName>
+    <RootNamespace>EnergyTrading.Mdm.ServiceHost.Wcf</RootNamespace>
+    <AssemblyName>EnergyTrading.Mdm.ServiceHost.Wcf</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\MDM.ServiceHost.Wcf.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\EnergyTrading.Mdm.ServiceHost.Wcf.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\MDM.ServiceHost.Wcf.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnergyTrading.Contracts, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>EnergyTrading.MDM.Data.EF</id>
-    <title>EnergyTrading.MDM.Data.EF</title>
+    <id>EnergyTrading.Mdm.Data.EF</id>
+    <title>EnergyTrading.Mdm.Data.EF</title>
     <description>Entity Framework specific data layer configuration classes for MDM</description>
     <version>$version$</version>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -13,8 +13,9 @@
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
       <dependency id="EnergyTrading.EntityFramework" version="" />
-      <dependency id="EnergyTrading.MDM.Contracts" version="" />
-      <dependency id="EnergyTrading.MDM.Core" version="" />
+      <dependency id="EnergyTrading.Mdm.Contracts" version="" />
+      <dependency id="EnergyTrading.Mdm.Core" version="" />
+      <dependency id="EnergyTrading.Mdm.Domain.EF" version="" />      
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />
@@ -25,8 +26,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.Data.EF\bin\Release\MDM.Data.EF.dll" target="lib\net40" />
-    <file src="Code\MDM.Data.EF\bin\Release\MDM.Data.EF.pdb" target="lib\net40" />
-    <file src="Code\MDM.Data.EF\bin\Release\MDM.Data.EF.xml" target="lib\net40" />
+    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.dll" target="lib\net40" />
+    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.pdb" target="lib\net40" />
+    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.xml" target="lib\net40" />
   </files>
 </package>

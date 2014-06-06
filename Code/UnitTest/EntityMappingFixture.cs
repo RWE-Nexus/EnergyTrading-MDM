@@ -1,10 +1,10 @@
-﻿namespace EnergyTrading.MDM.Test
+﻿namespace EnergyTrading.Mdm.Test
 {
     using System;
 
     using EnergyTrading;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
 
     using Microsoft.Practices.Unity;
 

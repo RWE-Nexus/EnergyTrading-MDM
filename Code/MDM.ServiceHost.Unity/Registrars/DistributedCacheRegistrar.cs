@@ -1,4 +1,4 @@
-﻿namespace EnergyTrading.MDM.ServiceHost.Unity.Registrars
+﻿namespace EnergyTrading.Mdm.ServiceHost.Unity.Registrars
 {
     using System;
 
@@ -7,9 +7,9 @@
     using EnergyTrading.Configuration;
     using EnergyTrading.Data;
     using EnergyTrading.Mapping;
-    using EnergyTrading.MDM;
-    using EnergyTrading.MDM.ServiceHost.Unity.Configuration;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm;
+    using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Search;
     using EnergyTrading.Validation;
 
