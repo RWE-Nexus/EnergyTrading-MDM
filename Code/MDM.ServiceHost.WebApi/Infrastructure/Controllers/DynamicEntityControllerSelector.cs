@@ -9,7 +9,7 @@
     using System.Web.Http.Controllers;
     using System.Web.Http.Dispatcher;
 
-    using EnergyTrading.MDM;
+    using EnergyTrading.Mdm;
 
     using MDM.ServiceHost.WebApi.Controllers;
 
@@ -27,7 +27,7 @@
             // Get types in MDM.Core that implement MdmService and cache them?
 
             var coreAssembly = Assembly.Load(new AssemblyName("MDM.Core.Nexus"));
-            var contractAssembly = Assembly.Load(new AssemblyName("EnergyTrading.MDM.Contracts"));
+            var contractAssembly = Assembly.Load(new AssemblyName("EnergyTrading.Mdm.Contracts"));
 
             this.contractTypes = contractAssembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(IMdmEntity)));
             this.entityTypes = coreAssembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(IEntity)));

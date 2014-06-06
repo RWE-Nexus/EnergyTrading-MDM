@@ -6,7 +6,7 @@
     using System.Web.Http.Filters;
 
     using EnergyTrading.Extensions;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm.Services;
     using EnergyTrading.Validation;
 
     using EnergyTrading.Mdm.Contracts;

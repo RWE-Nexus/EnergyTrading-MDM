@@ -4,12 +4,11 @@
     using System.Transactions;
     using System.Web.Http;
 
-    using EnergyTrading.MDM;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm;
+    using EnergyTrading.Mdm.Contracts;
+    using EnergyTrading.Mdm.Services;
 
     using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
-
-    using EnergyTrading.Mdm.Contracts;
 
     public class EntityListController<TContract, TEntity, TListContract> : BaseEntityController
         where TContract : class, IMdmEntity

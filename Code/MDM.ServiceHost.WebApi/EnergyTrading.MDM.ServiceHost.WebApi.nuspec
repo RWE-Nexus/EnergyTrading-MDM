@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>EnergyTrading.MDM.ServiceHost.WebApi</id>
-    <title>EnergyTrading.MDM.ServiceHost.WebApi</title>
+    <id>EnergyTrading.Mdm.ServiceHost.WebApi</id>
+    <title>EnergyTrading.Mdm.ServiceHost.WebApi</title>
     <description>WebApi specific service base classes for MDM</description>
     <version>$version$</version>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -12,9 +12,9 @@
     <tags>EnergyTrading MDM WebApi .net45</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
-      <dependency id="EnergyTrading.MDM.ServiceHost.Unity" version="" />
-      <dependency id="EnergyTrading.MDM.Core" version="" />
-      <dependency id="EnergyTrading.MDM.Contracts" version="" />
+      <dependency id="EnergyTrading.Mdm.ServiceHost.Unity" version="" />
+      <dependency id="EnergyTrading.Mdm.Core" version="" />
+      <dependency id="EnergyTrading.Mdm.Contracts" version="" />
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />

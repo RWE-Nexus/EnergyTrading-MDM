@@ -5,9 +5,9 @@
     using System.Net.Http;
     using System.Transactions;
 
-    using EnergyTrading.MDM;
-    using EnergyTrading.MDM.Messages;
-    using EnergyTrading.MDM.Services;
+    using EnergyTrading.Mdm;
+    using EnergyTrading.Mdm.Messages;
+    using EnergyTrading.Mdm.Services;
 
     using MDM.ServiceHost.WebApi.Infrastructure;
     using MDM.ServiceHost.WebApi.Infrastructure.Controllers;

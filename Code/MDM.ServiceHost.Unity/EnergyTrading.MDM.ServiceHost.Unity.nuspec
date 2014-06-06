@@ -15,6 +15,7 @@
       <dependency id="EnergyTrading.Caching.AppFabric" version="" />
       <dependency id="EnergyTrading.Mdm.Contracts" version="" />
       <dependency id="EnergyTrading.Mdm.Core" version="" />
+      <dependency id="EnergyTrading.Mdm.Domain.EF" version="" />      
       <dependency id="EnergyTrading.Contracts" version="" />
       <dependency id="EnergyTrading.Core" version="" />
       <dependency id="EnergyTrading.Unity" version="" />
