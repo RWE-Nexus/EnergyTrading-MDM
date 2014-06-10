@@ -135,6 +135,9 @@
     <Compile Include="EntityMappingFixture.cs" />
     <Compile Include="Mappers\SourceSystemDetailsMapperFixture.cs" />
     <Compile Include="Mapping\EntityMappingSpecs.cs" />
+    <Compile Include="Domain\EF\Commodity.cs" />
+    <Compile Include="Domain\EF\CommodityMapping.cs" />
+    <Compile Include="Domain\EF\CommodityMappingFixture.cs" />
     <Compile Include="Services\SourceSystemCreateFixture.cs" />
     <Compile Include="ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,25 +150,8 @@
     <Compile Include="Web\ContractRequestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MDM.Data.EF\MDM.Data.EF.csproj">
-      <Project>{7A19CCF8-7DB6-41B3-92FC-5E9289844160}</Project>
-      <Name>MDM.Data.EF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
-      <Project>{CAC0933B-4282-4D7E-98B6-C6F0806F3830}</Project>
-      <Name>MDM.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MDM.ServiceHost.Unity\MDM.ServiceHost.Unity.csproj">
-      <Project>{a70c860c-383c-411c-9642-878b284b0924}</Project>
-      <Name>MDM.ServiceHost.Unity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MDM.ServiceHost.Wcf\MDM.ServiceHost.Wcf.csproj">
-      <Project>{de2a7205-571a-48b0-9b38-6b4a76677898}</Project>
-      <Name>MDM.ServiceHost.Wcf</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Samples\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -195,6 +181,32 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
+      <Project>{cac0933b-4282-4d7e-98b6-c6f0806f3830}</Project>
+      <Name>MDM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Data.EF\MDM.Data.EF.csproj">
+      <Project>{7a19ccf8-7db6-41b3-92fc-5e9289844160}</Project>
+      <Name>MDM.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Domain.EF\MDM.Domain.EF.csproj">
+      <Project>{91d96ba3-ee6b-41c3-94e5-377ae249887c}</Project>
+      <Name>MDM.Domain.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.Domain\MDM.Domain.csproj">
+      <Project>{d5b33577-a30b-49b9-8942-b2db4c23b86f}</Project>
+      <Name>MDM.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Unity\MDM.ServiceHost.Unity.csproj">
+      <Project>{a70c860c-383c-411c-9642-878b284b0924}</Project>
+      <Name>MDM.ServiceHost.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDM.ServiceHost.Wcf\MDM.ServiceHost.Wcf.csproj">
+      <Project>{de2a7205-571a-48b0-9b38-6b4a76677898}</Project>
+      <Name>MDM.ServiceHost.Wcf</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\Web\Microsoft.Web.Publishing.Tasks.dll" />

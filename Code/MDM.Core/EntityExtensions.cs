@@ -142,7 +142,7 @@
         /// <returns></returns>
         public static bool CompatibleMapping(this IEntityMapping source, IEntityMapping candidate)
         {
-            return source.Id == candidate.Id 
+            return source.MappingId == candidate.MappingId 
                 && source.System == candidate.System 
                 && source.MappingValue == candidate.MappingValue
                 && source.IsMaster == candidate.IsMaster
@@ -161,8 +161,8 @@
                 throw new ArgumentOutOfRangeException("value", "Mapping not compatible");
             }
 
-            value.ChangeStartDate(value.Validity.Start);
-            value.ChangeEndDate(value.Validity.Finish);
+            value.ChangeStartDate(target.Validity.Start);
+            value.ChangeEndDate(target.Validity.Finish);
         }
 
         public static void ProcessMapping<TMapping>(this IEntity entity, IList<TMapping> list, TMapping mapping, DateTime maxDate)
@@ -180,7 +180,7 @@
                 return;
             }
 
-            var current = list.FirstOrDefault(x => x.Id == mapping.Id);
+            var current = list.FirstOrDefault(x => x.MappingId == mapping.MappingId);
             if (current == null)
             {
                 throw new ArgumentOutOfRangeException("mapping", string.Format("Entity {0}: Mapping Id {1} not found", entity.Id, mapping.Id));
