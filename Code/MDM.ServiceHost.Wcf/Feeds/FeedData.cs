@@ -1,4 +1,4 @@
-namespace Mdm.ServiceHost.Wcf.Feeds
+namespace EnergyTrading.Mdm.ServiceHost.Wcf.Feeds
 {
     public static class FeedData
     {

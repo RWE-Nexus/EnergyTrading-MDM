@@ -1,4 +1,4 @@
-﻿namespace Mdm.ServiceHost.Wcf
+﻿namespace EnergyTrading.Mdm.ServiceHost.Wcf
 {
     using System;
     using System.Net;

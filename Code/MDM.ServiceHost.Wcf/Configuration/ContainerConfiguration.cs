@@ -1,4 +1,4 @@
-﻿namespace Mdm.ServiceHost.Wcf.Configuration
+﻿namespace EnergyTrading.Mdm.ServiceHost.Wcf.Configuration
 {
     using EnergyTrading.Container.Unity;
 

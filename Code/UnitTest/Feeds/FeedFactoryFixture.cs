@@ -5,10 +5,9 @@ namespace EnergyTrading.Mdm.Test.Feeds
     using System.ServiceModel.Channels;
     using System.ServiceModel.Syndication;
 
+    using EnergyTrading.Mdm.ServiceHost.Wcf.Feeds;
     using EnergyTrading.Search;
     using EnergyTrading.Test;
-
-    using global::Mdm.ServiceHost.Wcf.Feeds;
 
     using NUnit.Framework;
 

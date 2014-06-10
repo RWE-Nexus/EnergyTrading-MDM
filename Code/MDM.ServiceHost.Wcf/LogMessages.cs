@@ -1,4 +1,4 @@
-namespace Mdm.ServiceHost.Wcf
+namespace EnergyTrading.Mdm.ServiceHost.Wcf
 {
     public static class LogMessages
     {
