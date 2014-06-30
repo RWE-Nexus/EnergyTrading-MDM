@@ -20,7 +20,6 @@ namespace EnergyTrading.Mdm.Test.Services
     using SourceSystem = EnergyTrading.Mdm.SourceSystem;
 
     [TestFixture]
-    [Ignore]
     public class SourceSystemUpdateMappingFixture
     {
         [Test]

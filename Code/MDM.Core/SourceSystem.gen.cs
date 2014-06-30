@@ -12,11 +12,11 @@ namespace EnergyTrading.Mdm
     {
         public SourceSystem()
         {
-            this.Mappings = new List<SourceSystemMapping>();
-            this.Validity = new DateRange();
-            this.Timestamp = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+            Mappings = new List<SourceSystemMapping>();
+            Validity = new DateRange();
+            Timestamp = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            this.OnCreate();
+            OnCreate();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace EnergyTrading.Mdm
 
         object IIdentifiable.Id
         {
-            get { return this.Id; }
+            get { return Id; }
         }
 
         public virtual IList<SourceSystemMapping> Mappings { get; private set; }
@@ -65,8 +65,8 @@ namespace EnergyTrading.Mdm
         {
             get
             {
-                var version = this.Timestamp.ToUnsignedLongVersion();
-                version = this.Mappings.LatestVersion(version);
+                var version = Timestamp.ToUnsignedLongVersion();
+                version = Mappings.LatestVersion(version);
                 return version;
             }
         }
@@ -85,10 +85,10 @@ namespace EnergyTrading.Mdm
 
             // Copy the bits across
             CopyDetails(details);
-            this.Validity = details.Validity;
+            Validity = details.Validity;
 
             // Trim all the mappings that extend past the end of the entity.
-            this.Mappings.TrimMappings(this.Validity.Finish);
+            Mappings.TrimMappings(Validity.Finish);
         }
 
         /// <summary>
@@ -102,17 +102,17 @@ namespace EnergyTrading.Mdm
         /// <param name="mapping"></param>
         public void ProcessMapping(SourceSystemMapping mapping)
         {
-            this.ProcessMapping(this.Mappings, mapping, this.Validity.Finish);      
+            this.ProcessMapping(Mappings, mapping, Validity.Finish);      
         }
 
         void IEntity.AddDetails(IEntityDetail details)
         {
-            this.AddDetails(details as SourceSystem);
+            AddDetails(details as SourceSystem);
         }
 
         void IEntity.ProcessMapping(IEntityMapping mapping)
         {
-            this.ProcessMapping(mapping as SourceSystemMapping);
+            ProcessMapping(mapping as SourceSystemMapping);
         }
     }
 }

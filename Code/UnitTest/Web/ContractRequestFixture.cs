@@ -4,7 +4,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class ContractRequestFixture<TContract, TEntity>
+    public abstract class ContractRequestFixture<TContract, TEntity>
         where TContract : class
     {
         protected UnityContainer Container { get; set; }
