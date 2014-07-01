@@ -53,10 +53,11 @@
     <Reference Include="EnergyTrading.Test, Version=36.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EnergyTrading.Test.2.8.1.62\lib\net40\EnergyTrading.Test.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EnergyTrading.Unity, Version=61.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.Unity, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Unity.2.8.1.61\lib\net40\EnergyTrading.Unity.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Unity.2.8.1.62\lib\net40\EnergyTrading.Unity.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
