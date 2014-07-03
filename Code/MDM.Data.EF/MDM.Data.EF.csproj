@@ -110,7 +110,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="EnergyTrading.MDM.Data.EF.nuspec" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
