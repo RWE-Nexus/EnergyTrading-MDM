@@ -549,24 +549,23 @@
         /// <returns></returns>
         protected static TransactionOptions WriteOptions()
         {
-            // Need this level to avoid identifiers being inserted for the same system against multiple master records
-            return new TransactionOptions { IsolationLevel = IsolationLevel.Serializable };
+            return new TransactionOptions { IsolationLevel = IsolationLevel.Snapshot };
         }
 
         protected ulong ReadVersion()
         {
-            return this.Version("If-None-Match");
+            return Version("If-None-Match");
         }
 
         protected ulong WriteVersion()
         {
-            return this.Version("If-Match");
+            return Version("If-Match");
         }
 
         protected ulong Version(string header)
         {
             var version = 0UL;
-            var etag = this.contextWrapper.Headers[header];
+            var etag = contextWrapper.Headers[header];
             if (!string.IsNullOrEmpty(etag))
             {
                 ulong.TryParse(etag.Trim('"'), out version);
