@@ -549,7 +549,7 @@
         /// <returns></returns>
         protected static TransactionOptions WriteOptions()
         {
-            return new TransactionOptions { IsolationLevel = IsolationLevel.Snapshot };
+            return new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted };
         }
 
         protected ulong ReadVersion()
