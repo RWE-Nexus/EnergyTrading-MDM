@@ -109,6 +109,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web.config" />
     <None Include="EnergyTrading.MDM.ServiceHost.Wcf.nuspec">
       <SubType>Designer</SubType>
     </None>

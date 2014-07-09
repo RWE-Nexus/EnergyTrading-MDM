@@ -8,7 +8,10 @@ namespace EnergyTrading.Mdm.Contracts.Rules
     using EnergyTrading.Validation;
 
     public class NexusEntityExistsRule<TEntity, TRelatedEntity, TMapping> : Rule<TEntity>
-        where TRelatedEntity : class, IEntity where TEntity : class where TMapping : class, IEntityMapping
+        where TEntity : class 
+        where TMapping : class, IEntityMapping
+        where TRelatedEntity : class, IEntity 
+
     {
         private const string EntityExistsMessageTemplate = "{0} does not have a valid {1} with id '{2}'";
         private const string NullMessageTemplate = "{0} requires a valid {1}";
