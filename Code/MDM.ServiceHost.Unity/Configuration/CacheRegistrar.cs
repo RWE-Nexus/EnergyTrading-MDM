@@ -7,27 +7,30 @@
 
     using Microsoft.Practices.Unity;
 
-    public class CacheRegistrar
+    /// <summary>
+    /// Determines which <see cref="ICacheRegistrar "/> to use.
+    /// </summary>
+    public class CacheRegistrar : ICacheRegistrar
     {
-        private static IUnityContainer container;
+        private readonly IUnityContainer container;
+        private ICacheRegistrar instance;
 
-        private static ICacheRegistrar instance;
-
-        public CacheRegistrar(IUnityContainer theContainer)
+        /// <summary>
+        /// Creates a new instance of the <see cref="CacheRegistrar"/> class.
+        /// </summary>
+        /// <param name="container"></param>
+        public CacheRegistrar(IUnityContainer container)
         {
-            if (theContainer == null) { throw new ArgumentNullException("theContainer"); }
-            container = theContainer;
+            if (container == null) { throw new ArgumentNullException("container"); }
+            this.container = container;
         }
 
-        public static ICacheRegistrar Instance
+        private ICacheRegistrar Instance
         {
-            get
-            {
-                return instance ?? (instance = ConstructInstance());
-            }
+            get {return instance ?? (instance = Create()); }
         }
 
-        private static ICacheRegistrar ConstructInstance()
+        private ICacheRegistrar Create()
         {
             var isDistributedValue = ConfigurationManager.AppSettings["UseDistributedCache"];
             bool isDistributed;
@@ -36,6 +39,19 @@
                 return new DistributedCacheRegistrar(container);
             }            
             return new ObjectCacheRegistrar(container);
+        }
+
+        public void RegisterCache()
+        {
+            Instance.RegisterCache();
+        }
+
+        public void RegisterCachedMdmService<TContract, TEntity, TMdmService>(string entityName)
+            where TContract : class
+            where TEntity : class, EnergyTrading.Data.IIdentifiable, IEntity
+            where TMdmService : Services.IMdmService<TContract, TEntity>
+        {
+            Instance.RegisterCachedMdmService<TContract, TEntity, TMdmService>(entityName);
         }
     }
 }

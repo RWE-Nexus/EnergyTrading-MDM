@@ -26,29 +26,30 @@
             if (container == null) { throw new ArgumentNullException("container"); }
             this.container = container;
             var configurationManager = container.Resolve<IConfigurationManager>();
-            this.configuredCacheName = configurationManager.AppSettings["DistributedCacheName"] ?? "NexusMdmSearchCache";
+            configuredCacheName = configurationManager.AppSettings["DistributedCacheName"] ?? "NexusMdmSearchCache";
         }
 
         public void RegisterCache()
         {
             var factory = new DataCacheFactory();
-            var dataCache = factory.GetCache(this.configuredCacheName);
+            var dataCache = factory.GetCache(configuredCacheName);
  
-            this.container.RegisterInstance(this.configuredCacheName, dataCache);
-            this.container.RegisterAbsoluteCacheItemPolicyFactory(this.configuredCacheName);
+            container.RegisterInstance(configuredCacheName, dataCache);
+            container.RegisterAbsoluteCacheItemPolicyFactory(configuredCacheName);
         }
 
         public void RegisterCachedMdmService<TContract, TEntity, TMdmService>(string entityName) where TContract : class where TEntity : class, IIdentifiable, IEntity where TMdmService : IMdmService<TContract, TEntity>
         {
-            this.container.RegisterType<ISearchCache, RegionedAppFabricSearchCache>(
+            // NB Register the search cache here since it's per entity
+            container.RegisterType<ISearchCache, RegionedAppFabricSearchCache>(
                 entityName,
                 new PerResolveLifetimeManager(),
                 new InjectionConstructor(
-                    new ResolvedParameter<DataCache>(this.configuredCacheName),
-                    new ResolvedParameter<ICacheItemPolicyFactory>(this.configuredCacheName),
+                    new ResolvedParameter<DataCache>(configuredCacheName),
+                    new ResolvedParameter<ICacheItemPolicyFactory>(configuredCacheName),
                     entityName));
 
-            this.container.RegisterType<IMdmService<TContract, TEntity>, TMdmService>(
+            container.RegisterType<IMdmService<TContract, TEntity>, TMdmService>(
                 new InjectionConstructor(
                     new ResolvedParameter<IValidatorEngine>(entityName),
                     new ResolvedParameter<IMappingEngine>(),

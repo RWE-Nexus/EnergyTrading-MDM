@@ -27,17 +27,21 @@
 
         public void RegisterCache()
         {
-            this.container.RegisterAbsoluteCacheItemPolicyFactory(CacheKey);
+            container.RegisterAbsoluteCacheItemPolicyFactory(CacheKey);
 
-            this.container.RegisterType<ISearchCache, SearchCache>(
+            // NB Register the search cache here since it's against cache key
+            container.RegisterType<ISearchCache, SearchCache>(
                 new PerResolveLifetimeManager(),
                 new InjectionConstructor(
-                    new ResolvedParameter<ICacheItemPolicyFactory>(CacheKey)));
+                new ResolvedParameter<ICacheItemPolicyFactory>(CacheKey)));
         }
 
-        public void RegisterCachedMdmService<TContract, TEntity, TMdmService>(string entityName) where TContract : class where TEntity : class, IIdentifiable, IEntity where TMdmService : IMdmService<TContract, TEntity>
+        public void RegisterCachedMdmService<TContract, TEntity, TMdmService>(string entityName) 
+            where TContract : class 
+            where TEntity : class, IIdentifiable, IEntity 
+            where TMdmService : IMdmService<TContract, TEntity>
         {
-            this.container.RegisterType<IMdmService<TContract, TEntity>, TMdmService>(
+            container.RegisterType<IMdmService<TContract, TEntity>, TMdmService>(
                 new InjectionConstructor(
                     new ResolvedParameter<IValidatorEngine>(entityName),
                     new ResolvedParameter<IMappingEngine>(),
