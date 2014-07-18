@@ -13,8 +13,10 @@
     using System.Transactions;
 
     using EnergyTrading.Contracts.Search;
+    using EnergyTrading.Data.EntityFramework;
     using EnergyTrading.Extensions;
     using EnergyTrading.Logging;
+    using EnergyTrading.Mapping;
     using EnergyTrading.Mdm;
     using EnergyTrading.Mdm.Contracts;
     using EnergyTrading.Mdm.Data.Search;
@@ -37,18 +39,23 @@
     {
         private static readonly ILogger Logger = LoggerFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        private readonly IServiceLocator locator;
         private readonly IMdmService<TContract, TEntity> service;
         private readonly IWebOperationContextWrapper contextWrapper;
+        private readonly IFeedFactory feedFactory;
 
-        private IFeedFactory feedFactory;
+        protected EntityService(IServiceLocator locator) : this(locator, locator.GetInstance<IWebOperationContextWrapper>(), locator.GetInstance<IFeedFactory>())
+        {
+        }
 
-        protected EntityService()
+        protected EntityService(IServiceLocator locator, IWebOperationContextWrapper contextWrapper, IFeedFactory feedFactory)
         {
             MdmContentType = ConfigurationManager.AppSettings["Mdm.ContentType"];
 
-            service = ServiceLocator.Current.GetInstance<IMdmService<TContract, TEntity>>();
-            contextWrapper = ServiceLocator.Current.GetInstance<IWebOperationContextWrapper>();
-            feedFactory = ServiceLocator.Current.GetInstance<IFeedFactory>();
+            service = locator.GetInstance<IMdmService<TContract, TEntity>>();
+            this.locator = locator;
+            this.contextWrapper = contextWrapper;
+            this.feedFactory = feedFactory;
         }
 
         protected string MdmContentType { get; set; }
@@ -57,7 +64,7 @@
         /// Gets the 
         /// BaseUrl property.
         /// <para>
-        /// The root part of the url for this service.
+        /// The root part of the url for service.
         /// </para>
         /// </summary>
         protected abstract string BaseUrl { get; }
@@ -113,7 +120,7 @@
                     entity.Validity.Start.ToString(QueryConstants.DateFormatString));
                 OutgoingResponse.StatusCode = HttpStatusCode.Created;
 
-                Logger.DebugFormat("{0} created. EntityId: {1}, Location: {2}", typeof(TContract).Name, entity.Id, this.OutgoingResponse.Location);
+                Logger.DebugFormat("{0} created. EntityId: {1}, Location: {2}", typeof(TContract).Name, entity.Id, OutgoingResponse.Location);
             });
         }
 
@@ -153,7 +160,7 @@
             {
                 Logger.DebugFormat("Deleting mapping for {0}-{1}: MappingId: {2}", typeof(TContract).Name, entityId, mappingId);
 
-                OutgoingResponse.ContentType = this.MdmContentType;
+                OutgoingResponse.ContentType = MdmContentType;
 
                 var request = new DeleteMappingRequest
                 {
@@ -162,7 +169,7 @@
 
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
                 {
-                    this.Service.DeleteMapping(request);
+                    Service.DeleteMapping(request);
                     scope.Complete();
                 }
 
@@ -174,7 +181,7 @@
 
         public virtual MappingResponse CrossMapHandler()
         {
-            return this.ContractHandler(() =>
+            return ContractHandler(() =>
             {
                 Logger.DebugFormat("CrossMap requested for {0}.", typeof(TContract).Name);
                 OutgoingResponse.ContentType = MdmContentType;
@@ -212,7 +219,7 @@
                 var response = GetList();
 
                 var feed = new SyndicationFeed();
-                feed.Id = string.Format("urn:uuid:{0}:{1}", this.BaseUrl, "list");
+                feed.Id = string.Format("urn:uuid:{0}:{1}", BaseUrl, "list");
                 feed.Title = new TextSyndicationContent("All");
                 feed.Generator = "Nexus Mapping Service";
                 feed.Authors.Add(new SyndicationPerson { Name = "Nexus Mapping Service" });
@@ -232,7 +239,7 @@
 
         public virtual TContract GetHandler(string id)
         {
-            return this.ContractHandler(() =>
+            return ContractHandler(() =>
             {
                 Logger.DebugFormat("Get {0} entity: EntityId: {1}.", typeof(TContract).Name, id);
 
@@ -264,7 +271,7 @@
                 Logger.DebugFormat("Get entity list for {0} entity: EntityId: {1}.", typeof(TContract).Name, id);
 
                 OutgoingResponse.ContentType = MdmContentType;
-                    
+
                 var request = MessageFactory.GetRequest(QueryParameters);
                 request.EntityId = int.Parse(id);
 
@@ -300,7 +307,7 @@
 
         public virtual TContract MapHandler()
         {
-            return this.ContractHandler(() =>
+            return ContractHandler(() =>
             {
                 Logger.DebugFormat("Map requested for {0}.", typeof(TContract).Name);
 
@@ -327,7 +334,7 @@
 
         public virtual MappingResponse MappingHandler(string id, string mappingId)
         {
-            return this.ContractHandler(() =>
+            return ContractHandler(() =>
             {
                 Logger.DebugFormat("Get mapping for {0}-{1}: MappingId: {2}.", typeof(TContract).Name, id, mappingId);
 
@@ -357,7 +364,7 @@
 
         public virtual Message SearchHandler(Search search)
         {
-            return this.WebHandler(() =>
+            return WebHandler(() =>
             {
                 Logger.DebugFormat("Search for {0}: {1}", typeof(TContract).Name, search.DataContractSerialize());
                 const string FirstPage = "1";
@@ -374,7 +381,7 @@
                     throw FaultFactory.SearchResultNotFoundException(key, FirstPage);
                 }
                 Logger.DebugFormat("Search for {0} Complete", typeof(TContract).Name);
-                return feedFactory.CreateFeed<TContract>(searchResults, this.EntityName, this.OutgoingResponse.BaseUri);
+                return feedFactory.CreateFeed<TContract>(searchResults, EntityName, OutgoingResponse.BaseUri);
             });
         }
 
@@ -387,7 +394,7 @@
                 return null;
             }
 
-            return feedFactory.CreateFeed(result, this.EntityName, this.OutgoingResponse.BaseUri);
+            return feedFactory.CreateFeed(result, EntityName, OutgoingResponse.BaseUri);
         }
 
         public virtual Message NonTemporalSearchHandler(Search search)
@@ -399,7 +406,7 @@
                 return null;
             }
 
-            return feedFactory.CreateFeed(result, this.EntityName, this.OutgoingResponse.BaseUri);
+            return feedFactory.CreateFeed(result, EntityName, OutgoingResponse.BaseUri);
         }
 
         private SearchResultPage<TContract> CreateSearchAndGetPage(string key, int pageNumber)
@@ -413,14 +420,14 @@
             Logger.DebugFormat("Search for {0}: SearchKey: {1}, PageNumber: {2}", typeof(TContract).Name, searchKey, pageNumber);
 
             var page = int.Parse(pageNumber);
-            var searchResults = Service.GetSearchResults(searchKey, page) ?? this.CreateSearchAndGetPage(searchKey, page);
+            var searchResults = Service.GetSearchResults(searchKey, page) ?? CreateSearchAndGetPage(searchKey, page);
             if (string.IsNullOrEmpty(searchKey))
             {
                 OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
                 throw FaultFactory.SearchResultNotFoundException(searchKey, pageNumber);
             }
             Logger.DebugFormat("Search for {0}: SearchKey: {1}, PageNumber: {2} Complete", typeof(TContract).Name, searchKey, pageNumber);
-            return feedFactory.CreateFeed<TContract>(searchResults, this.EntityName, this.OutgoingResponse.BaseUri);
+            return feedFactory.CreateFeed<TContract>(searchResults, EntityName, OutgoingResponse.BaseUri);
         }
 
         public virtual Message MappingsHandler(string id)
@@ -442,7 +449,7 @@
 
                 if (!response.IsValid)
                 {
-                    throw FaultFactory.Exception(this.EntityName, response, request);
+                    throw FaultFactory.Exception(EntityName, response, request);
                 }
 
                 var feed = new SyndicationFeed
@@ -477,21 +484,21 @@
 
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
                 {
-                    returnedContract = this.Service.Update(entityId, this.WriteVersion(), contract);
+                    returnedContract = Service.Update(entityId, WriteVersion(), contract);
                     scope.Complete();
                 }
 
                 if (returnedContract.Contract != null)
                 {
-                    this.OutgoingResponse.Location = string.Format("{0}/{1}", this.OutgoingResponse.InboundAbsoloutePath, id);
-                    this.OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
+                    OutgoingResponse.Location = string.Format("{0}/{1}", OutgoingResponse.InboundAbsoloutePath, id);
+                    OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
 
-                    Logger.DebugFormat("{0} updated. EntityId: {1}, Location: {2}", typeof(TContract).Name, id, this.OutgoingResponse.Location);
+                    Logger.DebugFormat("{0} updated. EntityId: {1}, Location: {2}", typeof(TContract).Name, id, OutgoingResponse.Location);
 
                     return;
                 }
 
-                this.OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
+                OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
                 Logger.DebugFormat("{0} not found for update. EntityId: {1}", typeof(TContract).Name, id);
             });
         }
@@ -509,25 +516,25 @@
                     EntityId = int.Parse(id),
                     MappingId = int.Parse(mappingId),
                     Mapping = mapping,
-                    Version = this.WriteVersion()
+                    Version = WriteVersion()
                 };
 
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
                 {
-                    returnedMapping = this.Service.UpdateMapping(request);
+                    returnedMapping = Service.UpdateMapping(request);
                     scope.Complete();
                 }
 
                 if (returnedMapping != null)
                 {
-                    this.OutgoingResponse.Location = string.Format("{0}/{1}/mapping/{2}", this.OutgoingResponse.InboundAbsoloutePath, id, mappingId);
-                    this.OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
+                    OutgoingResponse.Location = string.Format("{0}/{1}/mapping/{2}", OutgoingResponse.InboundAbsoloutePath, id, mappingId);
+                    OutgoingResponse.StatusCode = HttpStatusCode.NoContent;
 
-                    Logger.DebugFormat("Mappings updated for {0}-{1}. MappingId: {2}, Location: {3}", typeof(TContract).Name, id, mappingId, this.OutgoingResponse.Location);
+                    Logger.DebugFormat("Mappings updated for {0}-{1}. MappingId: {2}, Location: {3}", typeof(TContract).Name, id, mappingId, OutgoingResponse.Location);
                     return;
                 }
 
-                this.OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
+                OutgoingResponse.StatusCode = HttpStatusCode.NotFound;
                 Logger.DebugFormat("{0} mapping not found for update. EntityId: {1}, MappingId: {2}", typeof(TContract).Name, id, mappingId);
             });
         }
@@ -580,19 +587,18 @@
         /// <returns></returns>
         protected T ContractHandler<T>(Func<ContractResponse<T>> action)
         {
-            return this.WebHandler(
-                delegate
-                {
-                    // Responsible for raising errors if it is invalid as it has the request message
-                    var response = action.Invoke();
+            return WebHandler(() => 
+            {
+                // Responsible for raising errors if it is invalid as it has the request message
+                var response = action.Invoke();
 
-                    // Check if we have emitted this one before
-                    this.contextWrapper.CheckConditionalRetrieve(response.Version.ToString());
-                    this.OutgoingResponse.SetETag(response.Version.ToString());
-                    this.OutgoingResponse.ContentType = this.MdmContentType;
+                // Check if we have emitted one before
+                contextWrapper.CheckConditionalRetrieve(response.Version.ToString());
+                OutgoingResponse.SetETag(response.Version.ToString());
+                OutgoingResponse.ContentType = MdmContentType;
 
-                    return response.Contract;
-                });
+                return response.Contract;
+            });
         }
 
         /// <summary>
@@ -638,6 +644,12 @@
 
                 throw FaultFactory.Exception(ex);
             }
+            finally
+            {
+                // NB Closes EF connection explcitly to avoid leaks in integration tests
+                var csp = locator.GetInstance<IDbContextProvider>();
+                csp.Close();
+            }
         }
 
         protected void WebHandler(Action action)
@@ -677,6 +689,12 @@
 
                 throw FaultFactory.Exception(ex);
             }
+            finally
+            {
+                // NB Closes EF connection explcitly to avoid leaks in integration tests
+                var csp = locator.GetInstance<IDbContextProvider>();
+                csp.Close();
+            }
         }
 
         protected IList<TContract> GetList()
@@ -685,7 +703,7 @@
 
             using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
             {
-                // TODO: Constrain the identifiers we retrieve or have an enum to allow this e.g. Nexus, Originating, Default, All
+                // TODO: Constrain the identifiers we retrieve or have an enum to allow e.g. Nexus, Originating, Default, All
                 list = new List<TContract>(Service.List());
                 scope.Complete();
             }

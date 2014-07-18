@@ -31,6 +31,11 @@
             throw new NotImplementedException();
         }
 
+        public void Attach<T>(T entity) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete<T>(T entity) where T : class
         {
             throw new NotImplementedException();
