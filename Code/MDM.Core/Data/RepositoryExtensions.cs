@@ -1,6 +1,7 @@
 ﻿namespace EnergyTrading.Mdm.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using EnergyTrading.Data;
@@ -64,6 +65,24 @@
                                 && x.Validity.Start <= validAt
                                 && x.Validity.Finish >= validAt)
                             .FirstOrDefault();
+        }
+
+        public static IList<TMapping> FindAllMappings<TMapping>(this IRepository repository, MappingRequest request)
+            where TMapping : class, IEntityMapping
+        {
+            return repository.FindAllMappings<TMapping>(request.SystemName, request.Identifier, request.ValidAt);
+        }
+
+        public static IList<TMapping> FindAllMappings<TMapping>(this IRepository repository, string sourceSystem, string mapping, DateTime validAt)
+            where TMapping : class, IEntityMapping
+        {
+            return repository.Queryable<TMapping>()
+                            .Where(x => x.System.Name == sourceSystem
+                                && x.MappingValue == mapping
+                                // Explicit ValidAt as LINQ to Entity can't cope with interfaces
+                                && x.Validity.Start <= validAt
+                                && x.Validity.Finish >= validAt)
+                            .ToList();
         }
 
         public static bool EntityExistsFromNexusId<T>(this IRepository repository, EntityId nexusId) where T : class

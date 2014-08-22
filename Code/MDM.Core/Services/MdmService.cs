@@ -123,7 +123,7 @@
                 throw new ArgumentNullException("request");
             }
 
-            var mapping = this.repository.FindMapping<TMapping>(request);
+            var mapping = this.repository.FindAllMappings<TMapping>(request).FirstOrDefault(m => m.Entity is TEntity);
             return mapping == null 
                  ? this.ConstructResponse(null, request) 
                  : this.ConstructResponse((TEntity)mapping.Entity, request);
@@ -193,7 +193,7 @@
 
             this.Validate(request);
 
-            var mapping = this.repository.FindMapping<TMapping>(request);
+            var mapping = this.repository.FindAllMappings<TMapping>(request).FirstOrDefault(m => m.Entity is TEntity);
             return mapping == null
                  ? this.ContractResponse(null, request.ValidAt, request.Version) 
                  : this.ContractResponse(mapping.Entity as TEntity, request.ValidAt, request.Version);
