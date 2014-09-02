@@ -6,8 +6,8 @@
     using System.Web.Http;
 
     using EnergyTrading.Mdm;
-    using EnergyTrading.Mdm.Extensions;
     using EnergyTrading.Mdm.Services;
+    using EnergyTrading.Search;
 
     using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
     using MDM.ServiceHost.WebApi.Infrastructure.Feeds;

@@ -101,7 +101,9 @@
     <None Include="EnergyTrading.MDM.ServiceHost.Unity.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MDM.Core\MDM.Core.csproj">
