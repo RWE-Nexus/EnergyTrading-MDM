@@ -42,11 +42,23 @@
         private ISearchCache searchCache;
 
         protected MdmService(IValidatorEngine validatorEngine, IMappingEngine mappingEngine, IRepository repository, ISearchCache searchCache)
+            : this(validatorEngine, mappingEngine, repository, searchCache, 0)
+        {
+        }
+
+        protected MdmService(IValidatorEngine validatorEngine, IMappingEngine mappingEngine, IRepository repository, ISearchCache searchCache, uint version)
+
         {
             this.MappingEngine = mappingEngine;
             this.validatorEngine = validatorEngine;
             this.repository = repository;
             this.searchCache = searchCache;
+            this.ContractVersion = version;
+        }
+
+        protected uint ContractVersion 
+        {
+            get; private set; 
         }
 
         protected IMappingEngine MappingEngine { get; private set; }
@@ -413,7 +425,7 @@
 
             if (entityIds.Any())
             {
-                var searchKey = search.ToKey<TContract>();
+                var searchKey = search.ToKey<TContract>(ContractVersion);
                 this.searchCache.Add(searchKey, new SearchResult(entityIds, search.AsOf ?? SystemTime.UtcNow(), search.SearchOptions.MultiPage, search.SearchOptions.ResultsPerPage));
 
                 return searchKey;

@@ -44,11 +44,16 @@
         private readonly IWebOperationContextWrapper contextWrapper;
         private readonly IFeedFactory feedFactory;
 
-        protected EntityService(IServiceLocator locator) : this(locator, locator.GetInstance<IWebOperationContextWrapper>(), locator.GetInstance<IFeedFactory>())
+        protected EntityService(IServiceLocator locator) : this(locator, locator.GetInstance<IWebOperationContextWrapper>(), locator.GetInstance<IFeedFactory>(), 0)
         {
         }
 
-        protected EntityService(IServiceLocator locator, IWebOperationContextWrapper contextWrapper, IFeedFactory feedFactory)
+        protected EntityService(IServiceLocator locator, uint version)
+            : this(locator, locator.GetInstance<IWebOperationContextWrapper>(), locator.GetInstance<IFeedFactory>(), version)
+        {
+        }
+
+        protected EntityService(IServiceLocator locator, IWebOperationContextWrapper contextWrapper, IFeedFactory feedFactory, uint version)
         {
             MdmContentType = ConfigurationManager.AppSettings["Mdm.ContentType"];
 
@@ -56,9 +61,12 @@
             this.locator = locator;
             this.contextWrapper = contextWrapper;
             this.feedFactory = feedFactory;
+            this.ContractVersion = version;
         }
 
         protected string MdmContentType { get; set; }
+
+        protected uint ContractVersion { get; private set; }
 
         /// <summary>
         /// Gets the 
@@ -368,7 +376,7 @@
             {
                 Logger.DebugFormat("Search for {0}: {1}", typeof(TContract).Name, search.DataContractSerialize());
                 const string FirstPage = "1";
-                var key = search.ToKey<TContract>();
+                var key = search.ToKey<TContract>(ContractVersion);
                 var searchResults = Service.GetSearchResults(key, int.Parse(FirstPage));
                 if (searchResults == null)
                 {
