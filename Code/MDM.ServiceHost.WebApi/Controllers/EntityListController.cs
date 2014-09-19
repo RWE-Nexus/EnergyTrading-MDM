@@ -12,7 +12,7 @@
 
     public class EntityListController<TContract, TEntity, TListContract> : BaseEntityController
         where TContract : class, IMdmEntity
-        where TEntity : IEntity 
+        where TEntity : IEntity
         where TListContract : IList<TContract>, new()
     {
         protected IMdmService<TContract, TEntity> service;

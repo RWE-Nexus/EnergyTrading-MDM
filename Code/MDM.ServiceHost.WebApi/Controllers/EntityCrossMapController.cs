@@ -1,4 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using EnergyTrading.Mdm.Messages.Services;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System;
     using System.Net;
@@ -45,9 +48,13 @@
             {
                 return new ResponseWithETag<MappingResponse>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
-            
-            // THROW FAULTFACTORY EXCEPTION
-            throw new Exception("Undefined exception to be fixed");
+
+            if (response.Error.Type == ErrorType.Ambiguous)
+            {
+                throw new MdmFaultException(new CrossMappingAmbiguosMappingHandler().Create(typeof(TContract).Name, response.Error, request));
+            }
+
+            throw new MdmFaultException(new CrossMappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
     }
 }

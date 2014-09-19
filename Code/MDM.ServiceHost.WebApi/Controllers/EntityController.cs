@@ -1,4 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using EnergyTrading.Mdm.Messages.Services;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System;
     using System.Net;
@@ -19,7 +22,7 @@
 
     public class EntityController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
-        where TEntity : IEntity 
+        where TEntity : IEntity
     {
         protected IMdmService<TContract, TEntity> service;
 
@@ -48,8 +51,7 @@
                 return new ResponseWithETag<TContract>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
 
-            // THROW FAULTFACTORY EXCEPTION
-            throw new Exception("Undefined exception to be fixed");
+            throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
 
         public IHttpActionResult Post([FromBody] TContract contract)
@@ -61,7 +63,7 @@
                 entity = this.service.Create(contract);
                 scope.Complete();
             }
-            
+
             var location = String.Format("{0}/{1}?{2}={3}",
                 this.Request.RequestUri.AbsolutePath.Substring(1),
                 entity.Id,
@@ -88,7 +90,7 @@
                 return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.NoContent, this.Request.RequestUri.AbsolutePath.Substring(1));
             }
 
-            return this.NotFound();
+            return NotFound();
         }
 
         public IHttpActionResult Delete(int id)

@@ -37,21 +37,21 @@
     <DocumentationFile>bin\Release\MDM.ServiceHost.WebApi.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnergyTrading.Contracts, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Contracts.2.8.1.28\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+    <Reference Include="EnergyTrading.Contracts">
+      <HintPath>..\packages\EnergyTrading.Contracts.2.8.1.95\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EnergyTrading.Core, Version=91.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Core.2.8.1.91\lib\net40\EnergyTrading.Core.dll</HintPath>
+    <Reference Include="EnergyTrading.Core">
+      <HintPath>..\packages\EnergyTrading.Core.2.8.1.95\lib\net40\EnergyTrading.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EnergyTrading.MDM.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.1.1\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="EnergyTrading.Unity, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EnergyTrading.Unity, Version=95.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Unity.2.8.1.28\lib\net40\EnergyTrading.Unity.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Unity.2.8.1.95\lib\net40\EnergyTrading.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -59,22 +59,26 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception">
-      <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.Interception.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
-      <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>..\packages\Unity.Interception.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -113,6 +117,8 @@
     <Compile Include="Infrastructure\ETags\ETagMatch.cs" />
     <Compile Include="Infrastructure\ETags\ETagMatchAtrribute.cs" />
     <Compile Include="Infrastructure\ETags\ETagParameterBinding.cs" />
+    <Compile Include="Infrastructure\Exceptions\MdmFaultException.cs" />
+    <Compile Include="Infrastructure\Exceptions\NotFoundException.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\Feeds\AtomSyndicationFeedFormatter.cs" />
     <Compile Include="Infrastructure\Feeds\FeedBuilder.cs" />
@@ -121,6 +127,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="EnergyTrading.MDM.ServiceHost.WebApi.nuspec">
       <SubType>Designer</SubType>
     </None>

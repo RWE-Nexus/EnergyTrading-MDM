@@ -21,7 +21,7 @@
       <dependency id="Microsoft.AspNet.WebApi.Client" version="" />
       <dependency id="Microsoft.AspNet.WebApi.Core" version="" />
       <dependency id="Unity" version="" />
-      <dependency id="Unity.Interception" version="" />
+      <dependency id="EnterpriseLibrary.Common" version="" />
     </dependencies>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>

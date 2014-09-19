@@ -1,6 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
-    using System;
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
@@ -16,7 +17,7 @@
 
     public class EntitySearchController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
-        where TEntity : IEntity 
+        where TEntity : IEntity
     {
         protected IMdmService<TContract, TEntity> service;
         protected const int FirstPage = 1;
@@ -32,8 +33,7 @@
         {
             if (string.IsNullOrEmpty(key))
             {
-                // THROW FAULTFACTORY EXCEPTION
-                throw new Exception("Undefined exception to be fixed");
+                throw new NotFoundException(string.Format("Search results not found for key {0}/{1}", key, page));
             }
 
             return this.Search(key, FirstPage);
@@ -55,8 +55,7 @@
             }
             if (searchResults == null)
             {
-                // THROW FAULTFACTORY EXCEPTION
-                throw new Exception("Undefined exception to be fixed");
+                throw new NotFoundException(string.Format("Search results not found for key {0}/{1}", key, page));
             }
 
             var feedBuilder = new FeedBuilder()
@@ -70,7 +69,7 @@
             {
                 feedBuilder.AddMoreResultsLink(this.Request.RequestUri, searchResults.SearchResultsKey, searchResults.NextPage);
             }
-            
+
             var feed = feedBuilder.Build();
             return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
         }

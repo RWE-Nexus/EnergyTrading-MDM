@@ -1,4 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using EnergyTrading.Mdm.Messages.Services;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System;
     using System.Net;
@@ -43,8 +46,7 @@
 
             if (!response.IsValid)
             {
-                // THROW FAULTFACTORY EXCEPTION
-                throw new Exception("Undefined exception to be fixed");
+                throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
             }
 
             var entityName = typeof(TContract).Name.ToLowerInvariant();

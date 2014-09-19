@@ -1,4 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using EnergyTrading.Mdm.Messages.Services;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System;
     using System.Net;
@@ -32,10 +35,10 @@
         public IHttpActionResult Get(int id, int mappingid)
         {
             var request = new GetMappingRequest
-                {
-                    EntityId = id,
-                    MappingId = mappingid
-                };
+            {
+                EntityId = id,
+                MappingId = mappingid
+            };
 
             ContractResponse<MappingResponse> response;
             using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
@@ -49,17 +52,16 @@
                 return new ResponseWithETag<MappingResponse>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
 
-            // THROW FAULTFACTORY EXCEPTION
-            throw new Exception("Undefined exception to be fixed");
+            throw new MdmFaultException(new GetMappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
 
         public IHttpActionResult Post(int id, [FromBody] EnergyTrading.Mdm.Contracts.Mapping mapping)
-        {           
+        {
             var request = new CreateMappingRequest
-                {
-                    EntityId = id,
-                    Mapping = mapping
-                };
+            {
+                EntityId = id,
+                Mapping = mapping
+            };
 
             IEntityMapping entityMapping;
 
@@ -88,12 +90,12 @@
                 this.service.DeleteMapping(request);
                 scope.Complete();
             }
-
+            // TODO: surely we need to check if the mapping / entity was found ok?
             return this.Ok();
         }
 
         [HttpPut, HttpPost]
-        public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] EnergyTrading.Mdm.Contracts.Mapping mapping)
+        public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] Mapping mapping)
         {
             IEntityMapping returnedMapping = null;
 

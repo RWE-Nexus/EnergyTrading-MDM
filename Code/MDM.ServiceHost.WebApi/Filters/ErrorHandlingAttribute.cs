@@ -1,8 +1,10 @@
-﻿namespace MDM.ServiceHost.WebApi.Filters
+﻿using System;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Filters
 {
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Formatting;
     using System.Web.Http.Filters;
 
     using EnergyTrading.Extensions;
@@ -29,11 +31,26 @@
                                      ? HttpStatusCode.PreconditionFailed
                                      : HttpStatusCode.BadRequest;
 
-                actionExecutedContext.Response = new HttpResponseMessage()
-                    {
-                        StatusCode = statusCode,
-                        Content = new ObjectContent(typeof(Fault), fault, new XmlMediaTypeFormatter())
-                    };
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(statusCode, fault);
+            }
+            else if (exception is NotFoundException)
+            {
+                var fault = new Fault
+                {
+                    Message = exception.Message,
+                    Reason = exception.Message
+                };
+
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.NotFound, fault);
+            }
+            else if (exception is MdmFaultException)
+            {
+                // At the moment, any such exceptions are returned as NotFound, but this may need to be changed if other exception types are bundled up
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.NotFound, ((MdmFaultException)exception).Fault);
+            }
+            else if (actionExecutedContext.Exception is NotImplementedException)
+            {
+                actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented);
             }
             else
             {
@@ -43,11 +60,7 @@
                     Reason = "Unknown"
                 };
 
-                actionExecutedContext.Response = new HttpResponseMessage()
-                {
-                    StatusCode = HttpStatusCode.InternalServerError,
-                    Content = new ObjectContent(typeof(Fault), fault, new XmlMediaTypeFormatter())
-                };
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.InternalServerError, fault);
             }
         }
 

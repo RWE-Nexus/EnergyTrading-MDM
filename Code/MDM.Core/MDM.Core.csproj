@@ -35,12 +35,13 @@
     <DocumentationFile>bin\Release\EnergyTrading.Mdm.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EnergyTrading.Contracts, Version=81.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EnergyTrading.Contracts.2.8.1.81\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+    <Reference Include="EnergyTrading.Contracts">
+      <HintPath>..\packages\EnergyTrading.Contracts.2.8.1.95\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EnergyTrading.Core">
-      <HintPath>..\packages\EnergyTrading.Core.2.8.1.91\lib\net40\EnergyTrading.Core.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.1.95\lib\net40\EnergyTrading.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EnergyTrading.MDM.Contracts, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

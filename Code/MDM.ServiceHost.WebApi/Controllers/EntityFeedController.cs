@@ -44,7 +44,7 @@
                 .WithItemTitle(entityName)
                 .WithItems(list)
                 .Build();
-            
+
             return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
         }
     }

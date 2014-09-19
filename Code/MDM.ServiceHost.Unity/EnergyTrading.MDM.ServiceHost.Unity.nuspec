@@ -21,7 +21,6 @@
       <dependency id="EnergyTrading.Unity" version="" />
       <dependency id="ServerAppFabric.Client" version="" />
       <dependency id="Unity" version="" />
-      <dependency id="Unity.Interception" version="" />
     </dependencies>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>

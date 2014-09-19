@@ -1,4 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using EnergyTrading.Mdm.Messages.Services;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System;
     using System.Net;
@@ -45,9 +48,8 @@
             {
                 return new ResponseWithETag<TContract>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
-            
-            // THROW FAULTFACTORY EXCEPTION
-            throw new Exception("Undefined exception to be fixed");
+
+            throw new MdmFaultException(new MappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using EnergyTrading.Mdm.Messages.Services;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +19,7 @@
 
     public class EntityEntityListController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
-        where TEntity : IEntity 
+        where TEntity : IEntity
     {
         protected IMdmService<TContract, TEntity> service;
 
@@ -44,8 +47,8 @@
                 return this.Ok(resultList);
             }
 
-            // THROW FAULTFACTORY EXCEPTION
-            throw new Exception("Undefined exception to be fixed");
+            throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name,
+                new ContractError { Reason = ErrorReason.Identifier, Type = ErrorType.NotFound }, request));
         }
     }
 }
