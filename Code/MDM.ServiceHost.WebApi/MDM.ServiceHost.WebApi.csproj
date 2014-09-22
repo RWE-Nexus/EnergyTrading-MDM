@@ -112,7 +112,14 @@
     <Compile Include="Filters\ErrorHandlingAttribute.cs" />
     <Compile Include="Filters\EtagHandlingAttribute.cs" />
     <Compile Include="Infrastructure\Controllers\BaseEntityController.cs" />
+    <Compile Include="Infrastructure\Controllers\ConfigSettingsContractAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Controllers\ConfigSettingsEntityAssemblyNamesLocator.cs" />
     <Compile Include="Infrastructure\Controllers\DynamicEntityControllerSelector.cs" />
+    <Compile Include="Infrastructure\Controllers\IContractAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Controllers\IEntityAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Controllers\MdmContractTypesLoader.cs" />
+    <Compile Include="Infrastructure\Controllers\MdmEntityTypesLoader.cs" />
+    <Compile Include="Infrastructure\Controllers\MdmTypesLoderConfiguration.cs" />
     <Compile Include="Infrastructure\ETags\ETag.cs" />
     <Compile Include="Infrastructure\ETags\ETagMatch.cs" />
     <Compile Include="Infrastructure\ETags\ETagMatchAtrribute.cs" />
