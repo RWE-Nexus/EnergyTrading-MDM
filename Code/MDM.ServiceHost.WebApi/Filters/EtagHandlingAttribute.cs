@@ -12,7 +12,7 @@
         {
             var requestEtagHeader = actionExecutedContext.Request.Headers.IfNoneMatch.FirstOrDefault();
             var requestEtag = requestEtagHeader == null ? null : requestEtagHeader.Tag;
-            var responseEtagHeader = actionExecutedContext.Response.Headers.ETag;
+            var responseEtagHeader = (actionExecutedContext.Response == null || actionExecutedContext.Response.Headers == null) ? null : actionExecutedContext.Response.Headers.ETag;
             var responseEtag = responseEtagHeader == null ? null : responseEtagHeader.Tag;
 
             if (responseEtag == requestEtag)
