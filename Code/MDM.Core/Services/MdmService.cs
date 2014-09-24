@@ -56,7 +56,7 @@
             this.ContractVersion = version;
         }
 
-        protected uint ContractVersion 
+        public uint ContractVersion 
         {
             get; private set; 
         }

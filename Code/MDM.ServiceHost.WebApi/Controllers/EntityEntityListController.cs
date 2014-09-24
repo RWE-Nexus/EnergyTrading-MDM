@@ -3,7 +3,6 @@ using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Transactions;

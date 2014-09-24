@@ -110,5 +110,10 @@
         /// </summary>
         /// <returns></returns>
         IEnumerable<TContract> EntityList(GetRequest request);
+
+        /// <summary>
+        /// The version of the contract / entity this service supports
+        /// </summary>
+        uint ContractVersion { get; }
     }
 }

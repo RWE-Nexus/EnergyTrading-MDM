@@ -1,4 +1,8 @@
-﻿namespace MDM.ServiceHost.WebApi.Filters
+﻿using EnergyTrading.Mdm.Notifications;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
+
+namespace MDM.ServiceHost.WebApi.Filters
 {
     using System.Linq;
     using System.Net;
@@ -26,6 +30,29 @@
                 actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.NotModified);
                 actionExecutedContext.Response.Headers.ETag = new EntityTagHeaderValue(requestEtag);
             }
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class MdmNotificationAttribute : ActionFilterAttribute
+    {
+        public MdmNotificationAttribute()
+        {
+            MdmNotificationService = ServiceLocator.Current.GetInstance<IMdmNotificationService>();
+        }
+
+        private IMdmNotificationService MdmNotificationService { get; set; }
+
+        public override void OnActionExecuted(HttpActionExecutedContext context)
+        {
+            if (context.Response == null || !context.Response.IsSuccessStatusCode)
+            {
+                return;
+            }
+
+            var content = context.Response.Content as ObjectContent;
         }
     }
 }

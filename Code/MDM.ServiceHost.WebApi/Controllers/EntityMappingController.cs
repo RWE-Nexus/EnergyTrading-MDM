@@ -1,4 +1,5 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
+using EnergyTrading.Mdm.Notifications;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 
 namespace MDM.ServiceHost.WebApi.Controllers
@@ -20,15 +21,15 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
-    public class EntityMappingController<TContract, TEntity> : BaseEntityController
+    public class EntityMappingController<TContract, TEntity> : BaseEntityController<TContract, TEntity>
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
-        protected IMdmService<TContract, TEntity> service;
+        private readonly IMdmNotificationService notificationService;
 
-        public EntityMappingController(IMdmService<TContract, TEntity> service)
+        public EntityMappingController(IMdmService<TContract, TEntity> service, IMdmNotificationService notificationService) : base(service)
         {
-            this.service = service;
+            this.notificationService = notificationService;
         }
 
         [ETagChecking]
@@ -75,6 +76,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 this.Request.RequestUri.AbsolutePath.Substring(1),
                 entityMapping.Id);
 
+            notificationService.Notify(() => GetContract(id).Contract, service.ContractVersion, Operation.Created);
+
             return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
         }
 
@@ -90,8 +93,9 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 this.service.DeleteMapping(request);
                 scope.Complete();
             }
-            // TODO: surely we need to check if the mapping / entity was found ok?
-            return this.Ok();
+
+            notificationService.Notify(() => GetContract(id).Contract, service.ContractVersion, Operation.Deleted);
+            return Ok();
         }
 
         [HttpPut, HttpPost]
@@ -115,10 +119,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
             if (returnedMapping != null)
             {
+                notificationService.Notify(() => GetContract(id, etag.ToVersion()).Contract, service.ContractVersion, Operation.Modified);
                 return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.NoContent, this.Request.RequestUri.AbsolutePath.Substring(1));
             }
 
-            return this.NotFound();
+            return NotFound();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
+using EnergyTrading.Mdm.Notifications;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 
 namespace MDM.ServiceHost.WebApi.Controllers
@@ -20,15 +21,16 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
-    public class EntityController<TContract, TEntity> : BaseEntityController
+    public class EntityController<TContract, TEntity> : BaseEntityController<TContract, TEntity>
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
-        protected IMdmService<TContract, TEntity> service;
+        private readonly IMdmNotificationService notificationService;
 
-        public EntityController(IMdmService<TContract, TEntity> service)
+        public EntityController(IMdmService<TContract, TEntity> service, IMdmNotificationService notificationService)
+            : base(service)
         {
-            this.service = service;
+            this.notificationService = notificationService;
         }
 
         [ETagChecking]
@@ -70,6 +72,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 QueryConstants.ValidAt,
                 entity.Validity.Start.ToString(QueryConstants.DateFormatString));
 
+            notificationService.Notify(() => GetContract(entity.Id).Contract, service.ContractVersion, Operation.Created);
+
             return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
         }
 
@@ -81,12 +85,13 @@ namespace MDM.ServiceHost.WebApi.Controllers
             using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
             {
                 var version = etag.ToVersion();
-                response = this.service.Update(id, version, contract);
+                response = service.Update(id, version, contract);
                 scope.Complete();
             }
 
             if (response.Contract != null)
             {
+                notificationService.Notify(() => response.Contract, service.ContractVersion, Operation.Modified);
                 return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.NoContent, this.Request.RequestUri.AbsolutePath.Substring(1));
             }
 
