@@ -335,6 +335,22 @@
                 throw new ValidationException(new List<IRule>() { new PredicateRule<AmendMappingRequest>(p => p != null, "AmendMappingRequest should not be null.") });
             }
 
+            // Raise validation exception if message request is null TODO: this should really be in a validator, but existing validator checks overlaps and is therefore after the look up below
+            if (message == null)
+            {
+                throw new ValidationException(new List<IRule>() { new PredicateRule<AmendMappingRequest>(p => p != null, "AmendMappingRequest should not be null.") });
+            }
+            // Raise validation exception if mapping is null TODO: this should really be in a validator
+            if (message.Mapping == null)
+            {
+                throw new ValidationException(new List<IRule>() { new PredicateRule<AmendMappingRequest>(p => p.Mapping != null, "Mapping should not be null.") });
+            }
+            // Raise validation exception if mapping system name is null TODO: this should really be in a validator
+            if (message.Mapping.SystemName == null)
+            {
+                throw new ValidationException(new List<IRule>() { new PredicateRule<AmendMappingRequest>(p => !string.IsNullOrWhiteSpace(p.Mapping.SystemName), "Mapping System Name must not be null or an empty string") });
+            }
+
             // Get a reference to the entity we should operate against
             var mapping = this.repository.FindOne<TMapping>(message.MappingId);
             if (mapping == null)
@@ -355,7 +371,7 @@
             message.Mapping.MappingId = message.MappingId;
 
             // Translate from the contract
-            var changedMapping = this.MappingEngine.Map<EnergyTrading.Mdm.Contracts.MdmId, TMapping>(message.Mapping);
+            var changedMapping = this.MappingEngine.Map<MdmId, TMapping>(message.Mapping);
 
             // Update the mapping and save
             var entity = (TEntity)mapping.Entity;
