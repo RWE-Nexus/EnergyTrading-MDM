@@ -111,6 +111,7 @@
     <Compile Include="Controllers\EntitySearchController.cs" />
     <Compile Include="Filters\ErrorHandlingAttribute.cs" />
     <Compile Include="Filters\EtagHandlingAttribute.cs" />
+    <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Infrastructure\Controllers\BaseEntityController.cs" />
     <Compile Include="Infrastructure\Controllers\ConfigSettingsContractAssemblyNamesLocator.cs" />
     <Compile Include="Infrastructure\Controllers\ConfigSettingsEntityAssemblyNamesLocator.cs" />

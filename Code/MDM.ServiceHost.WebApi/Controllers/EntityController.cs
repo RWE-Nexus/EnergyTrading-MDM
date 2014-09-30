@@ -13,11 +13,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
     using EnergyTrading.Mdm.Messages;
     using EnergyTrading.Mdm.Services;
 
-    using MDM.ServiceHost.WebApi.Filters;
-    using MDM.ServiceHost.WebApi.Infrastructure;
-    using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
-    using MDM.ServiceHost.WebApi.Infrastructure.ETags;
-    using MDM.ServiceHost.WebApi.Infrastructure.Results;
+    using Filters;
+    using Infrastructure;
+    using Infrastructure.Controllers;
+    using Infrastructure.ETags;
+    using Infrastructure.Results;
 
     using EnergyTrading.Mdm.Contracts;
 
@@ -56,6 +56,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
             throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
 
+        [ValidateModel]
         public IHttpActionResult Post([FromBody] TContract contract)
         {
             TEntity entity;
@@ -77,7 +78,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
             return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
         }
 
-        [HttpPut, HttpPost]
+        [ValidateModel]
         public IHttpActionResult Put(int id, [IfMatch] ETag etag, [FromBody] TContract contract)
         {
             ContractResponse<TContract> response;

@@ -36,7 +36,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 throw new NotFoundException(string.Format("Search results not found for key {0}/{1}", key, page));
             }
 
-            return this.Search(key, FirstPage);
+            return this.Search(key, page);
         }
 
         public HttpResponseMessage Post([FromBody] EnergyTrading.Contracts.Search.Search search)
