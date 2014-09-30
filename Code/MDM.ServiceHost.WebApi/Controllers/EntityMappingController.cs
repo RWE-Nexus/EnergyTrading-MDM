@@ -56,7 +56,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
             throw new MdmFaultException(new GetMappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
 
-        public IHttpActionResult Post(int id, [FromBody] EnergyTrading.Mdm.Contracts.Mapping mapping)
+        public IHttpActionResult Post(int id, [FromBody] Mapping mapping)
         {
             var request = new CreateMappingRequest
             {
@@ -98,7 +98,6 @@ namespace MDM.ServiceHost.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPut, HttpPost]
         public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] Mapping mapping)
         {
             IEntityMapping returnedMapping = null;

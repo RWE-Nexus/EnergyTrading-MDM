@@ -206,9 +206,13 @@
             this.Validate(request);
 
             var mapping = this.repository.FindAllMappings<TMapping>(request).FirstOrDefault(m => m.Entity is TEntity);
-            return mapping == null
-                 ? this.ContractResponse(null, request.ValidAt, request.Version) 
-                 : this.ContractResponse(mapping.Entity as TEntity, request.ValidAt, request.Version);
+            if (mapping == null)
+            {
+                var response = ContractResponse(null, request.ValidAt, request.Version);
+                response.Error.Reason = ErrorReason.Identifier;
+                return response;
+            }
+            return ContractResponse(mapping.Entity as TEntity, request.ValidAt, request.Version);
         }
 
         /// <summary>
