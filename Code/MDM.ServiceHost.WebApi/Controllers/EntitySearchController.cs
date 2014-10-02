@@ -41,7 +41,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
         public HttpResponseMessage Post([FromBody] EnergyTrading.Contracts.Search.Search search)
         {
-            var key = search.ToKey<TContract>();
+            var key = search.ToKey<TContract>(service.ContractVersion);
             return this.Search(key, FirstPage);
         }
 
