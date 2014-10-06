@@ -7,6 +7,8 @@ namespace MDM.ServiceHost.WebApi.Filters
 {
     /// <summary>
     /// Checks the model state and immediately sends back a BadRequest if invalid
+    /// 
+    /// This relies on System.ComponentModel.DataAnnotations on the MDM contracts (which there are none currently).
     /// </summary>
     public class ValidateModelAttribute : ActionFilterAttribute
     {

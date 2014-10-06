@@ -10,6 +10,11 @@ using MDM.ServiceHost.WebApi.Controllers;
 
 namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 {
+    /// <summary>
+    /// This is the service entry point controller where it dynamically determines from the request url which 
+    /// MDM entity is being requested and which type of action and then returns the details of the particular
+    /// controller that should be invoked.
+    /// </summary>
     public class DynamicEntityControllerSelector : DefaultHttpControllerSelector
     {
         private readonly HttpConfiguration configuration;
@@ -90,7 +95,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 
         private static Type GetControllerTypeForRequest(HttpRequestMessage request, Type contractType, Type entityType, Type listContractType)
         {
-            // TODO: need fixing to prevent false detection, e.g. if an Entity name contains "list" or "map"
+            // TODO: make more solid to prevent false detection
             if (request.RequestUri.AbsolutePath.Contains("/mappings", StringComparison.InvariantCultureIgnoreCase))
             {
                 return typeof(EntityMappingsController<,>).MakeGenericType(new[] { contractType, entityType });

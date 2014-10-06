@@ -1,8 +1,4 @@
-﻿using EnergyTrading.Mdm.Notifications;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
-
-namespace MDM.ServiceHost.WebApi.Filters
+﻿namespace MDM.ServiceHost.WebApi.Filters
 {
     using System.Linq;
     using System.Net;
@@ -10,6 +6,9 @@ namespace MDM.ServiceHost.WebApi.Filters
     using System.Net.Http.Headers;
     using System.Web.Http.Filters;
 
+    /// <summary>
+    /// Performs ETag IfNoneMatch checking on GET requests where an ETag is supplied in the header and updates the response accordingly.
+    /// </summary>
     public class ETagCheckingAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
@@ -30,29 +29,6 @@ namespace MDM.ServiceHost.WebApi.Filters
                 actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.NotModified);
                 actionExecutedContext.Response.Headers.ETag = new EntityTagHeaderValue(requestEtag);
             }
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public class MdmNotificationAttribute : ActionFilterAttribute
-    {
-        public MdmNotificationAttribute()
-        {
-            MdmNotificationService = ServiceLocator.Current.GetInstance<IMdmNotificationService>();
-        }
-
-        private IMdmNotificationService MdmNotificationService { get; set; }
-
-        public override void OnActionExecuted(HttpActionExecutedContext context)
-        {
-            if (context.Response == null || !context.Response.IsSuccessStatusCode)
-            {
-                return;
-            }
-
-            var content = context.Response.Content as ObjectContent;
         }
     }
 }

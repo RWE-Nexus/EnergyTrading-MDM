@@ -19,6 +19,9 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests for looking up MDM entities via the mapping functionality.
+    /// </summary>
     public class EntityMapController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
@@ -30,6 +33,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
             this.service = service;
         }
 
+        /// <summary>
+        /// Will try and retrieve an entity with a matching mapping to what is supplied in the query parameters
+        /// </summary>
+        /// <param name="etag">The service verifies if its entity version matches what's held by the client cache</param>
+        /// <returns>Response with appropriate status code and the serialised entity as content if found</returns>
         [ETagChecking]
         public IHttpActionResult Get([IfNoneMatch] ETag etag)
         {

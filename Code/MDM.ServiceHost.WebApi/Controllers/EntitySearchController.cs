@@ -15,6 +15,9 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests for performing MDM entity searches
+    /// </summary>
     public class EntitySearchController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
@@ -23,12 +26,21 @@ namespace MDM.ServiceHost.WebApi.Controllers
         protected const int FirstPage = 1;
         protected string entityName;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EntitySearchController(IMdmService<TContract, TEntity> service)
         {
             this.service = service;
             this.entityName = typeof(TContract).Name;
         }
 
+        /// <summary>
+        /// Retrieves a page of search results for a previously executed search request
+        /// </summary>
+        /// <param name="key">The unique search key string returned by the initial search request</param>
+        /// <param name="page">The page of results to return</param>
+        /// <returns>Reponse with approprtiate status code and the page of search results as content</returns>
         public HttpResponseMessage Get(string key, int page)
         {
             if (string.IsNullOrEmpty(key))
@@ -39,6 +51,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
             return this.Search(key, page);
         }
 
+        /// <summary>
+        /// Initiates a MDM entity search and returns the first page of results as an Atom XML feed
+        /// </summary>
+        /// <param name="search">The deserialised search object from the request body</param>
+        /// <returns>Response with appropriate status code and the first page of results along with links to further result pages</returns>
         public HttpResponseMessage Post([FromBody] EnergyTrading.Contracts.Search.Search search)
         {
             var key = search.ToKey<TContract>(service.ContractVersion);

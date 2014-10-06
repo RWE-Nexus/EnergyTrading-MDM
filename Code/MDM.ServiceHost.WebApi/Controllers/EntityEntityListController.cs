@@ -16,17 +16,31 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests relating to lists of MDM entities
+    /// </summary>
+    /// <typeparam name="TContract"></typeparam>
+    /// <typeparam name="TEntity"></typeparam>
     public class EntityEntityListController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
         protected IMdmService<TContract, TEntity> service;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EntityEntityListController(IMdmService<TContract, TEntity> service)
         {
             this.service = service;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="MdmFaultException"></exception>
         public IHttpActionResult Get(int id)
         {
             var request = MessageFactory.GetRequest(this.QueryParameters);

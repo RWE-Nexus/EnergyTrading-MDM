@@ -21,22 +21,36 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles the basic CRU(D) operations at the MDM entity level.
+    /// </summary>
     public class EntityController<TContract, TEntity> : BaseEntityController<TContract, TEntity>
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
         private readonly IMdmNotificationService notificationService;
 
+        /// <summary>
+        /// Requires the underlying entity specific service as well as a notification service used for sending notifications of
+        /// entity changes.
+        /// </summary>
         public EntityController(IMdmService<TContract, TEntity> service, IMdmNotificationService notificationService)
             : base(service)
         {
             this.notificationService = notificationService;
         }
 
+        /// <summary>
+        /// Returns the MDM entity matching the identifier.  If an ETag version is supplied then
+        /// the service will verify if it matches its own version and respond accordingly.
+        /// </summary>
+        /// <param name="id">The MDM unique identifier</param>
+        /// <param name="etag">The current version held by the client</param>
+        /// <returns>Reponse with appropriate status code and the serialised entity according to content negotiation</returns>
         [ETagChecking]
         public IHttpActionResult Get(int id, [IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.GetRequest(this.QueryParameters);
+            var request = MessageFactory.GetRequest(QueryParameters);
             request.EntityId = id;
             request.Version = etag.ToVersion();
 
@@ -44,18 +58,23 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
             using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
             {
-                response = this.service.Request(request);
+                response = service.Request(request);
                 scope.Complete();
             }
 
             if (response.IsValid)
             {
-                return new ResponseWithETag<TContract>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
+                return new ResponseWithETag<TContract>(Request, response.Contract, HttpStatusCode.OK, response.Version);
             }
 
             throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
 
+        /// <summary>
+        /// Creates a new entity from the details in the request body
+        /// </summary>
+        /// <param name="contract">The deserialised entity details from the request body</param>
+        /// <returns>Reponse with appropriate status code and entity url</returns>
         [ValidateModel]
         public IHttpActionResult Post([FromBody] TContract contract)
         {
@@ -63,21 +82,28 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
             using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
             {
-                entity = this.service.Create(contract);
+                entity = service.Create(contract);
                 scope.Complete();
             }
 
             var location = String.Format("{0}/{1}?{2}={3}",
-                this.Request.RequestUri.AbsolutePath.Substring(1),
+                Request.RequestUri.AbsolutePath.Substring(1),
                 entity.Id,
                 QueryConstants.ValidAt,
                 entity.Validity.Start.ToString(QueryConstants.DateFormatString));
 
             notificationService.Notify(() => GetContract(entity.Id).Contract, service.ContractVersion, Operation.Created);
 
-            return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
+            return new StatusCodeResultWithLocation(Request, HttpStatusCode.Created, location);
         }
 
+        /// <summary>
+        /// Updates a MDM entity with the details provided in the request body
+        /// </summary>
+        /// <param name="id">The MDM entity identifier</param>
+        /// <param name="etag">The version of the entity represented in the request body</param>
+        /// <param name="contract">The updated entity details</param>
+        /// <returns>Reponse with appropriate status code and entity url</returns>
         [ValidateModel]
         public IHttpActionResult Put(int id, [IfMatch] ETag etag, [FromBody] TContract contract)
         {
@@ -93,12 +119,15 @@ namespace MDM.ServiceHost.WebApi.Controllers
             if (response.Contract != null)
             {
                 notificationService.Notify(() => response.Contract, service.ContractVersion, Operation.Modified);
-                return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.NoContent, this.Request.RequestUri.AbsolutePath.Substring(1));
+                return new StatusCodeResultWithLocation(Request, HttpStatusCode.NoContent, Request.RequestUri.AbsolutePath.Substring(1));
             }
 
             return NotFound();
         }
 
+        /// <summary>
+        /// Deletion of MDM entities is not supported, they should instead have their validity dates altered
+        /// </summary>
         public IHttpActionResult Delete(int id)
         {
             throw new NotImplementedException();

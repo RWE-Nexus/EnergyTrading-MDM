@@ -19,6 +19,9 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests relating to the cross-mapping functionality within MDM.
+    /// </summary>
     public class EntityCrossMapController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
@@ -30,6 +33,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
             this.service = service;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="etag"></param>
+        /// <returns></returns>
         [ETagChecking]
         public IHttpActionResult Get([IfNoneMatch] ETag etag)
         {

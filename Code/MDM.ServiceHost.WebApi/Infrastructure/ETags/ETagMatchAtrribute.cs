@@ -5,18 +5,18 @@
 
     public abstract class ETagMatchAttribute : ParameterBindingAttribute
     {
-        private ETagMatch _match;
+        private readonly ETagMatch match;
 
         public ETagMatchAttribute(ETagMatch match)
         {
-            this._match = match;
+            this.match = match;
         }
 
         public override HttpParameterBinding GetBinding(HttpParameterDescriptor parameter)
         {
             if (parameter.ParameterType == typeof(ETag))
             {
-                return new ETagParameterBinding(parameter, this._match);
+                return new ETagParameterBinding(parameter, match);
             }
             return parameter.BindAsError("Wrong parameter type");
         }

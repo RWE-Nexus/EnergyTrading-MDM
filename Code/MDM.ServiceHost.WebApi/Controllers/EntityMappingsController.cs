@@ -18,20 +18,32 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests for retrieving Atom feeds of mappings
+    /// </summary>
     public class EntityMappingsController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
         protected IMdmService<TContract, TEntity> service;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EntityMappingsController(IMdmService<TContract, TEntity> service)
         {
             this.service = service;
         }
 
+        /// <summary>
+        /// Returns all the mappings for the entity as an Atom XML feed
+        /// </summary>
+        /// <param name="id">The MDM identifier for the entity</param>
+        /// <param name="etag">The current version held by the client</param>
+        /// <returns>Response with approrpiate status code and the Atom feed as content</returns>
         public HttpResponseMessage Get(int id, [IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.GetRequest(this.QueryParameters);
+            var request = MessageFactory.GetRequest(QueryParameters);
             request.EntityId = id;
             request.Version = etag.ToVersion();
 
@@ -39,7 +51,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
             using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
             {
-                response = this.service.Request(request);
+                response = service.Request(request);
                 scope.Complete();
             }
 
@@ -58,7 +70,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 .WithItems(response.Contract.Identifiers)
                 .Build();
 
-            return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
+            return Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
         }
     }
 }

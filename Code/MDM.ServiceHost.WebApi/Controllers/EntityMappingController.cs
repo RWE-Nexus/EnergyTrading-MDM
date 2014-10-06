@@ -21,17 +21,29 @@ namespace MDM.ServiceHost.WebApi.Controllers
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests for the maintenance of MDM entity mappings
+    /// </summary>
     public class EntityMappingController<TContract, TEntity> : BaseEntityController<TContract, TEntity>
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
         private readonly IMdmNotificationService notificationService;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EntityMappingController(IMdmService<TContract, TEntity> service, IMdmNotificationService notificationService) : base(service)
         {
             this.notificationService = notificationService;
         }
 
+        /// <summary>
+        /// Returns the MDM entity mapping that matches the supplied unique identifiers
+        /// </summary>
+        /// <param name="id">The MDM identifier for the entity</param>
+        /// <param name="mappingid">The MDM identifier for the entity mapping</param>
+        /// <returns>Reponse with the appropriate status code and the mapping as content</returns>
         [ETagChecking]
         public IHttpActionResult Get(int id, int mappingid)
         {
@@ -56,6 +68,12 @@ namespace MDM.ServiceHost.WebApi.Controllers
             throw new MdmFaultException(new GetMappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
         }
 
+        /// <summary>
+        /// Creates a new entity mapping for the entity specified.
+        /// </summary>
+        /// <param name="id">The MDM identifier for the entity that the mapping will be attached to</param>
+        /// <param name="mapping">The mapping details deserialised from the request body</param>
+        /// <returns>Response with appropriate status code and mapping url</returns>
         [ValidateModel]
         public IHttpActionResult Post(int id, [FromBody] Mapping mapping)
         {
@@ -82,6 +100,12 @@ namespace MDM.ServiceHost.WebApi.Controllers
             return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
         }
 
+        /// <summary>
+        /// Deletes the entity mapping matching the supplied identifiers
+        /// </summary>
+        /// <param name="id">The MDM identifier for the entity</param>
+        /// <param name="mappingid">The MDM identifier for the mapping</param>
+        /// <returns>Reponse with approprtiate status code</returns>
         public IHttpActionResult Delete(int id, int mappingid)
         {
             var request = new DeleteMappingRequest
@@ -99,6 +123,15 @@ namespace MDM.ServiceHost.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Updates the entity mapping with the details supplied in the request body.
+        /// If the client holds an out of date entity (ETag based) then the request fails.
+        /// </summary>
+        /// <param name="id">The MDM identifier for the entity</param>
+        /// <param name="mappingid">The MDM identifier for the mapping</param>
+        /// <param name="etag">The version of the entity held by the client</param>
+        /// <param name="mapping">The deserialised entity from the request body</param>
+        /// <returns>Response with appropriate status code and the entity mapping url</returns>
         [ValidateModel]
         public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] Mapping mapping)
         {

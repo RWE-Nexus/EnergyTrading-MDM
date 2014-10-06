@@ -13,6 +13,10 @@ namespace MDM.ServiceHost.WebApi.Filters
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This handles exceptions thrown by the controllers and converts them to appropriate responses with status codes and error details as
+    /// expected by the MDM Client library.
+    /// </summary>
     public class ErrorHandlingAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)

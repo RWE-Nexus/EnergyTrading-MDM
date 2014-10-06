@@ -13,17 +13,27 @@
 
     using EnergyTrading.Mdm.Contracts;
 
+    /// <summary>
+    /// This controller handles requests for retrieving MDM entity lists as Atom feeds
+    /// </summary>
     public class EntityFeedController<TContract, TEntity> : BaseEntityController
         where TContract : class, IMdmEntity
         where TEntity : IEntity
     {
         protected IMdmService<TContract, TEntity> service;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EntityFeedController(IMdmService<TContract, TEntity> service)
         {
             this.service = service;
         }
 
+        /// <summary>
+        /// Returns a list of the entities as an Atom XML feed
+        /// </summary>
+        /// <returns>Reponse with appropriate status code and the Atom XML feed as content</returns>
         public HttpResponseMessage Get()
         {
             List<TContract> list;
