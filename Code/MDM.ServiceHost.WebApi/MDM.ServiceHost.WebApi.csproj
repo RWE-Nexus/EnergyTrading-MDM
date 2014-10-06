@@ -99,6 +99,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\LoggingFilterConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration\ContainerConfiguration.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\EntityCrossMapController.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Controllers\EntitySearchController.cs" />
     <Compile Include="Filters\ErrorHandlingAttribute.cs" />
     <Compile Include="Filters\EtagHandlingAttribute.cs" />
+    <Compile Include="Filters\LoggingAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Infrastructure\Controllers\BaseEntityController.cs" />
     <Compile Include="Infrastructure\Controllers\ConfigSettingsContractAssemblyNamesLocator.cs" />
