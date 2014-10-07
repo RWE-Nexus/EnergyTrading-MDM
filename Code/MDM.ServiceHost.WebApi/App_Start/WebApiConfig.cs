@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Dispatcher;
+using System.Web.Http.ExceptionHandling;
 using MDM.ServiceHost.WebApi.Filters;
 using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
 
@@ -138,6 +139,9 @@ namespace MDM.ServiceHost.WebApi
 
             // Register error handling attribute for all Web API methods
             config.Filters.Add(new ErrorHandlingAttribute());
+
+            // Replace the global exception handler with our own
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
         }
     }
 }
