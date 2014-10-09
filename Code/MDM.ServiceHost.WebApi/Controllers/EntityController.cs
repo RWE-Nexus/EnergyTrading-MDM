@@ -105,6 +105,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <param name="contract">The updated entity details</param>
         /// <returns>Reponse with appropriate status code and entity url</returns>
         [ValidateModel]
+        [HttpPut, HttpPost]
         public IHttpActionResult Put(int id, [IfMatch] ETag etag, [FromBody] TContract contract)
         {
             ContractResponse<TContract> response;

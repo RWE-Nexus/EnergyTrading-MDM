@@ -133,6 +133,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <param name="mapping">The deserialised entity from the request body</param>
         /// <returns>Response with appropriate status code and the entity mapping url</returns>
         [ValidateModel]
+        [HttpPut, HttpPost]
         public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] Mapping mapping)
         {
             IEntityMapping returnedMapping = null;
