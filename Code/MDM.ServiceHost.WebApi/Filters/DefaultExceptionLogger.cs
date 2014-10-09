@@ -15,7 +15,7 @@ namespace MDM.ServiceHost.WebApi.Filters
 
         public override void Log(ExceptionLoggerContext context)
         {
-            logger.ErrorFormat("[{0}] [{1}] failed with:{2}{3}", context.Request.Method, context.Request.RequestUri, Environment.NewLine, ExceptionDetails(context.Exception));
+            logger.ErrorFormat("[{0}] [{1}] failed, see error details below{2}{3}", context.Request.Method, context.Request.RequestUri, Environment.NewLine, ExceptionDetails(context.Exception));
         }
 
         private string ExceptionDetails(Exception contextException)
