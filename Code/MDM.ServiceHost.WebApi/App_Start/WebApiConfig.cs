@@ -142,6 +142,9 @@ namespace MDM.ServiceHost.WebApi
 
             // Replace the global exception handler with our own
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+
+            // Add the default exception logger
+            config.Services.Add(typeof(IExceptionLogger), new DefaultExceptionLogger());
         }
     }
 }

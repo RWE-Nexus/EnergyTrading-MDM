@@ -95,7 +95,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 this.Request.RequestUri.AbsolutePath.Substring(1),
                 entityMapping.Id);
 
-            notificationService.Notify(() => GetContract(id).Contract, service.ContractVersion, Operation.Created);
+            notificationService.Notify(() => GetContract(id).Contract, service.ContractVersion, Operation.Modified);
 
             return new StatusCodeResultWithLocation(this.Request, HttpStatusCode.Created, location);
         }
@@ -119,7 +119,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 scope.Complete();
             }
 
-            notificationService.Notify(() => GetContract(id).Contract, service.ContractVersion, Operation.Deleted);
+            notificationService.Notify(() => GetContract(id).Contract, service.ContractVersion, Operation.Modified);
             return Ok();
         }
 

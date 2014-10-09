@@ -112,6 +112,7 @@
     <Compile Include="Controllers\EntityMappingController.cs" />
     <Compile Include="Controllers\EntityMappingsController.cs" />
     <Compile Include="Controllers\EntitySearchController.cs" />
+    <Compile Include="Filters\DefaultExceptionLogger.cs" />
     <Compile Include="Filters\ErrorHandlingAttribute.cs" />
     <Compile Include="Filters\EtagHandlingAttribute.cs" />
     <Compile Include="Filters\GlobalExceptionHandler.cs" />
