@@ -1,8 +1,6 @@
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
-using EnergyTrading.Configuration;
 using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
-using EnergyTrading.Web;
 using MDM.ServiceHost.WebApi.Filters;
 using Microsoft.Practices.Unity;
 
@@ -23,10 +21,6 @@ namespace MDM.ServiceHost.WebApi
 
             // Add the default exception logger
             config.Services.Add(typeof(IExceptionLogger), new DefaultExceptionLogger());
-
-            container.RegisterType<IWebOperationContextWrapper, WebOperationContextWrapper>();
-
-            container.RegisterType<IConfigurationManager, AppConfigConfigurationManager>(new ContainerControlledLifetimeManager());
             
             var cacheRegistrar = new CacheRegistrar(container);
             cacheRegistrar.RegisterCache();
