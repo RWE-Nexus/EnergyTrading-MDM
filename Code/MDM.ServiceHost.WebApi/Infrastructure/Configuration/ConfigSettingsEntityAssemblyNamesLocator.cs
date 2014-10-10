@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Configuration;
 using System.Linq;
 using EnergyTrading.Configuration;
 
@@ -19,8 +19,10 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Configuration
                 throw new ArgumentNullException("configurationManager");
             }
 
-            Debug.Assert(configurationManager.AppSettings[EntityAssembliesKey] != null,
-                string.Format("Expect '{0}' key in configuration settings", EntityAssembliesKey));
+            if (configurationManager.AppSettings[EntityAssembliesKey] == null)
+            {
+                throw new ConfigurationErrorsException(string.Format("Entity assemblies must be configured against the '{0}' key in configuration settings", EntityAssembliesKey));
+            }
 
             var assemblyNames = configurationManager.AppSettings[EntityAssembliesKey].Split(';');
 

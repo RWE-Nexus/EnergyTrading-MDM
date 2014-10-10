@@ -24,9 +24,6 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Configuration
 
         public void Configure()
         {
-            container.RegisterType<IContractAssemblyNamesLocator, ConfigSettingsContractAssemblyNamesLocator>();
-            container.RegisterType<IEntityAssemblyNamesLocator, ConfigSettingsEntityAssemblyNamesLocator>();
-
             var con = container.Resolve<MdmContractTypesLoader>();
             con.LoadContractTypes();
 
