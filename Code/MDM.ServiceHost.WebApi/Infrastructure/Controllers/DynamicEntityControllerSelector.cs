@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using MDM.ServiceHost.WebApi.Controllers;
+using MDM.ServiceHost.WebApi.Infrastructure.Configuration;
+using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
 
 namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 {

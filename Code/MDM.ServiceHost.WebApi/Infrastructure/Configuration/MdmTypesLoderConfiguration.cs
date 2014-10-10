@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using EnergyTrading.Configuration;
 using Microsoft.Practices.Unity;
 
-namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
+namespace MDM.ServiceHost.WebApi.Infrastructure.Configuration
 {
     public class MdmTypesLoderConfiguration : IGlobalConfigurationTask
     {

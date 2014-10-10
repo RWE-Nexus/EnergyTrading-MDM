@@ -1,6 +1,7 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
 using EnergyTrading.Mdm.Notifications;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {

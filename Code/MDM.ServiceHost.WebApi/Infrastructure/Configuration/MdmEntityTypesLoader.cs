@@ -5,7 +5,7 @@ using System.Reflection;
 using EnergyTrading.Container.Unity.AutoRegistration;
 using EnergyTrading.Mdm;
 
-namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
+namespace MDM.ServiceHost.WebApi.Infrastructure.Configuration
 {
     public class MdmEntityTypesLoader
     {

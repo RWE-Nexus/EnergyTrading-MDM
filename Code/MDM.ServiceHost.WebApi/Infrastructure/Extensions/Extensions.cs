@@ -1,9 +1,8 @@
-﻿namespace MDM.ServiceHost.WebApi.Infrastructure
+﻿using System;
+using MDM.ServiceHost.WebApi.Infrastructure.ETags;
+
+namespace MDM.ServiceHost.WebApi.Infrastructure.Extensions
 {
-    using System;
-
-    using MDM.ServiceHost.WebApi.Infrastructure.ETags;
-
     public static class Extensions
     {
         public static ulong ToVersion(this ETag etag)

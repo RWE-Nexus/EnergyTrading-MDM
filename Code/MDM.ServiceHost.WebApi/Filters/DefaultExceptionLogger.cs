@@ -27,7 +27,7 @@ namespace MDM.ServiceHost.WebApi.Filters
             else
             {
                 logger.DebugFormat("[{0}] [{1}] failed, see error details below{2}{3}", context.Request.Method,
-                    context.Request.RequestUri, Environment.NewLine, ExceptionDetails(context.Exception));
+                    context.Request.RequestUri, Environment.NewLine, context.Exception.AllExceptionMessages());
             }
         }
 

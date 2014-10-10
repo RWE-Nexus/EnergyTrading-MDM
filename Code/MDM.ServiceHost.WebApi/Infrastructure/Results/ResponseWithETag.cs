@@ -1,4 +1,6 @@
-﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Results
+﻿using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
+
+namespace MDM.ServiceHost.WebApi.Infrastructure.Results
 {
     using System.Net;
     using System.Net.Http;

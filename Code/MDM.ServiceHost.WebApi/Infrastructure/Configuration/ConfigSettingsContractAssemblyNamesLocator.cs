@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
+using EnergyTrading.Configuration;
 
-namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
+namespace MDM.ServiceHost.WebApi.Infrastructure.Configuration
 {
     public class ConfigSettingsContractAssemblyNamesLocator : IContractAssemblyNamesLocator
     {
@@ -11,12 +12,17 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 
         private readonly IList<string> contractAssemblyNames;
 
-        public ConfigSettingsContractAssemblyNamesLocator()
+        public ConfigSettingsContractAssemblyNamesLocator(IConfigurationManager configurationManager)
         {
-            Debug.Assert(ConfigurationManager.AppSettings[ContractAssembliesKey] != null,
+            if (configurationManager == null)
+            {
+                throw new ArgumentNullException("configurationManager");
+            }
+
+            Debug.Assert(configurationManager.AppSettings[ContractAssembliesKey] != null,
                 string.Format("Expect '{0}' key in configuration settings", ContractAssembliesKey));
 
-            var assemblyNames = ConfigurationManager.AppSettings[ContractAssembliesKey].Split(';');
+            var assemblyNames = configurationManager.AppSettings[ContractAssembliesKey].Split(';');
 
             contractAssemblyNames = assemblyNames.Select(x => x.Trim()).ToList();
         }

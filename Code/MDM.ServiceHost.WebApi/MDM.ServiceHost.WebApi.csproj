@@ -100,6 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DefaultServiceConfiguration.cs" />
     <Compile Include="App_Start\LoggingFilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration\ContainerConfiguration.cs" />
@@ -119,21 +120,21 @@
     <Compile Include="Filters\LoggingAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Infrastructure\Controllers\BaseEntityController.cs" />
-    <Compile Include="Infrastructure\Controllers\ConfigSettingsContractAssemblyNamesLocator.cs" />
-    <Compile Include="Infrastructure\Controllers\ConfigSettingsEntityAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Configuration\ConfigSettingsContractAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Configuration\ConfigSettingsEntityAssemblyNamesLocator.cs" />
     <Compile Include="Infrastructure\Controllers\DynamicEntityControllerSelector.cs" />
-    <Compile Include="Infrastructure\Controllers\IContractAssemblyNamesLocator.cs" />
-    <Compile Include="Infrastructure\Controllers\IEntityAssemblyNamesLocator.cs" />
-    <Compile Include="Infrastructure\Controllers\MdmContractTypesLoader.cs" />
-    <Compile Include="Infrastructure\Controllers\MdmEntityTypesLoader.cs" />
-    <Compile Include="Infrastructure\Controllers\MdmTypesLoderConfiguration.cs" />
+    <Compile Include="Infrastructure\Configuration\IContractAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Configuration\IEntityAssemblyNamesLocator.cs" />
+    <Compile Include="Infrastructure\Configuration\MdmContractTypesLoader.cs" />
+    <Compile Include="Infrastructure\Configuration\MdmEntityTypesLoader.cs" />
+    <Compile Include="Infrastructure\Configuration\MdmTypesLoderConfiguration.cs" />
     <Compile Include="Infrastructure\ETags\ETag.cs" />
     <Compile Include="Infrastructure\ETags\ETagMatch.cs" />
     <Compile Include="Infrastructure\ETags\ETagMatchAtrribute.cs" />
     <Compile Include="Infrastructure\ETags\ETagParameterBinding.cs" />
     <Compile Include="Infrastructure\Exceptions\MdmFaultException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotFoundException.cs" />
-    <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\Extensions\Extensions.cs" />
     <Compile Include="Infrastructure\Feeds\AtomSyndicationFeedFormatter.cs" />
     <Compile Include="Infrastructure\Feeds\FeedBuilder.cs" />
     <Compile Include="Infrastructure\Results\ResponseWithETag.cs" />
