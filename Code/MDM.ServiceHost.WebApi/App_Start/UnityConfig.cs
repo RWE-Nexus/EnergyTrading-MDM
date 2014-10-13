@@ -9,8 +9,8 @@ using EnergyTrading.Mdm.ServiceHost.Unity.Configuration;
 using EnergyTrading.Web;
 using MDM.ServiceHost.WebApi.Configuration;
 using MDM.ServiceHost.WebApi.Infrastructure.Configuration;
-using Microsoft.Practices.Unity;
 using System.Web.Http;
+using Microsoft.Practices.Unity;
 
 namespace MDM.ServiceHost.WebApi
 {
