@@ -58,7 +58,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             {
                 throw new Exception(string.Format("Unknown MDM resource list type: {0}List", contractName));
             }
-            return listContractType;
+            return listContractType;                            
         }
 
         private Type DetermineEntityType(string entityName)

@@ -10,6 +10,7 @@ using EnergyTrading.Web;
 using MDM.ServiceHost.WebApi.Configuration;
 using MDM.ServiceHost.WebApi.Infrastructure.Configuration;
 using System.Web.Http;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.Unity;
 
 namespace MDM.ServiceHost.WebApi
@@ -34,7 +35,12 @@ namespace MDM.ServiceHost.WebApi
             AdditionalRegistrations(container);
 
             // Now get them all, and initialize them, bootstrapper takes care of ordering
-            var globalTasks = container.ResolveAll<IGlobalConfigurationTask>().ToList();
+
+            // There appears to be a bug in Unity 3.5 where ResolveAll fails to do exactly that..
+//            var globalTasks = container.ResolveAll<IGlobalConfigurationTask>().ToList();
+            var globalTasks = new List<IGlobalConfigurationTask>();
+            var registrations = container.Registrations.Where(reg => reg.RegisteredType == typeof(IGlobalConfigurationTask));
+            registrations.ForEach(reg => globalTasks.Add(container.Resolve<IGlobalConfigurationTask>(reg.Name)));
             var tasks = globalTasks.Select(task => task as IConfigurationTask).ToList();
             LogConfigurationTasks(tasks);
             ConfigurationBootStrapper.Initialize(tasks);
