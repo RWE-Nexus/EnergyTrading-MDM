@@ -26,8 +26,7 @@ namespace MDM.ServiceHost.WebApi
                     Assembly.GetAssembly(typeof(SimpleMappingEngineConfiguration)))
                     .Where(t => t.Implements<IGlobalConfigurationTask>()),
                 WithMappings.FromAllInterfaces,
-                ConfiguratorName,
-                WithLifetime.ContainerControlled);
+                ConfiguratorName);
 
             container.RegisterType<IWebOperationContextWrapper, WebOperationContextWrapper>();
             container.RegisterType<IConfigurationManager, AppConfigConfigurationManager>(new ContainerControlledLifetimeManager());
