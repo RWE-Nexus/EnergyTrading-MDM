@@ -1,6 +1,7 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
@@ -13,7 +14,6 @@ namespace MDM.ServiceHost.WebApi.Controllers
     using EnergyTrading.Mdm.Services;
 
     using MDM.ServiceHost.WebApi.Filters;
-    using MDM.ServiceHost.WebApi.Infrastructure;
     using MDM.ServiceHost.WebApi.Infrastructure.Controllers;
     using MDM.ServiceHost.WebApi.Infrastructure.ETags;
     using MDM.ServiceHost.WebApi.Infrastructure.Results;
@@ -29,7 +29,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
     {
         protected IMdmService<TContract, TEntity> service;
 
-        public EntityCrossMapController(IMdmService<TContract, TEntity> service)
+        public EntityCrossMapController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -42,27 +43,33 @@ namespace MDM.ServiceHost.WebApi.Controllers
         [ETagChecking]
         public IHttpActionResult Get([IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.CrossMappingRequest(this.QueryParameters);
-            request.Version = etag.ToVersion();
-
-            ContractResponse<MappingResponse> response;
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                response = this.service.CrossMap(request);
-                scope.Complete();
-            }
+                var request = MessageFactory.CrossMappingRequest(this.QueryParameters);
+                request.Version = etag.ToVersion();
 
-            if (response.IsValid)
-            {
-                return new ResponseWithETag<MappingResponse>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
-            }
+                ContractResponse<MappingResponse> response;
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    response = this.service.CrossMap(request);
+                    scope.Complete();
+                }
 
-            if (response.Error.Type == ErrorType.Ambiguous)
-            {
-                throw new MdmFaultException(new CrossMappingAmbiguosMappingHandler().Create(typeof(TContract).Name, response.Error, request));
-            }
+                if (response.IsValid)
+                {
+                    return new ResponseWithETag<MappingResponse>(this.Request, response.Contract, HttpStatusCode.OK,
+                        response.Version);
+                }
 
-            throw new MdmFaultException(new CrossMappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
+                if (response.Error.Type == ErrorType.Ambiguous)
+                {
+                    throw new MdmFaultException(new CrossMappingAmbiguosMappingHandler().Create(
+                        typeof(TContract).Name, response.Error, request));
+                }
+
+                throw new MdmFaultException(new CrossMappingRequestFaultHandler().Create(typeof(TContract).Name,
+                    response.Error, request));
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
@@ -29,7 +30,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public EntitySearchController(IMdmService<TContract, TEntity> service)
+        public EntitySearchController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
             this.entityName = typeof(TContract).Name;
@@ -58,8 +60,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <returns>Response with appropriate status code and the first page of results along with links to further result pages</returns>
         public HttpResponseMessage Post([FromBody] EnergyTrading.Contracts.Search.Search search)
         {
-            var key = search.ToKey<TContract>(service.ContractVersion);
-            return this.Search(key, FirstPage);
+            return WebHandler(() =>
+            {
+                var key = search.ToKey<TContract>(service.ContractVersion);
+                return this.Search(key, FirstPage);
+            });
         }
 
         private HttpResponseMessage Search(string key, int page)

@@ -1,6 +1,7 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
@@ -29,7 +30,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
     {
         protected IMdmService<TContract, TEntity> service;
 
-        public EntityMapController(IMdmService<TContract, TEntity> service)
+        public EntityMapController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -42,22 +44,27 @@ namespace MDM.ServiceHost.WebApi.Controllers
         [ETagChecking]
         public IHttpActionResult Get([IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.MappingRequest(this.QueryParameters);
-            request.Version = etag.ToVersion();
-
-            ContractResponse<TContract> response;
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                response = this.service.Map(request);
-                scope.Complete();
-            }
+                var request = MessageFactory.MappingRequest(this.QueryParameters);
+                request.Version = etag.ToVersion();
 
-            if (response.IsValid)
-            {
-                return new ResponseWithETag<TContract>(this.Request, response.Contract, HttpStatusCode.OK, response.Version);
-            }
+                ContractResponse<TContract> response;
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    response = this.service.Map(request);
+                    scope.Complete();
+                }
 
-            throw new MdmFaultException(new MappingRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
+                if (response.IsValid)
+                {
+                    return new ResponseWithETag<TContract>(this.Request, response.Contract, HttpStatusCode.OK,
+                        response.Version);
+                }
+
+                throw new MdmFaultException(new MappingRequestFaultHandler().Create(typeof(TContract).Name,
+                    response.Error, request));
+            });
         }
     }
 }

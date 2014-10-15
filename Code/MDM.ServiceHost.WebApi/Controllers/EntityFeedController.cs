@@ -1,4 +1,6 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using Microsoft.Practices.ServiceLocation;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System.Collections.Generic;
     using System.Net;
@@ -25,7 +27,8 @@
         /// <summary>
         /// 
         /// </summary>
-        public EntityFeedController(IMdmService<TContract, TEntity> service)
+        public EntityFeedController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -36,26 +39,30 @@
         /// <returns>Reponse with appropriate status code and the Atom XML feed as content</returns>
         public HttpResponseMessage Get()
         {
-            List<TContract> list;
-
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                // TODO: Constrain the identifiers we retrieve or have an enum to allow this e.g. Nexus, Originating, Default, All
-                list = new List<TContract>(this.service.List());
-                scope.Complete();
-            }
+                List<TContract> list;
 
-            var entityName = typeof(TContract).Name.ToLowerInvariant();
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    // TODO: Constrain the identifiers we retrieve or have an enum to allow this e.g. Nexus, Originating, Default, All
+                    list = new List<TContract>(this.service.List());
+                    scope.Complete();
+                }
 
-            var feed = new FeedBuilder()
-                .WithEntityName(entityName)
-                .WithId("list")
-                .WithTitle("All")
-                .WithItemTitle(entityName)
-                .WithItems(list)
-                .Build();
+                var entityName = typeof(TContract).Name.ToLowerInvariant();
 
-            return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
+                var feed = new FeedBuilder()
+                    .WithEntityName(entityName)
+                    .WithId("list")
+                    .WithTitle("All")
+                    .WithItemTitle(entityName)
+                    .WithItems(list)
+                    .Build();
+
+                return this.Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(),
+                    "application/xml");
+            });
         }
     }
 }

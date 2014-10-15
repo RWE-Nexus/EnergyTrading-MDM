@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Configuration;
+using EnergyTrading.Data.EntityFramework;
 using EnergyTrading.Mdm;
 using EnergyTrading.Mdm.Contracts;
 using EnergyTrading.Mdm.Messages;
 using EnergyTrading.Mdm.Messages.Services;
 using EnergyTrading.Mdm.Services;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 {
@@ -20,7 +22,8 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
     {
         protected readonly IMdmService<TContract, TEntity> service;
 
-        public BaseEntityController(IMdmService<TContract, TEntity> service)
+        public BaseEntityController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -49,6 +52,12 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 
     public class BaseEntityController : ApiController
     {
+        protected readonly IServiceLocator serviceLocator;
+
+        public BaseEntityController(IServiceLocator serviceLocator)
+        {
+            this.serviceLocator = serviceLocator;
+        }
 
         /// <summary>
         /// Standard transaction options for reading data
@@ -77,6 +86,36 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
         {
             get { return ConfigIsolation("Mdm.WriteIsolation"); }
         }
+
+
+        protected IHttpActionResult WebHandler(Func<IHttpActionResult> action)
+        {
+            try
+            {
+                return action.Invoke();
+            }
+            finally
+            {
+                // NB Closes EF connection explcitly to avoid leaks in integration tests
+                var csp = serviceLocator.GetInstance<IDbContextProvider>();
+                csp.Close();
+            }
+        }
+
+        protected HttpResponseMessage WebHandler(Func<HttpResponseMessage> action)
+        {
+            try
+            {
+                return action.Invoke();
+            }
+            finally
+            {
+                // NB Closes EF connection explcitly to avoid leaks in integration tests
+                var csp = serviceLocator.GetInstance<IDbContextProvider>();
+                csp.Close();
+            }
+        }
+
 
         protected NameValueCollection QueryParameters
         {

@@ -1,4 +1,6 @@
-﻿namespace MDM.ServiceHost.WebApi.Controllers
+﻿using Microsoft.Practices.ServiceLocation;
+
+namespace MDM.ServiceHost.WebApi.Controllers
 {
     using System.Collections.Generic;
     using System.Transactions;
@@ -23,7 +25,8 @@
         /// <summary>
         /// 
         /// </summary>
-        public EntityListController(IMdmService<TContract, TEntity> service)
+        public EntityListController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -34,18 +37,21 @@
         /// <returns>Reponse with appropriate status code and the list of entities as content</returns>
         public IHttpActionResult Get()
         {
-            var list = new TListContract();
-
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                foreach (var item in service.List())
-                {
-                    list.Add(item);
-                }
-                scope.Complete();
-            }
+                var list = new TListContract();
 
-            return Ok(list);
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    foreach (var item in service.List())
+                    {
+                        list.Add(item);
+                    }
+                    scope.Complete();
+                }
+
+                return Ok(list);
+            });
         }
     }
 }

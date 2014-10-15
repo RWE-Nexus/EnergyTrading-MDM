@@ -1,5 +1,6 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
@@ -30,7 +31,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public EntityEntityListController(IMdmService<TContract, TEntity> service)
+        public EntityEntityListController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -43,25 +45,28 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <exception cref="MdmFaultException"></exception>
         public IHttpActionResult Get(int id)
         {
-            var request = MessageFactory.GetRequest(this.QueryParameters);
-            request.EntityId = id;
-
-            IEnumerable<TContract> result;
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                result = this.service.EntityList(request);
-                scope.Complete();
-            }
+                var request = MessageFactory.GetRequest(this.QueryParameters);
+                request.EntityId = id;
 
-            var resultList = result.ToList();
+                IEnumerable<TContract> result;
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    result = this.service.EntityList(request);
+                    scope.Complete();
+                }
 
-            if (resultList.Any())
-            {
-                return this.Ok(resultList);
-            }
+                var resultList = result.ToList();
 
-            throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name,
-                new ContractError { Reason = ErrorReason.Identifier, Type = ErrorType.NotFound }, request));
+                if (resultList.Any())
+                {
+                    return this.Ok(resultList);
+                }
+
+                throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name,
+                    new ContractError { Reason = ErrorReason.Identifier, Type = ErrorType.NotFound }, request));
+            });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EnergyTrading.Mdm.Messages.Services;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
@@ -31,7 +32,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public EntityMappingsController(IMdmService<TContract, TEntity> service)
+        public EntityMappingsController(IMdmService<TContract, TEntity> service, IServiceLocator serviceLocator)
+            : base(serviceLocator)
         {
             this.service = service;
         }
@@ -44,34 +46,39 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// <returns>Response with approrpiate status code and the Atom feed as content</returns>
         public HttpResponseMessage Get(int id, [IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.GetRequest(QueryParameters);
-            request.EntityId = id;
-            request.Version = etag.ToVersion();
-
-            ContractResponse<TContract> response;
-
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                response = service.Request(request);
-                scope.Complete();
-            }
+                var request = MessageFactory.GetRequest(QueryParameters);
+                request.EntityId = id;
+                request.Version = etag.ToVersion();
 
-            if (!response.IsValid)
-            {
-                throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
-            }
+                ContractResponse<TContract> response;
 
-            var entityName = typeof(TContract).Name.ToLowerInvariant();
-            var title = string.Format("Mappings for {0} {1} ", entityName, id);
-            var feed = new FeedBuilder()
-                .WithEntityName(entityName)
-                .WithId(id.ToString())
-                .WithTitle(title)
-                .WithItemTitle("mapping")
-                .WithItems(response.Contract.Identifiers)
-                .Build();
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    response = service.Request(request);
+                    scope.Complete();
+                }
 
-            return Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(), "application/xml");
+                if (!response.IsValid)
+                {
+                    throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name,
+                        response.Error, request));
+                }
+
+                var entityName = typeof(TContract).Name.ToLowerInvariant();
+                var title = string.Format("Mappings for {0} {1} ", entityName, id);
+                var feed = new FeedBuilder()
+                    .WithEntityName(entityName)
+                    .WithId(id.ToString())
+                    .WithTitle(title)
+                    .WithItemTitle("mapping")
+                    .WithItems(response.Contract.Identifiers)
+                    .Build();
+
+                return Request.CreateResponse(HttpStatusCode.OK, feed, new AtomSyndicationFeedFormatter(),
+                    "application/xml");
+            });
         }
     }
 }

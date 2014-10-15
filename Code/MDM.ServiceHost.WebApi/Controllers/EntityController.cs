@@ -2,6 +2,7 @@
 using EnergyTrading.Mdm.Notifications;
 using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MDM.ServiceHost.WebApi.Controllers
 {
@@ -15,7 +16,6 @@ namespace MDM.ServiceHost.WebApi.Controllers
     using EnergyTrading.Mdm.Services;
 
     using Filters;
-    using Infrastructure;
     using Infrastructure.Controllers;
     using Infrastructure.ETags;
     using Infrastructure.Results;
@@ -35,8 +35,8 @@ namespace MDM.ServiceHost.WebApi.Controllers
         /// Requires the underlying entity specific service as well as a notification service used for sending notifications of
         /// entity changes.
         /// </summary>
-        public EntityController(IMdmService<TContract, TEntity> service, IMdmNotificationService notificationService)
-            : base(service)
+        public EntityController(IMdmService<TContract, TEntity> service, IMdmNotificationService notificationService, IServiceLocator serviceLocator)
+            : base(service, serviceLocator)
         {
             this.notificationService = notificationService;
         }
@@ -51,24 +51,29 @@ namespace MDM.ServiceHost.WebApi.Controllers
         [ETagChecking]
         public IHttpActionResult Get(int id, [IfNoneMatch] ETag etag)
         {
-            var request = MessageFactory.GetRequest(QueryParameters);
-            request.EntityId = id;
-            request.Version = etag.ToVersion();
-
-            ContractResponse<TContract> response;
-
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+            return WebHandler(() =>
             {
-                response = service.Request(request);
-                scope.Complete();
-            }
+                var request = MessageFactory.GetRequest(QueryParameters);
+                request.EntityId = id;
+                request.Version = etag.ToVersion();
 
-            if (response.IsValid)
-            {
-                return new ResponseWithETag<TContract>(Request, response.Contract, HttpStatusCode.OK, response.Version);
-            }
+                ContractResponse<TContract> response;
 
-            throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error, request));
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, ReadOptions()))
+                {
+                    response = service.Request(request);
+                    scope.Complete();
+                }
+
+                if (response.IsValid)
+                {
+                    return new ResponseWithETag<TContract>(Request, response.Contract, HttpStatusCode.OK,
+                        response.Version);
+                }
+
+                throw new MdmFaultException(new GetRequestFaultHandler().Create(typeof(TContract).Name, response.Error,
+                    request));
+            });
         }
 
         /// <summary>
@@ -79,23 +84,27 @@ namespace MDM.ServiceHost.WebApi.Controllers
         [ValidateModel]
         public IHttpActionResult Post([FromBody] TContract contract)
         {
-            TEntity entity;
-
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
+            return WebHandler(() =>
             {
-                entity = service.Create(contract);
-                scope.Complete();
-            }
+                TEntity entity;
 
-            var location = String.Format("{0}/{1}?{2}={3}",
-                Request.RequestUri.AbsolutePath.Substring(1),
-                entity.Id,
-                QueryConstants.ValidAt,
-                entity.Validity.Start.ToString(QueryConstants.DateFormatString));
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
+                {
+                    entity = service.Create(contract);
+                    scope.Complete();
+                }
 
-            notificationService.Notify(() => GetContract(entity.Id).Contract, service.ContractVersion, Operation.Created);
+                var location = String.Format("{0}/{1}?{2}={3}",
+                    Request.RequestUri.AbsolutePath.Substring(1),
+                    entity.Id,
+                    QueryConstants.ValidAt,
+                    entity.Validity.Start.ToString(QueryConstants.DateFormatString));
 
-            return new StatusCodeResultWithLocation(Request, HttpStatusCode.Created, location);
+                notificationService.Notify(() => GetContract(entity.Id).Contract, service.ContractVersion,
+                    Operation.Created);
+
+                return new StatusCodeResultWithLocation(Request, HttpStatusCode.Created, location);
+            });
         }
 
         /// <summary>
@@ -109,22 +118,26 @@ namespace MDM.ServiceHost.WebApi.Controllers
         [HttpPut, HttpPost]
         public IHttpActionResult Put(int id, [IfMatch] ETag etag, [FromBody] TContract contract)
         {
-            ContractResponse<TContract> response;
-
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
+            return WebHandler(() =>
             {
-                var version = etag.ToVersion();
-                response = service.Update(id, version, contract);
-                scope.Complete();
-            }
+                ContractResponse<TContract> response;
 
-            if (response.Contract != null)
-            {
-                notificationService.Notify(() => response.Contract, service.ContractVersion, Operation.Modified);
-                return new StatusCodeResultWithLocation(Request, HttpStatusCode.NoContent, Request.RequestUri.AbsolutePath.Substring(1));
-            }
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, WriteOptions()))
+                {
+                    var version = etag.ToVersion();
+                    response = service.Update(id, version, contract);
+                    scope.Complete();
+                }
 
-            return NotFound();
+                if (response.Contract != null)
+                {
+                    notificationService.Notify(() => response.Contract, service.ContractVersion, Operation.Modified);
+                    return new StatusCodeResultWithLocation(Request, HttpStatusCode.NoContent,
+                        Request.RequestUri.AbsolutePath.Substring(1));
+                }
+
+                return NotFound();
+            });
         }
 
         /// <summary>
