@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Actions\ContextInfoActions.cs" />
     <Compile Include="Configuration\MappingContext.cs" />
+    <Compile Include="Configuration\ReferenceDataConfiguration.cs" />
     <Compile Include="Configuration\SourceSystemConfiguration.cs" />
     <Compile Include="Configuration\SourceSystemMappingConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

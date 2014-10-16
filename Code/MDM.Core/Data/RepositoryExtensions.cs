@@ -183,5 +183,32 @@
                 .Where(x => !(x.Validity.Start >= range.Finish 
                            || x.Validity.Finish <= range.Start));
         }
+
+        /// <summary>
+        /// Get a <see cref="ReferenceData"/> value by type.
+        /// </summary>
+        /// <param name="repository">Repository to use</param>
+        /// <param name="referenceDataType">ReferenceDataType</param>
+        /// <param name="value">Value to check</param>
+        /// <returns></returns>
+        public static bool ReferenceDataExists(this IRepository repository, string referenceDataType, string value)
+        {
+            var rd = repository.ReferenceData(referenceDataType, value);
+            return rd != null;
+        }
+
+        /// <summary>
+        /// Get a <see cref="ReferenceData"/> value by type.
+        /// </summary>
+        /// <param name="repository">Repository to use</param>
+        /// <param name="referenceDataType">ReferenceDataType</param>
+        /// <param name="value">Value to check</param>
+        /// <returns></returns>
+        public static Mdm.ReferenceData ReferenceData(this IRepository repository, string referenceDataType, string value)
+        {
+            return repository.Queryable<Mdm.ReferenceData>()
+                             .FirstOrDefault(x => x.Key == referenceDataType
+                                               && x.Value == value);
+        }
     }
 }

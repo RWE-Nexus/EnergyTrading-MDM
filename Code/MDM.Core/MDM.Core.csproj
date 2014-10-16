@@ -74,6 +74,7 @@
     <Compile Include="Contracts\Rules\NexusEntityExistsRule.cs" />
     <Compile Include="Contracts\Rules\NexusIdTypeNoOverlappingRule.cs" />
     <Compile Include="Contracts\Rules\NexusIdTypeSystemExistsRule.cs" />
+    <Compile Include="Contracts\Rules\ReferenceDataExistsRule.cs" />
     <Compile Include="Contracts\Rules\SystemExistsRule.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -132,6 +133,7 @@
     <Compile Include="RangedChildExtensions.cs" />
     <Compile Include="Messages\Validators\AmendMappingRequestValidator.cs" />
     <Compile Include="Messages\Validators\CreateMappingRequestValidator.cs" />
+    <Compile Include="ReferenceData.cs" />
     <Compile Include="Services\IMdmService.cs" />
     <Compile Include="Services\MdmService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

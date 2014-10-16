@@ -5,11 +5,11 @@ using Microsoft.Practices.Unity;
 
 namespace MDM.ServiceHost.WebApi.Infrastructure.Configuration
 {
-    public class MdmTypesLoderConfiguration : IGlobalConfigurationTask
+    public class MdmTypesLoaderConfiguration : IGlobalConfigurationTask
     {
         private readonly IUnityContainer container;
 
-        public MdmTypesLoderConfiguration(IUnityContainer container)
+        public MdmTypesLoaderConfiguration(IUnityContainer container)
         {
             this.container = container;
         }

@@ -1,6 +1,5 @@
 namespace EnergyTrading.Mdm.Contracts.Rules
 {
-    using System;
     using EnergyTrading.Data;
     using EnergyTrading.Mdm.Data;
     using EnergyTrading.Mdm.Messages;

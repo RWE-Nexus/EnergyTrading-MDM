@@ -6,8 +6,10 @@ using System.Text.RegularExpressions;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
+using System.Web.Http.Routing;
 using MDM.ServiceHost.WebApi.Controllers;
 using MDM.ServiceHost.WebApi.Infrastructure.Configuration;
+using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
 
 namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
@@ -38,6 +40,11 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
         {
             var contractName = GetControllerName(request);
 
+            if (string.IsNullOrEmpty(contractName))
+            {
+                return DetermineControllerVieRouteData(request);
+            }
+
             var entityName = DetermineVersionedEntityName(request, contractName);
 
             var contractType = DetermineContractType(contractName);
@@ -51,6 +58,29 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             return new HttpControllerDescriptor(configuration, "EntityController`2", controllerType);
         }
 
+        private HttpControllerDescriptor DetermineControllerVieRouteData(HttpRequestMessage request)
+        {
+            var subRouteData = request.GetRouteData().GetSubRoutes().LastOrDefault();
+
+            if (subRouteData != null && subRouteData.Route != null)
+            {
+                var actions = subRouteData.Route.DataTokens["actions"] as HttpActionDescriptor[];
+
+                if (actions != null && actions.Length > 0)
+                {
+                    var controllerName = actions[0].ControllerDescriptor.ControllerName;
+
+                    if (controllerName == "ReferenceData")
+                    {
+                        return new HttpControllerDescriptor(configuration, "ReferenceDataController",
+                            typeof (ReferenceDataController));
+                    }
+                }
+            }
+
+            throw new NotFoundException();
+        }
+
         private Type DetermineListContractType(string contractName)
         {
             var listContractType = listContractTypes.FirstOrDefault(x => x.Name.Equals(contractName + "List", StringComparison.InvariantCultureIgnoreCase));
@@ -58,7 +88,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             {
                 throw new Exception(string.Format("Unknown MDM resource list type: {0}List", contractName));
             }
-            return listContractType;                            
+            return listContractType;
         }
 
         private Type DetermineEntityType(string entityName)
