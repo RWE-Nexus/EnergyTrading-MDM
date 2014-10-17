@@ -172,9 +172,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
             }
             finally
             {
-                // NB Closes EF connection explcitly to avoid leaks in integration tests
                 var csp = serviceLocator.GetInstance<IDbContextProvider>();
-                csp.Close();
+                if (csp != null)
+                {
+                    csp.Close();
+                }
             }
         }
 
@@ -197,9 +199,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
             }
             finally
             {
-                // NB Closes EF connection explcitly to avoid leaks in integration tests
                 var csp = serviceLocator.GetInstance<IDbContextProvider>();
-                csp.Close();
+                if (csp != null)
+                {
+                    csp.Close();
+                }
             }
         }
     }
