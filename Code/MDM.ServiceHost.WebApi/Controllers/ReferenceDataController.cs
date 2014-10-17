@@ -66,6 +66,11 @@ namespace MDM.ServiceHost.WebApi.Controllers
         [HttpGet, Route("list/{key}")]
         public IHttpActionResult List(string key)
         {
+            if (string.IsNullOrEmpty(key) || key == "{}")
+            {
+                return List();
+            }
+
             return GetHandler(
                 key,
                 () =>
@@ -80,7 +85,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
         }
 
         [HttpPost, Route("create/{key}")]
-        public IHttpActionResult CreateList(string key, [FromBody] IList<ReferenceData> entries)
+        public IHttpActionResult CreateList(string key, [FromBody] IList<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
         {
             return PostHandler(
                 key,
@@ -125,7 +130,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
         }
 
         [HttpPost, Route("delete/{key}")]
-        public void DeleteList(string key, [FromBody] IList<ReferenceData> entries)
+        public void DeleteList(string key, [FromBody] IList<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
         {
             PostHandler(
                 key,
