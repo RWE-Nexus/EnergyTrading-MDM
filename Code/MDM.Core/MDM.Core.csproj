@@ -36,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnergyTrading.Contracts">
-      <HintPath>..\packages\EnergyTrading.Contracts.2.8.1.98\lib\net35\EnergyTrading.Contracts.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Contracts.2.8.1.112\lib\net35\EnergyTrading.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.Core">
-      <HintPath>..\packages\EnergyTrading.Core.2.8.1.98\lib\net40\EnergyTrading.Core.dll</HintPath>
+      <HintPath>..\packages\EnergyTrading.Core.2.8.1.112\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.MDM.Contracts, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
