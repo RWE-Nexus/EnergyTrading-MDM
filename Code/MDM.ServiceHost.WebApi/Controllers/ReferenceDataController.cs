@@ -17,7 +17,10 @@ using ReferenceData = EnergyTrading.Mdm.ReferenceData;
 namespace MDM.ServiceHost.WebApi.Controllers
 {
     /// <summary>
-    /// Specific controller for the ReferenceData MDM type which isn't a proper entity or contract
+    /// The ReferenceData MDM resource is not a standard MDM entity or contract and as such does not adhere to the 
+    /// same mechanisms as the other entities.  It therefore requires its own custom controller and routes as described
+    /// here.
+    /// NOTE: Some of the non-REST standard routes here are required for backwards compatibility with existing consumers.
     /// </summary>
     [RoutePrefix("referencedata")]
     public class ReferenceDataController : ApiController
@@ -27,12 +30,6 @@ namespace MDM.ServiceHost.WebApi.Controllers
         private readonly IRepository repository;
         private readonly IServiceLocator serviceLocator;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="repository"></param>
-        /// <param name="serviceLocator"></param>
-        /// <exception cref="ArgumentNullException"></exception>
         public ReferenceDataController(IRepository repository, IServiceLocator serviceLocator)
         {
             if (repository == null)
@@ -47,28 +44,18 @@ namespace MDM.ServiceHost.WebApi.Controllers
             this.serviceLocator = serviceLocator;
         }
 
-        [HttpGet, Route("list")]
-        public IHttpActionResult List()
-        {
-            return GetHandler(
-                "{}",
-                () =>
-                {
-                    var entries = repository.Queryable<ReferenceData>().OrderBy(x => x.Key + "|" + x.Value);
-
-                    var list = new ReferenceDataList();
-                    list.AddRange(entries.Select(entry => new EnergyTrading.Mdm.Contracts.ReferenceData { ReferenceKey = entry.Key, Value = entry.Value }));
-                    Logger.DebugFormat("ReferenceData list created. Key: {0}", "{}");
-                    return Ok(list);
-                });
-        }
-
-        [HttpGet, Route("list/{key}")]
-        public IHttpActionResult List(string key)
+        /// <summary>
+        /// List the ReferenceData entries for the category key supplied.  
+        /// If no key is supplied then ALL ReferenceData entities are returned.
+        /// </summary>
+        /// <param name="key">The ReferenceData category key</param>
+        /// <returns>Response with approriate status code and the list of ReferenceData as content</returns>
+        [HttpGet, Route("list/{key?}"), Route("{key?}")]
+        public IHttpActionResult List(string key = null)
         {
             if (string.IsNullOrEmpty(key) || key == "{}")
             {
-                return List();
+                return ListAll();
             }
 
             return GetHandler(
@@ -84,7 +71,13 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 });
         }
 
-        [HttpPost, Route("create/{key}")]
+        /// <summary>
+        /// Creates a new list of ReferenceData entries for the given category key
+        /// </summary>
+        /// <param name="key">The category key</param>
+        /// <param name="entries">The list of new entries</param>
+        /// <returns>Response with approriate status code and the query url for retrieving them</returns>
+        [HttpPost, Route("create/{key}"), Route("{key}")]
         public IHttpActionResult CreateList(string key, [FromBody] IList<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
         {
             return PostHandler(
@@ -129,8 +122,44 @@ namespace MDM.ServiceHost.WebApi.Controllers
                 });
         }
 
+        /// <summary>
+        /// Removes the supplied entries for the category key given
+        /// </summary>
+        /// <param name="key">The category key</param>
+        /// <param name="entries">The list of entries to remove</param>
+        [HttpDelete, Route("{key}")]
+        public void Delete(string key, [FromBody] IList<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
+        {
+            DeleteList(key, entries);
+        }
+
+        /// <summary>
+        /// Removes the supplied entries for the category key given
+        /// </summary>
+        /// <param name="key">The category key</param>
+        /// <param name="entries">The list of entries to remove</param>
         [HttpPost, Route("delete/{key}")]
-        public void DeleteList(string key, [FromBody] IList<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
+        public void PostDelete(string key, [FromBody] IList<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
+        {
+            DeleteList(key, entries);
+        }
+
+        private IHttpActionResult ListAll()
+        {
+            return GetHandler(
+                "{}",
+                () =>
+                {
+                    var entries = repository.Queryable<ReferenceData>().OrderBy(x => x.Key + "|" + x.Value);
+
+                    var list = new ReferenceDataList();
+                    list.AddRange(entries.Select(entry => new EnergyTrading.Mdm.Contracts.ReferenceData { ReferenceKey = entry.Key, Value = entry.Value }));
+                    Logger.DebugFormat("ReferenceData list created. Key: {0}", "{}");
+                    return Ok(list);
+                });
+        }
+
+        private void DeleteList(string key, IEnumerable<EnergyTrading.Mdm.Contracts.ReferenceData> entries)
         {
             PostHandler(
                 key,
@@ -177,6 +206,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
             }
             finally
             {
+                // NB Closes EF connection explcitly to avoid leaks in integration tests
                 var csp = serviceLocator.GetInstance<IDbContextProvider>();
                 if (csp != null)
                 {
@@ -204,6 +234,7 @@ namespace MDM.ServiceHost.WebApi.Controllers
             }
             finally
             {
+                // NB Closes EF connection explcitly to avoid leaks in integration tests
                 var csp = serviceLocator.GetInstance<IDbContextProvider>();
                 if (csp != null)
                 {
