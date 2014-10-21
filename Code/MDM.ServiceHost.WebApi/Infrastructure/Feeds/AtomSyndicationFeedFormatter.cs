@@ -1,4 +1,6 @@
-﻿namespace MDM.ServiceHost.WebApi.Infrastructure.Feeds
+﻿using System.Text;
+
+namespace MDM.ServiceHost.WebApi.Infrastructure.Feeds
 {
     using System;
     using System.IO;
@@ -9,6 +11,11 @@
 
     public class AtomSyndicationFeedFormatter : MediaTypeFormatter
     {
+        public AtomSyndicationFeedFormatter()
+        {
+            SupportedEncodings.Add(new UTF8Encoding());
+        }
+
         public override bool CanReadType(Type type)
         {
             return false;
@@ -25,7 +32,12 @@
             {
                 if (type == typeof(SyndicationFeed))
                 {
-                    using (XmlWriter writer = XmlWriter.Create(writeStream))
+                    var utf8NoBom = new UTF8Encoding(false);
+                    var settings = new XmlWriterSettings
+                    {
+                        Encoding = utf8NoBom
+                    };
+                    using (XmlWriter writer = XmlWriter.Create(writeStream, settings))
                     {
                         var atomformatter = new Atom10FeedFormatter((SyndicationFeed) value);
                         atomformatter.WriteTo(writer);
