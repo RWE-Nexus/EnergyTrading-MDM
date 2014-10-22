@@ -21,23 +21,51 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
      */
 
     /// <summary>
-    /// This fake "MdmEntityModel" API represents what is supported by all the standard MDM entities.
-    /// For any standard MDM entity replace "mdmentitymodel" in the route with the concrete entity name.
-    /// NOTE: Any entities with a version higher than 1 the route begins with ~/v{version number}/{mdmentitymodel}/...
+    /// This fake "MdmEntity" API represents what is supported by all the standard MDM entities.
+    /// For any standard MDM entity replace "mdmentity" in the route with the concrete entity name.
+    /// NOTE: Any entities with a version higher than 1 the route begins with ~/v{version number}/{mdmentity}/...
     /// </summary>
-    [RoutePrefix("mdmentitymodel")]
-    public class MdmEntityModelController : ApiController
+    [RoutePrefix("mdmentity")]
+    public class MdmEntityController : ApiController
     {
+        /// <summary>
+        /// Creates a new entity from the details in the request body
+        /// </summary>
+        /// <param name="contract">The deserialised entity details from the request body</param>
+        /// <returns>Reponse with appropriate status code and entity url</returns>
+        [ValidateModel]
+        [HttpPost, Route("")]
+        public IHttpActionResult CreateEntity([FromBody] MdmEntity contract)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Updates an entity with the details provided in the request body
+        /// Supports POST for backwards compatibility, going forward a PUT should be used.
+        /// </summary>
+        /// <param name="id">The MDM entity identifier</param>
+        /// <param name="etag">The version of the entity represented in the request body</param>
+        /// <param name="contract">The updated entity details</param>
+        /// <returns>Reponse with appropriate status code and entity url</returns>
+        [ValidateModel]
+        [AcceptVerbs("POST", "PUT"), Route("{id:int}")]
+        public IHttpActionResult UpdateEntity(int id, [IfMatch] ETag etag, [FromBody] MdmEntity contract)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Returns the MDM entity matching the identifier.  If an ETag version is supplied then
         /// the service will verify if it matches its own version and respond accordingly.
         /// </summary>
         /// <param name="id">The MDM unique identifier</param>
+        /// <param name="asOfDate">If supplied then it ensures the entity is valid at that date otherwise a NotFound will be returned.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <param name="etag">The current version held by the client</param>
         /// <returns>Reponse with appropriate status code and the serialised entity according to content negotiation</returns>
         [ETagChecking]
         [HttpGet, Route("{id}")]
-        public IHttpActionResult Get(int id, [IfNoneMatch] ETag etag)
+        public IHttpActionResult GetEntity(int id, [FromUri(Name = "as-of")] DateTime asOfDate, [IfNoneMatch] ETag etag)
         {
             throw new NotImplementedException();
         }
@@ -47,7 +75,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// </summary>
         /// <returns>Reponse with appropriate status code and the list of entities as content</returns>
         [HttpGet, Route("list")]
-        public IHttpActionResult Get()
+        public IHttpActionResult GetAllEntities()
         {
             throw new NotImplementedException();
         }
@@ -56,11 +84,15 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// Cross mapping take a source system name and source system mapping value and looks up
         /// the entity and returns the mapping for the target system.
         /// </summary>
+        /// <param name="sourceSystem">The system name that the known mapping belongs to</param>
+        /// <param name="mappingValue">The source system mapping value</param>
+        /// <param name="destinationSystem">The system to find and return the mapping for</param>
+        /// <param name="asOfDate">If supplied then entities are also filtered on their validity dates against this value.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <param name="etag">The current version held by the client</param>
         /// <returns></returns>
         [ETagChecking]
         [HttpGet, Route("crossmap")]
-        public IHttpActionResult GetCrossMap([IfNoneMatch] ETag etag)
+        public IHttpActionResult GetCrossMap([FromUri(Name = "source-system")] string sourceSystem, [FromUri(Name = "mapping-string")] string mappingValue, [FromUri(Name = "destination-system")] string destinationSystem, [FromUri(Name = "as-of")] DateTime asOfDate, [IfNoneMatch] ETag etag)
         {
             throw new NotImplementedException();
         }
@@ -68,11 +100,14 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <summary>
         /// Will try and retrieve an entity with a matching mapping to what is supplied in the query parameters
         /// </summary>
+        /// <param name="sourceSystem">The system name that the known mapping belongs to</param>
+        /// <param name="mappingValue">The source system mapping value</param>
+        /// <param name="asOfDate">If supplied then entities are also filtered on their validity dates against this value.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <param name="etag">The service verifies if its entity version matches what's held by the client cache</param>
         /// <returns>Response with appropriate status code and the serialised entity as content if found</returns>
         [ETagChecking]
         [HttpGet, Route("map")]
-        public IHttpActionResult Get([IfNoneMatch] ETag etag)
+        public IHttpActionResult MapEntity([FromUri(Name = "source-system")] string sourceSystem, [FromUri(Name = "mapping-string")] string mappingValue, [FromUri(Name = "as-of")] DateTime asOfDate, [IfNoneMatch] ETag etag)
         {
             throw new NotImplementedException();
         }
@@ -85,7 +120,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <returns>Reponse with the appropriate status code and the mapping as content</returns>
         [ETagChecking]
         [HttpGet, Route("{id}/mapping/{mappingid}")]
-        public IHttpActionResult Get(int id, int mappingid)
+        public IHttpActionResult GetEntityMapping(int id, int mappingid)
         {
             throw new NotImplementedException();
         }
@@ -98,7 +133,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <returns>Response with appropriate status code and mapping url</returns>
         [ValidateModel]
         [HttpPost, Route("{id}/mapping")]
-        public IHttpActionResult Post(int id, [FromBody] Mapping mapping)
+        public IHttpActionResult CreateEntityMapping(int id, [FromBody] Mapping mapping)
         {
             throw new NotImplementedException();
         }
@@ -110,7 +145,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <param name="mappingid">The MDM identifier for the mapping</param>
         /// <returns>Reponse with approprtiate status code</returns>
         [HttpDelete, Route("{id}/mapping/{mappingid}")]
-        public IHttpActionResult Delete(int id, int mappingid)
+        public IHttpActionResult DeleteEntityMapping(int id, int mappingid)
         {
             throw new NotImplementedException();
         }
@@ -127,7 +162,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <returns>Response with appropriate status code and the entity mapping url</returns>
         [ValidateModel]
         [AcceptVerbs("POST", "PUT"), Route("{id}/mapping/{mappingid}")]
-        public IHttpActionResult Put(int id, int mappingid, [IfMatch] ETag etag, [FromBody] Mapping mapping)
+        public IHttpActionResult UpdateEntityMapping(int id, int mappingid, [IfMatch] ETag etag, [FromBody] Mapping mapping)
         {
             throw new NotImplementedException();
         }
@@ -137,7 +172,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// </summary>
         /// <param name="id">The MDM identifier for the entity</param>
         /// <param name="etag">The current version held by the client</param>
-        /// <returns>Response with approrpiate status code and the Atom feed as content</returns>
+        /// <returns>Response with appropriate status code and the Atom feed as content</returns>
         [HttpGet, Route("{id}/mappings")]
         public HttpResponseMessage GetMappings(int id, [IfNoneMatch] ETag etag)
         {
@@ -147,11 +182,11 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <summary>
         /// Returns a list of all entity versions for the specified identifier
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// <exception cref="MdmFaultException"></exception>
+        /// <param name="id">The MDM identifier for the entity</param>
+        /// <param name="asOfDate">If supplied then entity versions are also filtered on their validity dates against this value.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
+        /// <returns>Response with appropriate status code and the Atom feed as content</returns>
         [HttpGet, Route("{id}/list")]
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult GetEntityVersions(int id, [FromUri(Name = "as-of")] DateTime asOfDate)
         {
             throw new NotImplementedException();
         }
@@ -162,34 +197,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// </summary>
         /// <returns>Reponse with appropriate status code and the Atom XML feed as content</returns>
         [HttpGet, Route("feed")]
-        public HttpResponseMessage GetFeed()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Creates a new entity from the details in the request body
-        /// </summary>
-        /// <param name="contract">The deserialised entity details from the request body</param>
-        /// <returns>Reponse with appropriate status code and entity url</returns>
-        [ValidateModel]
-        [HttpPost, Route("search")]
-        public IHttpActionResult Post([FromBody] MdmEntityModel contract)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Updates a MDM entity with the details provided in the request body
-        /// Exists as a POST for backwards compatibility, please use PUT
-        /// </summary>
-        /// <param name="id">The MDM entity identifier</param>
-        /// <param name="etag">The version of the entity represented in the request body</param>
-        /// <param name="contract">The updated entity details</param>
-        /// <returns>Reponse with appropriate status code and entity url</returns>
-        [ValidateModel]
-        [AcceptVerbs("POST", "PUT"), Route("{id:int}")]
-        public IHttpActionResult Put(int id, [IfMatch] ETag etag, [FromBody] MdmEntityModel contract)
+        public HttpResponseMessage GetEntitiesAsFeed()
         {
             throw new NotImplementedException();
         }
@@ -201,7 +209,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <param name="page">The page of results to return</param>
         /// <returns>Reponse with approprtiate status code and the page of search results as content</returns>
         [HttpGet, Route("search")]
-        public HttpResponseMessage Get(string key, int page)
+        public HttpResponseMessage GetSearchResults(string key, int page)
         {
             throw new NotImplementedException();
         }
@@ -212,7 +220,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <param name="search">The deserialised search object from the request body</param>
         /// <returns>Response with appropriate status code and the first page of results along with links to further result pages</returns>
         [HttpPost, Route("search")]
-        public HttpResponseMessage Post([FromBody] EnergyTrading.Contracts.Search.Search search)
+        public HttpResponseMessage PostSearch([FromBody] EnergyTrading.Contracts.Search.Search search)
         {
             throw new NotImplementedException();
         }
@@ -221,7 +229,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
     /// <summary>
     /// A fake entity used for api documentation only
     /// </summary>
-    public class MdmEntityModel
+    public class MdmEntity
     {
 
     }
