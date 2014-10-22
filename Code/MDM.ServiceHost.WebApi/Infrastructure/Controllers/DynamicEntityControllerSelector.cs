@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Web.Http;
@@ -9,7 +11,6 @@ using System.Web.Http.Dispatcher;
 using System.Web.Http.Routing;
 using MDM.ServiceHost.WebApi.Controllers;
 using MDM.ServiceHost.WebApi.Infrastructure.Configuration;
-using MDM.ServiceHost.WebApi.Infrastructure.Exceptions;
 using MDM.ServiceHost.WebApi.Infrastructure.Extensions;
 
 namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
@@ -26,9 +27,12 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
         private readonly IEnumerable<Type> entityTypes;
         private readonly IEnumerable<Type> listContractTypes;
 
+        private ConcurrentDictionary<Type, HttpControllerDescriptor> controllerDescriptors;
+
         public DynamicEntityControllerSelector(HttpConfiguration configuration)
             : base(configuration)
         {
+            controllerDescriptors = new ConcurrentDictionary<Type, HttpControllerDescriptor>();
             contractTypes = MdmContractTypesLoader.ContractTypes;
             entityTypes = MdmEntityTypesLoader.EntityTypes;
             listContractTypes = MdmContractTypesLoader.ContractListTypes;
@@ -38,24 +42,42 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 
         public override HttpControllerDescriptor SelectController(HttpRequestMessage request)
         {
-            var contractName = GetControllerName(request);
-
-            if (string.IsNullOrEmpty(contractName))
+            try
             {
-                return DetermineControllerVieRouteData(request);
+                var contractName = GetControllerName(request);
+
+                if (string.IsNullOrEmpty(contractName))
+                {
+                    return DetermineControllerVieRouteData(request);
+                }
+
+                var entityName = DetermineVersionedEntityName(request, contractName);
+
+                var contractType = DetermineContractType(contractName);
+
+                var entityType = DetermineEntityType(entityName);
+
+                var listContractType = DetermineListContractType(contractName);
+
+                var controllerType = GetControllerTypeForRequest(request, contractType, entityType, listContractType);
+
+                if (controllerDescriptors.ContainsKey(controllerType))
+                {
+                    return controllerDescriptors[controllerType];
+                }
+
+                var descriptor = new HttpControllerDescriptor(configuration, "EntityController`2", controllerType);
+                controllerDescriptors.TryAdd(controllerType, descriptor);
+                return descriptor;
             }
-
-            var entityName = DetermineVersionedEntityName(request, contractName);
-
-            var contractType = DetermineContractType(contractName);
-
-            var entityType = DetermineEntityType(entityName);
-
-            var listContractType = DetermineListContractType(contractName);
-
-            var controllerType = GetControllerTypeForRequest(request, contractType, entityType, listContractType);
-
-            return new HttpControllerDescriptor(configuration, "EntityController`2", controllerType);
+            catch (HttpResponseException)
+            {
+                throw;
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
         }
 
         private HttpControllerDescriptor DetermineControllerVieRouteData(HttpRequestMessage request)
@@ -72,13 +94,19 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
 
                     if (controllerName == "ReferenceData")
                     {
-                        return new HttpControllerDescriptor(configuration, "ReferenceDataController",
-                            typeof (ReferenceDataController));
+                        if (controllerDescriptors.ContainsKey(typeof (ReferenceDataController)))
+                        {
+                            return controllerDescriptors[typeof (ReferenceDataController)];
+                        }
+
+                        var descriptor = new HttpControllerDescriptor(configuration, "ReferenceDataController", typeof (ReferenceDataController));
+                        controllerDescriptors.TryAdd(typeof (ReferenceDataController), descriptor);
+                        return descriptor;
                     }
                 }
             }
 
-            throw new NotFoundException();
+            throw new HttpResponseException(HttpStatusCode.NotFound);
         }
 
         private Type DetermineListContractType(string contractName)
