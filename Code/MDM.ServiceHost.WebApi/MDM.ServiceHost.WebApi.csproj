@@ -135,6 +135,7 @@
     <Compile Include="Filters\GlobalExceptionHandler.cs" />
     <Compile Include="Filters\LoggingAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
+    <Compile Include="Infrastructure\ApiDocumentation\MdmEntityModelController.cs" />
     <Compile Include="Infrastructure\Controllers\BaseEntityController.cs" />
     <Compile Include="Infrastructure\Configuration\ConfigSettingsContractAssemblyNamesLocator.cs" />
     <Compile Include="Infrastructure\Configuration\ConfigSettingsEntityAssemblyNamesLocator.cs" />
