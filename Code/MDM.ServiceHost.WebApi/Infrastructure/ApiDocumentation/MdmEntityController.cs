@@ -25,7 +25,6 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
     /// <summary>
     /// All the standard MDM entities support the API represented in this section.
     /// For any standard MDM entity replace "mdmentity" in the route with the concrete entity name.
-    /// NOTE: Any entities with a version higher than 1 the route begins with ~/v{version number}/{mdmentity}/...
     /// </summary>
     [RoutePrefix("mdmentity")]
     public class MdmEntityController : ApiController
@@ -33,7 +32,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <summary>
         /// Creates a new "MdmEntity" from the details in the request body
         /// </summary>
-        /// <param name="contract">The deserialised "MdmEntity" details from the request body</param>
+        /// <param name="contract">The "MdmEntity" contract details</param>
         /// <returns>Reponse with appropriate status code and entity location url</returns>
         [ValidateModel]
         [HttpPost, Route("")]
@@ -132,7 +131,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// Creates a new entity mapping for the entity specified.
         /// </summary>
         /// <param name="id">The MDM identifier for the entity that the mapping will be attached to</param>
-        /// <param name="mapping">The mapping details deserialised from the request body</param>
+        /// <param name="mapping">The mapping details</param>
         /// <returns>Response with appropriate status code and mapping location url</returns>
         [ValidateModel]
         [HttpPost, Route("{id}/mapping")]
@@ -161,7 +160,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <param name="id">The MDM identifier for the entity</param>
         /// <param name="mappingid">The MDM identifier for the mapping</param>
         /// <param name="etag">The version of the entity held by the client</param>
-        /// <param name="mapping">The deserialised entity from the request body</param>
+        /// <param name="mapping">The "MdmEntity" contract details</param>
         /// <returns>Response with appropriate status code and the entity mapping location url</returns>
         [ValidateModel]
         [AcceptVerbs("POST", "PUT"), Route("{id}/mapping/{mappingid}")]
@@ -224,7 +223,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <summary>
         /// Initiates a MDM entity search and returns the first page of results as an Atom XML feed
         /// </summary>
-        /// <param name="search">The deserialised search object from the request body</param>
+        /// <param name="search">The search object containing criteria and search options</param>
         /// <returns>Response with appropriate status code and the first page of results along with links to further result pages</returns>
         [HttpPost, Route("search")]
         [ResponseType(typeof(SyndicationFeed))]
