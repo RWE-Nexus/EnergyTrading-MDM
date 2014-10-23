@@ -23,7 +23,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
      */
 
     /// <summary>
-    /// This fake "MdmEntity" API represents what is supported by all the standard MDM entities.
+    /// All the standard MDM entities support the API represented in this section.
     /// For any standard MDM entity replace "mdmentity" in the route with the concrete entity name.
     /// NOTE: Any entities with a version higher than 1 the route begins with ~/v{version number}/{mdmentity}/...
     /// </summary>
@@ -62,7 +62,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// the service will verify if it matches its own version and respond accordingly.
         /// </summary>
         /// <param name="id">The MDM unique identifier</param>
-        /// <param name="asOfDate">If supplied then it ensures the entity is valid at that date otherwise a NotFound will be returned.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
+        /// <param name="asOfDate">If supplied, the entity validity dates are checked against it.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <param name="etag">The current version held by the client</param>
         /// <returns>Reponse with appropriate status code and the serialised entity according to content negotiation</returns>
         [HttpGet, Route("{id}")]
@@ -90,11 +90,11 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// <param name="sourceSystem">The system name that the known mapping belongs to</param>
         /// <param name="mappingValue">The source system mapping value</param>
         /// <param name="destinationSystem">The system to find and return the mapping for</param>
-        /// <param name="asOfDate">If supplied then entities are also filtered on their validity dates against this value.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
+        /// <param name="asOfDate">If supplied, entities are filtered on their validity dates.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <param name="etag">The current version held by the client</param>
         /// <returns>Response with appropriate status code and the mapping value for the destination system</returns>
         [HttpGet, Route("crossmap")]
-        [ResponseType(typeof(string))]
+        [ResponseType(typeof(Mapping))]
         public IHttpActionResult GetCrossMap([FromUri(Name = "source-system")] string sourceSystem, [FromUri(Name = "mapping-string")] string mappingValue, [FromUri(Name = "destination-system")] string destinationSystem, [FromUri(Name = "as-of")] string asOfDate = "", [IfNoneMatch] ETag etag = null)
         {
             throw new NotImplementedException();
@@ -105,7 +105,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// </summary>
         /// <param name="sourceSystem">The system name that the known mapping belongs to</param>
         /// <param name="mappingValue">The source system mapping value</param>
-        /// <param name="asOfDate">If supplied then entities are also filtered on their validity dates against this value.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
+        /// <param name="asOfDate">If supplied, entities are filtered on their validity dates.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <param name="etag">The service verifies if its entity version matches what's held by the client cache</param>
         /// <returns>Response with appropriate status code and the serialised entity as content if found</returns>
         [HttpGet, Route("map")]
@@ -187,7 +187,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.ApiDocumentation
         /// Returns a list of all entity versions for the specified identifier
         /// </summary>
         /// <param name="id">The MDM identifier for the entity</param>
-        /// <param name="asOfDate">If supplied then entity versions are also filtered on their validity dates against this value.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
+        /// <param name="asOfDate">If supplied, entity versions are filtered on their validity dates.  Format is "yyyy-MM-dd'T'HH:mm:ss.fffffffZ"</param>
         /// <returns>Response with appropriate status code and the Atom feed as content</returns>
         [HttpGet, Route("{id}/list")]
         [ResponseType(typeof(SyndicationFeed))]
