@@ -9,7 +9,7 @@
     <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
     <owners>RWEST</owners>
     <authors>RWEST Architecture Team</authors>
-    <tags>MDM EF EntityFramework .net40</tags>
+    <tags>MDM EF EntityFramework .net45</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
       <dependency id="EnergyTrading.EntityFramework" version="" />
@@ -25,8 +25,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.dll" target="lib\net40" />
-    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.pdb" target="lib\net40" />
-    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.xml" target="lib\net40" />
+    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.dll" target="lib\net45" />
+    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.pdb" target="lib\net45" />
+    <file src="Code\MDM.Data.EF\bin\Release\EnergyTrading.Mdm.Data.EF.xml" target="lib\net45" />
   </files>
 </package>

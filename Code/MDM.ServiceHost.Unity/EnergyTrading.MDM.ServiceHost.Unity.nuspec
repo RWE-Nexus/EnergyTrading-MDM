@@ -9,7 +9,7 @@
     <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
     <owners>RWEST</owners>
     <authors>RWEST Architecture Team</authors>
-    <tags>MDM Unity .net40</tags>
+    <tags>MDM Unity .net45</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
       <dependency id="EnergyTrading.Caching.AppFabric" version="" />
@@ -25,8 +25,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.ServiceHost.Unity\bin\Release\EnergyTrading.Mdm.ServiceHost.Unity.dll" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Unity\bin\Release\EnergyTrading.Mdm.ServiceHost.Unity.pdb" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Unity\bin\Release\EnergyTrading.Mdm.ServiceHost.Unity.xml" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Unity\bin\Release\EnergyTrading.Mdm.ServiceHost.Unity.dll" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.Unity\bin\Release\EnergyTrading.Mdm.ServiceHost.Unity.pdb" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.Unity\bin\Release\EnergyTrading.Mdm.ServiceHost.Unity.xml" target="lib\net45" />
   </files>
 </package>

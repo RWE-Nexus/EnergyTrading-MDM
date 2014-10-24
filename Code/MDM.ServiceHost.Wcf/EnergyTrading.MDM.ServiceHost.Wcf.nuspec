@@ -9,7 +9,7 @@
     <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
     <owners>RWEST</owners>
     <authors>RWEST Architecture Team</authors>
-    <tags>MDM WCF .net40</tags>
+    <tags>MDM WCF .net45</tags>
     <dependencies>
       <dependency id="CommonServiceLocator" version="" />
       <dependency id="EnergyTrading.Mdm.ServiceHost.Unity" version="" />
@@ -24,9 +24,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.dll" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.pdb" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.dll" target="lib\net40" />
-    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.Extensions.dll" target="lib\net40" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.dll" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\EnergyTrading.Mdm.ServiceHost.Wcf.pdb" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.dll" target="lib\net45" />
+    <file src="Code\MDM.ServiceHost.Wcf\bin\Release\Microsoft.Http.Extensions.dll" target="lib\net45" />
   </files>
 </package>
