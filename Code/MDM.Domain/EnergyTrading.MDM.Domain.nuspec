@@ -9,7 +9,7 @@
     <projectUrl>http://github.com/RWE-Nexus/EnergyTrading-Mdm</projectUrl>
     <owners>RWEST</owners>
     <authors>RWEST Architecture Team</authors>
-    <tags>MDM mapping .net40</tags>
+    <tags>MDM mapping .net45</tags>
     <dependencies>
       <dependency id="EnergyTrading.MDM.Contracts" version="" />
       <dependency id="EnergyTrading.Contracts" version="" />
@@ -18,8 +18,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
   <files>
-    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.dll" target="lib\net40" />
-    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.pdb" target="lib\net40" />
-    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.xml" target="lib\net40" />
+    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.dll" target="lib\net45" />
+    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.pdb" target="lib\net45" />
+    <file src="Code\MDM.Domain\bin\Release\EnergyTrading.Mdm.Domain.xml" target="lib\net45" />
   </files>
 </package>

@@ -65,6 +65,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="EnergyTrading.MDM.Domain.EF.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
