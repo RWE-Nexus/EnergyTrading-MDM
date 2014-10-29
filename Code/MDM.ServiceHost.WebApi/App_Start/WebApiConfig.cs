@@ -33,14 +33,14 @@ namespace MDM.ServiceHost.WebApi
                 name: "DefaultIdApi",
                 routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get, HttpMethod.Put) }
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get, HttpMethod.Put, HttpMethod.Post) } // TODO shouldn't really support POST but MDM Client sends updates as POST currently
             );
 
             config.Routes.MapHttpRoute(
                 name: "VersionedDefaultIdApi",
                 routeTemplate: "{version}/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional },
-                constraints: new { version = @"v\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get, HttpMethod.Put) }
+                constraints: new { version = @"v\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get, HttpMethod.Put, HttpMethod.Post) } // TODO shouldn't really support POST but MDM Client sends updates as POST currently
             );
 
             config.Routes.MapHttpRoute(

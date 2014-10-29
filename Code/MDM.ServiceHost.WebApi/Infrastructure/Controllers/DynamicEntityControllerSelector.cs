@@ -27,7 +27,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
         private readonly IEnumerable<Type> entityTypes;
         private readonly IEnumerable<Type> listContractTypes;
 
-        private ConcurrentDictionary<Type, HttpControllerDescriptor> controllerDescriptors;
+        private readonly ConcurrentDictionary<Type, HttpControllerDescriptor> controllerDescriptors;
 
         public DynamicEntityControllerSelector(HttpConfiguration configuration)
             : base(configuration)
@@ -80,7 +80,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             }
         }
 
-        private HttpControllerDescriptor DetermineControllerVieRouteData(HttpRequestMessage request)
+        protected virtual HttpControllerDescriptor DetermineControllerVieRouteData(HttpRequestMessage request)
         {
             var subRouteData = request.GetRouteData().GetSubRoutes().LastOrDefault();
 
@@ -109,7 +109,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             throw new HttpResponseException(HttpStatusCode.NotFound);
         }
 
-        private Type DetermineListContractType(string contractName)
+        protected virtual Type DetermineListContractType(string contractName)
         {
             var listContractType = listContractTypes.FirstOrDefault(x => x.Name.Equals(contractName + "List", StringComparison.InvariantCultureIgnoreCase));
             if (listContractType == null)
@@ -119,7 +119,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             return listContractType;
         }
 
-        private Type DetermineEntityType(string entityName)
+        protected virtual Type DetermineEntityType(string entityName)
         {
             var entityType = entityTypes.FirstOrDefault(x => x.Name.Equals(entityName, StringComparison.InvariantCultureIgnoreCase));
             if (entityType == null)
@@ -130,7 +130,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             return entityType;
         }
 
-        private Type DetermineContractType(string contractName)
+        protected virtual Type DetermineContractType(string contractName)
         {
             var contractType = contractTypes.FirstOrDefault(x => x.Name.Equals(contractName, StringComparison.InvariantCultureIgnoreCase));
             if (contractType == null)
@@ -141,7 +141,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             return contractType;
         }
 
-        private static string DetermineVersionedEntityName(HttpRequestMessage request, string contractName)
+        protected virtual string DetermineVersionedEntityName(HttpRequestMessage request, string contractName)
         {
             var uri = request.RequestUri.AbsolutePath.ToLowerInvariant();
             var match = Regex.Match(uri, "/v[\\d]+/");
@@ -153,7 +153,7 @@ namespace MDM.ServiceHost.WebApi.Infrastructure.Controllers
             return contractName;
         }
 
-        private static Type GetControllerTypeForRequest(HttpRequestMessage request, Type contractType, Type entityType, Type listContractType)
+        protected virtual Type GetControllerTypeForRequest(HttpRequestMessage request, Type contractType, Type entityType, Type listContractType)
         {
             // TODO: make more solid to prevent false detection
             if (request.RequestUri.AbsolutePath.Contains("/mappings", StringComparison.InvariantCultureIgnoreCase))
