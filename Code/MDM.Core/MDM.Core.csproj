@@ -47,8 +47,7 @@
       <HintPath>..\packages\EnergyTrading.Core.2.8.1.112\lib\net40\EnergyTrading.Core.dll</HintPath>
     </Reference>
     <Reference Include="EnergyTrading.MDM.Contracts">
-      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.1.10\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EnergyTrading.MDM.Contracts.3.2.1.14\lib\net35\EnergyTrading.MDM.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

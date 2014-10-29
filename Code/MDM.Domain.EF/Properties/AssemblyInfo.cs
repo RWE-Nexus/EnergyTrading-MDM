@@ -5,7 +5,7 @@
 // associated with an assembly.
 [assembly: AssemblyTitle("EnergyTrading.Mdm.Domain.EF")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyVersion("137")]
-[assembly: AssemblyFileVersion("137")]
+[assembly: AssemblyVersion("138")]
+[assembly: AssemblyFileVersion("138")]
 [assembly: AssemblyCompany("RWE")]
 [assembly: AssemblyCopyright("Copyright © RWE 2012")]
